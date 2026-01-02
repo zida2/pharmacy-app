@@ -1,0 +1,13 @@
+# 1. Copiez tout ce contenu.
+# 2. Ouvrez le fichier nommé .env.local dans ce même dossier.
+# 3. Collez le contenu.
+# 4. Remplacez les valeurs "votre_..." par celles trouvées dans votre Console Firebase.
+
+NEXT_PUBLIC_USE_FIREBASE=true
+
+NEXT_PUBLIC_FIREBASE_API_KEY="votre_api_key_ici"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="votre_projet.firebaseapp.com"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID="votre_projet_id"
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="votre_projet.firebasestorage.app"
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="votre_messaging_id"
+NEXT_PUBLIC_FIREBASE_APP_ID="votre_app_id"
