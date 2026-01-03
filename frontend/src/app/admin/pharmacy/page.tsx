@@ -74,7 +74,7 @@ export default function PharmacyAdminPage() {
             </header>
 
             {/* Tabs */}
-            <div className="sticky top-0 z-20 bg-white border-b border-border overflow-x-auto">
+            <div className="sticky top-0 z-20 bg-card dark:bg-zinc-900 border-b border-border overflow-x-auto">
                 <div className="flex">
                     {[
                         { id: "dashboard", label: "Tableau de bord", icon: BarChart3 },
@@ -106,7 +106,7 @@ export default function PharmacyAdminPage() {
                         {/* Stats Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             {stats.map((stat, index) => (
-                                <div key={index} className="bg-white rounded-2xl p-5 shadow-sm">
+                                <div key={index} className="bg-card dark:bg-zinc-900 rounded-2xl p-5 shadow-sm border border-border">
                                     <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-3", stat.color)}>
                                         <stat.icon className="w-6 h-6" />
                                     </div>
@@ -156,7 +156,7 @@ export default function PharmacyAdminPage() {
 
                         <div className="space-y-3">
                             {products.map(product => (
-                                <div key={product.id} className="bg-white rounded-2xl p-4 shadow-sm">
+                                <div key={product.id} className="bg-card dark:bg-zinc-900 rounded-2xl p-4 shadow-sm border border-border">
                                     <div className="flex items-start gap-4">
                                         <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center text-2xl">
                                             💊
@@ -206,14 +206,14 @@ export default function PharmacyAdminPage() {
                 {activeTab === "settings" && (
                     <div className="space-y-4">
                         {/* Database Actions */}
-                        <div className="bg-white rounded-2xl p-5 shadow-sm border border-primary/20 bg-primary/5">
+                        <div className="bg-card dark:bg-zinc-900 rounded-2xl p-5 shadow-sm border border-primary/20 bg-primary/5">
                             <h3 className="font-bold text-lg mb-2 text-primary">Zone Technique</h3>
                             <p className="text-sm text-muted-foreground mb-4">
                                 Utilisez ce bouton uniquement lors de la première configuration pour remplir la base de données.
                             </p>
                             <button
                                 onClick={handleSeed}
-                                className="w-full py-3 bg-white border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all shadow-sm flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-card dark:bg-zinc-800 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all shadow-sm flex items-center justify-center gap-2"
                             >
                                 <Database size={18} />
                                 Initialiser la Base de Données (Seed)
