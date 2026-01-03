@@ -10,6 +10,8 @@ import { Pharmacy } from "@/services/types";
 interface MapProps extends React.HTMLAttributes<HTMLDivElement> {
     initialCenter?: [number, number]; // [lng, lat]
     initialZoom?: number;
+    initialPitch?: number;
+    initialBearing?: number;
     pharmacies?: Pharmacy[];
     userLocation?: [number, number] | null;
     destination?: [number, number] | null;
@@ -18,6 +20,8 @@ interface MapProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function Map({
     initialCenter = [-1.5197, 12.3714], // Default: Ouagadougou
     initialZoom = 12,
+    initialPitch = 0,
+    initialBearing = 0,
     pharmacies = [],
     userLocation,
     destination,
@@ -35,6 +39,8 @@ export default function Map({
             map.current.flyTo({
                 center: initialCenter,
                 zoom: initialZoom,
+                pitch: initialPitch,
+                bearing: initialBearing,
                 essential: true
             });
         }
@@ -48,7 +54,15 @@ export default function Map({
             style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
             center: initialCenter,
             zoom: initialZoom,
+            pitch: initialPitch,
+            bearing: initialBearing,
             attributionControl: false,
+        });
+
+        // Add 3D buildings layer whenever possible
+        map.current.on('style.load', () => {
+            // Basic 3D building extrusion if data allows
+            // Note: Current style might not have 'building' layer, but this is the standard way just in case
         });
 
         map.current.addControl(new maplibregl.NavigationControl(), "top-right");

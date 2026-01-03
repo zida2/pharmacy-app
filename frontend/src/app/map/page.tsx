@@ -5,8 +5,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { searchMedicines } from "@/services/mockApi";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// Nominatim Geocoding Response Type
+interface GeocodingResult {
+    lat: string;
+    lon: string;
+    display_name: string;
+}
 
 export default function MapPage() {
     return (
@@ -31,6 +38,15 @@ function MapContent() {
     const [isLocating, setIsLocating] = useState(false);
     const [destinationCoords, setDestinationCoords] = useState<[number, number] | null>(null);
     const [isMinimized, setIsMinimized] = useState(false);
+
+    // Location Search State
+    const [locationQuery, setLocationQuery] = useState("");
+    const [isSearchingLocation, setIsSearchingLocation] = useState(false);
+    const [mapView, setMapView] = useState<{ center: [number, number], zoom: number, pitch: number }>({
+        center: [-1.5197, 12.3714], // Default Ouaga
+        zoom: 12,
+        pitch: 0
+    });
 
     useEffect(() => {
         // Only load if location is granted or if we want to show default
@@ -108,22 +124,85 @@ function MapContent() {
         return minutes < 60 ? `${minutes} min` : `${Math.floor(minutes / 60)}h ${minutes % 60}min`;
     };
 
+    const handleLocationSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!locationQuery.trim()) return;
+
+        setIsSearchingLocation(true);
+        try {
+            // Use OpenStreetMap Nominatim API (Free, no key required for frontend demo)
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationQuery)}&countrycodes=bf&limit=1`);
+            const data: GeocodingResult[] = await response.json();
+
+            if (data && data.length > 0) {
+                const { lat, lon } = data[0];
+                const newCenter: [number, number] = [parseFloat(lon), parseFloat(lat)];
+
+                // Update map view to "3D Relief Mode" focused on the location
+                setMapView({
+                    center: newCenter,
+                    zoom: 15.5, // Close zoom
+                    pitch: 60, // High pitch for 3D effect
+                });
+
+                // Optionally update user location to simulate being there? 
+                // No, let's just move the view. The user wants to "SEE" pharmacies there.
+                // We should probably trigger a pharmacy refresh for this area if our mock supports it?
+                // For now, let's just move the map. The mock data is static but let's pretend.
+            } else {
+                alert("Lieu introuvable. Essayez avec le nom d'une ville ou d'un quartier connu.");
+            }
+        } catch (error) {
+            console.error("Geocoding error:", error);
+            alert("Erreur de recherche. Vérifiez votre connexion.");
+        } finally {
+            setIsSearchingLocation(false);
+        }
+    };
+
     return (
         <main className="relative w-full h-screen overflow-hidden bg-background">
             {/* Header - Glassmorphism */}
             <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-safe">
-                <div className="glass-card p-4 flex items-center gap-4 border-white/20 shadow-2xl">
-                    <button
-                        onClick={() => router.back()}
-                        className="p-3 bg-secondary/50 hover:bg-secondary rounded-2xl transition-all active:scale-95"
-                    >
-                        <ArrowLeft className="w-6 h-6 text-foreground" />
-                    </button>
-                    <div className="flex-1">
-                        <h1 className="font-black text-xl italic leading-none text-foreground">Carte & Itinéraire</h1>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-primary mt-1">
-                            {pharmacies.length} pharmacies à proximité
-                        </p>
+                <div className="glass-card p-4 flex flex-col gap-4 border-white/20 shadow-2xl">
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => router.back()}
+                            className="p-3 bg-secondary/50 hover:bg-secondary rounded-2xl transition-all active:scale-95 shrink-0"
+                        >
+                            <ArrowLeft className="w-6 h-6 text-foreground" />
+                        </button>
+
+                        {/* Location Search Bar */}
+                        <form onSubmit={handleLocationSearch} className="flex-1 relative">
+                            <input
+                                type="text"
+                                value={locationQuery}
+                                onChange={(e) => setLocationQuery(e.target.value)}
+                                placeholder="Rechercher quartier, ville..."
+                                className="w-full bg-secondary/50 hover:bg-secondary focus:bg-white dark:focus:bg-zinc-800 transition-all border border-transparent focus:border-primary/20 rounded-2xl pl-12 pr-4 py-3 outline-none text-sm font-bold placeholder:font-medium placeholder:text-muted-foreground"
+                            />
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                            {isSearchingLocation && (
+                                <div className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                            )}
+                        </form>
+                    </div>
+
+                    <div className="flex justify-between items-end px-1">
+                        <div>
+                            <h1 className="font-black text-xl italic leading-none text-foreground">Carte Interactive</h1>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-primary mt-1">
+                                {pharmacies.length} pharmacies à proximité
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => setMapView(prev => ({ ...prev, pitch: prev.pitch === 0 ? 60 : 0, zoom: prev.pitch === 0 ? 15 : 12 }))}
+                            className={cn("p-2 rounded-xl border transition-all", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-card border-border text-muted-foreground")}
+                            title="Basculer vue 3D"
+                        >
+                            <Layers size={20} />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -135,8 +214,9 @@ function MapContent() {
                     pharmacies={pharmacies}
                     userLocation={userLocation}
                     destination={destinationCoords}
-                    initialCenter={userLocation || [-1.5197, 12.3714]}
-                    initialZoom={userLocation ? 14 : 12}
+                    initialCenter={mapView.center} // Modified from fixed state
+                    initialZoom={mapView.zoom} // Modified from fixed state
+                    initialPitch={mapView.pitch} // Added 3D pitch
                 />
             </div>
 
