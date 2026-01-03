@@ -5,10 +5,25 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
+import { auth } from "@/services/firebase";
+
 export default function SetupPage() {
     const [status, setStatus] = useState("En attente...");
     const [logs, setLogs] = useState<string[]>([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setIsLoggedIn(!!user);
+            if (!user) {
+                addLog("⚠️ Attention : Vous n'êtes pas connecté. L'écriture risque d'être refusée par Firebase.");
+            } else {
+                addLog(`Connecté en tant que ${user.email || 'Anonyme'}`);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     const runSeed = async () => {
         setStatus("Injection des données réelles dans Firebase...");

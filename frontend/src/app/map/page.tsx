@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Nominatim Geocoding Response Type
@@ -28,7 +28,18 @@ function MapContent() {
     const searchParams = useSearchParams();
     const query = searchParams.get("q") || "";
 
-    const [pharmacies, setPharmacies] = useState<Pharmacy[]>([]);
+    // Product Search State
+    const [productQuery, setProductQuery] = useState("");
+    const [sortBy, setSortBy] = useState<"distance" | "price">("distance");
+
+    // Augmented Pharmacy for display
+    interface PharmacyDisplay extends Pharmacy {
+        distance?: number;
+        foundProductPrice?: number;
+        inStock?: boolean;
+    }
+
+    const [pharmacies, setPharmacies] = useState<PharmacyDisplay[]>([]);
     const [selectedPharmacy, setSelectedPharmacy] = useState<Pharmacy | null>(null);
     const [transportMode, setTransportMode] = useState<"walking" | "motorcycle" | "car">("walking");
 
@@ -117,19 +128,59 @@ function MapContent() {
 
     const loadPharmacies = async (centerOverride?: [number, number]) => {
         const center = centerOverride || userLocation;
-        // Pass coordinates to search service if available to get relevant results
-        const data = await firebaseService.searchMedicines(query, center ? { latitude: center[1], longitude: center[0] } : undefined);
-        let pharms = data.map(r => r.pharmacy);
+        // Use productQuery if available, otherwise just location search
+        const term = productQuery || query;
 
-        // Calculate distance relative to the View Center (User or Search result)
+        // Pass coordinates to search service
+        const data = await firebaseService.searchMedicines(term, center ? { latitude: center[1], longitude: center[0] } : undefined);
+
+        let pharms: PharmacyDisplay[] = data.map(r => ({
+            ...r.pharmacy,
+            foundProductPrice: r.product?.price,
+            inStock: r.product?.inStock
+        }));
+
+        // Calculate distance relative to View Center
         if (center) {
             pharms = pharms.map(p => {
                 const d = calculateDistance(center[1], center[0], p.location.lat, p.location.lng);
                 return { ...p, distance: d };
-            }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
+            });
+        }
+
+        // Sort based on user preference
+        if (sortBy === 'price' && productQuery) {
+            pharms.sort((a, b) => (a.foundProductPrice || 99999) - (b.foundProductPrice || 99999));
+        } else {
+            pharms.sort((a, b) => (a.distance || 0) - (b.distance || 0));
         }
 
         setPharmacies(pharms);
+    };
+
+    // Re-load when productQuery or sortBy changes
+    useEffect(() => {
+        // Debounce search slightly or just reload
+        const timer = setTimeout(() => {
+            if (mapView.center) loadPharmacies(mapView.center);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [productQuery, sortBy]);
+
+    const handleScan = () => {
+        // Simulate scanning logic
+        const scannerInput = document.createElement('input');
+        scannerInput.type = 'file';
+        scannerInput.accept = 'image/*';
+        scannerInput.capture = 'environment';
+        scannerInput.onchange = (e: any) => {
+            // Mock Scanning Process
+            setProductQuery("Scanning...");
+            setTimeout(() => {
+                setProductQuery("Amoxicilline"); // Simulated result
+            }, 1500);
+        };
+        scannerInput.click();
     };
 
     // Haversine formula for distance
@@ -195,48 +246,94 @@ function MapContent() {
 
     return (
         <main className="relative w-full h-screen overflow-hidden bg-background">
-            {/* Header - Glassmorphism */}
-            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-safe">
-                <div className="glass-card p-4 flex flex-col gap-4 border-white/20 shadow-2xl">
-                    <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => router.back()}
-                            className="p-3 bg-secondary/50 hover:bg-secondary rounded-2xl transition-all active:scale-95 shrink-0"
-                        >
-                            <ArrowLeft className="w-6 h-6 text-foreground" />
-                        </button>
+            {/* Header / Search Bar */}
+            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-safe space-y-2">
+                {/* Location Search + Back Button Row */}
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => router.back()}
+                        className="p-3 bg-white/95 dark:bg-zinc-900/95 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 active:scale-95 transition-transform"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-foreground" />
+                    </button>
 
-                        {/* Location Search Bar */}
-                        <form onSubmit={handleLocationSearch} className="flex-1 relative">
-                            <input
-                                type="text"
-                                value={locationQuery}
-                                onChange={(e) => setLocationQuery(e.target.value)}
-                                placeholder="Rechercher quartier, ville..."
-                                className="w-full bg-secondary/50 hover:bg-secondary focus:bg-white dark:focus:bg-zinc-800 transition-all border border-transparent focus:border-primary/20 rounded-2xl pl-12 pr-4 py-3 outline-none text-sm font-bold placeholder:font-medium placeholder:text-muted-foreground"
-                            />
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                            {isSearchingLocation && (
-                                <div className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                            )}
-                        </form>
-                    </div>
-
-                    <div className="flex justify-between items-end px-1">
-                        <div>
-                            <h1 className="font-black text-xl italic leading-none text-foreground">Carte Interactive</h1>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-primary mt-1">
-                                {pharmacies.length} pharmacies à proximité
-                            </p>
+                    <form onSubmit={handleLocationSearch} className="flex-1 relative shadow-xl">
+                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                            <MapPin className="text-primary w-5 h-5" />
                         </div>
-                        <button
-                            onClick={() => setMapView(prev => ({ ...prev, pitch: prev.pitch === 0 ? 60 : 0, zoom: prev.pitch === 0 ? 15 : 12 }))}
-                            className={cn("p-2 rounded-xl border transition-all", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-card border-border text-muted-foreground")}
-                            title="Basculer vue 3D"
-                        >
-                            <Layers size={20} />
+                        <input
+                            type="search"
+                            placeholder="Quartier, Ville (ex: Tampouy)..."
+                            className="w-full pl-10 pr-12 py-3 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 dark:border-white/10 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                            value={locationQuery}
+                            onChange={(e) => setLocationQuery(e.target.value)}
+                        />
+                        <button type="submit" className="absolute inset-y-0 right-3 flex items-center text-primary">
+                            {isSearchingLocation ? <div className="animate-spin text-lg">↻</div> : <Search size={20} />}
                         </button>
+                    </form>
+                </div>
+
+                {/* Product Search & Scan Row */}
+                <div className="flex gap-2">
+                    <div className="relative flex-1 shadow-xl">
+                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                            <Search className="text-muted-foreground w-4 h-4" />
+                        </div>
+                        <input
+                            type="search"
+                            placeholder="Médicament (ex: Doliprane)..."
+                            className="w-full pl-10 pr-4 py-3 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 dark:border-white/10 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            value={productQuery}
+                            onChange={(e) => setProductQuery(e.target.value)}
+                        />
                     </div>
+                    <button
+                        onClick={handleScan}
+                        className="bg-white/95 dark:bg-zinc-900/95 p-3 px-4 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 text-primary active:scale-95 transition-transform flex items-center gap-2"
+                        title="Scanner une ordonnance"
+                    >
+                        <Camera size={20} />
+                    </button>
+                </div>
+
+                {/* Filters Row (Only visible if searching product) */}
+                <div className="flex items-center justify-between">
+                    {productQuery ? (
+                        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+                            <button
+                                onClick={() => setSortBy('distance')}
+                                className={cn(
+                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg backdrop-blur-md",
+                                    sortBy === 'distance' ? "bg-primary text-white" : "bg-white/90 dark:bg-zinc-900/90 text-foreground"
+                                )}
+                            >
+                                <MapPin size={12} /> Proximité
+                            </button>
+                            <button
+                                onClick={() => setSortBy('price')}
+                                className={cn(
+                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg backdrop-blur-md",
+                                    sortBy === 'price' ? "bg-emerald-500 text-white" : "bg-white/90 dark:bg-zinc-900/90 text-foreground"
+                                )}
+                            >
+                                <SortAsc size={12} /> Moins cher
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="text-[10px] font-black uppercase tracking-widest text-primary/80 drop-shadow-md bg-white/50 px-2 py-1 rounded-lg backdrop-blur-sm">
+                            {pharmacies.length} pharmacies trouvées
+                        </div>
+                    )}
+
+                    {/* 3D button kept here but moved slightly */}
+                    <button
+                        onClick={() => setMapView(prev => ({ ...prev, pitch: prev.pitch === 0 ? 60 : 0, zoom: prev.pitch === 0 ? 15 : 12 }))}
+                        className={cn("p-2 rounded-xl border transition-all shadow-lg ml-auto", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-white/90 dark:bg-zinc-900/90 border-transparent text-muted-foreground")}
+                        title="Basculer vue 3D"
+                    >
+                        <Layers size={20} />
+                    </button>
                 </div>
             </div>
 
@@ -444,7 +541,12 @@ function MapContent() {
                                 <h4 className="font-black text-sm text-foreground truncate mb-1">{pharmacy.name}</h4>
                                 <p className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
                                     <Clock size={10} />
-                                    {getEstimatedTime(pharmacy.distance || 0)} • {transportMode === 'walking' ? 'À pied' : 'Véhicule'}
+                                    {getEstimatedTime(pharmacy.distance || 0)}
+                                    {pharmacy.foundProductPrice && (
+                                        <span className="ml-auto font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded">
+                                            {pharmacy.foundProductPrice} FCFA
+                                        </span>
+                                    )}
                                 </p>
                             </div>
                         ))}
