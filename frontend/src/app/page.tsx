@@ -5,7 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
-import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database } from "lucide-react";
+import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
@@ -26,6 +26,8 @@ export default function HomePage() {
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [authMessage, setAuthMessage] = useState("");
   const [locationStatus, setLocationStatus] = useState<'loading' | 'success' | 'denied' | 'default'>('loading');
+  const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   // Default to Ouagadougou center
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
@@ -72,6 +74,34 @@ export default function HomePage() {
       setUserLocation(DEFAULT_CENTER);
       handleSearch("", DEFAULT_CENTER);
     }
+  }, []);
+
+  // Check Premium Status
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
+      setIsAuthLoading(true);
+      if (user) {
+        const profile = await firebaseService.getUserProfile(user.uid) as any;
+        const isSubscribed = profile?.userInfo?.isPremium === true;
+
+        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date();
+        const now = new Date();
+        const diffTime = Math.abs(now.getTime() - creationTime.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const trialRemaining = Math.max(0, 15 - diffDays);
+        const isTrial = !isSubscribed && trialRemaining > 0;
+
+        setPremiumState({
+          isPremium: isSubscribed,
+          isTrial: isTrial,
+          daysLeft: isTrial ? trialRemaining : 0
+        });
+      } else {
+        setPremiumState({ isPremium: false, isTrial: false, daysLeft: 0 });
+      }
+      setIsAuthLoading(false);
+    });
+    return () => unsubscribe();
   }, []);
 
   const retryGeolocation = () => {
@@ -163,21 +193,44 @@ export default function HomePage() {
                 )}
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-3">
               <button
-                onClick={toggleTheme}
-                className="p-2.5 bg-card backdrop-blur-xl rounded-xl border border-border text-foreground shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
+                onClick={() => toggleTheme()}
+                className="p-3 bg-card dark:bg-zinc-900 rounded-2xl shadow-sm text-foreground active:scale-95 transition-transform"
               >
-                {theme === "dark" ? <Sun size={20} className="text-amber-400" /> : <Moon size={20} />}
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button
-                onClick={() => router.push("/profile")}
-                className="p-2.5 bg-card backdrop-blur-xl rounded-xl border border-border text-foreground shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
+                onClick={() => router.push('/profile')}
+                className="p-3 bg-card dark:bg-zinc-900 rounded-2xl shadow-sm text-foreground relative active:scale-95 transition-transform"
               >
                 <User size={20} />
+                {premiumState.isPremium && (
+                  <div className="absolute -top-1 -right-1 bg-amber-500 text-white p-0.5 rounded-full border-2 border-background">
+                    <Crown size={8} />
+                  </div>
+                )}
               </button>
             </div>
           </div>
+
+          {/* Premium/Trial Banner on Home */}
+          {premiumState.isTrial && (
+            <div className="px-6 mb-4">
+              <div
+                onClick={() => router.push('/profile')}
+                className="p-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl border border-amber-500/30 flex items-center justify-between cursor-pointer group"
+              >
+                <div className="flex items-center gap-3">
+                  <Gift className="text-amber-500 animate-bounce" size={18} />
+                  <span className="text-[10px] font-black uppercase text-amber-600 tracking-widest">
+                    Essai Premium : {premiumState.daysLeft} jours restants
+                  </span>
+                </div>
+                <ChevronRight size={14} className="text-amber-500 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          )}
 
           {/* Search Row */}
           <div className="flex gap-2 items-center">

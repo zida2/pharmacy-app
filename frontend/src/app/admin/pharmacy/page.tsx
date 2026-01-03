@@ -13,7 +13,8 @@ import {
     Edit,
     Trash2,
     CheckCircle,
-    Database
+    Database,
+    X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { seedDatabase } from "@/services/seed";
@@ -37,6 +38,8 @@ export default function PharmacyAdminPage() {
         { label: "Produits en stock", value: "0", icon: TrendingUp, color: "text-purple-600 bg-purple-50" },
         { label: "Commandes en attente", value: "0", icon: Clock, color: "text-orange-600 bg-orange-50" }
     ]);
+    const [isAddingProduct, setIsAddingProduct] = useState(false);
+    const [newProductData, setNewProductData] = useState({ name: "", price: "", stock: "" });
 
     useEffect(() => {
         const loadData = async () => {
@@ -95,6 +98,36 @@ export default function PharmacyAdminPage() {
         setProducts(products.map(p => p.id === id ? { ...p, inStock: newState } : p));
 
         await firebaseService.updateProductStock(id, newState);
+    };
+
+    const handleAddProduct = async () => {
+        if (!newProductData.name || !newProductData.price) return;
+
+        try {
+            await firebaseService.addInventoryItem("pharm-1", {
+                name: newProductData.name,
+                price: parseInt(newProductData.price),
+                stock: parseInt(newProductData.stock) || 0,
+                inStock: (parseInt(newProductData.stock) || 0) > 0
+            });
+
+            // Reload Products
+            const prods = await firebaseService.getPharmacyProducts("pharm-1");
+            setProducts(prods.map((p: any) => ({
+                id: p.id,
+                name: p.name,
+                price: p.price,
+                stock: p.stock || 0,
+                inStock: p.inStock
+            })));
+
+            setIsAddingProduct(false);
+            setNewProductData({ name: "", price: "", stock: "" });
+            alert("Produit ajouté avec succès !");
+        } catch (e) {
+            console.error(e);
+            alert("Erreur lors de l'ajout.");
+        }
     };
 
     const handleSeed = async () => {
@@ -192,7 +225,10 @@ export default function PharmacyAdminPage() {
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <h2 className="text-xl font-bold">Gestion des produits</h2>
-                            <button className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:opacity-90">
+                            <button
+                                onClick={() => setIsAddingProduct(true)}
+                                className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:opacity-90 active:scale-95 transition-all"
+                            >
                                 <Plus size={18} />
                                 Ajouter
                             </button>
@@ -244,6 +280,65 @@ export default function PharmacyAdminPage() {
                                 </div>
                             ))}
                         </div>
+
+                        {/* ADD PRODUCT MODAL */}
+                        {isAddingProduct && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+                                <div className="bg-card w-full max-w-md p-6 rounded-3xl shadow-2xl relative">
+                                    <button
+                                        onClick={() => setIsAddingProduct(false)}
+                                        className="absolute top-4 right-4 p-2 hover:bg-secondary rounded-full transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+
+                                    <h3 className="text-xl font-bold mb-6">Nouveau Produit</h3>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="text-sm font-semibold mb-1 block">Nom du médicament</label>
+                                            <input
+                                                autoFocus
+                                                value={newProductData.name}
+                                                onChange={(e) => setNewProductData({ ...newProductData, name: e.target.value })}
+                                                className="w-full p-3 bg-secondary rounded-xl font-medium outline-none border-2 border-transparent focus:border-primary"
+                                                placeholder="ex: Paracétamol 500mg"
+                                            />
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="text-sm font-semibold mb-1 block">Prix (FCFA)</label>
+                                                <input
+                                                    type="number"
+                                                    value={newProductData.price}
+                                                    onChange={(e) => setNewProductData({ ...newProductData, price: e.target.value })}
+                                                    className="w-full p-3 bg-secondary rounded-xl font-medium outline-none border-2 border-transparent focus:border-primary"
+                                                    placeholder="1500"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="text-sm font-semibold mb-1 block">Stock Initial</label>
+                                                <input
+                                                    type="number"
+                                                    value={newProductData.stock}
+                                                    onChange={(e) => setNewProductData({ ...newProductData, stock: e.target.value })}
+                                                    className="w-full p-3 bg-secondary rounded-xl font-medium outline-none border-2 border-transparent focus:border-primary"
+                                                    placeholder="50"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={handleAddProduct}
+                                            disabled={!newProductData.name || !newProductData.price}
+                                            className="w-full py-4 mt-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            Ajouter au Stock
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
 

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, Suspense } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, Camera, RefreshCw, CheckCircle, Search, FileText, CreditCard, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Camera, RefreshCw, CheckCircle, Search, FileText, CreditCard, ShieldCheck, Crown, Zap, Sparkles, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { firebaseService } from "@/services/firebaseService";
 import { auth } from "@/services/firebase";
@@ -17,6 +17,28 @@ function ScannerContent() {
     const [step, setStep] = useState<"upload" | "scanning" | "results">("upload");
     const [preview, setPreview] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false });
+    const [isCheckingPremium, setIsCheckingPremium] = useState(true);
+
+    // Initial Premium Check
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
+            if (user) {
+                const profile = await firebaseService.getUserProfile(user.uid) as any;
+                const isSubscribed = profile?.userInfo?.isPremium === true;
+
+                const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date();
+                const now = new Date();
+                const diffTime = Math.abs(now.getTime() - creationTime.getTime());
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const isTrial = !isSubscribed && (15 - diffDays) > 0;
+
+                setPremiumState({ isPremium: isSubscribed, isTrial: isTrial });
+            }
+            setIsCheckingPremium(false);
+        });
+        return () => unsubscribe();
+    }, []);
 
     // Prescription State
     const [scannedMeds, setScannedMeds] = useState<{ name: string, confidence: number }[]>([]);
@@ -127,11 +149,36 @@ function ScannerContent() {
                             </p>
                         </div>
                         <button
-                            onClick={() => fileInputRef.current?.click()}
-                            className="w-full py-3.5 bg-primary text-white text-base font-black rounded-2xl shadow-xl shadow-primary/20 transition hover:brightness-110 active:scale-95 tracking-widest mt-4"
+                            onClick={() => {
+                                if ((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) {
+                                    if (!auth.currentUser) alert("Connectez-vous pour utiliser le scanner intelligent !");
+                                    else router.push('/profile?showPremium=true');
+                                    return;
+                                }
+                                fileInputRef.current?.click();
+                            }}
+                            className={cn(
+                                "w-full py-4 text-white text-base font-black rounded-2xl shadow-xl transition active:scale-95 tracking-widest mt-4 flex items-center justify-center gap-2",
+                                ((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial)
+                                    ? "bg-amber-500 shadow-amber-500/20"
+                                    : "bg-primary shadow-primary/20 hover:brightness-110"
+                            )}
                         >
-                            DÉMARRER LE SCAN 📸
+                            {((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) ? (
+                                <>
+                                    <Crown size={20} /> PASSER PREMIUM
+                                </>
+                            ) : (
+                                <>
+                                    DÉMARRER LE SCAN 📸
+                                </>
+                            )}
                         </button>
+                        {((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) && (
+                            <p className="text-[10px] text-amber-500 font-black uppercase tracking-widest animate-pulse mt-2">
+                                <Lock size={10} className="inline mr-1" /> Fonctionnalité Premium
+                            </p>
+                        )}
                     </div>
                 )}
 
