@@ -361,6 +361,7 @@ export default function ProfilePage() {
                         <p className="text-sm text-muted-foreground font-bold uppercase tracking-tighter">Membre {userInfo.level} • {userInfo.location}</p>
                     </div>
                 </div>
+                <span className="text-[6px] opacity-20 ml-6">v5.1-FINAL</span>
             </header>
 
             {/* Premium Banner - More Visible */}
