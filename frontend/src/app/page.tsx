@@ -102,81 +102,112 @@ export default function HomePage() {
       </div>
 
       {/* Top Bar / Search */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-safe">
-        <div className="p-3 bg-gradient-to-b from-background/80 via-background/40 to-transparent backdrop-blur-[2px]">
-          <div className="flex gap-2 items-center max-w-7xl mx-auto">
+      <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-8 bg-gradient-to-b from-background via-background/90 to-transparent">
+        <div className="max-w-7xl mx-auto space-y-4">
+          {/* Greeting & Quick Actions */}
+          <div className="flex justify-between items-end pt-4">
+            <div>
+              <h1 className="text-2xl font-black italic tracking-tight text-foreground">
+                Bonjour 👋
+              </h1>
+              <p className="text-[10px] font-black uppercase tracking-widest text-primary">
+                Quelle pharmacie cherchez-vous ?
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={toggleTheme}
+                className="p-2.5 bg-card backdrop-blur-xl rounded-xl border border-border text-foreground shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
+              >
+                {theme === "dark" ? <Sun size={20} className="text-amber-400" /> : <Moon size={20} />}
+              </button>
+              <button
+                onClick={() => router.push("/profile")}
+                className="p-2.5 bg-card backdrop-blur-xl rounded-xl border border-border text-foreground shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
+              >
+                <User size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Search Row */}
+          <div className="flex gap-2 items-center">
             <form onSubmit={handleSearchSubmit} className="flex-1 min-w-0">
               <SearchBar
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
-            <div className="flex gap-2 shrink-0">
+            <button
+              onClick={() => router.push("/scanner")}
+              className="p-3.5 bg-primary text-white rounded-2xl shadow-lg shadow-primary/30 hover:brightness-110 transition-all active:scale-95 flex items-center justify-center aspect-square"
+            >
+              <Camera size={22} />
+            </button>
+          </div>
+
+          {/* Categories Quick Filter */}
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide px-0.5">
+            {[
+              { id: "garde", label: "De Garde", icon: "🟣", color: "purple" },
+              { id: "urgent", label: "Urgence", icon: "🚨", color: "red" },
+              { id: "promo", label: "Promos", icon: "🏷️", color: "amber" },
+              { id: "bebe", label: "Bébé", icon: "🍼", color: "blue" },
+              { id: "soin", label: "Soin", icon: "🧼", color: "emerald" },
+            ].map((cat) => (
               <button
-                onClick={toggleTheme}
-                className="p-2.5 bg-white/20 dark:bg-zinc-900/40 backdrop-blur-xl rounded-xl border border-white/30 text-foreground shadow-lg hover:bg-white/30 transition-all active:scale-95"
-                title="Changer le thème"
-              >
-                {theme === "dark" ? <Sun size={20} className="text-amber-400" /> : <Moon size={20} />}
-              </button>
-              <button
-                onClick={() => router.push("/scanner")}
-                className="p-2.5 bg-white/20 dark:bg-zinc-900/40 backdrop-blur-xl rounded-xl border border-white/30 text-foreground shadow-lg hover:bg-white/30 transition-all active:scale-95"
-                title="Scanner une ordonnance"
-              >
-                <Camera size={20} />
-              </button>
-              <button
+                key={cat.id}
                 onClick={() => {
-                  if (!auth.currentUser) {
-                    setAuthMessage("Vous devez être connecté pour activer le mode d'urgence et partager votre position avec les secours.");
-                    setShowAuthPrompt(true);
-                    return;
+                  if (cat.id === "urgent") {
+                    handleSearch("pharmacie de garde");
+                  } else {
+                    handleSearch(cat.label);
                   }
-                  handleSearch("pharmacie de garde");
-                  alert("🚨 MODE URGENCE: Recherche des pharmacies de garde les plus proches...");
                 }}
-                className="p-2.5 bg-red-600 rounded-xl text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] animate-pulse hover:bg-red-700 transition-all active:scale-90"
-                title="MODE URGENCE"
+                className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
               >
-                <AlertTriangle size={20} />
+                <span className="text-sm">{cat.icon}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest">{cat.label}</span>
               </button>
-            </div>
+            ))}
           </div>
           {isLoading && (
-            <div className="text-center text-foreground text-xs mt-2 bg-background/30 backdrop-blur-sm rounded-full px-3 py-1 inline-block border border-border/50">
-              Recherche en cours...
+            <div className="flex justify-center">
+              <div className="px-4 py-1 bg-primary/10 rounded-full border border-primary/20 flex items-center gap-2">
+                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                <span className="text-[9px] font-black uppercase text-primary tracking-widest">Recherche...</span>
+              </div>
             </div>
           )}
         </div>
       </div>
 
       {/* View Toggle */}
-      <div className="absolute top-24 right-4 z-20">
-        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-xl shadow-xl p-1 flex gap-1 border border-white/20">
+      <div className="absolute top-[12.5rem] right-4 z-20">
+        <div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-xl p-1.5 flex gap-1 border border-border/50">
           <button
             onClick={() => setViewMode("map")}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-1.5",
+              "p-2 rounded-xl transition-all flex items-center justify-center",
               viewMode === "map"
-                ? "bg-primary text-primary-foreground shadow-lg"
+                ? "bg-primary text-white shadow-lg"
                 : "text-muted-foreground hover:bg-secondary/50"
             )}
+            title="Vue Carte"
           >
-            <MapPin size={16} />
-            Carte
+            <MapPin size={20} />
           </button>
           <button
             onClick={() => setViewMode("list")}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-1.5",
+              "p-2 rounded-xl transition-all flex items-center justify-center",
               viewMode === "list"
-                ? "bg-primary text-primary-foreground shadow-lg"
+                ? "bg-primary text-white shadow-lg"
                 : "text-muted-foreground hover:bg-secondary/50"
             )}
+            title="Vue Liste"
           >
-            <SlidersHorizontal size={16} />
-            Liste
+            <SlidersHorizontal size={20} />
           </button>
         </div>
       </div>
@@ -194,18 +225,24 @@ export default function HomePage() {
           </div>
 
           {/* Result Cards Carousel (Bottom) */}
-          <div className="absolute bottom-24 left-0 right-0 z-20 px-4">
-            <div className="flex items-center justify-between mb-2 px-2">
-              <h2 className="text-xs font-black uppercase tracking-[0.2em] text-foreground/70 drop-shadow-sm">
-                Pharmacies à proximité
-              </h2>
-              {userLocation && (
-                <span className="text-[10px] font-bold text-primary animate-pulse">
-                  GÉOLOCALISATION ACTIVE 🇧🇫
-                </span>
-              )}
+          <div className="absolute bottom-24 left-0 right-0 z-20">
+            <div className="mx-4 mb-3">
+              <div className="glass-card p-3 flex items-center justify-between border-primary/10 shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-wider text-foreground/80">
+                    {results.length} Pharmacies prêtes à vous servir
+                  </span>
+                </div>
+                {userLocation && (
+                  <span className="text-[9px] font-black italic text-primary">
+                    Proximité calculée 🏛️
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-2 scrollbar-hide snap-x snap-mandatory">
+
+            <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-4 scrollbar-hide snap-x snap-mandatory">
               {results.map(({ pharmacy, product }, index) => (
                 <div key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`} className="snap-start">
                   <PharmacyCard
@@ -224,12 +261,14 @@ export default function HomePage() {
           </div>
         </>
       ) : (
-        <div className="flex-1 overflow-y-auto pt-24 pb-nav px-4 space-y-4 bg-secondary/5">
+        <div className="flex-1 overflow-y-auto pt-[18rem] pb-nav px-4 space-y-4 bg-secondary/5">
           {results.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold mb-2">Aucun résultat</h3>
-              <p className="text-muted-foreground">Essayez une autre recherche</p>
+            <div className="text-center py-20 bg-card/50 rounded-3xl border border-dashed border-border m-4">
+              <div className="text-6xl mb-4 grayscale">🔍</div>
+              <h3 className="text-xl font-bold mb-2">Aucune pharmacie trouvée</h3>
+              <p className="text-muted-foreground text-sm max-w-[200px] mx-auto">
+                Essayez d'ajuster votre recherche ou vos filtres.
+              </p>
             </div>
           ) : (
             results.map(({ pharmacy, product }, index) => (
