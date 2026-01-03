@@ -25,6 +25,7 @@ export default function HomePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [authMessage, setAuthMessage] = useState("");
+  const [locationStatus, setLocationStatus] = useState<'loading' | 'success' | 'denied' | 'default'>('loading');
 
   // Default to Ouagadougou center
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
@@ -150,6 +151,17 @@ export default function HomePage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-primary">
                 Quelle pharmacie cherchez-vous ?
               </p>
+              <div className="flex items-center gap-2 mt-2 px-1">
+                {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold">Localisation en cours...</span>}
+                {locationStatus === 'success' && <div className="flex items-center text-emerald-500 gap-1.5"><MapPin size={12} /><span className="text-[10px] font-black uppercase tracking-wider">Position précise</span></div>}
+                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1.5"><AlertTriangle size={12} /><span className="text-[10px] font-black uppercase tracking-wider">Position approximative</span></div>}
+                {locationStatus === 'denied' && (
+                  <button onClick={retryGeolocation} className="flex items-center text-red-500 gap-1.5 hover:underline decoration-2 underline-offset-2 transition-all">
+                    <AlertTriangle size={12} />
+                    <span className="text-[10px] font-black uppercase tracking-wider">Activer GPS</span>
+                  </button>
+                )}
+              </div>
             </div>
             <div className="flex gap-2">
               <button
