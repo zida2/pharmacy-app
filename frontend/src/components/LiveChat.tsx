@@ -48,13 +48,13 @@ export default function LiveChat() {
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/30 dark:bg-zinc-900/50">
                         {chat.map((msg, i) => (
                             <div key={i} className={cn(
                                 "max-w-[80%] p-3 rounded-2xl text-sm font-medium",
                                 msg.isUser
-                                    ? "ml-auto bg-primary text-white rounded-tr-none"
-                                    : "bg-white text-slate-700 shadow-sm border border-slate-100 rounded-tl-none"
+                                    ? "ml-auto bg-primary text-white rounded-tr-none shadow-lg"
+                                    : "bg-card dark:bg-zinc-800 text-foreground shadow-sm border border-border rounded-tl-none"
                             )}>
                                 {msg.text}
                             </div>
@@ -62,18 +62,18 @@ export default function LiveChat() {
                     </div>
 
                     {/* Input */}
-                    <div className="p-3 bg-white border-t border-slate-100 flex gap-2">
+                    <div className="p-3 bg-card dark:bg-zinc-900 border-t border-border flex gap-2">
                         <input
                             type="text"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                             placeholder="Écrivez ici..."
-                            className="flex-1 bg-slate-50 border-none rounded-xl px-4 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+                            className="flex-1 bg-secondary dark:bg-zinc-800 text-foreground border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 outline-none placeholder:text-muted-foreground"
                         />
                         <button
                             onClick={handleSend}
-                            className="p-3 bg-primary text-white rounded-xl shadow-lg ring-4 ring-primary/10"
+                            className="p-3 bg-primary text-white rounded-xl shadow-lg ring-4 ring-primary/10 hover:brightness-110 transition-all active:scale-95"
                         >
                             <Send size={18} />
                         </button>
