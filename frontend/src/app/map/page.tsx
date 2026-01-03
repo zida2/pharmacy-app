@@ -3,9 +3,9 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
-import { searchMedicines } from "@/services/mockApi";
+import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Nominatim Geocoding Response Type
@@ -86,14 +86,16 @@ function MapContent() {
         );
     };
 
-    const loadPharmacies = async () => {
-        const data = await searchMedicines(query);
+    const loadPharmacies = async (centerOverride?: [number, number]) => {
+        const center = centerOverride || userLocation;
+        // Pass coordinates to search service if available to get relevant results
+        const data = await firebaseService.searchMedicines(query, center ? { latitude: center[1], longitude: center[0] } : undefined);
         let pharms = data.map(r => r.pharmacy);
 
-        // Calculate distance if userLocation exists
-        if (userLocation) {
+        // Calculate distance relative to the View Center (User or Search result)
+        if (center) {
             pharms = pharms.map(p => {
-                const d = calculateDistance(userLocation[1], userLocation[0], p.location.lat, p.location.lng);
+                const d = calculateDistance(center[1], center[0], p.location.lat, p.location.lng);
                 return { ...p, distance: d };
             }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
         }
@@ -130,8 +132,10 @@ function MapContent() {
 
         setIsSearchingLocation(true);
         try {
-            // Use OpenStreetMap Nominatim API (Free, no key required for frontend demo)
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationQuery)}&countrycodes=bf&limit=1`);
+            // Enhanced Search: Append "Burkina Faso" and use viewbox for Burkina Faso to prioritize local results
+            // Viewbox: West,South,East,North (-5.5,9.4,2.4,15.1)
+            const searchQuery = locationQuery.toLowerCase().includes("burkina") ? locationQuery : `${locationQuery}, Burkina Faso`;
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&countrycodes=bf&viewbox=-5.5,15.1,2.4,9.4&bounded=1&limit=1`);
             const data: GeocodingResult[] = await response.json();
 
             if (data && data.length > 0) {
@@ -145,10 +149,9 @@ function MapContent() {
                     pitch: 60, // High pitch for 3D effect
                 });
 
-                // Optionally update user location to simulate being there? 
-                // No, let's just move the view. The user wants to "SEE" pharmacies there.
-                // We should probably trigger a pharmacy refresh for this area if our mock supports it?
-                // For now, let's just move the map. The mock data is static but let's pretend.
+                // Reload pharmacies around this new location to show what's nearby
+                loadPharmacies(newCenter);
+
             } else {
                 alert("Lieu introuvable. Essayez avec le nom d'une ville ou d'un quartier connu.");
             }
@@ -375,6 +378,45 @@ function MapContent() {
                                 </button>
                             </div>
                         )}
+                    </div>
+                </div>
+            )}
+
+            {/* Mini List - Horizontal Scroll */}
+            {!selectedPharmacy && pharmacies.length > 0 && (
+                <div className="absolute bottom-8 left-0 right-0 z-20">
+                    <div className="px-4 pb-2">
+                        <h3 className="text-xs font-black uppercase tracking-widest text-primary/80 mb-2 pl-2 drop-shadow-md">Pharmacies les plus proches</h3>
+                    </div>
+                    <div className="flex gap-3 overflow-x-auto px-4 pb-4 scrollbar-hide snap-x">
+                        {pharmacies.slice(0, 5).map((pharmacy) => (
+                            <div
+                                key={pharmacy.id}
+                                onClick={() => {
+                                    setSelectedPharmacy(pharmacy);
+                                    // Also center map on it
+                                    setMapView(prev => ({ ...prev, center: [pharmacy.location.lng, pharmacy.location.lat], zoom: 16 }));
+                                }}
+                                className="min-w-[200px] w-[200px] bg-white dark:bg-zinc-900 rounded-2xl p-3 shadow-xl border border-white/20 snap-center active:scale-95 transition-all cursor-pointer"
+                            >
+                                <div className="flex justify-between items-start mb-2">
+                                    <div className={cn(
+                                        "w-8 h-8 rounded-full flex items-center justify-center text-lg shadow-sm",
+                                        pharmacy.status === 'guard' ? "bg-primary/20" : "bg-emerald-500/20"
+                                    )}>
+                                        {pharmacy.status === 'guard' ? '🟣' : '🟢'}
+                                    </div>
+                                    <span className="text-[10px] font-bold text-muted-foreground bg-secondary px-2 py-1 rounded-lg">
+                                        {pharmacy.distance?.toFixed(1)} km
+                                    </span>
+                                </div>
+                                <h4 className="font-black text-sm text-foreground truncate mb-1">{pharmacy.name}</h4>
+                                <p className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
+                                    <Clock size={10} />
+                                    {getEstimatedTime(pharmacy.distance || 0)} • {transportMode === 'walking' ? 'À pied' : 'Véhicule'}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}
