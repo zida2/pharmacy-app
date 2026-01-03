@@ -105,7 +105,7 @@ export default function HomePage() {
       <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-8 bg-gradient-to-b from-background via-background/90 to-transparent">
         <div className="max-w-7xl mx-auto space-y-4">
           {/* Greeting & Quick Actions */}
-          <div className="flex justify-between items-end pt-4">
+          <div className="flex justify-between items-start pt-4">
             <div>
               <h1 className="text-2xl font-black italic tracking-tight text-foreground">
                 Bonjour 👋
@@ -130,7 +130,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Search Row */}
+          {/* Search Row & View Toggle Together */}
           <div className="flex gap-2 items-center">
             <form onSubmit={handleSearchSubmit} className="flex-1 min-w-0">
               <SearchBar
@@ -138,79 +138,66 @@ export default function HomePage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
-            <button
-              onClick={() => router.push("/scanner")}
-              className="p-3.5 bg-primary text-white rounded-2xl shadow-lg shadow-primary/30 hover:brightness-110 transition-all active:scale-95 flex items-center justify-center aspect-square"
-            >
-              <Camera size={22} />
-            </button>
+            <div className="flex bg-card/80 backdrop-blur-xl rounded-2xl p-1 border border-border shadow-sm">
+              <button
+                onClick={() => setViewMode("map")}
+                className={cn(
+                  "p-2.5 rounded-xl transition-all",
+                  viewMode === "map" ? "bg-primary text-white shadow-md" : "text-muted-foreground"
+                )}
+              >
+                <MapPin size={18} />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={cn(
+                  "p-2.5 rounded-xl transition-all",
+                  viewMode === "list" ? "bg-primary text-white shadow-md" : "text-muted-foreground"
+                )}
+              >
+                <SlidersHorizontal size={18} />
+              </button>
+            </div>
           </div>
 
           {/* Categories Quick Filter */}
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide px-0.5">
-            {[
-              { id: "garde", label: "De Garde", icon: "🟣", color: "purple" },
-              { id: "urgent", label: "Urgence", icon: "🚨", color: "red" },
-              { id: "promo", label: "Promos", icon: "🏷️", color: "amber" },
-              { id: "bebe", label: "Bébé", icon: "🍼", color: "blue" },
-              { id: "soin", label: "Soin", icon: "🧼", color: "emerald" },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  if (cat.id === "urgent") {
-                    handleSearch("pharmacie de garde");
-                  } else {
-                    handleSearch(cat.label);
-                  }
-                }}
-                className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm hover:bg-secondary/50 transition-all active:scale-95"
-              >
-                <span className="text-sm">{cat.icon}</span>
-                <span className="text-[10px] font-black uppercase tracking-widest">{cat.label}</span>
-              </button>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="flex-1 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {[
+                { id: "garde", label: "Garde", icon: "🟣" },
+                { id: "urgent", label: "Urgent", icon: "🚨" },
+                { id: "promo", label: "Promos", icon: "🏷️" },
+                { id: "bebe", label: "Bébé", icon: "🍼" },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[10px] font-black uppercase tracking-widest text-foreground/80"
+                >
+                  <span>{cat.icon}</span>
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => router.push("/scanner")}
+              className="p-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all active:scale-95 shrink-0"
+            >
+              <Camera size={18} />
+            </button>
           </div>
+
           {isLoading && (
-            <div className="flex justify-center">
-              <div className="px-4 py-1 bg-primary/10 rounded-full border border-primary/20 flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                <span className="text-[9px] font-black uppercase text-primary tracking-widest">Recherche...</span>
+            <div className="flex justify-center -mb-2">
+              <div className="px-3 py-1 bg-primary/10 rounded-full border border-primary/20 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" />
+                <span className="text-[8px] font-black uppercase text-primary tracking-widest">Recherche...</span>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* View Toggle */}
-      <div className="absolute top-[12.5rem] right-4 z-20">
-        <div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-xl p-1.5 flex gap-1 border border-border/50">
-          <button
-            onClick={() => setViewMode("map")}
-            className={cn(
-              "p-2 rounded-xl transition-all flex items-center justify-center",
-              viewMode === "map"
-                ? "bg-primary text-white shadow-lg"
-                : "text-muted-foreground hover:bg-secondary/50"
-            )}
-            title="Vue Carte"
-          >
-            <MapPin size={20} />
-          </button>
-          <button
-            onClick={() => setViewMode("list")}
-            className={cn(
-              "p-2 rounded-xl transition-all flex items-center justify-center",
-              viewMode === "list"
-                ? "bg-primary text-white shadow-lg"
-                : "text-muted-foreground hover:bg-secondary/50"
-            )}
-            title="Vue Liste"
-          >
-            <SlidersHorizontal size={20} />
-          </button>
-        </div>
-      </div>
 
       {/* Map or List View */}
       {viewMode === "map" ? (
@@ -261,7 +248,7 @@ export default function HomePage() {
           </div>
         </>
       ) : (
-        <div className="flex-1 overflow-y-auto pt-[18rem] pb-nav px-4 space-y-4 bg-secondary/5">
+        <div className="flex-1 overflow-y-auto pt-[15rem] pb-nav px-4 space-y-4 bg-secondary/5">
           {results.length === 0 ? (
             <div className="text-center py-20 bg-card/50 rounded-3xl border border-dashed border-border m-4">
               <div className="text-6xl mb-4 grayscale">🔍</div>
