@@ -156,8 +156,15 @@ export default function ProfilePage() {
                 });
 
                 // Set level based on premium
-                if (isSubscribed) setUserInfo(prev => ({ ...prev, level: "Platinum 👑" }));
-                else if (isTrial) setUserInfo(prev => ({ ...prev, level: "Essai Gratuit" }));
+                let currentLevel = profile?.userInfo?.level || "Bronze";
+                if (isSubscribed) currentLevel = "Platinum 👑";
+                else if (isTrial) currentLevel = "Essai Gratuit ✨";
+
+                setUserInfo({
+                    name: profile?.userInfo?.name || user.displayName || "Utilisateur",
+                    level: currentLevel,
+                    location: profile?.userInfo?.location || "Burkina Faso"
+                });
 
             } else {
                 setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso" });
@@ -338,6 +345,16 @@ export default function ProfilePage() {
                                             <CloudOff size={10} /> Mode Invité
                                         </div>
                                     )}
+
+                                    {/* EXPLICIT PREMIUM BUTTON */}
+                                    {!premiumState.isPremium && (
+                                        <button
+                                            onClick={() => setShowPremiumModal(true)}
+                                            className="flex items-center gap-1 text-[8px] font-black uppercase text-amber-600 bg-amber-500/20 px-2 py-0.5 rounded-full animate-pulse border border-amber-500/30"
+                                        >
+                                            <Crown size={10} /> {premiumState.isTrial ? 'Premium Actif' : 'Activer Premium'}
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         )}
@@ -346,30 +363,31 @@ export default function ProfilePage() {
                 </div>
             </header>
 
-            {/* Premium Banner */}
-            {(premiumState.isTrial || (!premiumState.isPremium && premiumState.daysLeft === 0)) && (
-                <div className="px-6 mb-6 animate-in slide-in-from-top-4 duration-700 delay-200">
+            {/* Premium Banner - More Visible */}
+            {!premiumState.isPremium && (
+                <div className="px-6 mb-8 animate-in slide-in-from-top-4 duration-700">
                     <div
                         onClick={() => setShowPremiumModal(true)}
-                        className="w-full p-4 rounded-3xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 flex items-center justify-between cursor-pointer group hover:bg-amber-500/20 transition-all"
+                        className="w-full p-5 rounded-[2rem] bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-between cursor-pointer group shadow-xl shadow-amber-500/20 overflow-hidden relative"
                     >
-                        <div className="flex items-center gap-4">
-                            <div className="p-3 bg-amber-500 rounded-2xl text-white shadow-lg shadow-amber-500/20 animate-pulse">
-                                <Gift size={24} />
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20" />
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="p-3 bg-white/20 rounded-2xl text-white backdrop-blur-md">
+                                <Crown size={28} />
                             </div>
                             <div>
-                                <div className="text-sm font-black text-amber-500 uppercase tracking-widest leading-none mb-1">
-                                    {premiumState.isTrial ? `Essai Gratuit Actif` : `Période d'essai terminée`}
+                                <div className="text-sm font-black text-white px-2 py-0.5 bg-black/20 rounded-lg inline-block mb-1 uppercase tracking-widest">
+                                    {premiumState.isTrial ? `👑 Mode Premium` : `💎 Offre Limitée`}
                                 </div>
-                                <div className="text-xs text-muted-foreground font-medium leading-tight max-w-[200px]">
+                                <div className="text-xs text-white/90 font-bold leading-tight">
                                     {premiumState.isTrial
-                                        ? `Il vous reste ${premiumState.daysLeft} jours pour tester le mode Premium.`
-                                        : "Passez Premium pour réactiver vos avantages exclusifs."
+                                        ? `Profitez de vos avantages pendant encore ${premiumState.daysLeft} jours !`
+                                        : "Passez Premium pour 5 000 FCFA / an !"
                                     }
                                 </div>
                             </div>
                         </div>
-                        <ChevronRight className="text-amber-500 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="text-white group-hover:translate-x-1 transition-transform" />
                     </div>
                 </div>
             )}
