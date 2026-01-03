@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Bell, Plus, Clock, Settings, User, CreditCard, Shield, ChevronRight, FileText, Heart, Users, MapPin, Globe, HelpCircle, Lock, ClipboardList, Zap, Phone, X, Check, Edit, ShieldCheck, Trash2, Cloud, CloudOff, Loader2, Truck, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, Bell, Plus, Clock, Settings, User, CreditCard, Shield, ChevronRight, FileText, Heart, Users, MapPin, Globe, HelpCircle, Lock, ClipboardList, Zap, Phone, X, Check, Edit, ShieldCheck, Trash2, Cloud, CloudOff, Loader2, Truck, LayoutDashboard, Crown, Gift, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { firebaseService } from "@/services/firebaseService";
 import { auth } from "@/services/firebase";
@@ -89,6 +89,11 @@ export default function ProfilePage() {
         tierPayant: false
     });
 
+    // Premium Logic
+    const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
+    const [showPremiumModal, setShowPremiumModal] = useState(false);
+    const [isUpgrading, setIsUpgrading] = useState(false);
+
     // Track Auth & Load Data
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
@@ -132,6 +137,28 @@ export default function ProfilePage() {
                 if (profile.notificationSettings) setNotificationSettings(profile.notificationSettings);
                 if (profile.securitySettings) setSecuritySettings(profile.securitySettings);
                 if (profile.insurances) setInsurances(profile.insurances);
+
+                // Check Premium Status
+                const isSubscribed = profile.userInfo?.isPremium === true;
+
+                // Trial Logic
+                const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date();
+                const now = new Date();
+                const diffTime = Math.abs(now.getTime() - creationTime.getTime());
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const trialRemaining = Math.max(0, 15 - diffDays);
+                const isTrial = !isSubscribed && trialRemaining > 0;
+
+                setPremiumState({
+                    isPremium: isSubscribed,
+                    isTrial: isTrial,
+                    daysLeft: isTrial ? trialRemaining : 0
+                });
+
+                // Set level based on premium
+                if (isSubscribed) setUserInfo(prev => ({ ...prev, level: "Platinum 👑" }));
+                else if (isTrial) setUserInfo(prev => ({ ...prev, level: "Essai Gratuit" }));
+
             } else {
                 setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso" });
             }
@@ -319,6 +346,34 @@ export default function ProfilePage() {
                 </div>
             </header>
 
+            {/* Premium Banner */}
+            {(premiumState.isTrial || (!premiumState.isPremium && premiumState.daysLeft === 0)) && (
+                <div className="px-6 mb-6 animate-in slide-in-from-top-4 duration-700 delay-200">
+                    <div
+                        onClick={() => setShowPremiumModal(true)}
+                        className="w-full p-4 rounded-3xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 flex items-center justify-between cursor-pointer group hover:bg-amber-500/20 transition-all"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="p-3 bg-amber-500 rounded-2xl text-white shadow-lg shadow-amber-500/20 animate-pulse">
+                                <Gift size={24} />
+                            </div>
+                            <div>
+                                <div className="text-sm font-black text-amber-500 uppercase tracking-widest leading-none mb-1">
+                                    {premiumState.isTrial ? `Essai Gratuit Actif` : `Période d'essai terminée`}
+                                </div>
+                                <div className="text-xs text-muted-foreground font-medium leading-tight max-w-[200px]">
+                                    {premiumState.isTrial
+                                        ? `Il vous reste ${premiumState.daysLeft} jours pour tester le mode Premium.`
+                                        : "Passez Premium pour réactiver vos avantages exclusifs."
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <ChevronRight className="text-amber-500 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                </div>
+            )}
+
             <div className="px-6 space-y-8">
 
                 {/* PILULIER INTELLIGENT */}
@@ -474,20 +529,64 @@ export default function ProfilePage() {
                     <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1 opacity-60">Ma Santé & Suivi</h2>
                     <div className="glass-card overflow-hidden">
                         {[
-                            { icon: <Heart className="text-red-500" />, label: "Profil Médical", sub: "Groupe sanguin, Allergies", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowMedicalProfile(true); } },
-                            { icon: <ClipboardList className="text-blue-500" />, label: "Carnet de Santé Digital", sub: "Analyses et Ordonnances", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowHealthBook(true); } },
-                            { icon: <Users className="text-purple-500" />, label: "Cercle Familial", sub: "Gérer la santé de vos proches", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowFamily(true); } },
-                            { icon: <Truck className="text-emerald-500" />, label: "Suivi de Livraison", sub: "Commandes en temps réel", action: () => router.push("/tracking") },
+                            {
+                                icon: <Heart className="text-red-500" />,
+                                label: "Profil Médical",
+                                sub: "Groupe sanguin, Allergies",
+                                action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowMedicalProfile(true); }
+                            },
+                            {
+                                icon: <ClipboardList className="text-blue-500" />,
+                                label: "Carnet de Santé Digital",
+                                sub: "Analyses et Ordonnances",
+                                isPremium: true,
+                                action: () => {
+                                    if (!auth.currentUser) return setShowAuthPrompt(true);
+                                    if (premiumState.isPremium || premiumState.isTrial) setShowHealthBook(true);
+                                    else setShowPremiumModal(true);
+                                }
+                            },
+                            {
+                                icon: <Users className="text-purple-500" />,
+                                label: "Cercle Familial",
+                                sub: "Gérer la santé de vos proches",
+                                isPremium: true,
+                                action: () => {
+                                    if (!auth.currentUser) return setShowAuthPrompt(true);
+                                    if (premiumState.isPremium || premiumState.isTrial) setShowFamily(true);
+                                    else setShowPremiumModal(true);
+                                }
+                            },
+                            {
+                                icon: <Truck className="text-emerald-500" />,
+                                label: "Suivi de Livraison",
+                                sub: "Commandes en temps réel",
+                                action: () => router.push("/tracking")
+                            },
                         ].map((item, i) => (
-                            <button key={i} onClick={item.action} className="w-full p-5 flex items-center justify-between hover:bg-secondary/30 dark:hover:bg-white/5 transition-colors border-b border-border/30 last:border-b-0">
+                            <button key={i} onClick={item.action} className="relative w-full p-5 flex items-center justify-between hover:bg-secondary/30 dark:hover:bg-white/5 transition-colors border-b border-border/30 last:border-b-0 group">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 bg-secondary/50 rounded-xl flex items-center justify-center">{item.icon}</div>
+                                    <div className="w-10 h-10 bg-secondary/50 rounded-xl flex items-center justify-center relative">
+                                        {item.icon}
+                                        {item.isPremium && !(premiumState.isPremium || premiumState.isTrial) && (
+                                            <div className="absolute -top-1 -right-1 bg-black/60 rounded-full p-1 border border-white/20 backdrop-blur-sm">
+                                                <Lock size={8} className="text-white" />
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="text-left">
-                                        <div className="font-bold text-sm text-foreground">{item.label}</div>
+                                        <div className="font-bold text-sm text-foreground flex items-center gap-2">
+                                            {item.label}
+                                            {item.isPremium && !(premiumState.isPremium || premiumState.isTrial) && <span className="text-[8px] font-black uppercase text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded ml-1">Premium</span>}
+                                        </div>
                                         <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-tight">{item.sub}</div>
                                     </div>
                                 </div>
-                                <ChevronRight size={16} className="text-muted-foreground opacity-30" />
+                                {item.isPremium && !(premiumState.isPremium || premiumState.isTrial) ? (
+                                    <Lock size={16} className="text-muted-foreground opacity-50" />
+                                ) : (
+                                    <ChevronRight size={16} className="text-muted-foreground opacity-30" />
+                                )}
                             </button>
                         ))}
                     </div>
@@ -1417,6 +1516,85 @@ export default function ProfilePage() {
                                     </label>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showPremiumModal && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+                    <div className="glass-card w-full max-w-sm rounded-[2.5rem] border-primary/30 relative overflow-hidden flex flex-col max-h-[90vh]">
+                        <button onClick={() => setShowPremiumModal(false)} className="absolute top-6 right-6 p-2 bg-secondary rounded-full z-10 hover:bg-white/10 transition-colors">
+                            <X size={20} className="text-foreground" />
+                        </button>
+
+                        {/* Header Image/Background */}
+                        <div className="relative h-40 bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30 mix-blend-overlay"></div>
+                            <div className="text-center z-10">
+                                <Crown size={48} className="text-white mx-auto mb-2 drop-shadow-xl animate-bounce" />
+                                <h3 className="text-2xl font-black text-white italic drop-shadow-md">Pharma Premium</h3>
+                            </div>
+                        </div>
+
+                        <div className="p-8 space-y-6 overflow-y-auto">
+                            <div className="text-center space-y-2">
+                                <p className="text-sm text-muted-foreground font-medium">
+                                    Débloquez tout le potentiel de votre santé connectée.
+                                </p>
+                            </div>
+
+                            {/* Features List */}
+                            <div className="space-y-4">
+                                {[
+                                    { icon: <FileText className="text-blue-500" />, text: "Carnet de Santé Illimité" },
+                                    { icon: <Users className="text-purple-500" />, text: "Gestion Familiale (Enfants, Parents)" },
+                                    { icon: <Zap className="text-amber-500" />, text: "Rappels Intelligents & Suivi" },
+                                    { icon: <ShieldCheck className="text-emerald-500" />, text: "Sauvegarde Cloud Sécurisée" },
+                                ].map((feat, i) => (
+                                    <div key={i} className="flex items-center gap-4 p-3 bg-secondary/30 rounded-2xl">
+                                        <div className="p-2 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">{feat.icon}</div>
+                                        <span className="text-xs font-bold text-foreground">{feat.text}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Pricing */}
+                            <div className="bg-primary/5 p-4 rounded-3xl border border-primary/10 text-center relative overflow-hidden">
+                                <div className="absolute top-0 right-0 bg-primary text-white text-[9px] font-black px-2 py-1 rounded-bl-xl uppercase tracking-widest">Populaire</div>
+                                <div className="text-3xl font-black text-primary mb-1">5 000 FCFA</div>
+                                <div className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Par An</div>
+                                <div className="mt-2 text-[10px] text-emerald-500 font-bold flex items-center justify-center gap-1">
+                                    <Sparkles size={10} /> Essai de 15 jours offert
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={async () => {
+                                    setIsUpgrading(true);
+                                    // Simulate Payment
+                                    await new Promise(r => setTimeout(r, 2000));
+                                    if (!currentUid) return;
+                                    try {
+                                        await firebaseService.upgradeUserToPremium(currentUid, 'yearly');
+                                        // Update local state to reflect change immediately
+                                        setPremiumState(prev => ({ ...prev, isPremium: true }));
+                                        setUserInfo(prev => ({ ...prev, level: "Platinum 👑" }));
+                                        setShowPremiumModal(false);
+                                        alert("Bienvenue dans le club Premium ! 👑");
+                                    } catch (e) {
+                                        alert("Erreur lors du paiement.");
+                                    } finally {
+                                        setIsUpgrading(false);
+                                    }
+                                }}
+                                disabled={isUpgrading}
+                                className="w-full py-4 bg-gradient-to-r from-primary to-emerald-600 text-white font-black rounded-2xl shadow-xl shadow-primary/30 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-2"
+                            >
+                                {isUpgrading ? <Loader2 className="animate-spin" /> : "Activer mon Premium"}
+                            </button>
+                            <p className="text-[9px] text-center text-muted-foreground opacity-50">
+                                Paiement sécurisé via Orange Money / Moov Money
+                            </p>
                         </div>
                     </div>
                 </div>

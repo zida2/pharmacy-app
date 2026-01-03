@@ -370,6 +370,30 @@ export const firebaseService = {
         }
     },
 
+    async upgradeUserToPremium(uid: string, plan: 'monthly' | 'yearly' = 'yearly') {
+        if (!USE_REAL_BACKEND) return;
+        try {
+            const userRef = doc(db, "users", uid);
+            const now = new Date();
+            const expiryDate = new Date();
+            if (plan === 'yearly') {
+                expiryDate.setFullYear(now.getFullYear() + 1);
+            } else {
+                expiryDate.setMonth(now.getMonth() + 1);
+            }
+
+            await updateDoc(userRef, {
+                "userInfo.isPremium": true,
+                "userInfo.premiumExpiry": expiryDate.toISOString(),
+                "userInfo.plan": plan
+            });
+            return true;
+        } catch (error) {
+            console.error("Error upgrading to premium:", error);
+            throw error;
+        }
+    },
+
     async getTodaySales(pharmacyId: string): Promise<number> {
         try {
             const today = new Date();
