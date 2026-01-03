@@ -42,6 +42,7 @@ function MapContent() {
     // Location Search State
     const [locationQuery, setLocationQuery] = useState("");
     const [isSearchingLocation, setIsSearchingLocation] = useState(false);
+    const [searchMarkerPos, setSearchMarkerPos] = useState<[number, number] | null>(null);
     const [mapView, setMapView] = useState<{ center: [number, number], zoom: number, pitch: number }>({
         center: [-1.5197, 12.3714], // Default Ouaga
         zoom: 12,
@@ -169,6 +170,7 @@ function MapContent() {
             if (data && data.length > 0) {
                 const { lat, lon } = data[0];
                 const newCenter: [number, number] = [parseFloat(lon), parseFloat(lat)];
+                setSearchMarkerPos(newCenter);
 
                 // Update map view to "3D Relief Mode" focused on the location
                 setMapView({
@@ -244,6 +246,7 @@ function MapContent() {
                     className="rounded-none border-none shadow-none"
                     pharmacies={pharmacies}
                     userLocation={userLocation}
+                    searchLocation={searchMarkerPos}
                     destination={destinationCoords}
                     initialCenter={mapView.center} // Modified from fixed state
                     initialZoom={mapView.zoom} // Modified from fixed state

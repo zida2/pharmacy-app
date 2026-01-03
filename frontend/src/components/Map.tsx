@@ -14,6 +14,7 @@ interface MapProps extends React.HTMLAttributes<HTMLDivElement> {
     initialBearing?: number;
     pharmacies?: Pharmacy[];
     userLocation?: [number, number] | null;
+    searchLocation?: [number, number] | null;
     destination?: [number, number] | null;
 }
 
@@ -24,6 +25,7 @@ export default function Map({
     initialBearing = 0,
     pharmacies = [],
     userLocation,
+    searchLocation,
     destination,
     className,
     ...props
@@ -33,6 +35,7 @@ export default function Map({
     const [isLoaded, setIsLoaded] = useState(false);
     const markersRef = useRef<maplibregl.Marker[]>([]);
     const userMarkerRef = useRef<maplibregl.Marker | null>(null);
+    const searchMarkerRef = useRef<maplibregl.Marker | null>(null);
 
     useEffect(() => {
         if (map.current && isLoaded) {
@@ -108,6 +111,35 @@ export default function Map({
             userMarkerRef.current = null;
         }
     }, [userLocation, isLoaded]);
+
+    // Update Search Marker
+    useEffect(() => {
+        if (!map.current || !isLoaded) return;
+
+        if (searchLocation) {
+            let el = searchMarkerRef.current?.getElement();
+            if (!el) {
+                el = document.createElement('div');
+                el.className = 'search-marker';
+                el.innerHTML = `
+                    <div class="relative flex items-center justify-center">
+                        <div class="absolute w-8 h-8 bg-red-500/30 rounded-full animate-ping"></div>
+                        <div class="relative w-6 h-6 bg-red-600 border-2 border-white rounded-full shadow-lg flex items-center justify-center text-white font-bold text-[8px]">
+                            🔍
+                        </div>
+                   </div>
+                `;
+                searchMarkerRef.current = new maplibregl.Marker({ element: el })
+                    .setLngLat(searchLocation)
+                    .addTo(map.current);
+            } else {
+                searchMarkerRef.current?.setLngLat(searchLocation);
+            }
+        } else {
+            searchMarkerRef.current?.remove();
+            searchMarkerRef.current = null;
+        }
+    }, [searchLocation, isLoaded]);
 
     // Update Route
     useEffect(() => {

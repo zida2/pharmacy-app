@@ -68,7 +68,7 @@ export const firebaseService = {
                     )
                 })).sort((a, b) => a.distance - b.distance);
 
-                return pharmaciesWithDistance.slice(0, 50).map(p => ({ pharmacy: p }));
+                return pharmaciesWithDistance.slice(0, 100).map(p => ({ pharmacy: p }));
             }
 
             const q = term.toLowerCase();
