@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Phone, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/services/firebase";
 
 export default function LoginPage() {
@@ -22,13 +21,43 @@ export default function LoginPage() {
     const handleGoogleLogin = async () => {
         setIsLoading(true);
         try {
+            const { GoogleAuthProvider, signInWithPopup } = await import("firebase/auth");
             const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
-            // Successful login logic here
+            provider.setCustomParameters({ prompt: 'select_account' });
+
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // Sync with our database
+            const { firebaseService } = await import("@/services/firebaseService");
+            const existingProfile = await firebaseService.getUserProfile(user.uid);
+
+            if (!existingProfile) {
+                await firebaseService.saveUserProfile(user.uid, {
+                    userInfo: {
+                        name: user.displayName || "Utilisateur Google",
+                        email: user.email || "",
+                        level: "Bronze",
+                        location: "Burkina Faso"
+                    },
+                    createdAt: new Date().toISOString()
+                });
+            }
+
             router.push("/");
-        } catch (error) {
+        } catch (error: any) {
             console.error("Google login error:", error);
-            alert("Erreur lors de la connexion Google. Veuillez réessayer.");
+            let message = "Erreur lors de la connexion Google.";
+
+            if (error.code === 'auth/popup-blocked') {
+                message = "Le popup de connexion a été bloqué par votre navigateur. Veuillez l'autoriser.";
+            } else if (error.code === 'auth/unauthorized-domain') {
+                message = "Ce domaine (URL) n'est pas autorisé dans la console Firebase. Veuillez l'ajouter aux domaines autorisés.";
+            } else if (error.code === 'auth/cancelled-popup-request') {
+                message = "La connexion a été annulée.";
+            }
+
+            alert(`${message}\n\n(Détail: ${error.code})`);
         } finally {
             setIsLoading(false);
         }
