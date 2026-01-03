@@ -31,28 +31,67 @@ export default function HomePage() {
 
   // Initial load
   useEffect(() => {
-    // 1. Load data immediately with default/fallback location so user sees something
-    handleSearch("", DEFAULT_CENTER);
+    setLocationStatus('loading');
 
-    // 2. Try to get real location to refine distances
+    // Try to get real location first
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const loc = { lat: position.coords.latitude, lng: position.coords.longitude };
           setUserLocation(loc);
-          // Refresh search with real location
+          setLocationStatus('success');
+          // Load pharmacies with real location
+          handleSearch("", loc);
+        },
+        (error) => {
+          console.warn("Geolocation error:", error.code, error.message);
+
+          if (error.code === 1) {
+            // Permission denied
+            setLocationStatus('denied');
+            setAuthMessage("📍 Activez la géolocalisation pour voir les pharmacies les plus proches de vous.");
+          } else {
+            // Other errors (timeout, unavailable)
+            setLocationStatus('default');
+          }
+
+          // Fallback to default center
+          setUserLocation(DEFAULT_CENTER);
+          handleSearch("", DEFAULT_CENTER);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 60000 // 1 minute cache
+        }
+      );
+    } else {
+      // Geolocation not supported
+      setLocationStatus('default');
+      setUserLocation(DEFAULT_CENTER);
+      handleSearch("", DEFAULT_CENTER);
+    }
+  }, []);
+
+  const retryGeolocation = () => {
+    setLocationStatus('loading');
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const loc = { lat: position.coords.latitude, lng: position.coords.longitude };
+          setUserLocation(loc);
+          setLocationStatus('success');
           handleSearch(searchQuery, loc);
         },
         (error) => {
-          console.warn("Geolocation denied/error, using default:", error);
-          // Already loaded with default, so just maybe notify or stay as is
-          setAuthMessage("Activation de la localisation recommandée pour les distances précises.");
+          console.warn("Geolocation retry error:", error);
+          setLocationStatus(error.code === 1 ? 'denied' : 'default');
           setUserLocation(DEFAULT_CENTER);
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 } // Force fresh location
       );
     }
-  }, []);
+  };
 
 
   const handleSearch = async (query: string, locationOverride?: { lat: number; lng: number }) => {

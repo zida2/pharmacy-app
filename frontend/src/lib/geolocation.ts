@@ -61,13 +61,16 @@ export async function getUserLocation(): Promise<Coordinates> {
                     longitude: position.coords.longitude,
                 });
             },
-            () => {
+            (error) => {
+                // Log the specific error for debugging
+                console.warn("Geolocation error:", error.code, error.message);
                 // On error, default to Ouagadougou center
                 resolve({ latitude: 12.3714, longitude: -1.5197 });
             },
             {
-                timeout: 5000,
-                maximumAge: 300000, // Cache for 5 minutes
+                enableHighAccuracy: true, // Request GPS-level accuracy
+                timeout: 15000, // 15 seconds to get location
+                maximumAge: 60000, // Cache for only 1 minute (fresher location)
             }
         );
     });
