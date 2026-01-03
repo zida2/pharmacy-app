@@ -75,6 +75,20 @@ export default function ProfilePage() {
     const [isAddingCondition, setIsAddingCondition] = useState(false);
     const [newConditionInput, setNewConditionInput] = useState("");
 
+    // Insurance Management States
+    const [insurances, setInsurances] = useState<any[]>([]);
+    const [isAddingInsurance, setIsAddingInsurance] = useState(false);
+    const [editingInsuranceIndex, setEditingInsuranceIndex] = useState<number | null>(null);
+    const [newInsurance, setNewInsurance] = useState({
+        provider: "",
+        policyNumber: "",
+        coverageRate: "80",
+        expiryDate: "",
+        beneficiaries: [] as string[],
+        isActive: true,
+        tierPayant: false
+    });
+
     // Track Auth & Load Data
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
@@ -117,6 +131,7 @@ export default function ProfilePage() {
                 if (profile.subscriptions) setSubscriptions(profile.subscriptions);
                 if (profile.notificationSettings) setNotificationSettings(profile.notificationSettings);
                 if (profile.securitySettings) setSecuritySettings(profile.securitySettings);
+                if (profile.insurances) setInsurances(profile.insurances);
             } else {
                 setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso" });
             }
@@ -139,12 +154,13 @@ export default function ProfilePage() {
                 addresses,
                 subscriptions,
                 notificationSettings,
-                securitySettings
+                securitySettings,
+                insurances
             });
         }, 1000); // Wait 1s after last change to sync
 
         return () => clearTimeout(timer);
-    }, [reminders, userInfo, medicalInfo, family, addresses, subscriptions, notificationSettings, securitySettings, currentUid]);
+    }, [reminders, userInfo, medicalInfo, family, addresses, subscriptions, notificationSettings, securitySettings, insurances, currentUid]);
 
     const addReminder = () => {
         if (!auth.currentUser) {
@@ -485,7 +501,7 @@ export default function ProfilePage() {
                             { icon: <Zap className="text-amber-500" />, label: "Abonnements Chroniques", sub: "Traitements récurrents auto", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowSubscriptions(true); } },
                             { icon: <MapPin className="text-emerald-500" />, label: "Adresses de Livraison", sub: "Maison, Bureau, Parents", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowAddresses(true); } },
                             { icon: <CreditCard className="text-indigo-500" />, label: "Méthodes de Paiement", sub: "Orange, Moov, MTN", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowPayments(true); } },
-                            { icon: <Shield className="text-cyan-500" />, label: "Assurances & Tiers-Payant", sub: "3 assurances actives", action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowInsurance(true); } },
+                            { icon: <Shield className="text-cyan-500" />, label: "Assurances & Tiers-Payant", sub: `${insurances.length} assurance${insurances.length > 1 ? 's' : ''} active${insurances.length > 1 ? 's' : ''}`, action: () => { if (!auth.currentUser) return setShowAuthPrompt(true); setShowInsurance(true); } },
                         ].map((item, i) => (
                             <button key={i} onClick={item.action} className="w-full p-5 flex items-center justify-between hover:bg-secondary/30 dark:hover:bg-white/5 transition-colors border-b border-border/30 last:border-b-0">
                                 <div className="flex items-center gap-4">
@@ -1131,27 +1147,242 @@ export default function ProfilePage() {
 
             {showInsurance && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm animate-in fade-in">
-                    <div className="glass-card w-full max-w-sm p-8 rounded-[2.5rem] border-primary/30 relative">
-                        <button onClick={() => setShowInsurance(false)} className="absolute top-6 right-6 p-2 bg-secondary rounded-full">
+                    <div className="glass-card w-full max-w-sm p-8 rounded-[2.5rem] border-primary/30 relative max-h-[85vh] flex flex-col">
+                        <button onClick={() => { setShowInsurance(false); setIsAddingInsurance(false); setEditingInsuranceIndex(null); }} className="absolute top-6 right-6 p-2 bg-secondary rounded-full z-10">
                             <X size={20} className="text-foreground" />
                         </button>
-                        <h3 className="text-2xl font-black italic mb-6 text-foreground text-center">Assurances actives</h3>
-                        <div className="space-y-4">
-                            {["SONAR", "UAB", "Allianz"].map((ins, i) => (
-                                <div key={i} className="flex items-center justify-between p-4 bg-secondary/50 rounded-2xl group cursor-pointer hover:bg-primary/10 transition-colors">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center font-black text-xs text-primary shadow-sm">
-                                            {ins[0]}
-                                        </div>
-                                        <div>
-                                            <div className="font-bold text-foreground">{ins} Assurance</div>
-                                            <div className="text-[10px] font-bold text-green-500 uppercase tracking-widest">Validé • 80%</div>
-                                        </div>
-                                    </div>
-                                    <Check size={18} className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <h3 className="text-2xl font-black italic mb-6 text-foreground text-center">Mes Assurances</h3>
+
+                        {isAddingInsurance || editingInsuranceIndex !== null ? (
+                            <div className="space-y-4 flex-1 overflow-y-auto pr-2">
+                                <div>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2 block">Assureur</label>
+                                    <select
+                                        className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl font-bold outline-none border-r-[16px] border-r-transparent"
+                                        value={newInsurance.provider}
+                                        onChange={(e) => setNewInsurance({ ...newInsurance, provider: e.target.value })}
+                                    >
+                                        <option value="">Sélectionner...</option>
+                                        <option value="CNSS">CNSS (Caisse Nationale de Sécurité Sociale)</option>
+                                        <option value="INAM">INAM (Institut National d'Assurance Maladie)</option>
+                                        <option value="SONAR">SONAR Assurances</option>
+                                        <option value="UAB">UAB Assurances</option>
+                                        <option value="Allianz">Allianz Burkina</option>
+                                        <option value="NSIA">NSIA Assurances</option>
+                                        <option value="Autre">Autre</option>
+                                    </select>
                                 </div>
-                            ))}
-                        </div>
+
+                                <div>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2 block">N° de Police</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="off"
+                                        placeholder="ex: BF-2024-123456"
+                                        className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl font-bold outline-none"
+                                        value={newInsurance.policyNumber}
+                                        onChange={(e) => setNewInsurance({ ...newInsurance, policyNumber: e.target.value })}
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2 block">Taux (%)</label>
+                                        <input
+                                            type="number"
+                                            autoComplete="off"
+                                            min="0"
+                                            max="100"
+                                            placeholder="80"
+                                            className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl font-bold outline-none"
+                                            value={newInsurance.coverageRate}
+                                            onChange={(e) => setNewInsurance({ ...newInsurance, coverageRate: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2 block">Expiration</label>
+                                        <input
+                                            type="date"
+                                            autoComplete="off"
+                                            className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl font-bold outline-none"
+                                            value={newInsurance.expiryDate}
+                                            onChange={(e) => setNewInsurance({ ...newInsurance, expiryDate: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2 block">Bénéficiaires couverts</label>
+                                    <div className="flex flex-wrap gap-2 mb-2">
+                                        {newInsurance.beneficiaries.map((b, idx) => (
+                                            <span key={idx} className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center gap-1">
+                                                {b} <X size={10} className="cursor-pointer" onClick={() => setNewInsurance({ ...newInsurance, beneficiaries: newInsurance.beneficiaries.filter((_, i) => i !== idx) })} />
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <select
+                                        className="w-full p-3 bg-secondary/50 rounded-xl text-xs font-bold outline-none border-r-[12px] border-r-transparent"
+                                        onChange={(e) => {
+                                            if (e.target.value && !newInsurance.beneficiaries.includes(e.target.value)) {
+                                                setNewInsurance({ ...newInsurance, beneficiaries: [...newInsurance.beneficiaries, e.target.value] });
+                                                e.target.value = "";
+                                            }
+                                        }}
+                                    >
+                                        <option value="">+ Ajouter un bénéficiaire</option>
+                                        <option value="Moi-même">Moi-même</option>
+                                        {family.map((f, i) => <option key={i} value={f.name}>{f.name} ({f.role})</option>)}
+                                    </select>
+                                </div>
+
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-between p-4 bg-secondary/30 rounded-xl">
+                                        <div>
+                                            <div className="font-bold text-sm text-foreground">Tiers-Payant</div>
+                                            <div className="text-[10px] text-muted-foreground font-medium">Paiement direct par l'assurance</div>
+                                        </div>
+                                        <label className="relative inline-flex items-center cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                checked={newInsurance.tierPayant}
+                                                onChange={() => setNewInsurance({ ...newInsurance, tierPayant: !newInsurance.tierPayant })}
+                                                className="sr-only peer"
+                                            />
+                                            <div className="w-9 h-5 bg-gray-200 dark:bg-zinc-800 rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center justify-between p-4 bg-secondary/30 rounded-xl">
+                                        <div>
+                                            <div className="font-bold text-sm text-foreground">Statut</div>
+                                            <div className="text-[10px] text-muted-foreground font-medium">Assurance active</div>
+                                        </div>
+                                        <label className="relative inline-flex items-center cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                checked={newInsurance.isActive}
+                                                onChange={() => setNewInsurance({ ...newInsurance, isActive: !newInsurance.isActive })}
+                                                className="sr-only peer"
+                                            />
+                                            <div className="w-9 h-5 bg-gray-200 dark:bg-zinc-800 rounded-full peer peer-checked:bg-emerald-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-3 pt-4">
+                                    <button
+                                        onClick={() => {
+                                            setIsAddingInsurance(false);
+                                            setEditingInsuranceIndex(null);
+                                            setNewInsurance({ provider: "", policyNumber: "", coverageRate: "80", expiryDate: "", beneficiaries: [], isActive: true, tierPayant: false });
+                                        }}
+                                        className="flex-1 py-4 bg-secondary text-foreground font-black rounded-2xl"
+                                    >
+                                        Annuler
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            if (!newInsurance.provider || !newInsurance.policyNumber) {
+                                                alert("Veuillez remplir au minimum l'assureur et le numéro de police.");
+                                                return;
+                                            }
+                                            if (editingInsuranceIndex !== null) {
+                                                const updated = [...insurances];
+                                                updated[editingInsuranceIndex] = { ...newInsurance };
+                                                setInsurances(updated);
+                                                setEditingInsuranceIndex(null);
+                                            } else {
+                                                setInsurances([...insurances, { ...newInsurance }]);
+                                            }
+                                            setIsAddingInsurance(false);
+                                            setNewInsurance({ provider: "", policyNumber: "", coverageRate: "80", expiryDate: "", beneficiaries: [], isActive: true, tierPayant: false });
+                                        }}
+                                        className="flex-1 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20"
+                                    >
+                                        {editingInsuranceIndex !== null ? "Enregistrer" : "Ajouter"}
+                                    </button>
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+                                    {insurances.length === 0 ? (
+                                        <div className="text-center py-10 opacity-30 italic font-bold">Aucune assurance enregistrée</div>
+                                    ) : insurances.map((ins, i) => (
+                                        <div key={i} className="p-5 bg-gradient-to-br from-primary/5 to-transparent border-2 border-primary/20 rounded-3xl relative overflow-hidden group">
+                                            <div className="absolute top-4 right-4 flex items-center gap-2">
+                                                <button
+                                                    onClick={() => {
+                                                        setNewInsurance(ins);
+                                                        setEditingInsuranceIndex(i);
+                                                        setIsAddingInsurance(true);
+                                                    }}
+                                                    className="p-2 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                                >
+                                                    <Edit size={14} className="text-primary" />
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        if (confirm("Supprimer cette assurance ?")) {
+                                                            setInsurances(insurances.filter((_, idx) => idx !== i));
+                                                        }
+                                                    }}
+                                                    className="p-2 bg-red-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                                >
+                                                    <Trash2 size={14} className="text-red-500" />
+                                                </button>
+                                            </div>
+                                            <div className="flex items-start gap-4 mb-4">
+                                                <div className="w-12 h-12 bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center font-black text-lg text-primary shadow-lg">
+                                                    {ins.provider[0]}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <div className="font-black text-lg text-foreground">{ins.provider}</div>
+                                                    <div className="text-[10px] font-mono font-bold text-muted-foreground">{ins.policyNumber}</div>
+                                                </div>
+                                            </div>
+                                            <div className="grid grid-cols-2 gap-3 mb-3">
+                                                <div className="p-3 bg-secondary/50 rounded-xl">
+                                                    <div className="text-[9px] font-black uppercase tracking-widest text-muted-foreground mb-1">Couverture</div>
+                                                    <div className="text-xl font-black text-primary">{ins.coverageRate}%</div>
+                                                </div>
+                                                <div className="p-3 bg-secondary/50 rounded-xl">
+                                                    <div className="text-[9px] font-black uppercase tracking-widest text-muted-foreground mb-1">Expire le</div>
+                                                    <div className="text-sm font-black text-foreground">{ins.expiryDate ? new Date(ins.expiryDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: '2-digit' }) : "N/A"}</div>
+                                                </div>
+                                            </div>
+                                            {ins.beneficiaries.length > 0 && (
+                                                <div className="mb-3">
+                                                    <div className="text-[9px] font-black uppercase tracking-widest text-muted-foreground mb-2">Bénéficiaires</div>
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {ins.beneficiaries.map((b: string, idx: number) => (
+                                                            <span key={idx} className="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-full">{b}</span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div className="flex items-center gap-2">
+                                                {ins.tierPayant && (
+                                                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] font-black rounded-full uppercase tracking-widest">Tiers-Payant</span>
+                                                )}
+                                                <span className={cn("px-3 py-1 text-[10px] font-black rounded-full uppercase tracking-widest", ins.isActive ? "bg-emerald-500/10 text-emerald-500" : "bg-gray-500/10 text-gray-500")}>
+                                                    {ins.isActive ? "Active" : "Inactive"}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        setNewInsurance({ provider: "", policyNumber: "", coverageRate: "80", expiryDate: "", beneficiaries: [], isActive: true, tierPayant: false });
+                                        setIsAddingInsurance(true);
+                                        setEditingInsuranceIndex(null);
+                                    }}
+                                    className="w-full py-4 bg-primary text-white font-black rounded-2xl flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:brightness-110 transition-all active:scale-95"
+                                >
+                                    <Plus size={20} /> AJOUTER UNE ASSURANCE
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             )}
