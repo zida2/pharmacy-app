@@ -232,6 +232,61 @@ export const firebaseService = {
         return invRef.id;
     },
 
+    async getPharmacyProducts(pharmacyId: string) {
+        if (!USE_REAL_BACKEND) {
+            // Mock fallback for dev
+            return [
+                { id: "inv-1", name: "Doliprane 1000mg", price: 1500, stock: 45, inStock: true },
+                { id: "inv-2", name: "Amoxicilline 500mg", price: 2500, stock: 12, inStock: true },
+                { id: "inv-3", name: "Efferalgan Vit C", price: 1800, stock: 0, inStock: false },
+                { id: "inv-4", name: "Maalox", price: 3200, stock: 5, inStock: true },
+            ];
+        }
+
+        try {
+            const q = query(collection(db, "pharmacy_inventory"), where("pharmacyId", "==", pharmacyId));
+            const snap = await getDocs(q);
+
+            const results = await Promise.all(snap.docs.map(async (docSnap: any) => {
+                const invData = docSnap.data();
+                // Fetch product details
+                // Optim: Could be batched but fine for now
+                try {
+                    const prodRef = doc(db, "products", invData.productId);
+                    const prodSnap = await getDoc(prodRef);
+                    const prodData = prodSnap.exists() ? prodSnap.data() : { name: "Produit Inconnu" };
+
+                    return {
+                        ...prodData,
+                        ...invData, // inventory overrides (price, stock)
+                        id: docSnap.id, // Use inventory ID for updates
+                        productId: invData.productId
+                    };
+                } catch (e) {
+                    return null;
+                }
+            }));
+
+            return results.filter(r => r !== null);
+        } catch (error) {
+            console.error("Error fetching pharmacy products:", error);
+            return [];
+        }
+    },
+
+    async updateProductStock(inventoryId: string, inStock: boolean) {
+        if (!USE_REAL_BACKEND) return;
+        try {
+            const ref = doc(db, "pharmacy_inventory", inventoryId);
+            await updateDoc(ref, {
+                inStock,
+                lastUpdated: serverTimestamp()
+            });
+        } catch (e) {
+            console.error("Error updating stock:", e);
+        }
+    },
+
     // 🛒 ORDERS
     async getPharmacyOrders(pharmacyId: string): Promise<Order[]> {
         if (!USE_REAL_BACKEND) {

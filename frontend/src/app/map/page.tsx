@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Nominatim Geocoding Response Type
@@ -48,6 +48,7 @@ function MapContent() {
     const [permissionStatus, setPermissionStatus] = useState<"prompt" | "granted" | "denied">("prompt");
     const [isLocating, setIsLocating] = useState(false);
     const [destinationCoords, setDestinationCoords] = useState<[number, number] | null>(null);
+    const [isScanning, setIsScanning] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
 
     // Location Search State
@@ -168,19 +169,13 @@ function MapContent() {
     }, [productQuery, sortBy]);
 
     const handleScan = () => {
-        // Simulate scanning logic
-        const scannerInput = document.createElement('input');
-        scannerInput.type = 'file';
-        scannerInput.accept = 'image/*';
-        scannerInput.capture = 'environment';
-        scannerInput.onchange = (e: any) => {
-            // Mock Scanning Process
-            setProductQuery("Scanning...");
-            setTimeout(() => {
-                setProductQuery("Amoxicilline"); // Simulated result
-            }, 1500);
-        };
-        scannerInput.click();
+        setIsScanning(true);
+        // Simulate a 3-second scan process
+        setTimeout(() => {
+            setIsScanning(false);
+            setProductQuery("Amoxicilline 500mg");
+            // Optional: Auto-trigger search here if desired
+        }, 3000);
     };
 
     // Haversine formula for distance
@@ -350,6 +345,110 @@ function MapContent() {
                     initialPitch={mapView.pitch} // Added 3D pitch
                 />
             </div>
+
+            {/* SCANNER OVERLAY */}
+            {isScanning && (
+                <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-300">
+                    {/* Camera Feed Simulation */}
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
+
+                    {/* Overlay UI */}
+                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-8 pt-safe pb-safe">
+                        <div className="w-full flex justify-between items-center text-white">
+                            <button onClick={() => setIsScanning(false)} className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
+                                <X size={24} />
+                            </button>
+                            <div className="px-4 py-1.5 bg-black/40 rounded-full backdrop-blur-md text-xs font-bold uppercase tracking-widest flex items-center gap-2 border border-white/10">
+                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_red]"></div>
+                                Analyse en cours
+                            </div>
+                            <button className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
+                                <Zap size={24} className="text-white" />
+                            </button>
+                        </div>
+
+                        {/* Scanner Frame */}
+                        <div className="w-72 h-72 border-2 border-primary/50 rounded-[2rem] relative overflow-hidden shadow-[0_0_100px_rgba(34,197,94,0.2)]">
+                            <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/80 shadow-[0_0_20px_rgba(34,197,94,1)] animate-[bounce_2s_infinite]"></div>
+
+                            {/* Reticle Corners */}
+                            <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-2xl"></div>
+                            <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-primary rounded-tr-2xl"></div>
+                            <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-primary rounded-bl-2xl"></div>
+                            <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-2xl"></div>
+
+                            {/* Helper Text inside frame */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-50">
+                                <p className="text-white/80 text-[10px] uppercase font-black tracking-widest text-center px-8">Aligner le code-barres</p>
+                            </div>
+                        </div>
+
+                        <div className="text-center space-y-6 w-full max-w-xs">
+                            <p className="text-white/90 font-medium text-sm text-shadow-sm bg-black/20 p-4 rounded-xl backdrop-blur-sm">
+                                Placez l'ordonnance ou le médicament dans le cadre pour l'analyser.
+                            </p>
+                            <div className="flex gap-4 justify-center">
+                                <button className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 active:scale-95 transition-all backdrop-blur-md">
+                                    <div className="w-16 h-16 bg-white rounded-full shadow-lg"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* SCANNER OVERLAY */}
+            {isScanning && (
+                <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-300">
+                    {/* Camera Feed Simulation */}
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
+
+                    {/* Overlay UI */}
+                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-8 pt-safe pb-safe">
+                        <div className="w-full flex justify-between items-center text-white">
+                            <button onClick={() => setIsScanning(false)} className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
+                                <X size={24} />
+                            </button>
+                            <div className="px-4 py-1.5 bg-black/40 rounded-full backdrop-blur-md text-xs font-bold uppercase tracking-widest flex items-center gap-2 border border-white/10">
+                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_red]"></div>
+                                Analyse en cours
+                            </div>
+                            <button className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
+                                <Zap size={24} className="text-white" />
+                            </button>
+                        </div>
+
+                        {/* Scanner Frame */}
+                        <div className="w-72 h-72 border-2 border-primary/50 rounded-[2rem] relative overflow-hidden shadow-[0_0_100px_rgba(34,197,94,0.2)]">
+                            <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/80 shadow-[0_0_20px_rgba(34,197,94,1)] animate-[bounce_2s_infinite]"></div>
+
+                            {/* Reticle Corners */}
+                            <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-2xl"></div>
+                            <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-primary rounded-tr-2xl"></div>
+                            <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-primary rounded-bl-2xl"></div>
+                            <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-2xl"></div>
+
+                            {/* Helper Text inside frame */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-50">
+                                <p className="text-white/80 text-[10px] uppercase font-black tracking-widest text-center px-8">Aligner le code-barres</p>
+                            </div>
+                        </div>
+
+                        <div className="text-center space-y-6 w-full max-w-xs">
+                            <p className="text-white/90 font-medium text-sm text-shadow-sm bg-black/20 p-4 rounded-xl backdrop-blur-sm">
+                                Placez l'ordonnance ou le médicament dans le cadre pour l'analyser.
+                            </p>
+                            <div className="flex gap-4 justify-center">
+                                <button className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 active:scale-95 transition-all backdrop-blur-md">
+                                    <div className="w-16 h-16 bg-white rounded-full shadow-lg"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Location Request Modal */}
             {permissionStatus !== "granted" && (

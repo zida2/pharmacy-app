@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Package,
     TrendingUp,
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { seedDatabase } from "@/services/seed";
+import { firebaseService } from "@/services/firebaseService";
 
 interface PharmacyProduct {
     id: string;
@@ -28,29 +29,72 @@ interface PharmacyProduct {
 
 export default function PharmacyAdminPage() {
     const [activeTab, setActiveTab] = useState<"dashboard" | "products" | "orders" | "settings">("dashboard");
-    const [products, setProducts] = useState<PharmacyProduct[]>([
-        { id: "1", name: "Doliprane 1000mg", price: 1500, stock: 45, inStock: true },
-        { id: "2", name: "Amoxicilline", price: 2500, stock: 12, inStock: true },
-        { id: "3", name: "Efferalgan", price: 1800, stock: 0, inStock: false },
+    const [products, setProducts] = useState<PharmacyProduct[]>([]);
+    const [recentOrders, setRecentOrders] = useState<any[]>([]);
+    const [stats, setStats] = useState([
+        { label: "Commandes aujourd'hui", value: "0", icon: Package, color: "text-blue-600 bg-blue-50" },
+        { label: "Revenus du jour", value: "0 FCFA", icon: DollarSign, color: "text-green-600 bg-green-50" },
+        { label: "Produits en stock", value: "0", icon: TrendingUp, color: "text-purple-600 bg-purple-50" },
+        { label: "Commandes en attente", value: "0", icon: Clock, color: "text-orange-600 bg-orange-50" }
     ]);
 
-    const stats = [
-        { label: "Commandes aujourd'hui", value: "24", icon: Package, color: "text-blue-600 bg-blue-50" },
-        { label: "Revenus du jour", value: "45,000 FCFA", icon: DollarSign, color: "text-green-600 bg-green-50" },
-        { label: "Produits en stock", value: "157", icon: TrendingUp, color: "text-purple-600 bg-purple-50" },
-        { label: "Commandes en attente", value: "8", icon: Clock, color: "text-orange-600 bg-orange-50" }
-    ];
+    useEffect(() => {
+        const loadData = async () => {
+            // HARDCODED ID for Demo purposes representing the logged-in pharmacist's pharmacy
+            const PHARMACY_ID = "pharm-1"; // Ensure this matches a seeded pharmacy ID
 
-    const recentOrders = [
-        { id: "1", customer: "Kouadio Jean", amount: 3500, status: "preparing", time: "Il y a 10 min" },
-        { id: "2", customer: "Adjoua Marie", amount: 5200, status: "ready", time: "Il y a 25 min" },
-        { id: "3", customer: "Yao Patrick", amount: 1500, status: "completed", time: "Il y a 1h" }
-    ];
+            // Load Products
+            const prods = await firebaseService.getPharmacyProducts(PHARMACY_ID);
+            if (prods.length > 0) {
+                setProducts(prods.map((p: any) => ({
+                    id: p.id,
+                    name: p.name,
+                    price: p.price,
+                    stock: p.stock || 0,
+                    inStock: p.inStock
+                })));
 
-    const toggleProductStock = (id: string) => {
-        setProducts(products.map(p =>
-            p.id === id ? { ...p, inStock: !p.inStock } : p
-        ));
+                setStats(prev => {
+                    const newStats = [...prev];
+                    newStats[2].value = prods.length.toString();
+                    return newStats;
+                });
+            }
+
+            // Load Orders
+            const orders = await firebaseService.getPharmacyOrders(PHARMACY_ID);
+            if (orders.length > 0) {
+                setRecentOrders(orders.map(o => ({
+                    id: o.id,
+                    customer: o.userId ? "Client Connecté" : "Client Mobile", // We could fetch user name
+                    amount: o.total,
+                    status: o.status,
+                    time: o.createdAt ? new Date((o.createdAt.seconds || 0) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "N/A"
+                })));
+
+                // Calc Stats
+                const todaySales = await firebaseService.getTodaySales(PHARMACY_ID);
+                setStats(prev => {
+                    const newStats = [...prev];
+                    newStats[0].value = orders.length.toString();
+                    newStats[1].value = `${todaySales.toLocaleString()} FCFA`;
+                    newStats[3].value = orders.filter(o => o.status === 'pending').length.toString();
+                    return newStats;
+                });
+            }
+        };
+        loadData();
+    }, []);
+
+    const toggleProductStock = async (id: string) => {
+        const prod = products.find(p => p.id === id);
+        if (!prod) return;
+        const newState = !prod.inStock;
+
+        // Optimistic update
+        setProducts(products.map(p => p.id === id ? { ...p, inStock: newState } : p));
+
+        await firebaseService.updateProductStock(id, newState);
     };
 
     const handleSeed = async () => {
