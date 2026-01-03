@@ -49,7 +49,24 @@ function MapContent() {
     });
 
     useEffect(() => {
-        // Only load if location is granted or if we want to show default
+        // 1. Try to get location automatically on mount
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { longitude, latitude } = position.coords;
+                    setUserLocation([longitude, latitude]);
+                    setPermissionStatus("granted");
+                    // Assuming map auto-updates center via other effects or pass userLocation to Map
+                },
+                (err) => {
+                    // Silent fail: User will see the "Enable Location" prompt UI if this fails/times out
+                    console.log("Auto-location check:", err.message);
+                },
+                { timeout: 5000, maximumAge: 60000 }
+            );
+        }
+
+        // 2. Load pharmacies (initially with default or null location, will update when userLocation changes)
         loadPharmacies();
 
         const handleSelect = (e: any) => {
@@ -58,7 +75,18 @@ function MapContent() {
 
         window.addEventListener('pharmacySelected', handleSelect);
         return () => window.removeEventListener('pharmacySelected', handleSelect);
-    }, [query, userLocation]);
+    }, [query]); // Removed userLocation from dependency to avoid loop, loadPharmacies handles it via internal reference or re-calls
+
+    // 3. React to user location updates
+    useEffect(() => {
+        if (userLocation) {
+            loadPharmacies(userLocation);
+            // Optional: Center map on user if no manual search is active
+            if (!locationQuery) {
+                setMapView(prev => ({ ...prev, center: userLocation, zoom: 14 }));
+            }
+        }
+    }, [userLocation]);
 
     const requestLocation = () => {
         setIsLocating(true);
