@@ -30,7 +30,7 @@ function MapContent() {
     const [permissionStatus, setPermissionStatus] = useState<"prompt" | "granted" | "denied">("prompt");
     const [isLocating, setIsLocating] = useState(false);
     const [destinationCoords, setDestinationCoords] = useState<[number, number] | null>(null);
-    const [showRoute, setShowRoute] = useState(false);
+    const [isMinimized, setIsMinimized] = useState(false);
 
     useEffect(() => {
         // Only load if location is granted or if we want to show default
@@ -209,8 +209,21 @@ function MapContent() {
 
             {/* Selected Pharmacy Panel - Modern Slide Up Card */}
             {selectedPharmacy && (
-                <div className="absolute bottom-24 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500">
-                    <div className="glass-card p-6 border-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] bg-white/90 dark:bg-black/80 backdrop-blur-3xl relative overflow-hidden">
+                <div className={cn(
+                    "absolute left-4 right-4 z-40 transition-all duration-500 ease-in-out",
+                    isMinimized ? "bottom-24" : "bottom-24" // Panel is already at bottom-24, let's adjust
+                )}>
+                    <div className={cn(
+                        "glass-card border-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] bg-white/90 dark:bg-black/80 backdrop-blur-3xl relative overflow-hidden transition-all duration-500",
+                        isMinimized ? "h-20" : "p-6"
+                    )}>
+                        {/* Minimize/Maximize Button */}
+                        <button
+                            onClick={() => setIsMinimized(!isMinimized)}
+                            className="absolute top-4 right-14 p-2 bg-secondary/50 hover:bg-secondary rounded-full transition-all flex items-center justify-center"
+                        >
+                            {isMinimized ? "🔼" : "🔽"}
+                        </button>
                         {/* Decorative background element */}
                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -224,52 +237,64 @@ function MapContent() {
                             <X className="w-5 h-5" />
                         </button>
 
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-1.5 h-6 bg-primary rounded-full" />
-                            <h3 className="font-black text-2xl italic tracking-tight text-foreground">{selectedPharmacy.name}</h3>
+                        <div className={cn("flex items-center gap-3 mb-4", isMinimized && "mb-0")}>
+                            <div className="w-1.5 h-6 bg-primary rounded-full transition-all" />
+                            <h3 className={cn("font-black italic tracking-tight text-foreground transition-all", isMinimized ? "text-lg" : "text-2xl")}>{selectedPharmacy.name}</h3>
+                            {isMinimized && (
+                                <p className="text-[10px] font-bold text-primary ml-auto mr-12 px-2 py-1 bg-primary/10 rounded-lg">
+                                    {selectedPharmacy.distance?.toFixed(1)} km • {getEstimatedTime(selectedPharmacy.distance || 0)}
+                                </p>
+                            )}
                         </div>
 
-                        <p className="text-sm text-muted-foreground mb-6 flex items-center gap-2 font-medium">
-                            <MapPin className="w-4 h-4 text-primary" />
-                            {selectedPharmacy.location.address || "Ouagadougou, Burkina Faso"}
-                        </p>
+                        {!isMinimized && (
+                            <>
+                                <p className="text-sm text-muted-foreground mb-6 flex items-center gap-2 font-medium">
+                                    <MapPin className="w-4 h-4 text-primary" />
+                                    {selectedPharmacy.location.address || "Ouagadougou, Burkina Faso"}
+                                </p>
 
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                            <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
-                                <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Distance</div>
-                                <div className="text-3xl font-black text-primary font-mono leading-none">
-                                    {selectedPharmacy.distance?.toFixed(1) || "N/A"} <span className="text-sm">KM</span>
+                                <div className="grid grid-cols-2 gap-4 mb-8">
+                                    <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Distance</div>
+                                        <div className="text-3xl font-black text-primary font-mono leading-none">
+                                            {selectedPharmacy.distance?.toFixed(1) || "N/A"} <span className="text-sm">KM</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Temps estimé</div>
+                                        <div className="text-3xl font-black text-foreground font-mono leading-none italic">
+                                            {getEstimatedTime(selectedPharmacy.distance || 0)}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
-                                <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Temps estimé</div>
-                                <div className="text-3xl font-black text-foreground font-mono leading-none italic">
-                                    {getEstimatedTime(selectedPharmacy.distance || 0)}
-                                </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
 
-                        <div className="flex gap-3">
-                            <button
-                                onClick={() => {
-                                    if (selectedPharmacy && userLocation) {
-                                        setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat]);
-                                    } else if (!userLocation) {
-                                        setPermissionStatus("prompt");
-                                    }
-                                }}
-                                className="flex-[2] py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 transition active:scale-[0.98] flex items-center justify-center gap-3 uppercase tracking-widest text-xs"
-                            >
-                                <NavigationIcon size={20} fill="currentColor" />
-                                Itinéraire
-                            </button>
-                            <button
-                                onClick={() => router.push(`/pharmacy/${selectedPharmacy.id}`)}
-                                className="flex-1 py-4 bg-secondary text-foreground font-black rounded-2xl hover:bg-secondary/80 transition active:scale-[0.98] uppercase tracking-widest text-[10px]"
-                            >
-                                Détails
-                            </button>
-                        </div>
+                        {!isMinimized && (
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => {
+                                        if (selectedPharmacy && userLocation) {
+                                            setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat]);
+                                            setIsMinimized(true); // Automatically minimize to show route
+                                        } else if (!userLocation) {
+                                            setPermissionStatus("prompt");
+                                        }
+                                    }}
+                                    className="flex-[2] py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 transition active:scale-[0.98] flex items-center justify-center gap-3 uppercase tracking-widest text-xs"
+                                >
+                                    <NavigationIcon size={20} fill="currentColor" />
+                                    Itinéraire
+                                </button>
+                                <button
+                                    onClick={() => router.push(`/pharmacy/${selectedPharmacy.id}`)}
+                                    className="flex-1 py-4 bg-secondary text-foreground font-black rounded-2xl hover:bg-secondary/80 transition active:scale-[0.98] uppercase tracking-widest text-[10px]"
+                                >
+                                    Détails
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

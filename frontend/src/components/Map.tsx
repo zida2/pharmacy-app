@@ -151,7 +151,10 @@ export default function Map({
                         return acc.extend(coord);
                     }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
 
-                    map.current?.fitBounds(bounds, { padding: 100 });
+                    map.current?.fitBounds(bounds, {
+                        padding: { top: 180, bottom: 280, left: 50, right: 50 },
+                        duration: 1000
+                    });
                 }
             } catch (error) {
                 console.error("Routing error:", error);
@@ -192,6 +195,11 @@ export default function Map({
                     
                     <!-- Bottom Tip -->
                     <div class="absolute -bottom-1 w-2 h-2 bg-white rotate-45 transform border-r border-b border-gray-200"></div>
+
+                    <!-- Pharmacy Name Label -->
+                    <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-black/90 backdrop-blur-md px-2 py-0.5 rounded-lg border border-border/50 shadow-xl pointer-events-none">
+                        <span class="text-[9px] font-black text-foreground whitespace-nowrap uppercase tracking-tighter">${pharmacy.name}</span>
+                    </div>
                 </div>
             `;
 
