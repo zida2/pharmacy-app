@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Map from "@/components/Map";
 import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
 import { firebaseService } from "@/services/firebaseService";
@@ -23,7 +22,6 @@ export default function HomePage() {
   const [results, setResults] = useState<{ pharmacy: Pharmacy, product?: Product }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPharmacyId, setSelectedPharmacyId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<"map" | "list">("map");
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [authMessage, setAuthMessage] = useState("");
@@ -94,11 +92,11 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative w-full h-screen overflow-hidden flex flex-col bg-background">
-      {/* Dynamic Background Gradient */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse" />
+    <main className="relative w-full h-screen flex flex-col bg-background">
+      {/* Dynamic Background Gradient - Smoother */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-500/5 rounded-full blur-[120px]" />
       </div>
 
       {/* Top Bar / Search */}
@@ -130,7 +128,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Search Row & View Toggle Together */}
+          {/* Search Row */}
           <div className="flex gap-2 items-center">
             <form onSubmit={handleSearchSubmit} className="flex-1 min-w-0">
               <SearchBar
@@ -138,53 +136,31 @@ export default function HomePage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </form>
-            <div className="flex bg-card/80 backdrop-blur-xl rounded-2xl p-1 border border-border shadow-sm">
-              <button
-                onClick={() => setViewMode("map")}
-                className={cn(
-                  "p-2.5 rounded-xl transition-all",
-                  viewMode === "map" ? "bg-primary text-white shadow-md" : "text-muted-foreground"
-                )}
-              >
-                <MapPin size={18} />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={cn(
-                  "p-2.5 rounded-xl transition-all",
-                  viewMode === "list" ? "bg-primary text-white shadow-md" : "text-muted-foreground"
-                )}
-              >
-                <SlidersHorizontal size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Categories Quick Filter */}
-          <div className="flex items-center gap-2">
-            <div className="flex-1 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-              {[
-                { id: "garde", label: "Garde", icon: "🟣" },
-                { id: "urgent", label: "Urgent", icon: "🚨" },
-                { id: "promo", label: "Promos", icon: "🏷️" },
-                { id: "bebe", label: "Bébé", icon: "🍼" },
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[10px] font-black uppercase tracking-widest text-foreground/80"
-                >
-                  <span>{cat.icon}</span>
-                  {cat.label}
-                </button>
-              ))}
-            </div>
             <button
               onClick={() => router.push("/scanner")}
               className="p-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all active:scale-95 shrink-0"
             >
               <Camera size={18} />
             </button>
+          </div>
+
+          {/* Categories Quick Filter */}
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            {[
+              { id: "garde", label: "Garde", icon: "🟣" },
+              { id: "urgent", label: "Urgent", icon: "🚨" },
+              { id: "promo", label: "Promos", icon: "🏷️" },
+              { id: "bebe", label: "Bébé", icon: "🍼" },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[10px] font-black uppercase tracking-widest text-foreground/80"
+              >
+                <span>{cat.icon}</span>
+                {cat.label}
+              </button>
+            ))}
           </div>
 
           {isLoading && (
@@ -199,39 +175,32 @@ export default function HomePage() {
       </div>
 
 
-      {/* Map or List View */}
-      {viewMode === "map" ? (
-        <>
-          <div className="flex-1 w-full h-full">
-            <Map
-              className="rounded-none border-none"
-              pharmacies={results.map(r => r.pharmacy)}
-              initialCenter={userLocation ? [userLocation.lng, userLocation.lat] : [-1.5197, 12.3714]} // Default to Ouaga
-              userLocation={userLocation ? [userLocation.lng, userLocation.lat] : null}
-            />
+      {/* Content Area - Scrollable Feed */}
+      <div className="flex-1 overflow-y-auto pb-nav">
+        <div className="max-w-xl mx-auto px-4 pt-[15rem] space-y-6">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-xl font-black italic text-foreground tracking-tight">Pharmacies à proximité</h2>
+            <div className="bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+              <span className="text-[10px] font-black text-primary uppercase">{results.length} trouvées</span>
+            </div>
           </div>
 
-          {/* Result Cards Carousel (Bottom) */}
-          <div className="absolute bottom-24 left-0 right-0 z-20">
-            <div className="mx-4 mb-3">
-              <div className="glass-card p-3 flex items-center justify-between border-primary/10 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-wider text-foreground/80">
-                    {results.length} Pharmacies prêtes à vous servir
-                  </span>
+          <div className="space-y-4">
+            {results.length === 0 ? (
+              <div className="text-center py-20 bg-card/50 rounded-[2.5rem] border border-dashed border-border flex flex-col items-center">
+                <div className="w-20 h-20 bg-secondary/50 rounded-full flex items-center justify-center mb-4">
+                  <Search size={32} className="text-muted-foreground/50" />
                 </div>
-                {userLocation && (
-                  <span className="text-[9px] font-black italic text-primary">
-                    Proximité calculée 🏛️
-                  </span>
-                )}
+                <h3 className="text-xl font-black text-foreground mb-2">Aucun résultat</h3>
+                <p className="text-sm text-muted-foreground max-w-[200px]">Essayez de rechercher un autre médicament ou changez de filtre.</p>
               </div>
-            </div>
-
-            <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-4 scrollbar-hide snap-x snap-mandatory">
-              {results.map(({ pharmacy, product }, index) => (
-                <div key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`} className="snap-start">
+            ) : (
+              results.map(({ pharmacy, product }, index) => (
+                <div
+                  key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`}
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-700"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
                   <PharmacyCard
                     pharmacy={pharmacy}
                     product={product ? {
@@ -239,39 +208,24 @@ export default function HomePage() {
                       price: product.price || 0,
                       id: product.id
                     } : undefined}
-                    onSelect={() => setSelectedPharmacyId(pharmacy.id)}
-                    isSelected={selectedPharmacyId === pharmacy.id}
+                    showActions={true}
                   />
                 </div>
-              ))}
+              ))
+            )}
+          </div>
+
+          {/* Help Card */}
+          <div className="p-6 bg-primary rounded-[2.5rem] text-white shadow-xl shadow-primary/20 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+            <div className="relative z-10">
+              <h3 className="text-xl font-black italic mb-2">Besoin d'aide ? 🚑</h3>
+              <p className="text-sm font-medium text-white/80 mb-4 leading-relaxed">Notre assistant est là pour vous 24h/24.</p>
+              <button className="px-6 py-2.5 bg-white text-primary font-black rounded-xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Contacter</button>
             </div>
           </div>
-        </>
-      ) : (
-        <div className="flex-1 overflow-y-auto pt-[15rem] pb-nav px-4 space-y-4 bg-secondary/5">
-          {results.length === 0 ? (
-            <div className="text-center py-20 bg-card/50 rounded-3xl border border-dashed border-border m-4">
-              <div className="text-6xl mb-4 grayscale">🔍</div>
-              <h3 className="text-xl font-bold mb-2">Aucune pharmacie trouvée</h3>
-              <p className="text-muted-foreground text-sm max-w-[200px] mx-auto">
-                Essayez d'ajuster votre recherche ou vos filtres.
-              </p>
-            </div>
-          ) : (
-            results.map(({ pharmacy, product }, index) => (
-              <PharmacyCard
-                key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`}
-                pharmacy={pharmacy}
-                product={product ? {
-                  name: product.name,
-                  price: product.price || 0,
-                  id: product.id
-                } : undefined}
-              />
-            ))
-          )}
         </div>
-      )}
+      </div>
 
       <AuthPrompt
         isOpen={showAuthPrompt}
