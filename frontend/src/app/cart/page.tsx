@@ -38,7 +38,7 @@ export default function CartPage() {
     return (
         <main className="min-h-screen bg-secondary/20 pb-32">
             {/* Header */}
-            <header className="sticky top-0 z-20 bg-white shadow-sm border-b border-border p-4">
+            <header className="sticky top-0 z-20 bg-card dark:bg-zinc-900 shadow-sm border-b border-border p-4">
                 <div className="flex items-center gap-4">
                     <button onClick={() => router.back()} className="p-2 hover:bg-secondary rounded-full">
                         <ArrowLeft className="w-6 h-6" />
@@ -52,7 +52,7 @@ export default function CartPage() {
 
             <div className="p-4 space-y-4">
                 {/* Cart Items */}
-                <section className="bg-white rounded-3xl p-4 shadow-sm space-y-4">
+                <section className="bg-card dark:bg-zinc-900 rounded-3xl p-4 shadow-sm space-y-4">
                     {items.length === 0 ? (
                         <div className="text-center py-12">
                             <div className="text-6xl mb-4">🛒</div>
@@ -159,7 +159,7 @@ export default function CartPage() {
 
             {/* Fixed Bottom Button */}
             {items.length > 0 && (
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-border z-20">
+                <div className="fixed bottom-0 left-0 right-0 p-4 bg-card dark:bg-zinc-900 border-t border-border z-20">
                     <button
                         onClick={() => router.push("/checkout")}
                         className="w-full py-4 bg-primary text-primary-foreground text-lg font-bold rounded-2xl shadow-2xl hover:opacity-90 transition active:scale-[0.98]"

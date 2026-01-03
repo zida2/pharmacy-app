@@ -113,7 +113,7 @@ export default function LoginPage() {
                             type="button"
                             onClick={handleGoogleLogin}
                             disabled={isLoading}
-                            className="w-full py-4 bg-white text-black font-bold rounded-2xl border-2 border-slate-100 hover:bg-slate-50 hover:border-slate-200 active:scale-[0.98] transition-all disabled:opacity-50 text-base flex items-center justify-center gap-3 relative overflow-hidden group shadow-lg"
+                            className="w-full py-4 bg-card dark:bg-zinc-800 text-foreground font-bold rounded-2xl border-2 border-border hover:bg-secondary dark:hover:bg-zinc-700 active:scale-[0.98] transition-all disabled:opacity-50 text-base flex items-center justify-center gap-3 relative overflow-hidden group shadow-lg"
                         >
                             <svg className="w-6 h-6" viewBox="0 0 24 24">
                                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -137,13 +137,13 @@ export default function LoginPage() {
                         <div className="flex bg-secondary/50 p-1 rounded-2xl border border-white/10">
                             <button
                                 onClick={() => setMode("login")}
-                                className={cn("flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all", mode === "login" ? "bg-white text-primary shadow-sm" : "text-muted-foreground")}
+                                className={cn("flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all", mode === "login" ? "bg-primary text-white shadow-sm" : "text-muted-foreground")}
                             >
                                 Connexion
                             </button>
                             <button
                                 onClick={() => setMode("register")}
-                                className={cn("flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all", mode === "register" ? "bg-white text-primary shadow-sm" : "text-muted-foreground")}
+                                className={cn("flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all", mode === "register" ? "bg-primary text-white shadow-sm" : "text-muted-foreground")}
                             >
                                 Inscription
                             </button>
