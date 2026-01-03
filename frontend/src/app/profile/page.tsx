@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Bell, Plus, Clock, Settings, User, CreditCard, Shield, ChevronRight, FileText, Heart, Users, MapPin, Globe, HelpCircle, Lock, ClipboardList, Zap, Phone, X, Check, Edit, ShieldCheck, Trash2, Cloud, CloudOff, Loader2, Truck, LayoutDashboard, Crown, Gift, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ export default function ProfilePage() {
 
     // States
     const [reminders, setReminders] = useState<any[]>([]);
-    const [userInfo, setUserInfo] = useState({ name: "Chargement...", level: "Gold", location: "Ouaga 2000" });
+    const [userInfo, setUserInfo] = useState({ name: "Chargement...", level: "Gold", location: "Ouaga 2000", avatar: "" });
     const [medicalInfo, setMedicalInfo] = useState({ blood: "---", weight: "---", allergies: [] as string[], conditions: [] as string[] });
     const [family, setFamily] = useState<any[]>([]);
     const [addresses, setAddresses] = useState<any[]>([]);
@@ -40,6 +40,7 @@ export default function ProfilePage() {
     const [showSecurity, setShowSecurity] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
     const [isEditingUser, setIsEditingUser] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [notificationSettings, setNotificationSettings] = useState({
         pillReminders: true,
         orderUpdates: true,
@@ -99,7 +100,7 @@ export default function ProfilePage() {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
             if (!user) {
                 setCurrentUid(null);
-                setUserInfo({ name: "Visiteur", level: "---", location: "Non connecté" });
+                setUserInfo({ name: "Visiteur", level: "---", location: "Non connecté", avatar: "" });
                 setReminders([]);
                 setMedicalInfo({ blood: "---", weight: "---", allergies: [], conditions: [] });
                 setFamily([]);
@@ -163,11 +164,12 @@ export default function ProfilePage() {
                 setUserInfo({
                     name: profile?.userInfo?.name || user.displayName || "Utilisateur",
                     level: currentLevel,
-                    location: profile?.userInfo?.location || "Burkina Faso"
+                    location: profile?.userInfo?.location || "Burkina Faso",
+                    avatar: profile?.userInfo?.avatar || ""
                 });
 
             } else {
-                setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso" });
+                setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso", avatar: "" });
             }
             setIsLoading(false);
         });
@@ -297,6 +299,17 @@ export default function ProfilePage() {
         setNewHealthEntry({ type: "Consultation", provider: "", date: new Date().toISOString().split('T')[0], notes: "" });
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUserInfo(prev => ({ ...prev, avatar: reader.result as string }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <main className="min-h-screen bg-background pb-nav">
             {/* Header */}
@@ -305,19 +318,37 @@ export default function ProfilePage() {
                     <button onClick={() => router.back()} className="p-3 bg-secondary rounded-2xl">
                         <ArrowLeft size={24} />
                     </button>
-                    <button className="p-3 bg-secondary rounded-2xl">
+                    <button
+                        onClick={() => document.getElementById('app-settings')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="p-3 bg-secondary rounded-2xl active:scale-95 transition-transform"
+                    >
                         <Settings size={24} />
                     </button>
                 </div>
 
                 <div className="flex items-center gap-5">
-                    <div className="w-20 h-20 bg-secondary rounded-[2rem] overflow-hidden grayscale border-4 border-background shadow-xl flex items-center justify-center">
+                    <div
+                        onClick={() => fileInputRef.current?.click()}
+                        className="w-20 h-20 bg-secondary rounded-[2rem] overflow-hidden grayscale border-4 border-background shadow-xl flex items-center justify-center cursor-pointer relative group active:scale-95 transition-all"
+                    >
                         {isLoading ? (
                             <Loader2 className="animate-spin text-primary" />
                         ) : (
-                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userInfo.name}`} alt="Avatar" />
+                            <>
+                                <img src={userInfo.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${userInfo.name}`} alt="Avatar" className="w-full h-full object-cover" />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <Edit size={20} className="text-white" />
+                                </div>
+                            </>
                         )}
                     </div>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        className="hidden"
+                        accept="image/*"
+                    />
                     <div>
                         {isEditingUser ? (
                             <input
@@ -612,7 +643,7 @@ export default function ProfilePage() {
                 </section>
 
                 {/* PARAMÈTRES APP */}
-                <section className="space-y-3">
+                <section id="app-settings" className="space-y-3 scroll-mt-6">
                     <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1 opacity-60">Commandes & Logistique</h2>
                     <div className="glass-card overflow-hidden">
                         {[
