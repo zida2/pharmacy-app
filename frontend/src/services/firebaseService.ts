@@ -51,9 +51,9 @@ export const firebaseService = {
     },
 
     // 💊 PRODUCTS & INVENTORY
-    async searchMedicines(term: string): Promise<{ pharmacy: Pharmacy; product?: Product }[]> {
+    async searchMedicines(term: string, coords?: { latitude: number; longitude: number }): Promise<{ pharmacy: Pharmacy; product?: Product }[]> {
         // Get user location for distance calculations
-        const userLocation = await getUserLocation();
+        const userLocation = coords || await getUserLocation();
 
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
@@ -68,7 +68,7 @@ export const firebaseService = {
                     )
                 })).sort((a, b) => a.distance - b.distance);
 
-                return pharmaciesWithDistance.slice(0, 10).map(p => ({ pharmacy: p }));
+                return pharmaciesWithDistance.slice(0, 50).map(p => ({ pharmacy: p }));
             }
 
             const q = term.toLowerCase();

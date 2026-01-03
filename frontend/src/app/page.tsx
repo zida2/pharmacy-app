@@ -13,6 +13,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { useCart } from "@/context/CartContext";
 import { auth } from "@/services/firebase";
 import AuthPrompt from "@/components/AuthPrompt";
+import { calculateDistance } from "@/lib/geolocation";
 
 export default function HomePage() {
   const { theme, toggleTheme } = useTheme();
@@ -55,23 +56,13 @@ export default function HomePage() {
     }
   }, []);
 
-  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-    const R = 6371; // km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
 
   const handleSearch = async (query: string, locationOverride?: { lat: number; lng: number }) => {
     setSearchQuery(query);
     setIsLoading(true);
+    const loc = locationOverride || userLocation;
     try {
-      const data = await firebaseService.searchMedicines(query);
-      const loc = locationOverride || userLocation;
+      const data = await firebaseService.searchMedicines(query, loc ? { latitude: loc.lat, longitude: loc.lng } : undefined);
 
       let processedData = data;
       if (loc) {
@@ -79,7 +70,10 @@ export default function HomePage() {
           ...item,
           pharmacy: {
             ...item.pharmacy,
-            distance: calculateDistance(loc.lat, loc.lng, item.pharmacy.location.lat, item.pharmacy.location.lng)
+            distance: calculateDistance(
+              { latitude: loc.lat, longitude: loc.lng },
+              { latitude: item.pharmacy.location.lat, longitude: item.pharmacy.location.lng }
+            )
           }
         })).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
       }
@@ -201,6 +195,16 @@ export default function HomePage() {
 
           {/* Result Cards Carousel (Bottom) */}
           <div className="absolute bottom-24 left-0 right-0 z-20 px-4">
+            <div className="flex items-center justify-between mb-2 px-2">
+              <h2 className="text-xs font-black uppercase tracking-[0.2em] text-foreground/70 drop-shadow-sm">
+                Pharmacies à proximité
+              </h2>
+              {userLocation && (
+                <span className="text-[10px] font-bold text-primary animate-pulse">
+                  GÉOLOCALISATION ACTIVE 🇧🇫
+                </span>
+              )}
+            </div>
             <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-2 scrollbar-hide snap-x snap-mandatory">
               {results.map(({ pharmacy, product }, index) => (
                 <div key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`} className="snap-start">
