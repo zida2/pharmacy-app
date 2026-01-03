@@ -1426,6 +1426,19 @@ export default function ProfilePage() {
                 onClose={() => setShowAuthPrompt(false)}
                 message="Connectez-vous pour sauvegarder votre profil médical, vos rappels de pilulier et vos adresses en toute sécurité."
             />
+
+            {/* Pharma Manager Access - Only for Guests */}
+            {!currentUid && (
+                <div className="mt-8 mb-20 text-center animate-in fade-in duration-1000 delay-500">
+                    <button
+                        onClick={() => router.push('/admin/pharmacy')}
+                        className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/30 hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto"
+                    >
+                        <LayoutDashboard size={12} />
+                        Accès Pharma Manager
+                    </button>
+                </div>
+            )}
         </main>
     );
 }
