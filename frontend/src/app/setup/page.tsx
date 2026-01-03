@@ -14,7 +14,7 @@ export default function SetupPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user: any) => {
             setIsLoggedIn(!!user);
             if (!user) {
                 addLog("⚠️ Attention : Vous n'êtes pas connecté. L'écriture risque d'être refusée par Firebase.");
