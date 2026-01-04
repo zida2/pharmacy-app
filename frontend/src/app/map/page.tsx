@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc, Zap } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc, Zap, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Nominatim Geocoding Response Type
@@ -60,6 +60,7 @@ function MapContent() {
         zoom: 12,
         pitch: 0
     });
+    const [showFullList, setShowFullList] = useState(false);
 
     useEffect(() => {
         // 1. Try to get location automatically on mount
@@ -611,14 +612,23 @@ function MapContent() {
 
             {/* Mini List - Horizontal Scroll */}
             {!selectedPharmacy && pharmacies.length > 0 && (
-                <div className="absolute bottom-28 left-0 right-0 z-20">
-                    <div className="px-4 pb-2">
-                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 pl-3 bg-card/60 w-fit py-1 px-3 rounded-full backdrop-blur-md shadow-sm">
-                            Pharmacies à proximité
-                        </h3>
+                <div className="absolute bottom-32 left-0 right-0 z-20 animate-in slide-in-from-bottom-8 duration-500">
+                    <div className="px-4 pb-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-border">
+                            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                            <h3 className="text-[10px] font-black uppercase tracking-widest text-foreground">
+                                {pharmacies.length} pharmacies à proximité
+                            </h3>
+                        </div>
+                        <button
+                            onClick={() => setShowFullList(true)}
+                            className="bg-primary text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-all flex items-center gap-2"
+                        >
+                            <SortAsc size={12} /> Voir toute la liste
+                        </button>
                     </div>
                     <div className="flex gap-4 overflow-x-auto px-6 pb-6 scrollbar-hide snap-x">
-                        {pharmacies.slice(0, 10).map((pharmacy) => (
+                        {pharmacies.slice(0, 5).map((pharmacy) => (
                             <div
                                 key={pharmacy.id}
                                 onClick={() => {
@@ -649,6 +659,68 @@ function MapContent() {
                                         </span>
                                     )}
                                 </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+            {/* FULL PHARMACY LIST MODAL */}
+            {showFullList && (
+                <div className="fixed inset-0 z-[100] bg-background animate-in slide-in-from-bottom duration-500 flex flex-col">
+                    <header className="p-6 border-b border-border flex items-center justify-between bg-card">
+                        <div className="flex items-center gap-4">
+                            <button onClick={() => setShowFullList(false)} className="btn-icon bg-secondary">
+                                <ArrowLeft size={20} />
+                            </button>
+                            <div>
+                                <h2 className="text-xl font-black italic tracking-tighter">Toutes les Pharmacies</h2>
+                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{pharmacies.length} résultats trouvés</p>
+                            </div>
+                        </div>
+                        <div className="p-2 bg-primary/10 rounded-xl text-primary font-black text-[10px]">
+                            {sortBy === 'distance' ? 'PROXIMITÉ' : 'PRIX'}
+                        </div>
+                    </header>
+
+                    <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-32">
+                        {pharmacies.map((pharmacy) => (
+                            <div
+                                key={pharmacy.id}
+                                onClick={() => {
+                                    setSelectedPharmacy(pharmacy);
+                                    setMapView(prev => ({ ...prev, center: [pharmacy.location.lng, pharmacy.location.lat], zoom: 16 }));
+                                    setShowFullList(false);
+                                }}
+                                className="glass-card p-5 flex items-center justify-between active:scale-[0.98] transition-all border-primary/5 hover:border-primary/20 group"
+                            >
+                                <div className="flex items-center gap-5">
+                                    <div className={cn(
+                                        "w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-inner",
+                                        pharmacy.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
+                                    )}>
+                                        {pharmacy.status === 'guard' ? '🟣' : '🟢'}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-black text-lg text-foreground mb-1 group-hover:text-primary transition-colors underline decoration-transparent group-hover:decoration-primary">{pharmacy.name}</h4>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-[10px] font-black py-1 px-2 bg-secondary rounded-lg text-muted-foreground">
+                                                {pharmacy.distance?.toFixed(1)} KM
+                                            </span>
+                                            <span className="text-[10px] font-black py-1 px-2 bg-secondary rounded-lg text-muted-foreground">
+                                                {getEstimatedTime(pharmacy.distance || 0)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    {pharmacy.foundProductPrice ? (
+                                        <div className="text-lg font-black text-emerald-600 italic">
+                                            {pharmacy.foundProductPrice.toLocaleString()} <span className="text-[10px] not-italic opacity-60">FCFA</span>
+                                        </div>
+                                    ) : (
+                                        <ChevronRight size={20} className="text-muted-foreground opacity-30" />
+                                    )}
+                                </div>
                             </div>
                         ))}
                     </div>
