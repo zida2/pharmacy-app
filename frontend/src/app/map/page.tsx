@@ -521,7 +521,7 @@ function MapContent() {
             {selectedPharmacy && (
                 <div className={cn(
                     "absolute left-4 right-4 z-40 transition-all duration-500 ease-in-out",
-                    isMinimized ? "bottom-24" : "bottom-24" // Panel is already at bottom-24, let's adjust
+                    isMinimized ? "bottom-24" : "bottom-24"
                 )}>
                     <div className={cn(
                         "bg-card border border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-3xl relative overflow-hidden transition-all duration-500 rounded-[2rem]",
@@ -611,12 +611,14 @@ function MapContent() {
 
             {/* Mini List - Horizontal Scroll */}
             {!selectedPharmacy && pharmacies.length > 0 && (
-                <div className="absolute bottom-8 left-0 right-0 z-20">
+                <div className="absolute bottom-28 left-0 right-0 z-20">
                     <div className="px-4 pb-2">
-                        <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-2 pl-2">Pharmacies les plus proches</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 pl-3 bg-card/60 w-fit py-1 px-3 rounded-full backdrop-blur-md shadow-sm">
+                            Pharmacies à proximité
+                        </h3>
                     </div>
-                    <div className="flex gap-3 overflow-x-auto px-4 pb-4 scrollbar-hide snap-x">
-                        {pharmacies.slice(0, 5).map((pharmacy) => (
+                    <div className="flex gap-4 overflow-x-auto px-6 pb-6 scrollbar-hide snap-x">
+                        {pharmacies.slice(0, 10).map((pharmacy) => (
                             <div
                                 key={pharmacy.id}
                                 onClick={() => {
