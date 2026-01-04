@@ -134,16 +134,23 @@ export default function HomePage() {
 
       let processedData = data;
       if (loc) {
-        processedData = data.map(item => ({
-          ...item,
-          pharmacy: {
-            ...item.pharmacy,
-            distance: calculateDistance(
-              { latitude: loc.lat, longitude: loc.lng },
-              { latitude: item.pharmacy.location.lat, longitude: item.pharmacy.location.lng }
-            )
-          }
-        })).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
+        processedData = data.map(item => {
+          const pharmLat = item.pharmacy.location?.lat || 0;
+          const pharmLng = item.pharmacy.location?.lng || 0;
+          const userLat = loc.lat || (loc as any).latitude || 0;
+          const userLng = loc.lng || (loc as any).longitude || 0;
+
+          return {
+            ...item,
+            pharmacy: {
+              ...item.pharmacy,
+              distance: calculateDistance(
+                { latitude: userLat, longitude: userLng },
+                { latitude: pharmLat, longitude: pharmLng }
+              )
+            }
+          };
+        }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
       }
 
       setResults(processedData);

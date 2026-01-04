@@ -60,13 +60,21 @@ export const firebaseService = {
             if (!term) {
                 const pharmacies = await this.getPharmacies();
                 // Add distance to each pharmacy and sort by proximity
-                const pharmaciesWithDistance = pharmacies.map(p => ({
-                    ...p,
-                    distance: calculateDistance(
-                        userLocation,
-                        { latitude: p.location.lat, longitude: p.location.lng }
-                    )
-                })).sort((a, b) => a.distance - b.distance);
+                const pharmaciesWithDistance = pharmacies.map(p => {
+                    const pharmLoc = {
+                        latitude: p.location?.lat || 0,
+                        longitude: p.location?.lng || 0
+                    };
+                    const userLoc = {
+                        latitude: userLocation.latitude || (userLocation as any).lat || 0,
+                        longitude: userLocation.longitude || (userLocation as any).lng || 0
+                    };
+
+                    return {
+                        ...p,
+                        distance: calculateDistance(userLoc, pharmLoc)
+                    };
+                }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
 
                 return pharmaciesWithDistance.slice(0, 100).map(p => ({ pharmacy: p }));
             }
