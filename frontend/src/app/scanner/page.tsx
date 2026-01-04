@@ -52,9 +52,12 @@ function ScannerContent() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            const url = URL.createObjectURL(file);
-            setPreview(url);
-            startScan();
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result as string);
+                startScan();
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -121,7 +124,8 @@ function ScannerContent() {
                 type: scannedDoc.type,
                 provider: "Analyse IA Gemini",
                 notes: "Document numérisé via l'application.",
-                verified: true
+                verified: true,
+                image: preview
             };
 
             await firebaseService.saveUserProfile(auth.currentUser.uid, {

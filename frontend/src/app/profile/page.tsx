@@ -1014,10 +1014,16 @@ export default function ProfilePage() {
                                 <p className="text-center text-xs font-bold text-muted-foreground mb-6 uppercase tracking-widest">{activeDocument.date} • {activeDocument.provider}</p>
 
                                 <div className="flex-1 bg-secondary/50 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center border-2 border-dashed border-primary/20 group">
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-10 font-black text-6xl -rotate-45 pointer-events-none">
-                                        PREVIEW
-                                    </div>
-                                    <FileText size={64} className="text-primary/20" />
+                                    {activeDocument.image ? (
+                                        <img src={activeDocument.image} alt="Document" className="w-full h-full object-contain" />
+                                    ) : (
+                                        <>
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-10 font-black text-6xl -rotate-45 pointer-events-none">
+                                                PREVIEW
+                                            </div>
+                                            <FileText size={64} className="text-primary/20" />
+                                        </>
+                                    )}
                                 </div>
 
                                 {activeDocument.notes && (
