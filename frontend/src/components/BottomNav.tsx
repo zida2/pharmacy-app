@@ -55,7 +55,7 @@ export default function BottomNav() {
     return (
         <nav className="fixed bottom-0 left-0 right-0 z-50 p-4 pt-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none">
             <div className="max-w-lg mx-auto pointer-events-auto">
-                <div className="glass-card rounded-[2.5rem] p-2 flex items-center justify-around shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-white/10 bg-white/10 dark:bg-black/40 backdrop-blur-2xl">
+                <div className="glass-card rounded-[2.5rem] p-2 flex items-center justify-around shadow-2xl border-border bg-card">
                     {navItems.map((item) => (
                         <button
                             key={item.label}

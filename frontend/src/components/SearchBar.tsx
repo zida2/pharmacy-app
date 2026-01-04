@@ -21,7 +21,7 @@ export default function SearchBar({
             <input
                 type="text"
                 placeholder="Rechercher un médicament..."
-                className="input-standard pl-12 pr-4 bg-white/70 dark:bg-black/40 backdrop-blur-xl border-white/50 dark:border-white/10 shadow-sm"
+                className="input-standard pl-12 pr-4 bg-secondary border-none shadow-sm"
                 {...props}
             />
         </div>

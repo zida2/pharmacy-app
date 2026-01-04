@@ -5,11 +5,11 @@
   /* Deeper Indigo for better accessibility */
   --primary-rgb: 79, 70, 229;
   --primary-foreground: #ffffff;
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #fdfdfd;
+  --foreground: #020617;
   --card: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #334155;
+  --secondary-foreground: #475569;
   --border: #e2e8f0;
   --muted-foreground: #64748b;
   --radius-custom: 1.5rem;
@@ -144,9 +144,17 @@
     transition: all 0.2s ease;
   }
 
-  /* Force icon colors to follow text color */
+  /* Force icon colors */
   svg:not(.text-primary):not(.text-white):not(.text-red-500) {
-    color: inherit;
+    color: var(--foreground) !important;
+  }
+
+  .btn-primary svg {
+    color: var(--primary-foreground) !important;
+  }
+
+  .btn-icon svg {
+    color: var(--foreground) !important;
   }
 
   .input-standard:focus {

@@ -196,13 +196,13 @@ export default function HomePage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => toggleTheme()}
-                className="btn-icon bg-card dark:bg-zinc-900 shadow-sm text-foreground"
+                className="btn-icon bg-secondary shadow-sm text-foreground"
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button
                 onClick={() => router.push('/profile')}
-                className="btn-icon bg-card dark:bg-zinc-900 shadow-sm text-foreground relative"
+                className="btn-icon bg-secondary shadow-sm text-foreground relative"
               >
                 <User size={20} />
                 {premiumState.isPremium && (
