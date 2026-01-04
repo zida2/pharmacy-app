@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Bell, Plus, Clock, Settings, User, CreditCard, Shield, ChevronRight, FileText, Heart, Users, MapPin, Globe, HelpCircle, Lock, ClipboardList, Zap, Phone, X, Check, Edit, ShieldCheck, Trash2, Cloud, CloudOff, Loader2, Truck, LayoutDashboard, Crown, Gift, Sparkles } from "lucide-react";
+import { ArrowLeft, Bell, Plus, Clock, Settings, User, CreditCard, Shield, ChevronRight, FileText, Heart, Users, MapPin, Globe, HelpCircle, Lock, ClipboardList, Zap, Phone, X, Check, Edit, ShieldCheck, Trash2, Cloud, CloudOff, Loader2, Truck, LayoutDashboard, Crown, Gift, Sparkles, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { firebaseService } from "@/services/firebaseService";
 import { auth } from "@/services/firebase";
