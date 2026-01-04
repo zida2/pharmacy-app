@@ -1667,18 +1667,21 @@ export default function ProfilePage() {
                 message="Connectez-vous pour sauvegarder votre profil médical, vos rappels de pilulier et vos adresses en toute sécurité."
             />
 
-            {/* Pharma Manager Access - Only for Guests */}
-            {!currentUid && (
-                <div className="mt-8 mb-20 text-center animate-in fade-in duration-1000 delay-500">
-                    <button
-                        onClick={() => router.push('/admin/pharmacy')}
-                        className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/30 hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto"
-                    >
-                        <LayoutDashboard size={12} />
-                        Accès Pharma Manager
-                    </button>
-                </div>
-            )}
+            {/* Super Admin Control Tower Access */}
+            <div className="mt-12 mb-32 text-center animate-in fade-in duration-1000 delay-700">
+                <button
+                    onClick={() => router.push('/admin')}
+                    className="group flex flex-col items-center gap-3 mx-auto px-8 py-4 bg-slate-900/40 rounded-3xl border border-white/5 hover:border-primary/20 transition-all active:scale-95"
+                >
+                    <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-[0_0_20px_rgba(99,102,241,0.1)]">
+                        <Shield size={24} />
+                    </div>
+                    <div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/50 group-hover:text-primary transition-colors">Portail Maître</div>
+                        <div className="text-sm font-black italic tracking-tighter text-foreground">Accès Tour de Contrôle</div>
+                    </div>
+                </button>
+            </div>
         </main>
     );
 }

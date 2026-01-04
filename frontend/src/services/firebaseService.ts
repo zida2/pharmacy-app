@@ -483,5 +483,54 @@ export const firebaseService = {
         const user = auth.currentUser;
         if (!user) return;
         await this.saveUserProfile(user.uid, userData);
+    },
+
+    // 👑 SUPER ADMIN (TOUR DE CONTRÔLE)
+    async getGlobalSystemStats() {
+        try {
+            if (!USE_REAL_BACKEND) {
+                return {
+                    totalPharmacies: PHARMACIES_BURKINA_FASO.length,
+                    totalUsers: 154,
+                    totalOrders: 42,
+                    totalRevenue: 850000
+                };
+            }
+
+            const pharmsSnap = await getDocs(collection(db, "pharmacies"));
+            const usersSnap = await getDocs(collection(db, "users"));
+            const ordersSnap = await getDocs(collection(db, "orders"));
+
+            const orders = ordersSnap.docs.map((d: any) => d.data());
+            const revenue = orders
+                .filter((o: any) => o.status === 'completed')
+                .reduce((sum: number, o: any) => sum + (o.total || 0), 0);
+
+            return {
+                totalPharmacies: pharmsSnap.size,
+                totalUsers: usersSnap.size,
+                totalOrders: ordersSnap.size,
+                totalRevenue: revenue
+            };
+        } catch (e) {
+            console.error("Error fetching global stats:", e);
+            return { totalPharmacies: 0, totalUsers: 0, totalOrders: 0, totalRevenue: 0 };
+        }
+    },
+
+    async getGlobalRecentOrders(limitCount: number = 10): Promise<Order[]> {
+        if (!USE_REAL_BACKEND) return [];
+        try {
+            const q = query(
+                collection(db, "orders"),
+                orderBy("createdAt", "desc"),
+                limit(limitCount)
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Order));
+        } catch (e) {
+            console.error("Error fetching recent orders:", e);
+            return [];
+        }
     }
 }
