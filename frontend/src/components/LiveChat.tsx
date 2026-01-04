@@ -140,7 +140,7 @@ export default function LiveChat() {
     };
 
     return (
-        <div className="fixed bottom-28 right-4 z-[100] flex flex-col items-end gap-4 pointer-events-none">
+        <div className="fixed bottom-36 right-4 z-[100] flex flex-col items-end gap-3 pointer-events-none">
 
             {/* Chat Window */}
             {isOpen && (
