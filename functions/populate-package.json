@@ -1,0 +1,12 @@
+{
+    "name": "populate-pharmacies",
+    "version": "1.0.0",
+    "description": "Script to populate Firestore with pharmacy data",
+    "main": "populate-pharmacies.js",
+    "scripts": {
+        "populate": "node populate-pharmacies.js"
+    },
+    "dependencies": {
+        "firebase-admin": "^12.0.0"
+    }
+}
