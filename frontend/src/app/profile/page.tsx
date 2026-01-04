@@ -13,7 +13,7 @@ export default function ProfilePage() {
 
     // States
     const [reminders, setReminders] = useState<any[]>([]);
-    const [userInfo, setUserInfo] = useState({ name: "Chargement...", level: "Gold", location: "Ouaga 2000", avatar: "" });
+    const [userInfo, setUserInfo] = useState({ name: "Chargement...", level: "Gold", location: "Ouaga 2000", avatar: "", role: "user" });
     const [medicalInfo, setMedicalInfo] = useState({ blood: "---", weight: "---", allergies: [] as string[], conditions: [] as string[] });
     const [family, setFamily] = useState<any[]>([]);
     const [addresses, setAddresses] = useState<any[]>([]);
@@ -96,7 +96,7 @@ export default function ProfilePage() {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
             if (!user) {
                 setCurrentUid(null);
-                setUserInfo({ name: "Visiteur", level: "---", location: "Non connecté", avatar: "" });
+                setUserInfo({ name: "Visiteur", level: "---", location: "Non connecté", avatar: "", role: "user" });
                 setReminders([]);
                 setMedicalInfo({ blood: "---", weight: "---", allergies: [], conditions: [] });
                 setFamily([]);
@@ -162,11 +162,12 @@ export default function ProfilePage() {
                     name: profile?.userInfo?.name || user.displayName || "Utilisateur",
                     level: currentLevel,
                     location: profile?.userInfo?.location || "Burkina Faso",
-                    avatar: profile?.userInfo?.avatar || ""
+                    avatar: profile?.userInfo?.avatar || "",
+                    role: profile?.role || "user"
                 });
 
             } else {
-                setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso", avatar: "" });
+                setUserInfo({ name: user.displayName || "Utilisateur", level: "Bronze", location: "Burkina Faso", avatar: "", role: "user" });
             }
             setIsLoading(false);
         });
@@ -686,26 +687,48 @@ export default function ProfilePage() {
                     </div>
                 </section>
 
-                {/* ESPACE PROFESSIONNEL */}
-                <section className="space-y-3">
-                    <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary px-1">Espace Professionnel</h2>
+                {/* ESPACE PROFESSIONNEL - Only for verified staff */}
+                {(userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
+                    <section className="space-y-3 animate-in slide-in-from-bottom-4">
+                        <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary px-1">Espace Professionnel</h2>
+                        <button
+                            onClick={() => router.push("/admin")}
+                            className="w-full p-5 bg-gradient-to-br from-primary/20 to-secondary/30 rounded-2xl border border-primary/30 flex items-center justify-between group hover:shadow-2xl transition-all active:scale-[0.98]"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <LayoutDashboard size={20} />
+                                </div>
+                                <div className="text-left">
+                                    <div className="font-extrabold text-base text-foreground italic">PharmaManager</div>
+                                    <div className="text-[9px] font-black uppercase tracking-widest text-primary">Gestion Pharmacie & Stocks</div>
+                                </div>
+                            </div>
+                            <ChevronRight size={18} className="text-primary group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <p className="text-[9px] text-center text-muted-foreground font-medium italic opacity-50 px-6">Accès réservé aux pharmaciens et agents agréés.</p>
+                    </section>
+                )}
+
+                {/* DEBUG / ADMIN PROMOTION (Temporary for the USER) */}
+                {auth.currentUser && userInfo.role !== 'admin' && (
                     <button
-                        onClick={() => router.push("/admin")}
-                        className="w-full p-5 bg-gradient-to-br from-primary/20 to-secondary/30 rounded-2xl border border-primary/30 flex items-center justify-between group hover:shadow-2xl transition-all active:scale-[0.98]"
+                        onClick={async () => {
+                            if (confirm("Voulez-vous devenir Administrateur pour tester la Tour de Contrôle ?")) {
+                                try {
+                                    await firebaseService.saveUserProfile(auth.currentUser!.uid, { role: 'admin' });
+                                    setUserInfo(prev => ({ ...prev, role: 'admin' }));
+                                    alert("Vous êtes maintenant Administrateur ! 👑");
+                                } catch (e) {
+                                    alert("Erreur lors de la promotion.");
+                                }
+                            }
+                        }}
+                        className="w-full py-2.5 text-primary font-black text-[10px] border border-dashed border-primary/40 rounded-xl uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
                     >
-                        <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
-                                <LayoutDashboard size={20} />
-                            </div>
-                            <div className="text-left">
-                                <div className="font-extrabold text-base text-foreground italic">PharmaManager</div>
-                                <div className="text-[9px] font-black uppercase tracking-widest text-primary">Gestion Pharmacie & Stocks</div>
-                            </div>
-                        </div>
-                        <ChevronRight size={18} className="text-primary group-hover:translate-x-1 transition-transform" />
+                        [ DEBUG ] Devenir Administrateur
                     </button>
-                    <p className="text-[9px] text-center text-muted-foreground font-medium italic opacity-50 px-6">Accès réservé aux pharmaciens et agents agréés.</p>
-                </section>
+                )}
 
                 <button
                     onClick={() => {
@@ -1667,21 +1690,23 @@ export default function ProfilePage() {
                 message="Connectez-vous pour sauvegarder votre profil médical, vos rappels de pilulier et vos adresses en toute sécurité."
             />
 
-            {/* Super Admin Control Tower Access */}
-            <div className="mt-12 mb-32 text-center animate-in fade-in duration-1000 delay-700">
-                <button
-                    onClick={() => router.push('/admin')}
-                    className="group flex flex-col items-center gap-3 mx-auto px-8 py-4 bg-slate-900/40 rounded-3xl border border-white/5 hover:border-primary/20 transition-all active:scale-95"
-                >
-                    <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-[0_0_20px_rgba(99,102,241,0.1)]">
-                        <Shield size={24} />
-                    </div>
-                    <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/50 group-hover:text-primary transition-colors">Portail Maître</div>
-                        <div className="text-sm font-black italic tracking-tighter text-foreground">Accès Tour de Contrôle</div>
-                    </div>
-                </button>
-            </div>
+            {/* Super Admin Control Tower Access - Only for Admins or Pharmacy Staff */}
+            {(userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
+                <div className="mt-12 mb-32 text-center animate-in fade-in duration-1000 delay-700">
+                    <button
+                        onClick={() => router.push('/admin')}
+                        className="group flex flex-col items-center gap-3 mx-auto px-8 py-4 bg-slate-900/40 rounded-3xl border border-white/5 hover:border-primary/20 transition-all active:scale-95"
+                    >
+                        <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-[0_0_20px_rgba(99,102,241,0.1)]">
+                            <Shield size={24} />
+                        </div>
+                        <div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/50 group-hover:text-primary transition-colors">Portail Maître</div>
+                            <div className="text-sm font-black italic tracking-tighter text-foreground">Accès Tour de Contrôle</div>
+                        </div>
+                    </button>
+                </div>
+            )}
         </main>
     );
 }

@@ -51,51 +51,51 @@ export default function PharmacyCard({
         <div
             onClick={onSelect}
             className={cn(
-                "snap-center min-w-[320px] p-6 rounded-[2rem] glass-card transition-all cursor-pointer hover:shadow-2xl active:scale-95 duration-300",
-                isSelected ? "ring-4 ring-primary/30 border-primary" : "border-border/40"
+                "snap-center min-w-[300px] p-4 rounded-3xl bg-card dark:bg-zinc-900 border border-border/40 transition-all cursor-pointer hover:shadow-xl active:scale-[0.98] duration-300",
+                isSelected ? "ring-4 ring-primary/20 border-primary" : "shadow-sm"
             )}
         >
             {/* Header */}
-            <div className="flex justify-between items-start mb-4">
-                <div className="flex-1">
-                    <h3 className="font-extrabold text-xl text-foreground mb-1 leading-tight">{pharmacy.name}</h3>
-                    <div className="flex gap-2">
-                        <span className={cn("inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm", getStatusColor(pharmacy.status))}>
+            <div className="flex justify-between items-start mb-3">
+                <div className="flex-1 min-w-0">
+                    <h3 className="font-black text-lg text-foreground mb-1 leading-tight truncate">{pharmacy.name}</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                        <span className={cn("inline-block px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider", getStatusColor(pharmacy.status))}>
                             {getStatusText(pharmacy.status)}
                         </span>
                         {pharmacy.isVerified && (
-                            <span className="bg-blue-500/10 text-blue-500 dark:text-blue-400 px-2 py-1 rounded-full text-[10px] font-bold">VÉRIFIÉ</span>
+                            <span className="bg-blue-500/10 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-full text-[9px] font-black uppercase">VÉRIFIÉ</span>
                         )}
                     </div>
                 </div>
                 {pharmacy.rating && (
-                    <div className="flex items-center gap-1 bg-amber-500/10 px-3 py-1.5 rounded-2xl">
-                        <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
-                        <span className="text-sm font-black text-amber-700 dark:text-amber-500">{pharmacy.rating.toFixed(1)}</span>
+                    <div className="flex items-center gap-1 bg-amber-500/10 px-2.5 py-1 rounded-xl shrink-0">
+                        <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                        <span className="text-[11px] font-black text-amber-700 dark:text-amber-500">{pharmacy.rating.toFixed(1)}</span>
                     </div>
                 )}
             </div>
 
             {/* Address & Distance */}
-            <div className="grid grid-cols-1 gap-2 mb-6">
+            <div className="grid grid-cols-1 gap-1.5 mb-4">
                 {pharmacy.location.address && (
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground/80 font-medium">
-                        <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
-                            <MapPin className="w-4 h-4" />
+                    <div className="flex items-center gap-2.5 text-[11px] text-muted-foreground font-medium">
+                        <div className="w-7 h-7 rounded-xl bg-secondary flex items-center justify-center shrink-0">
+                            <MapPin className="w-3.5 h-3.5" />
                         </div>
                         <span className="line-clamp-1 italic">{pharmacy.location.address}</span>
                     </div>
                 )}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                     {pharmacy.distance && (
-                        <div className="flex items-center gap-2 text-sm font-black text-primary bg-primary/5 px-3 py-1 rounded-full">
-                            <Navigation2 className="w-3 h-3" />
+                        <div className="flex items-center gap-1.5 text-[10px] font-black text-primary bg-primary/5 px-2.5 py-0.5 rounded-full">
+                            <Navigation2 className="w-2.5 h-2.5" />
                             <span>{pharmacy.distance.toFixed(1)} km</span>
                         </div>
                     )}
                     {pharmacy.phone && (
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground font-bold italic">
-                            <Phone className="w-3 h-3" />
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-bold italic opacity-70">
+                            <Phone className="w-2.5 h-2.5" />
                             <span>{pharmacy.phone}</span>
                         </div>
                     )}
@@ -104,16 +104,16 @@ export default function PharmacyCard({
 
             {/* Product Info - Modern Highlight */}
             {product && (
-                <div className="mb-6 p-4 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-[1.5rem] border border-primary/20 shadow-inner relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-full -mr-8 -mt-8 blur-2xl" />
-                    <div className="relative z-10 flex justify-between items-center">
-                        <div>
-                            <div className="text-[10px] font-black text-primary uppercase tracking-tighter mb-0.5">Disponibilité immédiate</div>
-                            <div className="font-extrabold text-foreground text-lg">{product.name}</div>
+                <div className="mb-4 p-3.5 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl border border-primary/20 shadow-inner relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-primary/5 rounded-full -mr-6 -mt-6 blur-2xl" />
+                    <div className="relative z-10 flex justify-between items-center gap-4">
+                        <div className="min-w-0">
+                            <div className="text-[8px] font-black text-primary uppercase tracking-[0.15em] mb-0.5">DISPONIBILITÉ SCAN</div>
+                            <div className="font-black text-foreground text-sm truncate uppercase tracking-tighter">{product.name}</div>
                         </div>
-                        <div className="text-right">
-                            <div className="text-2xl font-black text-primary font-mono">{product.price}</div>
-                            <div className="text-[10px] font-bold text-muted-foreground uppercase">FCFA</div>
+                        <div className="text-right shrink-0">
+                            <div className="text-xl font-black text-primary font-mono leading-none">{product.price}</div>
+                            <div className="text-[8px] font-black text-muted-foreground uppercase opacity-60">FCFA</div>
                         </div>
                     </div>
                 </div>
@@ -121,13 +121,13 @@ export default function PharmacyCard({
 
             {/* Actions - Premium Buttons */}
             {showActions && (
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             router.push(`/pharmacy?id=${pharmacy.id}`);
                         }}
-                        className="btn btn-secondary flex-1"
+                        className="btn btn-secondary flex-1 py-1.5"
                     >
                         Explorer
                     </button>
@@ -135,16 +135,21 @@ export default function PharmacyCard({
                         onClick={(e) => {
                             e.stopPropagation();
                             if (product) {
-                                addToCart(product, pharmacy);
-                                router.push(`/pharmacy?id=${pharmacy.id}`);
+                                addToCart({
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    image: undefined
+                                } as any, pharmacy);
+                                router.push(`/cart`);
                             } else {
                                 router.push(`/pharmacy?id=${pharmacy.id}`);
                             }
                         }}
-                        className="btn btn-primary flex-[1.5]"
+                        className="btn btn-primary flex-[1.4] py-1.5 gap-1.5"
                     >
-                        <ShoppingBag size={18} />
-                        Commandez
+                        <ShoppingBag size={14} />
+                        COMMANDER
                     </button>
                 </div>
             )}

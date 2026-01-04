@@ -159,34 +159,34 @@ function CheckoutContent() {
             <div className="p-4 space-y-6 max-w-lg mx-auto text-foreground">
 
                 {/* Product Summary */}
-                <section className="glass-card p-5 rounded-3xl animate-in slide-in-from-bottom-2 duration-500 border border-border/30">
-                    <div className="flex justify-between items-start mb-4">
-                        <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Mon Panier</h2>
-                        <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase">Burkina Faso</span>
+                <section className="bg-card dark:bg-zinc-900 p-4 rounded-2xl animate-in slide-in-from-bottom-2 duration-500 border border-border/40 shadow-sm">
+                    <div className="flex justify-between items-start mb-3">
+                        <h2 className="text-[10px] font-black uppercase tracking-wider text-muted-foreground opacity-70">Mon Panier</h2>
+                        <span className="bg-primary/10 text-primary text-[9px] font-black px-2 py-0.5 rounded-full uppercase">Burkina Faso</span>
                     </div>
 
-                    <div className="space-y-4 mb-4">
+                    <div className="space-y-3 mb-3">
                         {items.length > 0 ? items.map((item, i) => (
-                            <div key={i} className="flex justify-between items-center pb-3 border-b border-border/10 last:border-b-0">
-                                <div>
-                                    <div className="font-bold text-base text-foreground underline decoration-primary/20">{item.product.name}</div>
-                                    <div className="text-[10px] text-muted-foreground font-bold uppercase">Quantité: {item.quantity} • {item.pharmacyName}</div>
+                            <div key={i} className="flex justify-between items-center pb-2 border-b border-border/10 last:border-b-0 last:pb-0">
+                                <div className="min-w-0 flex-1">
+                                    <div className="font-bold text-sm text-foreground truncate">{item.product.name}</div>
+                                    <div className="text-[9px] text-muted-foreground font-bold uppercase">Qté: {item.quantity} • {item.pharmacyName}</div>
                                 </div>
-                                <div className="font-black text-lg text-primary font-mono whitespace-nowrap">{(item.product.price || 0) * item.quantity} <span className="text-[10px]">FCFA</span></div>
+                                <div className="font-black text-sm text-primary font-mono ml-4 whitespace-nowrap">{(item.product.price || 0) * item.quantity} <span className="text-[9px]">FCFA</span></div>
                             </div>
                         )) : (
-                            <div className="text-center py-4 text-muted-foreground italic text-sm">Votre panier est vide</div>
+                            <div className="text-center py-4 text-muted-foreground italic text-xs">Votre panier est vide</div>
                         )}
                     </div>
 
-                    <div className="space-y-2 pt-4 border-t border-dashed border-border/40">
-                        <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Frais de livraison ({deliveryMode === 'delivery' ? 'Express' : 'En point'})</span>
-                            <span className="font-bold">{deliveryFee} FCFA</span>
+                    <div className="space-y-1.5 pt-3 border-t border-dashed border-border/40">
+                        <div className="flex justify-between items-center text-[11px] font-medium text-muted-foreground">
+                            <span>Frais de service ({deliveryMode === 'delivery' ? 'Livraison' : 'Retrait'})</span>
+                            <span className="font-bold text-foreground">{deliveryFee} F</span>
                         </div>
-                        <div className="flex justify-between items-center text-2xl font-black pt-2 border-t border-border/10 mt-2">
-                            <span>Total Net</span>
-                            <span className="text-primary">{finalTotal} FCFA</span>
+                        <div className="flex justify-between items-center text-lg font-black pt-2 border-t border-border/10 mt-1">
+                            <span className="text-xs uppercase tracking-tighter">Total Net</span>
+                            <span className="text-primary">{finalTotal} F</span>
                         </div>
                     </div>
                 </section>
@@ -218,72 +218,70 @@ function CheckoutContent() {
 
                 {/* Delivery Mode */}
                 <section className="animate-in slide-in-from-bottom-6 duration-500 delay-200">
-                    <h2 className="font-bold text-lg mb-3 ml-1">Mode de service</h2>
-                    <div className="grid grid-cols-2 gap-4">
+                    <h2 className="font-black text-xs uppercase tracking-widest mb-3 ml-1 opacity-60">Mode de service</h2>
+                    <div className="grid grid-cols-2 gap-3">
                         <button
                             onClick={() => setDeliveryMode("delivery")}
                             className={cn(
-                                "p-6 rounded-3xl border-2 flex flex-col items-center gap-3 transition-all transform active:scale-95 duration-200",
-                                deliveryMode === "delivery" ? "border-primary bg-primary/10 text-primary shadow-lg ring-4 ring-primary/5" : "border-border/40 bg-secondary/30 dark:bg-zinc-900/40 text-muted-foreground"
+                                "p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all transform active:scale-95 duration-200",
+                                deliveryMode === "delivery" ? "border-primary bg-primary/5 text-primary shadow-lg ring-4 ring-primary/5" : "border-border bg-secondary/20 text-muted-foreground"
                             )}
                         >
-                            <Truck className={cn("w-8 h-8", deliveryMode === "delivery" ? "text-primary" : "text-muted-foreground")} />
-                            <span className="text-sm font-bold uppercase tracking-tight text-foreground/80">Livraison</span>
+                            <Truck className={cn("w-6 h-6", deliveryMode === "delivery" ? "text-primary" : "text-muted-foreground")} />
+                            <span className="text-[10px] font-black uppercase tracking-tight text-foreground/80">Livraison</span>
                         </button>
                         <button
                             onClick={() => setDeliveryMode("pickup")}
                             className={cn(
-                                "p-6 rounded-3xl border-2 flex flex-col items-center gap-3 transition-all transform active:scale-95 duration-200",
-                                deliveryMode === "pickup" ? "border-primary bg-primary/10 text-primary shadow-lg ring-4 ring-primary/5" : "border-border/40 bg-secondary/30 dark:bg-zinc-900/40 text-muted-foreground"
+                                "p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all transform active:scale-95 duration-200",
+                                deliveryMode === "pickup" ? "border-primary bg-primary/5 text-primary shadow-lg ring-4 ring-primary/5" : "border-border bg-secondary/20 text-muted-foreground"
                             )}
                         >
-                            <MapPin className={cn("w-8 h-8", deliveryMode === "pickup" ? "text-primary" : "text-muted-foreground")} />
-                            <span className="text-sm font-bold uppercase tracking-tight text-foreground/80">Retrait</span>
+                            <MapPin className={cn("w-6 h-6", deliveryMode === "pickup" ? "text-primary" : "text-muted-foreground")} />
+                            <span className="text-[10px] font-black uppercase tracking-tight text-foreground/80">Retrait</span>
                         </button>
                     </div>
                 </section>
 
                 {/* Insurance Integration */}
-                <section className="space-y-3 animate-in slide-in-from-bottom-6 duration-500 delay-400">
-                    <div className="flex items-center justify-between px-1">
-                        <div className="flex items-center gap-2">
-                            <div className="w-1.5 h-6 bg-primary rounded-full" />
-                            <h2 className="font-bold text-lg italic text-foreground">Assurance (Tiers-Payant)</h2>
-                        </div>
+                <section className="space-y-2 animate-in slide-in-from-bottom-6 duration-500 delay-400">
+                    <div className="flex items-center gap-2 mb-1 px-1">
+                        <div className="w-1 h-4 bg-primary rounded-full" />
+                        <h2 className="font-black text-xs uppercase tracking-widest opacity-60">Assurance</h2>
                     </div>
 
                     {userInsurance ? (
-                        <div className="p-5 bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 rounded-3xl relative overflow-hidden">
-                            <div className="flex justify-between items-start mb-4">
+                        <div className="p-4 bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 rounded-2xl relative overflow-hidden">
+                            <div className="flex justify-between items-start mb-3">
                                 <div>
-                                    <div className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Assurance Active</div>
-                                    <div className="text-xl font-black text-foreground">{userInsurance.provider}</div>
+                                    <div className="text-[9px] font-black uppercase text-muted-foreground tracking-widest">Active</div>
+                                    <div className="text-lg font-black text-foreground">{userInsurance.provider}</div>
                                 </div>
-                                <CheckCircle className="text-primary" size={24} />
+                                <CheckCircle className="text-primary" size={20} />
                             </div>
-                            <div className="flex items-center gap-4 text-sm font-medium text-foreground/80">
-                                <div className="bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
-                                    <span className="text-[10px] text-muted-foreground block">MATRICULE</span>
+                            <div className="flex items-center gap-3 text-xs font-medium text-foreground/80">
+                                <div className="bg-background/50 px-2 py-1 rounded-lg border border-border/50">
+                                    <span className="text-[8px] text-muted-foreground block font-black uppercase">Matricule</span>
                                     {userInsurance.number}
                                 </div>
-                                <div className="bg-background/50 px-3 py-1.5 rounded-lg border border-border/50">
-                                    <span className="text-[10px] text-muted-foreground block">TAUX</span>
+                                <div className="bg-background/50 px-2 py-1 rounded-lg border border-border/50">
+                                    <span className="text-[8px] text-muted-foreground block font-black uppercase">Taux</span>
                                     <span className="text-green-500 font-black">{userInsurance.coverage}%</span>
                                 </div>
                             </div>
-                            <button onClick={() => setUserInsurance(null)} className="absolute bottom-2 right-2 p-2 bg-background/50 rounded-full hover:bg-background transition-colors text-xs text-muted-foreground">Modifier</button>
+                            <button onClick={() => setUserInsurance(null)} className="absolute bottom-1 right-1 p-1.5 bg-background/50 rounded-full hover:bg-background transition-colors text-[9px] text-muted-foreground font-bold">Modifier</button>
                         </div>
                     ) : (
                         <div
                             onClick={() => router.push('/scanner?mode=insurance&returnUrl=/checkout')}
-                            className="p-5 bg-secondary/40 dark:bg-zinc-900/60 border-2 border-dashed border-border/50 rounded-3xl flex flex-col items-center gap-3 hover:border-primary/50 transition-all cursor-pointer group backdrop-blur-sm"
+                            className="p-4 bg-secondary/20 border-2 border-dashed border-border/50 rounded-2xl flex flex-col items-center gap-2 hover:border-primary/50 transition-all cursor-pointer group backdrop-blur-sm"
                         >
-                            <div className="w-12 h-12 bg-white/5 dark:bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                                <Camera className="text-primary" />
+                            <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                <Camera className="text-primary w-5 h-5" />
                             </div>
                             <div className="text-center">
-                                <span className="text-sm font-bold block text-foreground">Scanner ma carte</span>
-                                <span className="text-[10px] text-muted-foreground font-extrabold uppercase tracking-widest mt-1 block">
+                                <span className="text-xs font-bold block text-foreground">Scanner ma carte</span>
+                                <span className="text-[8px] text-muted-foreground font-black uppercase tracking-wider mt-0.5 block opacity-60">
                                     SONAR • UAB • Allianz • Mutuelles
                                 </span>
                             </div>
@@ -293,11 +291,11 @@ function CheckoutContent() {
 
                 {/* Chronic Treatment Subscription */}
                 <section className="animate-in slide-in-from-bottom-8 duration-500 delay-500">
-                    <div className="glass-card p-5 rounded-3xl border-primary/20 bg-gradient-to-br from-primary/5 to-transparent border border-border/20">
-                        <div className="flex items-start justify-between mb-4">
+                    <div className="bg-card dark:bg-zinc-900 p-4 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
+                        <div className="flex items-start justify-between mb-3">
                             <div>
-                                <h3 className="font-black italic text-primary">Abonnement Chronique 🔄</h3>
-                                <p className="text-xs text-muted-foreground font-medium max-w-[200px] leading-relaxed">Livraison automatique chaque mois pour vos traitements réguliers.</p>
+                                <h3 className="text-sm font-black italic text-primary">Abonnement Mensuel 🔄</h3>
+                                <p className="text-[10px] text-muted-foreground font-medium max-w-[180px] leading-snug">Livraison automatique chaque mois pour vos traitements réguliers.</p>
                             </div>
                             <div className="relative inline-flex items-center cursor-pointer">
                                 <input
@@ -306,10 +304,10 @@ function CheckoutContent() {
                                     checked={isChronic}
                                     onChange={(e) => setIsChronic(e.target.checked)}
                                 />
-                                <div className="w-11 h-6 bg-gray-200 dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                <div className="w-9 h-5 bg-secondary dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
                             </div>
                         </div>
-                        <div className="text-[10px] font-black text-primary px-3 py-1 bg-primary/10 rounded-full inline-block">ÉCONOMISEZ 10% SUR LA LIVRAISON</div>
+                        <div className="text-[8px] font-black text-primary px-2 py-0.5 bg-primary/10 rounded-full inline-block uppercase">ÉCONOMISEZ 10% SUR LA LIVRAISON</div>
                     </div>
                 </section>
 
@@ -356,22 +354,22 @@ function CheckoutContent() {
             <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-background/80 backdrop-blur-xl border-t border-border/50 z-40">
                 <div className="max-w-lg mx-auto flex gap-4 items-center">
                     <div className="flex-1 flex flex-col">
-                        <span className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">À PAYER</span>
-                        <span className="text-2xl font-black text-primary font-mono">{finalTotal} <span className="text-xs">FCFA</span></span>
+                        <span className="text-[9px] text-muted-foreground font-black uppercase tracking-widest leading-none mb-1">Total à payer</span>
+                        <span className="text-xl font-black text-primary font-mono">{finalTotal} <span className="text-[10px]">FCFA</span></span>
                     </div>
                     <button
                         onClick={handleOrder}
                         disabled={isProcessing || items.length === 0}
                         className={cn(
-                            "btn btn-primary flex-[2] py-4",
+                            "btn btn-primary flex-[2] py-3.5 text-sm font-black italic shadow-lg shadow-primary/20",
                             (isProcessing || items.length === 0) && "opacity-50 grayscale cursor-not-allowed"
                         )}
                     >
                         {isProcessing ? (
-                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                         ) : (
                             <>
-                                <CheckCircle size={18} />
+                                <CheckCircle size={16} />
                                 CONFIRMER
                             </>
                         )}

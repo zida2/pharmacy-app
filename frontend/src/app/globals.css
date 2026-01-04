@@ -29,6 +29,7 @@
   --muted-foreground: #a3a3a3;
 }
 
+/* stylelint-disable-next-line at-rule-no-unknown */
 @theme {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);

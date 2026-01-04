@@ -37,6 +37,21 @@ export default function AdminPage() {
 
     const loadInitialData = async () => {
         setIsLoading(true);
+
+        // Access Control
+        const user = auth.currentUser;
+        if (!user) {
+            router.push('/login');
+            return;
+        }
+
+        const profile = await firebaseService.getUserProfile(user.uid);
+        if (!profile || (profile.role !== 'admin' && profile.role !== 'pharmacy')) {
+            alert("Accès refusé. Vous n'avez pas les permissions nécessaires.");
+            router.push('/');
+            return;
+        }
+
         const [pharms, stats] = await Promise.all([
             firebaseService.getPharmacies(),
             firebaseService.getGlobalSystemStats()

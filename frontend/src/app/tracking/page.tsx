@@ -77,26 +77,26 @@ export default function TrackingPage() {
             </header>
 
             {/* Bottom Sheet */}
-            <div className="mt-auto z-10 bg-background/90 backdrop-blur-xl rounded-t-[2.5rem] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-6 pb-safe border-t border-white/20">
+            <div className="mt-auto z-10 bg-card dark:bg-zinc-900 rounded-t-[2rem] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] p-4 pb-safe border-t border-border/50">
 
-                <div className="w-12 h-1.5 bg-muted rounded-full mx-auto mb-6 opacity-50" />
+                <div className="w-10 h-1 bg-muted rounded-full mx-auto mb-4 opacity-50" />
 
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-6">
                     <div>
-                        <h1 className="text-2xl font-black italic text-foreground mb-1">
-                            {status === 'completed' ? 'Commande Livrée' : 'Livraison en cours'}
+                        <h1 className="text-lg font-black italic text-foreground leading-tight mb-1">
+                            {status === 'completed' ? 'Commande Livrée !' : 'Livraison en cours...'}
                         </h1>
-                        <p className="text-muted-foreground text-sm font-medium">
-                            {status === 'completed' ? 'Merci de votre confiance' : `Votre commande arrive dans ${eta} min`}
+                        <p className="text-muted-foreground text-[11px] font-bold uppercase tracking-wider">
+                            {status === 'completed' ? 'Merci de votre confiance' : `Arrivée estimée: ${eta} MIN`}
                         </p>
                     </div>
-                    <div className="bg-primary/10 text-primary p-3 rounded-2xl animate-pulse">
-                        <Timer size={24} />
+                    <div className="bg-primary/10 text-primary p-2.5 rounded-xl animate-pulse">
+                        <Timer size={20} />
                     </div>
                 </div>
 
-                <div className="flex justify-between items-center relative mb-8 px-2">
-                    <div className="absolute left-0 right-0 top-1/2 h-1 bg-muted -z-10 rounded-full overflow-hidden">
+                <div className="flex justify-between items-center relative mb-8 px-1">
+                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-muted/30 -z-10 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-primary transition-all duration-1000 ease-out"
                             style={{ width: `${(currentStepIndex / (steps.length - 1)) * 100}%` }}
@@ -107,36 +107,36 @@ export default function TrackingPage() {
                         const isActive = i <= currentStepIndex;
                         const isCurrent = i === currentStepIndex;
                         return (
-                            <div key={step.id} className="flex flex-col items-center gap-2">
+                            <div key={step.id} className="flex flex-col items-center gap-1.5">
                                 <div className={cn(
-                                    "w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-500 z-10",
-                                    isActive ? "bg-primary border-primary text-white shadow-lg shadow-primary/30" : "bg-background border-muted text-muted-foreground",
-                                    isCurrent && "scale-125 ring-4 ring-primary/20"
+                                    "w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all duration-500 z-10",
+                                    isActive ? "bg-primary border-primary text-white shadow-md shadow-primary/20" : "bg-card border-border text-muted-foreground",
+                                    isCurrent && "scale-110 ring-4 ring-primary/10"
                                 )}>
-                                    {isActive ? <CheckCircle size={14} /> : <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />}
+                                    {isActive ? <CheckCircle size={12} /> : <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/20" />}
                                 </div>
                                 <span className={cn(
-                                    "text-[10px] font-bold uppercase tracking-wider transition-colors duration-300",
-                                    isActive ? "text-primary" : "text-muted-foreground"
+                                    "text-[8px] font-black uppercase tracking-tighter transition-colors duration-300",
+                                    isActive ? "text-primary" : "text-muted-foreground/60"
                                 )}>{step.label}</span>
                             </div>
                         )
                     })}
                 </div>
 
-                <div className="bg-secondary/30 rounded-3xl p-4 flex items-center gap-4 border border-border/50">
+                <div className="bg-secondary/50 dark:bg-zinc-800/30 rounded-2xl p-3 flex items-center gap-3 border border-border/40">
                     <div className="relative">
-                        <div className="w-14 h-14 bg-zinc-200 rounded-2xl overflow-hidden">
-                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Driver" />
+                        <div className="w-12 h-12 bg-zinc-200 dark:bg-zinc-800 rounded-xl overflow-hidden shadow-inner">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Driver" className="w-full h-full object-cover" />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full flex items-center justify-center text-[8px] text-white font-bold">★</div>
+                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-card rounded-full flex items-center justify-center text-[7px] text-white font-black">★</div>
                     </div>
-                    <div className="flex-1">
-                        <h3 className="font-bold text-foreground">Moussa Koné</h3>
-                        <p className="text-xs text-muted-foreground font-medium">Livreur • Yamaha Crypton</p>
+                    <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm text-foreground truncate">Moussa Koné</h3>
+                        <p className="text-[10px] text-muted-foreground font-black uppercase tracking-wider leading-none">Livreur • Yamaha Crypton</p>
                     </div>
-                    <button className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-95 transition">
-                        <Phone size={24} />
+                    <button className="w-11 h-11 bg-primary text-primary-foreground rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 active:scale-95 transition">
+                        <Phone size={20} />
                     </button>
                 </div>
 

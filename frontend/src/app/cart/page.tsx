@@ -52,48 +52,48 @@ export default function CartPage() {
 
             <div className="p-4 space-y-4">
                 {/* Cart Items */}
-                <section className="bg-card dark:bg-zinc-900 rounded-3xl p-4 shadow-sm space-y-4">
+                <section className="bg-card dark:bg-zinc-900 rounded-3xl p-3 shadow-sm space-y-3">
                     {items.length === 0 ? (
-                        <div className="text-center py-12">
-                            <div className="text-6xl mb-4">🛒</div>
-                            <h3 className="font-bold text-xl mb-2">Panier vide</h3>
-                            <p className="text-muted-foreground mb-6">Ajoutez des produits pour commencer</p>
+                        <div className="text-center py-10">
+                            <div className="text-5xl mb-3">🛒</div>
+                            <h3 className="font-bold text-lg mb-1">Panier vide</h3>
+                            <p className="text-xs text-muted-foreground mb-4">Ajoutez des produits pour commencer</p>
                             <button
                                 onClick={() => router.push("/")}
-                                className="btn btn-primary px-8"
+                                className="btn btn-primary px-6 py-2 text-sm"
                             >
                                 Commencer mes achats
                             </button>
                         </div>
                     ) : (
                         items.map(item => (
-                            <div key={item.id} className="flex gap-4 pb-4 border-b border-border last:border-0">
-                                <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div key={item.id} className="flex gap-3 pb-3 border-b border-border last:border-0 last:pb-0 items-center">
+                                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">
                                     💊
                                 </div>
-                                <div className="flex-1">
-                                    <h3 className="font-bold mb-1">{item.name}</h3>
-                                    <div className="text-lg font-bold text-primary mb-2">{item.price} FCFA</div>
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="font-bold text-sm truncate">{item.name}</h3>
+                                    <div className="text-sm font-black text-primary mb-2">{item.price} <span className="text-[10px]">F</span></div>
                                     <div className="flex items-center gap-2">
                                         <button
                                             onClick={() => updateQuantity(item.id, -1)}
-                                            className="w-8 h-8 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition flex items-center justify-center"
+                                            className="w-7 h-7 bg-red-100 dark:bg-red-900/20 text-red-600 rounded-lg hover:bg-red-200 transition flex items-center justify-center"
                                         >
-                                            {item.quantity === 1 ? <Trash2 size={16} /> : <Minus size={16} />}
+                                            {item.quantity === 1 ? <Trash2 size={12} /> : <Minus size={12} />}
                                         </button>
-                                        <div className="w-12 text-center font-bold">{item.quantity}</div>
+                                        <div className="w-6 text-center font-bold text-xs">{item.quantity}</div>
                                         <button
                                             onClick={() => updateQuantity(item.id, 1)}
-                                            className="w-8 h-8 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition flex items-center justify-center"
+                                            className="w-7 h-7 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition flex items-center justify-center"
                                         >
-                                            <Plus size={16} />
+                                            <Plus size={12} />
                                         </button>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    <div className="text-sm text-muted-foreground mb-1">Sous-total</div>
-                                    <div className="text-xl font-bold">{item.price * item.quantity}</div>
-                                    <div className="text-xs text-muted-foreground">FCFA</div>
+                                <div className="text-right flex flex-col justify-center">
+                                    <div className="text-[10px] text-muted-foreground">Total</div>
+                                    <div className="text-sm font-black text-foreground">{item.price * item.quantity}</div>
+                                    <div className="text-[8px] font-bold text-muted-foreground uppercase tracking-wider">FCFA</div>
                                 </div>
                             </div>
                         ))
@@ -103,53 +103,56 @@ export default function CartPage() {
                 {items.length > 0 && (
                     <>
                         {/* Delivery Mode */}
-                        <section className="bg-white rounded-3xl p-5 shadow-sm">
-                            <h2 className="font-bold text-lg mb-4">Mode de récupération</h2>
+                        <section className="bg-card dark:bg-zinc-900 rounded-3xl p-4 shadow-sm">
+                            <h2 className="font-black text-sm uppercase tracking-widest mb-3 opacity-60">Mode de récupération</h2>
                             <div className="grid grid-cols-2 gap-3">
                                 <button
                                     onClick={() => setDeliveryMode("delivery")}
                                     className={cn(
-                                        "p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all",
+                                        "p-3 rounded-2xl border-2 flex flex-col items-center gap-1 transition-all",
                                         deliveryMode === "delivery"
-                                            ? "border-primary bg-primary/5 ring-2 ring-primary/20"
-                                            : "border-border bg-secondary/30"
+                                            ? "border-primary bg-primary/5 ring-4 ring-primary/5"
+                                            : "border-border bg-secondary/20"
                                     )}
                                 >
-                                    <Truck className={cn("w-8 h-8", deliveryMode === "delivery" ? "text-primary" : "text-muted-foreground")} />
-                                    <span className="font-semibold">Livraison</span>
-                                    <span className="text-xs text-muted-foreground">1000 FCFA</span>
+                                    <Truck className={cn("w-6 h-6", deliveryMode === "delivery" ? "text-primary" : "text-muted-foreground")} />
+                                    <span className="text-xs font-bold font-black">Livraison</span>
+                                    <span className="text-[10px] text-muted-foreground">1000 F</span>
                                 </button>
                                 <button
                                     onClick={() => setDeliveryMode("pickup")}
                                     className={cn(
-                                        "p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all",
+                                        "p-3 rounded-2xl border-2 flex flex-col items-center gap-1 transition-all",
                                         deliveryMode === "pickup"
-                                            ? "border-primary bg-primary/5 ring-2 ring-primary/20"
-                                            : "border-border bg-secondary/30"
+                                            ? "border-primary bg-primary/5 ring-4 ring-primary/5"
+                                            : "border-border bg-secondary/20"
                                     )}
                                 >
-                                    <MapPin className={cn("w-8 h-8", deliveryMode === "pickup" ? "text-primary" : "text-muted-foreground")} />
-                                    <span className="font-semibold">Retrait</span>
-                                    <span className="text-xs text-muted-foreground">Gratuit</span>
+                                    <MapPin className={cn("w-6 h-6", deliveryMode === "pickup" ? "text-primary" : "text-muted-foreground")} />
+                                    <span className="text-xs font-bold font-black">Retrait</span>
+                                    <span className="text-[10px] text-muted-foreground">Gratuit</span>
                                 </button>
                             </div>
                         </section>
 
                         {/* Summary */}
-                        <section className="bg-white rounded-3xl p-5 shadow-sm">
-                            <h2 className="font-bold text-lg mb-4">Récapitulatif</h2>
-                            <div className="space-y-3">
-                                <div className="flex justify-between text-muted-foreground">
-                                    <span>Sous-total</span>
-                                    <span className="font-semibold">{subtotal} FCFA</span>
+                        <section className="bg-card dark:bg-zinc-900 rounded-3xl p-4 shadow-sm border border-border/40">
+                            <h2 className="font-black text-sm uppercase tracking-widest mb-4 opacity-60">Facture</h2>
+                            <div className="space-y-2">
+                                <div className="flex justify-between text-xs font-medium text-muted-foreground">
+                                    <span>Partielle</span>
+                                    <span className="text-foreground">{subtotal} F</span>
                                 </div>
-                                <div className="flex justify-between text-muted-foreground">
+                                <div className="flex justify-between text-xs font-medium text-muted-foreground">
                                     <span>Livraison</span>
-                                    <span className="font-semibold">{deliveryFee > 0 ? `${deliveryFee} FCFA` : "Gratuit"}</span>
+                                    <span className="text-foreground">{deliveryFee > 0 ? `${deliveryFee} F` : "Gratuit"}</span>
                                 </div>
-                                <div className="border-t border-dashed pt-3 flex justify-between text-xl font-bold">
-                                    <span>Total</span>
-                                    <span className="text-primary">{total} FCFA</span>
+                                <div className="border-t border-dashed border-border/50 pt-3 flex justify-between items-end">
+                                    <span className="text-sm font-black uppercase tracking-tighter">Net à payer</span>
+                                    <div className="text-right">
+                                        <div className="text-2xl font-black text-primary leading-none">{total}</div>
+                                        <div className="text-[10px] font-black text-muted-foreground uppercase mt-1">Francs CFA</div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -159,12 +162,12 @@ export default function CartPage() {
 
             {/* Fixed Bottom Button */}
             {items.length > 0 && (
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-card dark:bg-zinc-900 border-t border-border z-20">
+                <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-background/80 backdrop-blur-xl border-t border-border z-20">
                     <button
                         onClick={() => router.push("/checkout")}
-                        className="btn btn-primary w-full py-4 text-base"
+                        className="btn btn-primary w-full py-3.5 text-sm font-black italic shadow-lg shadow-primary/30"
                     >
-                        Passer au paiement • {total} FCFA
+                        PASSER À LA CAISSE • {total} FCFA
                     </button>
                 </div>
             )}

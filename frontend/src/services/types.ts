@@ -8,6 +8,7 @@ export interface User {
     paymentMethods: PaymentMethod[];
     createdAt: any;
     updatedAt: any;
+    role?: "user" | "admin" | "pharmacy";
 }
 
 export interface Address {
