@@ -145,7 +145,7 @@ function ScannerContent() {
         <div className="container mx-auto max-w-lg min-h-screen flex flex-col pt-safe p-4">
             {/* Header */}
             <header className="py-4 flex items-center gap-4">
-                <button onClick={() => router.back()} className="btn-icon bg-secondary">
+                <button onClick={() => router.back()} className="btn-icon bg-secondary text-foreground">
                     <ArrowLeft size={20} />
                 </button>
                 <h1 className="text-xl font-black italic tracking-tight">
@@ -272,8 +272,8 @@ function ScannerContent() {
                             <>
                                 <div className="glass-card p-6 rounded-3xl border-primary/30 relative overflow-hidden bg-gradient-to-br from-primary/10 to-transparent flex flex-col gap-6">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                                            <CheckCircle size={24} className="text-primary" />
+                                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary">
+                                            <CheckCircle size={24} />
                                         </div>
                                         <h3 className="text-xl font-black text-foreground">Vérifier les données</h3>
                                     </div>
@@ -381,7 +381,7 @@ function ScannerContent() {
 
                         <button
                             onClick={() => setStep("upload")}
-                            className="btn btn-secondary w-full py-6 text-xs"
+                            className="btn btn-secondary w-full py-6 text-xs text-muted-foreground"
                         >
                             REPRENDRE LA PHOTO
                         </button>

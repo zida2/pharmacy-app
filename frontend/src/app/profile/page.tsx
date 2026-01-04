@@ -312,14 +312,14 @@ export default function ProfilePage() {
             {/* Header */}
             <header className="p-6 pt-safe flex flex-col gap-6">
                 <div className="flex items-center justify-between">
-                    <button onClick={() => router.back()} className="p-3 bg-secondary rounded-2xl">
-                        <ArrowLeft size={24} />
+                    <button onClick={() => router.back()} className="btn-icon bg-secondary text-foreground">
+                        <ArrowLeft size={20} />
                     </button>
                     <button
                         onClick={() => document.getElementById('app-settings')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="p-3 bg-secondary rounded-2xl active:scale-95 transition-transform"
+                        className="btn-icon bg-secondary text-foreground active:scale-95 transition-transform"
                     >
-                        <Settings size={24} />
+                        <Settings size={20} />
                     </button>
                 </div>
 
@@ -728,8 +728,8 @@ export default function ProfilePage() {
             {showMedicalProfile && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm animate-in fade-in">
                     <div className="glass-card w-full max-w-sm p-8 rounded-[2.5rem] border-primary/30 relative">
-                        <button onClick={() => setShowMedicalProfile(false)} className="absolute top-6 right-6 p-2 bg-secondary rounded-full">
-                            <X size={20} className="text-foreground" />
+                        <button onClick={() => setShowMedicalProfile(false)} className="absolute top-6 right-6 btn-icon bg-secondary text-foreground">
+                            <X size={20} />
                         </button>
                         <h3 className="text-2xl font-black italic mb-6 text-foreground text-center">Profil Médical</h3>
                         <div className="space-y-6">
@@ -1010,6 +1010,11 @@ export default function ProfilePage() {
                         ) : activeDocument ? (
                             // DOCUMENT VIEWER
                             <div className="flex flex-col h-full animate-in slide-in-from-right">
+                                <div className="flex justify-end mb-2">
+                                    <button onClick={() => setActiveDocument(null)} className="btn-icon bg-secondary text-foreground">
+                                        <X size={18} />
+                                    </button>
+                                </div>
                                 <h3 className="text-xl font-black italic mb-2 text-foreground text-center">{activeDocument.type}</h3>
                                 <p className="text-center text-xs font-bold text-muted-foreground mb-6 uppercase tracking-widest">{activeDocument.date} • {activeDocument.provider}</p>
 
