@@ -236,24 +236,21 @@ export default function Map({
                 <div class="relative flex items-center justify-center group cursor-pointer">
                     <!-- Ripple effect for open/guard -->
                     ${(pharmacy.status === 'open' || pharmacy.status === 'guard') ? `
-                        <div class="absolute w-12 h-12 bg-${pharmacy.status === 'guard' ? 'primary' : 'emerald-500'}/20 rounded-full animate-ping"></div>
+                        <div class="absolute w-10 h-10 bg-${pharmacy.status === 'guard' ? 'primary' : 'emerald-500'}/20 rounded-full animate-ping"></div>
                     ` : ''}
                     
-                    <!-- Main Marker Pin -->
-                    <div class="relative w-10 h-10 bg-white rounded-2xl shadow-xl flex items-center justify-center border-2 border-${pharmacy.status === 'guard' ? 'primary' : pharmacy.status === 'open' ? 'emerald-500' : 'gray-400'} transform transition-all group-hover:scale-125 group-hover:-translate-y-1">
-                        <span class="text-lg">${pharmacy.status === 'guard' ? '🟣' : pharmacy.status === 'open' ? '🟢' : '⚪'}</span>
-                        
-                        <!-- Mini status indicator -->
-                        <div class="absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white shadow-sm bg-${pharmacy.status === 'guard' ? 'primary' : pharmacy.status === 'open' ? 'emerald-500' : 'gray-400'}"></div>
+                    <!-- Main Marker Pin (Modern & Smaller) -->
+                    <div class="relative w-8 h-8 bg-white rounded-xl shadow-lg flex items-center justify-center border-2 border-${pharmacy.status === 'guard' ? 'primary' : pharmacy.status === 'open' ? 'emerald-500' : 'gray-400'} transform transition-all group-hover:scale-125 group-hover:-translate-y-2">
+                        <span class="text-sm">${pharmacy.status === 'guard' ? '🟣' : pharmacy.status === 'open' ? '🟢' : '⚪'}</span>
+                    </div>
+
+                    <!-- Pharmacy Name Label (NOW HIDDEN BY DEFAULT - ONLY ON HOVER) -->
+                    <div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 bg-black/90 text-white px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-2xl border border-white/10 translate-y-2 group-hover:translate-y-0">
+                        ${pharmacy.name}
                     </div>
                     
-                    <!-- Bottom Tip -->
-                    <div class="absolute -bottom-1 w-2 h-2 bg-white rotate-45 transform border-r border-b border-gray-200"></div>
-
-                    <!-- Pharmacy Name Label -->
-                    <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white dark:bg-black px-2 py-0.5 rounded-lg border border-gray-200 dark:border-gray-800 shadow-xl pointer-events-none">
-                        <span class="text-[9px] font-black text-gray-900 dark:text-white whitespace-nowrap uppercase tracking-tighter">${pharmacy.name}</span>
-                    </div>
+                    <!-- Triangle Tip for label -->
+                    <div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 border-8 border-transparent border-t-black opacity-0 group-hover:opacity-100 transition-all pointer-events-none"></div>
                 </div>
             `;
 

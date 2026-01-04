@@ -210,16 +210,16 @@ function MapContent() {
 
     return (
         <main className="relative w-full h-screen overflow-hidden bg-zinc-950">
-            {/* --- TOP HUD (AÉRÉ) --- */}
-            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-10 pointer-events-none">
+            {/* --- TOP HUD (AÉRÉ & STRUCTURÉ) --- */}
+            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-12 pointer-events-none">
                 <div className="max-w-xl mx-auto space-y-4">
-                    {/* Header Row */}
+                    {/* Header Row: Back + Search + Scan */}
                     <div className="flex items-center gap-3 pointer-events-auto">
                         <button
                             onClick={() => router.back()}
-                            className="w-12 h-12 flex items-center justify-center bg-card/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-card/95 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
                         >
-                            <ArrowLeft size={24} />
+                            <ArrowLeft size={22} />
                         </button>
 
                         <div className="flex-1 relative group">
@@ -230,31 +230,26 @@ function MapContent() {
                                 type="text"
                                 value={productQuery}
                                 onChange={(e) => setProductQuery(e.target.value)}
-                                placeholder="Rechercher un médicament..."
-                                className="w-full h-12 pl-12 pr-4 bg-card/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60"
+                                placeholder="Recherche..."
+                                className="w-full h-12 pl-12 pr-4 bg-card/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60 text-sm font-bold"
                             />
-                            {productQuery && (
-                                <button onClick={() => setProductQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                                    <X size={18} />
-                                </button>
-                            )}
                         </div>
 
                         <button
                             onClick={handleScan}
-                            className="w-12 h-12 flex items-center justify-center bg-primary rounded-2xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary rounded-2xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
                         >
                             <Camera size={22} />
                         </button>
                     </div>
 
-                    {/* Secondary Row: Quick Filters */}
-                    <div className="flex items-center gap-2 pointer-events-auto overflow-x-auto pb-2 scrollbar-hide">
+                    {/* Secondary Row: Quick Filters (Better Spacing) */}
+                    <div className="flex items-center gap-3 pointer-events-auto">
                         <button
                             onClick={() => setSortBy('distance')}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg border",
-                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card/80 text-foreground border-white/5"
+                                "flex items-center gap-2 px-4 h-10 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg border",
+                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
                             )}
                         >
                             <Locate size={14} /> Proche
@@ -262,16 +257,16 @@ function MapContent() {
                         <button
                             onClick={() => setSortBy('price')}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg border",
-                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card/80 text-foreground border-white/5"
+                                "flex items-center gap-2 px-4 h-10 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg border",
+                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
                             )}
                         >
                             <Zap size={14} /> Moins Cher
                         </button>
 
-                        <div className="flex-1" />
+                        <div className="hidden sm:flex flex-1" />
 
-                        <div className="px-3 py-2 bg-zinc-900/80 backdrop-blur-md rounded-xl border border-white/5 text-[10px] font-black text-muted-foreground whitespace-nowrap">
+                        <div className="px-3 h-10 flex items-center bg-zinc-900/90 backdrop-blur-md rounded-xl border border-white/10 text-[9px] font-black text-muted-foreground whitespace-nowrap">
                             {pharmacies.length} DISPONIBLES
                         </div>
                     </div>
