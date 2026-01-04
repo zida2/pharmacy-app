@@ -4,7 +4,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Pharmacy, Product } from "@/services/types";
 import { firebaseService } from "@/services/firebaseService";
-import { ArrowLeft, MapPin, Phone, Star, Info, Search, Filter } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Star, Info, Search, Filter, LayoutGrid, List } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
@@ -21,6 +21,7 @@ function PharmacyContent() {
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState<string>("all");
     const [searchQuery, setSearchQuery] = useState("");
+    const [displayMode, setDisplayMode] = useState<"grid" | "list">("grid");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -191,24 +192,42 @@ function PharmacyContent() {
                 {/* Products Grid */}
                 <div>
                     <div className="flex items-center justify-between mb-4 px-1">
-                        <h2 className="font-bold text-lg flex items-center gap-2">
-                            Produits disponibles
+                        <h2 className="font-bold text-lg flex items-center gap-2 text-foreground">
+                            Nos produits
                             <span className="bg-primary/10 text-primary text-xs px-2.5 py-0.5 rounded-full font-black">
                                 {filteredProducts.length}
                             </span>
                         </h2>
+                        <div className="bg-secondary/50 p-1 rounded-xl flex gap-1">
+                            <button
+                                onClick={() => setDisplayMode("grid")}
+                                className={cn("p-1.5 rounded-lg transition-all", displayMode === "grid" ? "bg-card shadow-sm text-primary" : "text-muted-foreground")}
+                            >
+                                <LayoutGrid size={18} />
+                            </button>
+                            <button
+                                onClick={() => setDisplayMode("list")}
+                                className={cn("p-1.5 rounded-lg transition-all", displayMode === "list" ? "bg-card shadow-sm text-primary" : "text-muted-foreground")}
+                            >
+                                <List size={18} />
+                            </button>
+                        </div>
                     </div>
 
                     {filteredProducts.length > 0 ? (
-                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                        <div className={cn(
+                            "grid gap-3",
+                            displayMode === "grid" ? "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
+                        )}>
                             {filteredProducts.map(product => {
                                 const cartItem = items.find(item => item.product.id === product.id && item.pharmacyId === pharmacy!.id);
                                 return (
                                     <ProductCard
                                         key={product.id}
                                         product={product as Product}
+                                        variant={displayMode}
                                         quantity={cartItem?.quantity || 0}
-                                        onAddToCart={() => addToCart(product, pharmacy!)} // Use pharmacy! here
+                                        onAddToCart={() => addToCart(product, pharmacy!)}
                                         onIncrement={() => addToCart(product, pharmacy!)}
                                         onDecrement={() => {
                                             if (cartItem && cartItem.quantity > 1) {
