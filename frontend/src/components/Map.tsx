@@ -16,6 +16,7 @@ interface MapProps extends React.HTMLAttributes<HTMLDivElement> {
     userLocation?: [number, number] | null;
     searchLocation?: [number, number] | null;
     destination?: [number, number] | null;
+    transportMode?: "walking" | "motorcycle" | "car";
 }
 
 export default function Map({
@@ -27,6 +28,7 @@ export default function Map({
     userLocation,
     searchLocation,
     destination,
+    transportMode = "motorcycle",
     className,
     ...props
 }: MapProps) {
@@ -54,12 +56,12 @@ export default function Map({
 
         map.current = new maplibregl.Map({
             container: mapContainer.current,
-            style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+            // OpenFreeMap Liberty style is much more detailed for West Africa
+            style: "https://tiles.openfreemap.org/styles/liberty",
             center: initialCenter,
             zoom: initialZoom,
             pitch: initialPitch,
             bearing: initialBearing,
-            attributionControl: false,
         });
 
         // Add 3D buildings layer whenever possible
@@ -84,31 +86,36 @@ export default function Map({
         }
     }, []); // Only init once
 
-    // Update User Marker
+    // Update User Marker & Center if needed
     useEffect(() => {
-        if (!map.current || !isLoaded) return;
+        if (!map.current || !isLoaded || !userLocation) return;
 
-        if (userLocation) {
-            // Create user marker element if not exists
-            let el = userMarkerRef.current?.getElement();
-            if (!el) {
-                el = document.createElement('div');
-                el.className = 'user-marker';
-                el.innerHTML = `
-                    <div class="relative flex items-center justify-center">
-                        <div class="absolute w-8 h-8 bg-blue-500/30 rounded-full animate-ping"></div>
-                        <div class="relative w-4 h-4 bg-blue-500 border-2 border-white rounded-full shadow-lg"></div>
+        // Fly to user location on first acquisition or button click
+        map.current.flyTo({
+            center: userLocation,
+            zoom: 15,
+            padding: { top: 100, bottom: 200, left: 0, right: 0 },
+            essential: true
+        });
+
+        // Create user marker element if not exists
+        let el = userMarkerRef.current?.getElement();
+        if (!el) {
+            el = document.createElement('div');
+            el.className = 'user-marker';
+            el.innerHTML = `
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute w-12 h-12 bg-primary/20 rounded-full animate-ping"></div>
+                    <div class="absolute w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center">
+                        <div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-sm shadow-primary/50"></div>
                     </div>
-                `;
-                userMarkerRef.current = new maplibregl.Marker({ element: el })
-                    .setLngLat(userLocation)
-                    .addTo(map.current);
-            } else {
-                userMarkerRef.current?.setLngLat(userLocation);
-            }
+                </div>
+            `;
+            userMarkerRef.current = new maplibregl.Marker({ element: el })
+                .setLngLat(userLocation)
+                .addTo(map.current);
         } else {
-            userMarkerRef.current?.remove();
-            userMarkerRef.current = null;
+            userMarkerRef.current?.setLngLat(userLocation);
         }
     }, [userLocation, isLoaded]);
 
@@ -151,8 +158,9 @@ export default function Map({
 
         const fetchRoute = async () => {
             try {
+                const profile = transportMode === 'walking' ? 'foot' : 'driving';
                 const response = await fetch(
-                    `https://router.project-osrm.org/route/v1/driving/${userLocation[0]},${userLocation[1]};${destination[0]},${destination[1]}?overview=full&geometries=geojson`
+                    `https://router.project-osrm.org/route/v1/${profile}/${userLocation[0]},${userLocation[1]};${destination[0]},${destination[1]}?overview=full&geometries=geojson`
                 );
                 const data = await response.json();
 
@@ -208,7 +216,7 @@ export default function Map({
         };
 
         fetchRoute();
-    }, [userLocation, destination, isLoaded]);
+    }, [userLocation, destination, isLoaded, transportMode]);
 
     // Update Pharmacy Markers
     useEffect(() => {

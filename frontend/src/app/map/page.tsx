@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, Filter, SortAsc, Zap, ChevronRight } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, SortAsc, Zap, ChevronRight, Gpu, Target, Locate } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Nominatim Geocoding Response Type
@@ -17,7 +17,7 @@ interface GeocodingResult {
 
 export default function MapPage() {
     return (
-        <Suspense fallback={<div className="p-4">Chargement...</div>}>
+        <Suspense fallback={<div className="p-4 flex h-screen items-center justify-center bg-background"><div className="animate-spin text-primary">↻</div></div>}>
             <MapContent />
         </Suspense>
     );
@@ -26,13 +26,13 @@ export default function MapPage() {
 function MapContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const query = searchParams.get("q") || "";
+    const initialQuery = searchParams.get("q") || "";
 
     // Product Search State
-    const [productQuery, setProductQuery] = useState("");
+    const [productQuery, setProductQuery] = useState(initialQuery);
     const [sortBy, setSortBy] = useState<"distance" | "price">("distance");
 
-    // Augmented Pharmacy for display
+    // Pharmacy Data
     interface PharmacyDisplay extends Pharmacy {
         distance?: number;
         foundProductPrice?: number;
@@ -41,7 +41,7 @@ function MapContent() {
 
     const [pharmacies, setPharmacies] = useState<PharmacyDisplay[]>([]);
     const [selectedPharmacy, setSelectedPharmacy] = useState<Pharmacy | null>(null);
-    const [transportMode, setTransportMode] = useState<"walking" | "motorcycle" | "car">("walking");
+    const [transportMode, setTransportMode] = useState<"walking" | "motorcycle" | "car">("motorcycle");
 
     // Localization & Routing state
     const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
@@ -57,31 +57,14 @@ function MapContent() {
     const [searchMarkerPos, setSearchMarkerPos] = useState<[number, number] | null>(null);
     const [mapView, setMapView] = useState<{ center: [number, number], zoom: number, pitch: number }>({
         center: [-1.5197, 12.3714], // Default Ouaga
-        zoom: 12,
+        zoom: 13,
         pitch: 0
     });
     const [showFullList, setShowFullList] = useState(false);
 
+    // 1. Initial Load & Geolocation
     useEffect(() => {
-        // 1. Try to get location automatically on mount
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { longitude, latitude } = position.coords;
-                    setUserLocation([longitude, latitude]);
-                    setPermissionStatus("granted");
-                    // Assuming map auto-updates center via other effects or pass userLocation to Map
-                },
-                (err) => {
-                    // Silent fail: User will see the "Enable Location" prompt UI if this fails/times out
-                    console.log("Auto-location check:", err.message);
-                },
-                { timeout: 5000, maximumAge: 60000 }
-            );
-        }
-
-        // 2. Load pharmacies (initially with default or null location, will update when userLocation changes)
-        loadPharmacies();
+        requestLocation(true); // Attempt silent geolocation on mount
 
         const handleSelect = (e: any) => {
             setSelectedPharmacy(e.detail);
@@ -89,23 +72,18 @@ function MapContent() {
 
         window.addEventListener('pharmacySelected', handleSelect);
         return () => window.removeEventListener('pharmacySelected', handleSelect);
-    }, [query]); // Removed userLocation from dependency to avoid loop, loadPharmacies handles it via internal reference or re-calls
+    }, []);
 
-    // 3. React to user location updates
+    // 2. Load Pharmacies when location or search changes
     useEffect(() => {
-        if (userLocation) {
-            loadPharmacies(userLocation);
-            // Optional: Center map on user if no manual search is active
-            if (!locationQuery) {
-                setMapView(prev => ({ ...prev, center: userLocation, zoom: 14 }));
-            }
-        }
-    }, [userLocation]);
+        loadPharmacies();
+    }, [userLocation, productQuery, sortBy]);
 
-    const requestLocation = () => {
-        setIsLocating(true);
+    const requestLocation = (silent = false) => {
+        if (!silent) setIsLocating(true);
+
         if (!navigator.geolocation) {
-            alert("La géolocalisation n'est pas supportée par votre navigateur.");
+            if (!silent) alert("Pardon, votre appareil ne supporte pas la géolocalisation.");
             setPermissionStatus("denied");
             setIsLocating(false);
             return;
@@ -114,27 +92,38 @@ function MapContent() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { longitude, latitude } = position.coords;
-                setUserLocation([longitude, latitude]);
+                const newPos: [number, number] = [longitude, latitude];
+                setUserLocation(newPos);
                 setPermissionStatus("granted");
                 setIsLocating(false);
+
+                // Anim map to user
+                setMapView({
+                    center: newPos,
+                    zoom: 15,
+                    pitch: 0
+                });
             },
             (error) => {
-                console.error("Location error:", error);
-                setPermissionStatus("denied");
+                console.warn("Location error:", error);
+                if (!silent) {
+                    setPermissionStatus("denied");
+                    alert("Activez votre GPS pour une meilleure expérience.");
+                }
                 setIsLocating(false);
-                alert("Impossible d'accéder à votre position. Veuillez l'autoriser dans vos paramètres.");
             },
-            { enableHighAccuracy: true }
+            { enableHighAccuracy: true, timeout: 10000 }
         );
     };
 
-    const loadPharmacies = async (centerOverride?: [number, number]) => {
-        const center = centerOverride || userLocation;
-        // Use productQuery if available, otherwise just location search
-        const term = productQuery || query;
+    const loadPharmacies = async () => {
+        // center coordinate mapping
+        const center = userLocation || [-1.5197, 12.3714];
 
-        // Pass coordinates to search service
-        const data = await firebaseService.searchMedicines(term, center ? { latitude: center[1], longitude: center[0] } : undefined);
+        const data = await firebaseService.searchMedicines(
+            productQuery,
+            { latitude: center[1], longitude: center[0] }
+        );
 
         let pharms: PharmacyDisplay[] = data.map(r => ({
             ...r.pharmacy,
@@ -142,65 +131,56 @@ function MapContent() {
             inStock: r.product?.inStock
         }));
 
-        // Calculate distance relative to View Center
-        if (center) {
-            pharms = pharms.map(p => {
-                const d = calculateDistance(center[1], center[0], p.location.lat, p.location.lng);
-                return { ...p, distance: d };
-            });
-        }
-
-        // Sort based on user preference
+        // Distance & Sort
+        pharms.sort((a, b) => (a.distance || 0) - (b.distance || 0));
         if (sortBy === 'price' && productQuery) {
             pharms.sort((a, b) => (a.foundProductPrice || 99999) - (b.foundProductPrice || 99999));
-        } else {
-            pharms.sort((a, b) => (a.distance || 0) - (b.distance || 0));
         }
 
         setPharmacies(pharms);
     };
 
-    // Re-load when productQuery or sortBy changes
-    useEffect(() => {
-        // Debounce search slightly or just reload
-        const timer = setTimeout(() => {
-            if (mapView.center) loadPharmacies(mapView.center);
-        }, 500);
-        return () => clearTimeout(timer);
-    }, [productQuery, sortBy]);
-
     const handleScan = () => {
         setIsScanning(true);
-        // Simulate a 3-second scan process
         setTimeout(() => {
             setIsScanning(false);
-            setProductQuery("Amoxicilline 500mg");
-            // Optional: Auto-trigger search here if desired
-        }, 3000);
+            setProductQuery("Paracétamol");
+        }, 2500);
     };
 
-    // Haversine formula for distance
-    const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-        const R = 6371; // Radius of the earth in km
-        const dLat = deg2rad(lat2 - lat1);
-        const dLon = deg2rad(lon2 - lon1);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c; // Distance in km
+    const getEstimatedTime = (distance: number, durationSeconds?: number) => {
+        if (!distance) return "--";
+        if (durationSeconds) {
+            const mins = Math.round(durationSeconds / 60);
+            return mins < 60 ? `${mins} min` : `${Math.floor(mins / 60)}h ${mins % 60}min`;
+        }
+        const speed = transportMode === "walking" ? 5 : transportMode === "motorcycle" ? 35 : 25;
+        const mins = Math.round((distance / speed) * 60 + 2); // +2 for buffers
+        return mins < 60 ? `${mins} min` : `${Math.floor(mins / 60)}h ${mins % 60}min`;
     };
 
-    const deg2rad = (deg: number) => deg * (Math.PI / 180);
+    // State for real road info
+    const [roadInfo, setRoadInfo] = useState<{ distance: number, duration: number } | null>(null);
 
-    const getEstimatedTime = (distance: number) => {
-        if (!distance) return "N/A";
-        const speed = transportMode === "walking" ? 5 : transportMode === "motorcycle" ? 40 : 30;
-        const hours = distance / speed;
-        const minutes = Math.round(hours * 60);
-        return minutes < 60 ? `${minutes} min` : `${Math.floor(minutes / 60)}h ${minutes % 60}min`;
-    };
+    // Fetch real road distance when selection or transport mode changes
+    useEffect(() => {
+        if (selectedPharmacy && userLocation) {
+            const profile = transportMode === 'walking' ? 'foot' : 'driving';
+            fetch(`https://router.project-osrm.org/route/v1/${profile}/${userLocation[0]},${userLocation[1]};${selectedPharmacy.location.lng},${selectedPharmacy.location.lat}?overview=false`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.routes && data.routes[0]) {
+                        setRoadInfo({
+                            distance: data.routes[0].distance / 1000, // meters to km
+                            duration: data.routes[0].duration
+                        });
+                    }
+                })
+                .catch(err => console.error("Road distance error:", err));
+        } else {
+            setRoadInfo(null);
+        }
+    }, [selectedPharmacy, transportMode, userLocation]);
 
     const handleLocationSearch = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -208,519 +188,288 @@ function MapContent() {
 
         setIsSearchingLocation(true);
         try {
-            // Enhanced Search: Append "Burkina Faso" and use viewbox for Burkina Faso to prioritize local results
-            // Viewbox: West,South,East,North (-5.5,9.4,2.4,15.1)
-            const searchQuery = locationQuery.toLowerCase().includes("burkina") ? locationQuery : `${locationQuery}, Burkina Faso`;
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&countrycodes=bf&viewbox=-5.5,15.1,2.4,9.4&bounded=1&limit=1`);
+            const searchQuery = `${locationQuery}, Burkina Faso`;
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&countrycodes=bf&limit=1`);
             const data: GeocodingResult[] = await response.json();
 
             if (data && data.length > 0) {
                 const { lat, lon } = data[0];
                 const newCenter: [number, number] = [parseFloat(lon), parseFloat(lat)];
                 setSearchMarkerPos(newCenter);
-
-                // Update map view to "3D Relief Mode" focused on the location
-                setMapView({
-                    center: newCenter,
-                    zoom: 15.5, // Close zoom
-                    pitch: 60, // High pitch for 3D effect
-                });
-
-                // Reload pharmacies around this new location to show what's nearby
-                loadPharmacies(newCenter);
-
+                setMapView({ center: newCenter, zoom: 16, pitch: 45 });
+                loadPharmacies();
             } else {
-                alert("Lieu introuvable. Essayez avec le nom d'une ville ou d'un quartier connu.");
+                alert("Lieu introuvable au Burkina.");
             }
         } catch (error) {
-            console.error("Geocoding error:", error);
-            alert("Erreur de recherche. Vérifiez votre connexion.");
+            console.error(error);
         } finally {
             setIsSearchingLocation(false);
         }
     };
 
     return (
-        <main className="relative w-full h-screen overflow-hidden bg-background">
-            {/* Header / Search Bar */}
-            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-safe space-y-2">
-                {/* Location Search + Back Button Row */}
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => router.back()}
-                        className="btn-icon bg-card shadow-xl border-border active:scale-95 transition-transform"
-                    >
-                        <ArrowLeft className="w-5 h-5 text-foreground" />
-                    </button>
-
-                    <form onSubmit={handleLocationSearch} className="flex-1 relative shadow-xl">
-                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                            <MapPin className="text-primary w-5 h-5" />
-                        </div>
-                        <input
-                            type="search"
-                            placeholder="Quartier, Ville (ex: Tampouy)..."
-                            className="input-standard pl-10 pr-12 bg-card shadow-xl border-border"
-                            value={locationQuery}
-                            onChange={(e) => setLocationQuery(e.target.value)}
-                        />
-                        <button type="submit" className="absolute inset-y-0 right-3 flex items-center text-primary">
-                            {isSearchingLocation ? <div className="animate-spin text-lg">↻</div> : <Search size={20} />}
+        <main className="relative w-full h-screen overflow-hidden bg-zinc-950">
+            {/* --- TOP HUD (AÉRÉ) --- */}
+            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-10 pointer-events-none">
+                <div className="max-w-xl mx-auto space-y-4">
+                    {/* Header Row */}
+                    <div className="flex items-center gap-3 pointer-events-auto">
+                        <button
+                            onClick={() => router.back()}
+                            className="w-12 h-12 flex items-center justify-center bg-card/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
+                        >
+                            <ArrowLeft size={24} />
                         </button>
-                    </form>
-                </div>
 
-                {/* Product Search & Scan Row */}
-                <div className="flex gap-2">
-                    <div className="relative flex-1 shadow-xl">
-                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                            <Search className="text-muted-foreground w-4 h-4" />
+                        <div className="flex-1 relative group">
+                            <div className="absolute inset-y-0 left-4 flex items-center text-primary">
+                                <Search size={20} />
+                            </div>
+                            <input
+                                type="text"
+                                value={productQuery}
+                                onChange={(e) => setProductQuery(e.target.value)}
+                                placeholder="Rechercher un médicament..."
+                                className="w-full h-12 pl-12 pr-4 bg-card/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60"
+                            />
+                            {productQuery && (
+                                <button onClick={() => setProductQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                                    <X size={18} />
+                                </button>
+                            )}
                         </div>
-                        <input
-                            type="search"
-                            placeholder="Médicament (ex: Doliprane)..."
-                            className="input-standard pl-10 bg-card shadow-xl border-border"
-                            value={productQuery}
-                            onChange={(e) => setProductQuery(e.target.value)}
-                        />
+
+                        <button
+                            onClick={handleScan}
+                            className="w-12 h-12 flex items-center justify-center bg-primary rounded-2xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
+                        >
+                            <Camera size={22} />
+                        </button>
                     </div>
-                    <button
-                        onClick={handleScan}
-                        className="btn-icon bg-card shadow-xl border-border text-primary active:scale-95 transition-transform"
-                        title="Scanner une ordonnance"
-                    >
-                        <Camera size={20} />
-                    </button>
-                </div>
 
-                {/* Filters Row (Only visible if searching product) */}
-                <div className="flex items-center justify-between">
-                    {productQuery ? (
-                        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-                            <button
-                                onClick={() => setSortBy('distance')}
-                                className={cn(
-                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg",
-                                    sortBy === 'distance' ? "bg-primary text-white" : "bg-card text-foreground"
-                                )}
-                            >
-                                <MapPin size={12} /> Proximité
-                            </button>
-                            <button
-                                onClick={() => setSortBy('price')}
-                                className={cn(
-                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg",
-                                    sortBy === 'price' ? "bg-emerald-500 text-white" : "bg-card text-foreground"
-                                )}
-                            >
-                                <SortAsc size={12} /> Moins cher
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="text-[10px] font-black uppercase tracking-widest text-primary bg-card px-3 py-1.5 rounded-xl shadow-lg border border-border">
-                            {pharmacies.length} pharmacies trouvées
-                        </div>
-                    )}
+                    {/* Secondary Row: Quick Filters */}
+                    <div className="flex items-center gap-2 pointer-events-auto overflow-x-auto pb-2 scrollbar-hide">
+                        <button
+                            onClick={() => setSortBy('distance')}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg border",
+                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card/80 text-foreground border-white/5"
+                            )}
+                        >
+                            <Locate size={14} /> Proche
+                        </button>
+                        <button
+                            onClick={() => setSortBy('price')}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg border",
+                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card/80 text-foreground border-white/5"
+                            )}
+                        >
+                            <Zap size={14} /> Moins Cher
+                        </button>
 
-                    {/* 3D button kept here but moved slightly */}
-                    <button
-                        onClick={() => setMapView(prev => ({ ...prev, pitch: prev.pitch === 0 ? 60 : 0, zoom: prev.pitch === 0 ? 15 : 12 }))}
-                        className={cn("btn-icon border transition-all shadow-lg ml-auto", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-card border-border text-muted-foreground")}
-                        title="Basculer vue 3D"
-                    >
-                        <Layers size={20} />
-                    </button>
+                        <div className="flex-1" />
+
+                        <div className="px-3 py-2 bg-zinc-900/80 backdrop-blur-md rounded-xl border border-white/5 text-[10px] font-black text-muted-foreground whitespace-nowrap">
+                            {pharmacies.length} DISPONIBLES
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Map */}
-            <div className="w-full h-full grayscale-[0.2] brightness-[0.95]">
+            {/* --- MAP CANVAS --- */}
+            <div className="absolute inset-0 z-0">
                 <Map
-                    className="rounded-none border-none shadow-none"
                     pharmacies={pharmacies}
                     userLocation={userLocation}
                     searchLocation={searchMarkerPos}
                     destination={destinationCoords}
-                    initialCenter={mapView.center} // Modified from fixed state
-                    initialZoom={mapView.zoom} // Modified from fixed state
-                    initialPitch={mapView.pitch} // Added 3D pitch
+                    initialCenter={mapView.center}
+                    initialZoom={mapView.zoom}
+                    initialPitch={mapView.pitch}
+                    transportMode={transportMode}
+                    className="w-full h-full border-none rounded-none"
                 />
             </div>
 
-            {/* SCANNER OVERLAY */}
-            {isScanning && (
-                <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-300">
-                    {/* Camera Feed Simulation */}
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
-
-                    {/* Overlay UI */}
-                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-8 pt-safe pb-safe">
-                        <div className="w-full flex justify-between items-center text-white">
-                            <button onClick={() => setIsScanning(false)} className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
-                                <X size={24} />
-                            </button>
-                            <div className="px-4 py-1.5 bg-black/40 rounded-full backdrop-blur-md text-xs font-bold uppercase tracking-widest flex items-center gap-2 border border-white/10">
-                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_red]"></div>
-                                Analyse en cours
-                            </div>
-                            <button className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
-                                <Zap size={24} className="text-white" />
-                            </button>
-                        </div>
-
-                        {/* Scanner Frame */}
-                        <div className="w-72 h-72 border-2 border-primary/50 rounded-[2rem] relative overflow-hidden shadow-[0_0_100px_rgba(34,197,94,0.2)]">
-                            <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/80 shadow-[0_0_20px_rgba(34,197,94,1)] animate-[bounce_2s_infinite]"></div>
-
-                            {/* Reticle Corners */}
-                            <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-2xl"></div>
-                            <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-primary rounded-tr-2xl"></div>
-                            <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-primary rounded-bl-2xl"></div>
-                            <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-2xl"></div>
-
-                            {/* Helper Text inside frame */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-50">
-                                <p className="text-white/80 text-[10px] uppercase font-black tracking-widest text-center px-8">Aligner le code-barres</p>
-                            </div>
-                        </div>
-
-                        <div className="text-center space-y-6 w-full max-w-xs">
-                            <p className="text-white/90 font-medium text-sm text-shadow-sm bg-black/20 p-4 rounded-xl backdrop-blur-sm">
-                                Placez l'ordonnance ou le médicament dans le cadre pour l'analyser.
-                            </p>
-                            <div className="flex gap-4 justify-center">
-                                <button className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 active:scale-95 transition-all backdrop-blur-md">
-                                    <div className="w-16 h-16 bg-white rounded-full shadow-lg"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* SCANNER OVERLAY */}
-            {isScanning && (
-                <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-300">
-                    {/* Camera Feed Simulation */}
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
-
-                    {/* Overlay UI */}
-                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-8 pt-safe pb-safe">
-                        <div className="w-full flex justify-between items-center text-white">
-                            <button onClick={() => setIsScanning(false)} className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
-                                <X size={24} />
-                            </button>
-                            <div className="px-4 py-1.5 bg-black/40 rounded-full backdrop-blur-md text-xs font-bold uppercase tracking-widest flex items-center gap-2 border border-white/10">
-                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_red]"></div>
-                                Analyse en cours
-                            </div>
-                            <button className="p-3 bg-black/40 rounded-full backdrop-blur-md active:scale-95 transition-transform">
-                                <Zap size={24} className="text-white" />
-                            </button>
-                        </div>
-
-                        {/* Scanner Frame */}
-                        <div className="w-72 h-72 border-2 border-primary/50 rounded-[2rem] relative overflow-hidden shadow-[0_0_100px_rgba(34,197,94,0.2)]">
-                            <div className="absolute top-0 left-0 w-full h-0.5 bg-primary/80 shadow-[0_0_20px_rgba(34,197,94,1)] animate-[bounce_2s_infinite]"></div>
-
-                            {/* Reticle Corners */}
-                            <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-2xl"></div>
-                            <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-primary rounded-tr-2xl"></div>
-                            <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-primary rounded-bl-2xl"></div>
-                            <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-2xl"></div>
-
-                            {/* Helper Text inside frame */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-50">
-                                <p className="text-white/80 text-[10px] uppercase font-black tracking-widest text-center px-8">Aligner le code-barres</p>
-                            </div>
-                        </div>
-
-                        <div className="text-center space-y-6 w-full max-w-xs">
-                            <p className="text-white/90 font-medium text-sm text-shadow-sm bg-black/20 p-4 rounded-xl backdrop-blur-sm">
-                                Placez l'ordonnance ou le médicament dans le cadre pour l'analyser.
-                            </p>
-                            <div className="flex gap-4 justify-center">
-                                <button className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center bg-white/10 active:scale-95 transition-all backdrop-blur-md">
-                                    <div className="w-16 h-16 bg-white rounded-full shadow-lg"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Location Request Modal */}
-            {permissionStatus !== "granted" && (
-                <div className="absolute inset-0 z-[100] flex items-center justify-center p-6 bg-background/80 backdrop-blur-xl animate-in fade-in">
-                    <div className="glass-card w-full max-w-sm p-8 border-primary/20 shadow-2xl text-center flex flex-col items-center">
-                        <div className="w-20 h-20 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-6 relative">
-                            <div className="absolute inset-0 bg-primary/20 rounded-[2.5rem] animate-ping" />
-                            <MapPin size={36} className="text-primary relative z-10" />
-                        </div>
-
-                        <h2 className="text-2xl font-black italic mb-2 text-foreground">Localisation Requise</h2>
-                        <p className="text-sm text-muted-foreground font-medium mb-8 leading-relaxed">
-                            Veuillez activer votre position pour trouver les pharmacies les plus proches de vous et obtenir un itinéraire précis.
-                        </p>
-
-                        <button
-                            onClick={requestLocation}
-                            disabled={isLocating}
-                            className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3 transition active:scale-95 disabled:opacity-50"
-                        >
-                            {isLocating ? (
-                                <>
-                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                    LOCALISATION...
-                                </>
-                            ) : (
-                                <>
-                                    <NavigationIcon size={20} fill="currentColor" />
-                                    ACTIVER MA POSITION
-                                </>
-                            )}
-                        </button>
-
-                        <button
-                            onClick={() => setPermissionStatus("granted")} // Skip for now (default location)
-                            className="mt-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                            Continuer sans localisation
-                        </button>
-                    </div>
-                </div>
-            )}
-
-            {/* Transport Mode Selector - Floating Pills */}
-            <div className="absolute top-28 left-0 right-0 z-20 flex justify-center px-4">
-                <div className="bg-card p-1.5 flex gap-1 border border-border shadow-xl rounded-full">
-                    {[
-                        { id: "walking", label: "À pied", icon: "🚶" },
-                        { id: "motorcycle", label: "Moto", icon: "🏍️" },
-                        { id: "car", label: "Voiture", icon: "🚗" }
-                    ].map((mode) => (
-                        <button
-                            key={mode.id}
-                            onClick={() => setTransportMode(mode.id as any)}
-                            className={cn(
-                                "px-5 py-2.5 rounded-2xl font-black text-xs uppercase tracking-tighter transition-all flex items-center gap-2",
-                                transportMode === mode.id
-                                    ? "bg-primary text-white shadow-lg scale-105"
-                                    : "text-muted-foreground hover:bg-secondary/50"
-                            )}
-                        >
-                            <span className="text-lg">{mode.icon}</span>
-                            {mode.label}
-                        </button>
-                    ))}
-                </div>
+            {/* --- SIDEBAR TOOLS --- */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+                <button
+                    onClick={() => requestLocation()}
+                    className={cn(
+                        "w-12 h-12 flex items-center justify-center rounded-2xl shadow-2xl transition-all active:scale-95 border",
+                        isLocating ? "bg-primary animate-pulse" : "bg-card text-primary border-white/10"
+                    )}
+                >
+                    <Target size={24} />
+                </button>
+                <button
+                    onClick={() => setMapView(p => ({ ...p, pitch: p.pitch === 60 ? 0 : 60 }))}
+                    className="w-12 h-12 flex items-center justify-center bg-card text-foreground rounded-2xl shadow-2xl border border-white/10 active:scale-95 transition-all"
+                >
+                    <Layers size={22} />
+                </button>
             </div>
 
-            {/* Selected Pharmacy Panel - Modern Slide Up Card */}
-            {selectedPharmacy && (
-                <div className={cn(
-                    "absolute left-4 right-4 z-40 transition-all duration-500 ease-in-out",
-                    isMinimized ? "bottom-24" : "bottom-24"
-                )}>
-                    <div className={cn(
-                        "bg-card border border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-3xl relative overflow-hidden transition-all duration-500 rounded-[2rem]",
-                        isMinimized ? "h-20" : "p-6"
-                    )}>
-                        {/* Minimize/Maximize Button */}
-                        <button
-                            onClick={() => setIsMinimized(!isMinimized)}
-                            className="absolute top-4 right-14 p-2 bg-secondary/50 hover:bg-secondary rounded-full transition-all flex items-center justify-center"
-                        >
-                            {isMinimized ? "🔼" : "🔽"}
-                        </button>
-                        {/* Decorative background element */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            {/* --- BOTTOM SHEET (HARMONIEUX) --- */}
+            <div className="absolute bottom-0 left-0 right-0 z-30 p-4 pointer-events-none">
+                <div className="max-w-xl mx-auto pointer-events-auto">
 
-                        <button
-                            onClick={() => {
-                                setSelectedPharmacy(null);
-                                setDestinationCoords(null);
-                            }}
-                            className="absolute top-4 right-4 p-2 bg-secondary/50 hover:bg-secondary rounded-full transition-all"
-                        >
-                            <X className="w-5 h-5" />
-                        </button>
-
-                        <div className={cn("flex items-center gap-3 mb-4", isMinimized && "mb-0")}>
-                            <div className="w-1.5 h-6 bg-primary rounded-full transition-all" />
-                            <h3 className={cn("font-black italic tracking-tight text-foreground transition-all", isMinimized ? "text-lg" : "text-2xl")}>{selectedPharmacy.name}</h3>
-                            {isMinimized && (
-                                <p className="text-[10px] font-bold text-primary ml-auto mr-12 px-2 py-1 bg-primary/10 rounded-lg">
-                                    {selectedPharmacy.distance?.toFixed(1)} km • {getEstimatedTime(selectedPharmacy.distance || 0)}
-                                </p>
-                            )}
-                        </div>
-
-                        {!isMinimized && (
-                            <>
-                                <p className="text-sm text-muted-foreground mb-6 flex items-center gap-2 font-medium">
-                                    <MapPin className="w-4 h-4 text-primary" />
-                                    {selectedPharmacy.location.address || "Ouagadougou, Burkina Faso"}
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-4 mb-8">
-                                    <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Distance</div>
-                                        <div className="text-3xl font-black text-primary font-mono leading-none">
-                                            {selectedPharmacy.distance?.toFixed(1) || "N/A"} <span className="text-sm">KM</span>
-                                        </div>
+                    {selectedPharmacy ? (
+                        /* Selected Pharmacy Panel */
+                        <div className="bg-card/95 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-2xl border border-white/10 animate-in slide-in-from-bottom-20 duration-500">
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="space-y-1">
+                                    <div className="flex items-center gap-2">
+                                        <span className={cn("px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-tighter",
+                                            selectedPharmacy.status === 'guard' ? "bg-primary text-white" : "bg-emerald-500 text-white"
+                                        )}>
+                                            {selectedPharmacy.status === 'guard' ? 'Garde' : 'Ouvert'}
+                                        </span>
+                                        <h3 className="text-xl font-black italic text-foreground tracking-tight">{selectedPharmacy.name}</h3>
                                     </div>
-                                    <div className="p-4 bg-secondary/40 rounded-3xl border border-white/10">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Temps estimé</div>
-                                        <div className="text-3xl font-black text-foreground font-mono leading-none italic">
-                                            {getEstimatedTime(selectedPharmacy.distance || 0)}
-                                        </div>
-                                    </div>
+                                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                                        <MapPin size={12} className="text-primary" /> {selectedPharmacy.location.address || 'Localisation disponible'}
+                                    </p>
                                 </div>
-                            </>
-                        )}
+                                <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-secondary rounded-full">
+                                    <X size={20} />
+                                </button>
+                            </div>
 
-                        {!isMinimized && (
+                            <div className="grid grid-cols-2 gap-3 mb-6">
+                                <div className="p-4 bg-zinc-900/50 rounded-3xl border border-white/5">
+                                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest block mb-1">Distance (Route)</span>
+                                    <span className="text-2xl font-black text-primary italic">{(roadInfo?.distance || selectedPharmacy.distance)?.toFixed(1) || '--'} KM</span>
+                                </div>
+                                <div className="p-4 bg-zinc-900/50 rounded-3xl border border-white/5">
+                                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest block mb-1">Trajet ({transportMode === 'walking' ? '👣' : transportMode === 'motorcycle' ? '🏍️' : '🚗'})</span>
+                                    <span className="text-2xl font-black text-foreground italic">{getEstimatedTime(roadInfo?.distance || selectedPharmacy.distance || 0, roadInfo?.duration)}</span>
+                                </div>
+                            </div>
+
                             <div className="flex gap-3">
                                 <button
-                                    onClick={() => {
-                                        if (selectedPharmacy && userLocation) {
-                                            setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat]);
-                                            setIsMinimized(true); // Automatically minimize to show route
-                                        } else if (!userLocation) {
-                                            setPermissionStatus("prompt");
-                                        }
-                                    }}
-                                    className="flex-[2] py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 transition active:scale-[0.98] flex items-center justify-center gap-3 uppercase tracking-widest text-xs"
+                                    onClick={() => setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat])}
+                                    className="flex-[2] h-14 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3 uppercase tracking-widest text-xs active:scale-95 transition-transform"
                                 >
-                                    <NavigationIcon size={20} fill="currentColor" />
-                                    Itinéraire
+                                    <NavigationIcon size={20} fill="currentColor" /> Itinéraire
                                 </button>
                                 <button
                                     onClick={() => router.push(`/pharmacy/${selectedPharmacy.id}`)}
-                                    className="flex-1 py-4 bg-secondary text-foreground font-black rounded-2xl hover:bg-secondary/80 transition active:scale-[0.98] uppercase tracking-widest text-[10px]"
+                                    className="flex-1 h-14 bg-secondary text-foreground font-black rounded-2xl active:scale-95 transition-all text-xs uppercase tracking-widest"
                                 >
-                                    Détails
+                                    Fiche
                                 </button>
                             </div>
-                        )}
+                        </div>
+                    ) : (
+                        /* Horizontal Pharmacy List */
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between px-2">
+                                <div className="bg-zinc-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5 flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-white">À proximité</span>
+                                </div>
+                                <button onClick={() => setShowFullList(true)} className="text-[10px] font-black uppercase text-primary tracking-widest hover:underline">
+                                    Voir Tout →
+                                </button>
+                            </div>
+
+                            <div className="flex gap-4 overflow-x-auto pb-4 px-2 scrollbar-hide snap-x">
+                                {pharmacies.slice(0, 6).map((p) => (
+                                    <div
+                                        key={p.id}
+                                        onClick={() => {
+                                            setSelectedPharmacy(p);
+                                            setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
+                                        }}
+                                        className="min-w-[240px] bg-card/90 backdrop-blur-xl rounded-3xl p-5 shadow-2xl border border-white/5 snap-center active:scale-95 transition-all"
+                                    >
+                                        <div className="flex justify-between items-start mb-3">
+                                            <div className={cn("w-10 h-10 rounded-2xl flex items-center justify-center text-xl",
+                                                p.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
+                                            )}>
+                                                {p.status === 'guard' ? '🟣' : '🟢'}
+                                            </div>
+                                            <span className="text-[10px] font-black text-primary px-2 py-1 bg-primary/10 rounded-lg italic">
+                                                {p.distance?.toFixed(1)} KM
+                                            </span>
+                                        </div>
+                                        <h4 className="font-black text-base text-foreground truncate mb-1 italic">{p.name}</h4>
+                                        <div className="flex items-center justify-between text-[10px] text-muted-foreground font-black">
+                                            <span className="flex items-center gap-1 italic uppercase tracking-tighter">
+                                                <Clock size={10} /> {getEstimatedTime(p.distance || 0)}
+                                            </span>
+                                            {p.foundProductPrice && (
+                                                <span className="text-emerald-500">{p.foundProductPrice} FCFA</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* --- SCANNER OVERLAY (Existing) --- */}
+            {isScanning && (
+                <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center animate-in fade-in duration-300">
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40"></div>
+                    <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-8 pt-safe pb-safe">
+                        <h2 className="text-white text-xl font-black italic tracking-tighter bg-black/40 px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-md">Analyse de l'ordonnance...</h2>
+                        <div className="w-64 h-64 border-2 border-primary rounded-[2.5rem] relative overflow-hidden flex items-center justify-center">
+                            <div className="absolute inset-x-0 h-1 bg-primary shadow-[0_0_20px_primary] animate-[bounce_2s_infinite]" />
+                            <Zap size={48} className="text-primary/20" />
+                        </div>
+                        <div className="w-16 h-16 rounded-full border-4 border-white/30 animate-pulse" />
                     </div>
                 </div>
             )}
 
-            {/* Mini List - Horizontal Scroll */}
-            {!selectedPharmacy && pharmacies.length > 0 && (
-                <div className="absolute bottom-32 left-0 right-0 z-20 animate-in slide-in-from-bottom-8 duration-500">
-                    <div className="px-4 pb-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2 bg-card/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-border">
-                            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                            <h3 className="text-[10px] font-black uppercase tracking-widest text-foreground">
-                                {pharmacies.length} pharmacies à proximité
-                            </h3>
-                        </div>
-                        <button
-                            onClick={() => setShowFullList(true)}
-                            className="bg-primary text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-all flex items-center gap-2"
-                        >
-                            <SortAsc size={12} /> Voir toute la liste
-                        </button>
-                    </div>
-                    <div className="flex gap-4 overflow-x-auto px-6 pb-6 scrollbar-hide snap-x">
-                        {pharmacies.slice(0, 5).map((pharmacy) => (
-                            <div
-                                key={pharmacy.id}
-                                onClick={() => {
-                                    setSelectedPharmacy(pharmacy);
-                                    // Also center map on it
-                                    setMapView(prev => ({ ...prev, center: [pharmacy.location.lng, pharmacy.location.lat], zoom: 16 }));
-                                }}
-                                className="min-w-[200px] w-[200px] bg-card rounded-2xl p-3 shadow-xl border border-border snap-center active:scale-95 transition-all cursor-pointer"
-                            >
-                                <div className="flex justify-between items-start mb-2">
-                                    <div className={cn(
-                                        "w-8 h-8 rounded-full flex items-center justify-center text-lg shadow-sm",
-                                        pharmacy.status === 'guard' ? "bg-primary/20" : "bg-emerald-500/20"
-                                    )}>
-                                        {pharmacy.status === 'guard' ? '🟣' : '🟢'}
-                                    </div>
-                                    <span className="text-[10px] font-bold text-muted-foreground bg-secondary px-2 py-1 rounded-lg">
-                                        {pharmacy.distance?.toFixed(1)} km
-                                    </span>
-                                </div>
-                                <h4 className="font-black text-sm text-foreground truncate mb-1">{pharmacy.name}</h4>
-                                <p className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
-                                    <Clock size={10} />
-                                    {getEstimatedTime(pharmacy.distance || 0)}
-                                    {pharmacy.foundProductPrice && (
-                                        <span className="ml-auto font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded">
-                                            {pharmacy.foundProductPrice} FCFA
-                                        </span>
-                                    )}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-            {/* FULL PHARMACY LIST MODAL */}
+            {/* FULL LIST MODAL (Optimisée) */}
             {showFullList && (
                 <div className="fixed inset-0 z-[100] bg-background animate-in slide-in-from-bottom duration-500 flex flex-col">
-                    <header className="p-6 border-b border-border flex items-center justify-between bg-card">
+                    <div className="p-8 border-b border-white/5 flex items-center justify-between bg-card/50 backdrop-blur-xl">
                         <div className="flex items-center gap-4">
-                            <button onClick={() => setShowFullList(false)} className="btn-icon bg-secondary">
-                                <ArrowLeft size={20} />
+                            <button onClick={() => setShowFullList(false)} className="w-12 h-12 flex items-center justify-center bg-secondary rounded-2xl">
+                                <X size={24} />
                             </button>
                             <div>
-                                <h2 className="text-xl font-black italic tracking-tighter">Toutes les Pharmacies</h2>
-                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{pharmacies.length} résultats trouvés</p>
+                                <h2 className="text-2xl font-black italic tracking-tighter">Liste des Pharmacies</h2>
+                                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{pharmacies.length} pharmacies de garde trouvées</p>
                             </div>
                         </div>
-                        <div className="p-2 bg-primary/10 rounded-xl text-primary font-black text-[10px]">
-                            {sortBy === 'distance' ? 'PROXIMITÉ' : 'PRIX'}
-                        </div>
-                    </header>
+                    </div>
 
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-32">
-                        {pharmacies.map((pharmacy) => (
+                    <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                        {pharmacies.map((p) => (
                             <div
-                                key={pharmacy.id}
+                                key={p.id}
                                 onClick={() => {
-                                    setSelectedPharmacy(pharmacy);
-                                    setMapView(prev => ({ ...prev, center: [pharmacy.location.lng, pharmacy.location.lat], zoom: 16 }));
+                                    setSelectedPharmacy(p);
+                                    setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                     setShowFullList(false);
                                 }}
-                                className="glass-card p-5 flex items-center justify-between active:scale-[0.98] transition-all border-primary/5 hover:border-primary/20 group"
+                                className="p-6 bg-card border border-white/5 rounded-3xl flex items-center justify-between group active:scale-[0.98] transition-all"
                             >
                                 <div className="flex items-center gap-5">
-                                    <div className={cn(
-                                        "w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-inner",
-                                        pharmacy.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
+                                    <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-2xl",
+                                        p.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
                                     )}>
-                                        {pharmacy.status === 'guard' ? '🟣' : '🟢'}
+                                        {p.status === 'guard' ? '🟣' : '🟢'}
                                     </div>
-                                    <div>
-                                        <h4 className="font-black text-lg text-foreground mb-1 group-hover:text-primary transition-colors underline decoration-transparent group-hover:decoration-primary">{pharmacy.name}</h4>
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-[10px] font-black py-1 px-2 bg-secondary rounded-lg text-muted-foreground">
-                                                {pharmacy.distance?.toFixed(1)} KM
-                                            </span>
-                                            <span className="text-[10px] font-black py-1 px-2 bg-secondary rounded-lg text-muted-foreground">
-                                                {getEstimatedTime(pharmacy.distance || 0)}
-                                            </span>
+                                    <div className="space-y-1">
+                                        <h4 className="font-black text-lg italic text-foreground tracking-tight group-hover:text-primary transition-colors">{p.name}</h4>
+                                        <div className="flex gap-2">
+                                            <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{p.distance?.toFixed(1)} KM</span>
+                                            <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{getEstimatedTime(p.distance || 0)}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    {pharmacy.foundProductPrice ? (
-                                        <div className="text-lg font-black text-emerald-600 italic">
-                                            {pharmacy.foundProductPrice.toLocaleString()} <span className="text-[10px] not-italic opacity-60">FCFA</span>
-                                        </div>
-                                    ) : (
-                                        <ChevronRight size={20} className="text-muted-foreground opacity-30" />
-                                    )}
-                                </div>
+                                <ChevronRight size={20} className="text-muted-foreground/30 group-hover:text-primary" />
                             </div>
                         ))}
                     </div>
