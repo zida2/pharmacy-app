@@ -24,7 +24,7 @@ const db = admin.firestore();
 
 // Configuration du scraper
 const CONFIG = {
-    BASE_URL: 'https://www.anac.bf',
+    BASE_URL: 'https://www.anacburkina.org',
     TIMEOUT: 30000, // 30 secondes
     MAX_RETRIES: 3,
     TIMEZONE: 'Africa/Ouagadougou'
