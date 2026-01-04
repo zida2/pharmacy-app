@@ -243,8 +243,8 @@ export default function Map({
                     <div class="absolute -bottom-1 w-2 h-2 bg-white rotate-45 transform border-r border-b border-gray-200"></div>
 
                     <!-- Pharmacy Name Label -->
-                    <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-black/90 backdrop-blur-md px-2 py-0.5 rounded-lg border border-border/50 shadow-xl pointer-events-none">
-                        <span class="text-[9px] font-black text-foreground whitespace-nowrap uppercase tracking-tighter">${pharmacy.name}</span>
+                    <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white dark:bg-black px-2 py-0.5 rounded-lg border border-gray-200 dark:border-gray-800 shadow-xl pointer-events-none">
+                        <span class="text-[9px] font-black text-gray-900 dark:text-white whitespace-nowrap uppercase tracking-tighter">${pharmacy.name}</span>
                     </div>
                 </div>
             `;
@@ -252,23 +252,25 @@ export default function Map({
             // Create Popup
             const popup = new maplibregl.Popup({ offset: 35, closeButton: false, className: 'premium-popup' })
                 .setHTML(`
-                    <div class="p-0 border-none rounded-3xl overflow-hidden glass-card shadow-2xl min-w-[220px]">
-                        <div class="bg-primary/10 p-4 border-b border-primary/5">
-                            <h3 class="font-black text-foreground italic leading-tight">${pharmacy.name}</h3>
-                            <div class="text-[10px] font-black text-primary uppercase tracking-widest mt-1">${pharmacy.status === 'guard' ? 'Pharmacied de Garde' : 'Pharmacie Conventionnée'}</div>
+                    <div class="p-0 border-none rounded-3xl overflow-hidden shadow-2xl min-w-[220px] bg-white dark:bg-zinc-950">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 border-b border-indigo-100 dark:border-indigo-800/30">
+                            <h3 style="color: var(--foreground); font-weight: 900; font-style: italic;">${pharmacy.name}</h3>
+                            <div style="font-size: 10px; font-weight: 900; color: #6366f1; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;">
+                                ${pharmacy.status === 'guard' ? 'Pharmacie de Garde' : 'Pharmacie Conventionnée'}
+                            </div>
                         </div>
-                        <div class="p-4 bg-white/80 dark:bg-black/40 backdrop-blur-md">
-                            <div class="flex items-center gap-2 text-xs text-muted-foreground font-medium mb-3">
+                        <div class="p-4">
+                            <div style="color: var(--muted-foreground); font-size: 12px; margin-bottom: 12px;">
                                 📍 ${pharmacy.location.address || "Ouagadougou"}
                             </div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-${pharmacy.status === 'open' ? 'emerald-500' : pharmacy.status === 'guard' ? 'primary' : 'gray-400'} shadow-[0_0_8px_rgba(var(--primary-rgb),0.5)]"></span>
-                                    <span class="text-[10px] font-black uppercase tracking-tighter">${pharmacy.status === 'open' ? 'Ouvert' : pharmacy.status === 'guard' ? 'De Garde' : 'Fermé'}</span>
+                                    <span style="width: 8px; height: 8px; border-radius: 9999px; background-color: ${pharmacy.status === 'open' ? '#10b981' : pharmacy.status === 'guard' ? '#6366f1' : '#94a3b8'};"></span>
+                                    <span style="font-size: 10px; font-weight: 900; text-transform: uppercase;">${pharmacy.status === 'open' ? 'Ouvert' : pharmacy.status === 'guard' ? 'De Garde' : 'Fermé'}</span>
                                 </div>
-                                ${pharmacy.distance ? `<span class="text-xs font-black text-primary">${pharmacy.distance.toFixed(1)} km</span>` : ''}
+                                ${pharmacy.distance ? `<span style="font-size: 12px; font-weight: 900; color: #6366f1;">${pharmacy.distance.toFixed(1)} km</span>` : ''}
                             </div>
-                            <button onclick="window.location.href='/pharmacy?id=${pharmacy.id}'" class="w-full py-2.5 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition active:scale-95">
+                            <button onclick="window.location.href='/pharmacy?id=${pharmacy.id}'" style="width: 100%; padding: 10px; background-color: #6366f1; color: white; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 12px; border: none; cursor: pointer;">
                                 Ouvrir la fiche
                             </button>
                         </div>

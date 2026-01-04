@@ -247,7 +247,7 @@ function MapContent() {
                 <div className="flex gap-2">
                     <button
                         onClick={() => router.back()}
-                        className="p-3 bg-white/95 dark:bg-zinc-900/95 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 active:scale-95 transition-transform"
+                        className="btn-icon bg-card shadow-xl border-border active:scale-95 transition-transform"
                     >
                         <ArrowLeft className="w-5 h-5 text-foreground" />
                     </button>
@@ -259,7 +259,7 @@ function MapContent() {
                         <input
                             type="search"
                             placeholder="Quartier, Ville (ex: Tampouy)..."
-                            className="w-full pl-10 pr-12 py-3 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 dark:border-white/10 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                            className="input-standard pl-10 pr-12 bg-card shadow-xl border-border"
                             value={locationQuery}
                             onChange={(e) => setLocationQuery(e.target.value)}
                         />
@@ -278,14 +278,14 @@ function MapContent() {
                         <input
                             type="search"
                             placeholder="Médicament (ex: Doliprane)..."
-                            className="w-full pl-10 pr-4 py-3 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 dark:border-white/10 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            className="input-standard pl-10 bg-card shadow-xl border-border"
                             value={productQuery}
                             onChange={(e) => setProductQuery(e.target.value)}
                         />
                     </div>
                     <button
                         onClick={handleScan}
-                        className="bg-white/95 dark:bg-zinc-900/95 p-3 px-4 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 text-primary active:scale-95 transition-transform flex items-center gap-2"
+                        className="btn-icon bg-card shadow-xl border-border text-primary active:scale-95 transition-transform"
                         title="Scanner une ordonnance"
                     >
                         <Camera size={20} />
@@ -299,8 +299,8 @@ function MapContent() {
                             <button
                                 onClick={() => setSortBy('distance')}
                                 className={cn(
-                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg backdrop-blur-md",
-                                    sortBy === 'distance' ? "bg-primary text-white" : "bg-white/90 dark:bg-zinc-900/90 text-foreground"
+                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg",
+                                    sortBy === 'distance' ? "bg-primary text-white" : "bg-card text-foreground"
                                 )}
                             >
                                 <MapPin size={12} /> Proximité
@@ -308,15 +308,15 @@ function MapContent() {
                             <button
                                 onClick={() => setSortBy('price')}
                                 className={cn(
-                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg backdrop-blur-md",
-                                    sortBy === 'price' ? "bg-emerald-500 text-white" : "bg-white/90 dark:bg-zinc-900/90 text-foreground"
+                                    "px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-colors shadow-lg",
+                                    sortBy === 'price' ? "bg-emerald-500 text-white" : "bg-card text-foreground"
                                 )}
                             >
                                 <SortAsc size={12} /> Moins cher
                             </button>
                         </div>
                     ) : (
-                        <div className="text-[10px] font-black uppercase tracking-widest text-primary/80 drop-shadow-md bg-white/50 px-2 py-1 rounded-lg backdrop-blur-sm">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-primary bg-card px-3 py-1.5 rounded-xl shadow-lg border border-border">
                             {pharmacies.length} pharmacies trouvées
                         </div>
                     )}
@@ -324,7 +324,7 @@ function MapContent() {
                     {/* 3D button kept here but moved slightly */}
                     <button
                         onClick={() => setMapView(prev => ({ ...prev, pitch: prev.pitch === 0 ? 60 : 0, zoom: prev.pitch === 0 ? 15 : 12 }))}
-                        className={cn("p-2 rounded-xl border transition-all shadow-lg ml-auto", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-white/90 dark:bg-zinc-900/90 border-transparent text-muted-foreground")}
+                        className={cn("btn-icon border transition-all shadow-lg ml-auto", mapView.pitch > 0 ? "bg-primary text-white border-primary" : "bg-card border-border text-muted-foreground")}
                         title="Basculer vue 3D"
                     >
                         <Layers size={20} />
@@ -494,7 +494,7 @@ function MapContent() {
 
             {/* Transport Mode Selector - Floating Pills */}
             <div className="absolute top-28 left-0 right-0 z-20 flex justify-center px-4">
-                <div className="glass-card p-1.5 flex gap-1 border-white/10 shadow-xl">
+                <div className="bg-card p-1.5 flex gap-1 border border-border shadow-xl rounded-full">
                     {[
                         { id: "walking", label: "À pied", icon: "🚶" },
                         { id: "motorcycle", label: "Moto", icon: "🏍️" },
@@ -524,7 +524,7 @@ function MapContent() {
                     isMinimized ? "bottom-24" : "bottom-24" // Panel is already at bottom-24, let's adjust
                 )}>
                     <div className={cn(
-                        "glass-card border-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] bg-white/90 dark:bg-black/80 backdrop-blur-3xl relative overflow-hidden transition-all duration-500",
+                        "bg-card border border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-3xl relative overflow-hidden transition-all duration-500 rounded-[2rem]",
                         isMinimized ? "h-20" : "p-6"
                     )}>
                         {/* Minimize/Maximize Button */}
@@ -613,7 +613,7 @@ function MapContent() {
             {!selectedPharmacy && pharmacies.length > 0 && (
                 <div className="absolute bottom-8 left-0 right-0 z-20">
                     <div className="px-4 pb-2">
-                        <h3 className="text-xs font-black uppercase tracking-widest text-primary/80 mb-2 pl-2 drop-shadow-md">Pharmacies les plus proches</h3>
+                        <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-2 pl-2">Pharmacies les plus proches</h3>
                     </div>
                     <div className="flex gap-3 overflow-x-auto px-4 pb-4 scrollbar-hide snap-x">
                         {pharmacies.slice(0, 5).map((pharmacy) => (
@@ -624,7 +624,7 @@ function MapContent() {
                                     // Also center map on it
                                     setMapView(prev => ({ ...prev, center: [pharmacy.location.lng, pharmacy.location.lat], zoom: 16 }));
                                 }}
-                                className="min-w-[200px] w-[200px] bg-white dark:bg-zinc-900 rounded-2xl p-3 shadow-xl border border-white/20 snap-center active:scale-95 transition-all cursor-pointer"
+                                className="min-w-[200px] w-[200px] bg-card rounded-2xl p-3 shadow-xl border border-border snap-center active:scale-95 transition-all cursor-pointer"
                             >
                                 <div className="flex justify-between items-start mb-2">
                                     <div className={cn(
