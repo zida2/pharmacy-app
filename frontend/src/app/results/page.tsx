@@ -56,9 +56,9 @@ function ResultsContent() {
                 <div className="flex items-center gap-4 p-4 max-w-lg mx-auto">
                     <button
                         onClick={() => router.back()}
-                        className="p-3 hover:bg-secondary rounded-2xl transition-all active:scale-95"
+                        className="btn-icon hover:bg-secondary text-foreground"
                     >
-                        <ArrowLeft className="w-6 h-6 text-foreground" />
+                        <ArrowLeft className="w-6 h-6" />
                     </button>
                     <div className="flex-1">
                         <h1 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-0.5">Résultats</h1>
@@ -68,7 +68,7 @@ function ResultsContent() {
                         <button
                             onClick={() => setShowFilters(!showFilters)}
                             className={cn(
-                                "p-3 rounded-2xl transition-all relative active:scale-95",
+                                "btn-icon relative",
                                 showFilters ? "bg-primary text-white shadow-lg" : "hover:bg-secondary text-foreground"
                             )}
                         >
@@ -79,7 +79,7 @@ function ResultsContent() {
                         </button>
                         <button
                             onClick={() => router.push(`/map?q=${encodeURIComponent(query)}`)}
-                            className="p-3 hover:bg-secondary text-foreground rounded-2xl transition-all active:scale-95 bg-secondary/50"
+                            className="btn-icon hover:bg-secondary text-foreground bg-secondary/50"
                         >
                             <MapIcon className="w-6 h-6" />
                         </button>

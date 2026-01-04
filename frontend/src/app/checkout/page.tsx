@@ -150,7 +150,7 @@ function CheckoutContent() {
         <main className="min-h-screen bg-background pb-nav">
             {/* Header */}
             <header className="bg-background/80 backdrop-blur-md p-4 sticky top-0 z-30 border-b border-border/50 flex items-center gap-4 pt-safe">
-                <button onClick={() => router.back()} className="p-2 hover:bg-secondary rounded-full transition-colors">
+                <button onClick={() => router.back()} className="btn-icon hover:bg-secondary">
                     <ArrowLeft className="w-6 h-6 text-foreground" />
                 </button>
                 <h1 className="text-xl font-bold tracking-tight">Finaliser ma commande</h1>
@@ -203,7 +203,7 @@ function CheckoutContent() {
                             placeholder="Entrez le code de l'agent... (ex: AG-402)"
                             value={agentCode}
                             onChange={(e) => setAgentCode(e.target.value)}
-                            className="w-full p-5 bg-secondary/50 dark:bg-zinc-900/60 border-2 border-border/30 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-lg font-bold placeholder:text-muted-foreground/50 text-foreground shadow-sm"
+                            className="input-standard"
                         />
                         {agentCode && (
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-green-500 text-white p-1 rounded-full">
@@ -329,21 +329,21 @@ function CheckoutContent() {
                                 key={method.id}
                                 onClick={() => setPaymentMethod(method.id as any)}
                                 className={cn(
-                                    "w-full p-5 rounded-2xl bg-secondary/30 dark:bg-zinc-900/40 border-2 flex items-center justify-between transition-all group active:scale-[0.98] duration-200",
-                                    paymentMethod === method.id ? "border-primary shadow-lg shadow-primary/5 bg-primary/5" : "border-border/30 hover:border-muted-foreground/30"
+                                    "w-full p-4 rounded-xl bg-secondary/30 dark:bg-zinc-900/40 border-2 flex items-center justify-between transition-all group active:scale-[0.98] duration-200",
+                                    paymentMethod === method.id ? "border-primary bg-primary/5" : "border-border/30"
                                 )}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center text-white font-black text-[10px] shadow-inner", method.color)}>
+                                    <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center text-white font-black text-[9px]", method.color)}>
                                         {method.short}
                                     </div>
-                                    <span className="font-bold text-foreground text-lg">{method.label}</span>
+                                    <span className="font-bold text-foreground">{method.label}</span>
                                 </div>
                                 <div className={cn(
-                                    "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all",
+                                    "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
                                     paymentMethod === method.id ? "border-primary bg-primary" : "border-border/50"
                                 )}>
-                                    {paymentMethod === method.id && <div className="w-2.5 h-2.5 rounded-full bg-white animate-in zoom-in" />}
+                                    {paymentMethod === method.id && <div className="w-2 h-2 rounded-full bg-white animate-in zoom-in" />}
                                 </div>
                             </button>
                         ))}
@@ -363,8 +363,8 @@ function CheckoutContent() {
                         onClick={handleOrder}
                         disabled={isProcessing || items.length === 0}
                         className={cn(
-                            "flex-[2] py-3.5 text-white text-sm font-black rounded-xl shadow-2xl transition transform active:scale-95 flex items-center justify-center gap-3 duration-300 tracking-widest",
-                            (isProcessing || items.length === 0) ? "bg-muted cursor-not-allowed opacity-50 grayscale" : "bg-primary hover:brightness-110 shadow-primary/30"
+                            "btn btn-primary flex-[2] py-4",
+                            (isProcessing || items.length === 0) && "opacity-50 grayscale cursor-not-allowed"
                         )}
                     >
                         {isProcessing ? (

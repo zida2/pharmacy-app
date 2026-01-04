@@ -196,13 +196,13 @@ export default function HomePage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => toggleTheme()}
-                className="p-3 bg-card dark:bg-zinc-900 rounded-2xl shadow-sm text-foreground active:scale-95 transition-transform"
+                className="btn-icon bg-card dark:bg-zinc-900 shadow-sm text-foreground"
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button
                 onClick={() => router.push('/profile')}
-                className="p-3 bg-card dark:bg-zinc-900 rounded-2xl shadow-sm text-foreground relative active:scale-95 transition-transform"
+                className="btn-icon bg-card dark:bg-zinc-900 shadow-sm text-foreground relative"
               >
                 <User size={20} />
                 {premiumState.isPremium && (
@@ -242,9 +242,9 @@ export default function HomePage() {
             </form>
             <button
               onClick={() => router.push("/scanner")}
-              className="p-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all active:scale-95 shrink-0"
+              className="btn-icon bg-primary text-white shadow-lg shadow-primary/20 shrink-0"
             >
-              <Camera size={18} />
+              <Camera size={20} />
             </button>
           </div>
 
@@ -259,7 +259,7 @@ export default function HomePage() {
               <button
                 key={cat.id}
                 onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[10px] font-black uppercase tracking-widest text-foreground/80"
+                className="flex items-center gap-1.5 px-3 py-2 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[9px] font-extrabold uppercase tracking-wider text-foreground/80 active:scale-95 transition-all"
               >
                 <span>{cat.icon}</span>
                 {cat.label}

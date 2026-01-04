@@ -86,9 +86,9 @@ export default function ProductCard({
                                 onClick={onAddToCart}
                                 disabled={!isAvailable}
                                 className={cn(
-                                    "p-2.5 rounded-xl transition-all",
+                                    "btn-icon transition-all",
                                     isAvailable
-                                        ? "bg-primary text-white hover:brightness-110 active:scale-95"
+                                        ? "bg-primary text-white"
                                         : "bg-secondary text-muted-foreground cursor-not-allowed"
                                 )}
                             >
@@ -230,14 +230,14 @@ export default function ProductCard({
                                 onClick={onAddToCart}
                                 disabled={!isAvailable}
                                 className={cn(
-                                    "px-4 py-2.5 rounded-xl font-black text-sm transition-all flex items-center gap-2",
+                                    "btn px-3 py-2",
                                     isAvailable
-                                        ? "bg-primary text-white hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20"
+                                        ? "bg-primary text-white shadow-lg shadow-primary/20"
                                         : "bg-secondary text-muted-foreground cursor-not-allowed"
                                 )}
                             >
                                 <ShoppingCart size={16} />
-                                Ajouter
+                                <span className="text-xs">Ajouter</span>
                             </button>
                         ) : (
                             <div className="flex items-center gap-2">

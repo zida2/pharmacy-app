@@ -140,11 +140,11 @@ export default function LiveChat() {
     };
 
     return (
-        <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-4 pointer-events-none">
+        <div className="fixed bottom-28 right-4 z-[100] flex flex-col items-end gap-4 pointer-events-none">
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="w-80 h-[32rem] glass-card rounded-[2rem] border-primary/20 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 pointer-events-auto">
+                <div className="w-[calc(100vw-2rem)] sm:w-80 h-[28rem] sm:h-[32rem] max-h-[70vh] glass-card rounded-[2rem] border-primary/20 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 pointer-events-auto">
                     {/* Header */}
                     <div className="bg-gradient-to-r from-primary to-primary/80 p-4 text-white flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -210,20 +210,20 @@ export default function LiveChat() {
                     </div>
 
                     {/* Input */}
-                    <div className="p-3 bg-card dark:bg-zinc-900 border-t border-border flex gap-2">
+                    <div className="p-3 bg-card dark:bg-zinc-900 border-t border-border flex gap-2 items-center">
                         <input
                             type="text"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                             placeholder="Écrivez votre question..."
-                            className="flex-1 bg-secondary dark:bg-zinc-800 text-foreground border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 outline-none placeholder:text-muted-foreground"
+                            className="input-standard flex-1 bg-secondary/50 dark:bg-zinc-800 border-none"
                             disabled={isTyping}
                         />
                         <button
                             onClick={handleSend}
                             disabled={!message.trim() || isTyping}
-                            className="p-3 bg-primary text-white rounded-xl shadow-lg ring-4 ring-primary/10 hover:brightness-110 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="btn-icon bg-primary text-white shadow-lg shrink-0"
                         >
                             {isTyping ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                         </button>

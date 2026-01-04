@@ -40,7 +40,7 @@ export default function CartPage() {
             {/* Header */}
             <header className="sticky top-0 z-20 bg-card dark:bg-zinc-900 shadow-sm border-b border-border p-4">
                 <div className="flex items-center gap-4">
-                    <button onClick={() => router.back()} className="p-2 hover:bg-secondary rounded-full">
+                    <button onClick={() => router.back()} className="btn-icon hover:bg-secondary">
                         <ArrowLeft className="w-6 h-6" />
                     </button>
                     <h1 className="text-xl font-bold">Mon Panier</h1>
@@ -60,7 +60,7 @@ export default function CartPage() {
                             <p className="text-muted-foreground mb-6">Ajoutez des produits pour commencer</p>
                             <button
                                 onClick={() => router.push("/")}
-                                className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-semibold"
+                                className="btn btn-primary px-8"
                             >
                                 Commencer mes achats
                             </button>
@@ -162,7 +162,7 @@ export default function CartPage() {
                 <div className="fixed bottom-0 left-0 right-0 p-4 bg-card dark:bg-zinc-900 border-t border-border z-20">
                     <button
                         onClick={() => router.push("/checkout")}
-                        className="w-full py-4 bg-primary text-primary-foreground text-lg font-bold rounded-2xl shadow-2xl hover:opacity-90 transition active:scale-[0.98]"
+                        className="btn btn-primary w-full py-4 text-base"
                     >
                         Passer au paiement • {total} FCFA
                     </button>

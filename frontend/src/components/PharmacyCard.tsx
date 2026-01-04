@@ -127,14 +127,13 @@ export default function PharmacyCard({
                             e.stopPropagation();
                             router.push(`/pharmacy?id=${pharmacy.id}`);
                         }}
-                        className="flex-1 py-3 bg-secondary text-secondary-foreground font-bold rounded-xl hover:bg-secondary/80 transition-all flex items-center justify-center gap-2 text-sm"
+                        className="btn btn-secondary flex-1"
                     >
                         Explorer
                     </button>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            // If product is provided in search, add it directly and go to pharmacy to choose more or checkout
                             if (product) {
                                 addToCart(product, pharmacy);
                                 router.push(`/pharmacy?id=${pharmacy.id}`);
@@ -142,7 +141,7 @@ export default function PharmacyCard({
                                 router.push(`/pharmacy?id=${pharmacy.id}`);
                             }
                         }}
-                        className="flex-[1.5] py-3 bg-primary text-primary-foreground font-black rounded-xl hover:brightness-110 transition-all shadow-[0_10px_20px_-5px_rgba(99,102,241,0.4)] flex items-center justify-center gap-2 text-sm active:translate-y-1"
+                        className="btn btn-primary flex-[1.5]"
                     >
                         <ShoppingBag size={18} />
                         Commandez
