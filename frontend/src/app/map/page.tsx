@@ -211,35 +211,35 @@ function MapContent() {
     return (
         <main className="relative w-full h-screen overflow-hidden bg-zinc-950">
             {/* --- TOP HUD (AÉRÉ & STRUCTURÉ) --- */}
-            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-12 pointer-events-none">
-                <div className="max-w-xl mx-auto space-y-4">
+            <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-10 pointer-events-none">
+                <div className="max-w-xl mx-auto space-y-3">
                     {/* Header Row: Back + Search + Scan */}
-                    <div className="flex items-center gap-3 pointer-events-auto">
+                    <div className="flex items-center gap-2 pointer-events-auto">
                         <button
                             onClick={() => router.back()}
-                            className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-card/95 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-card/95 backdrop-blur-2xl rounded-xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
                         >
-                            <ArrowLeft size={22} />
+                            <ArrowLeft size={20} />
                         </button>
 
                         <div className="flex-1 relative group">
-                            <div className="absolute inset-y-0 left-4 flex items-center text-primary">
-                                <Search size={20} />
+                            <div className="absolute inset-y-0 left-3.5 flex items-center text-primary">
+                                <Search size={18} />
                             </div>
                             <input
                                 type="text"
                                 value={productQuery}
                                 onChange={(e) => setProductQuery(e.target.value)}
                                 placeholder="Recherche..."
-                                className="w-full h-12 pl-12 pr-4 bg-card/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60 text-sm font-bold"
+                                className="w-full h-10 pl-11 pr-4 bg-card/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60 text-xs font-bold"
                             />
                         </div>
 
                         <button
                             onClick={handleScan}
-                            className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary rounded-2xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary rounded-xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
                         >
-                            <Camera size={22} />
+                            <Camera size={20} />
                         </button>
                     </div>
 
@@ -248,25 +248,25 @@ function MapContent() {
                         <button
                             onClick={() => setSortBy('distance')}
                             className={cn(
-                                "flex items-center gap-2 px-4 h-10 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg border",
+                                "flex items-center gap-2 px-3 h-9 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-lg border",
                                 sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
                             )}
                         >
-                            <Locate size={14} /> Proche
+                            <Locate size={12} /> Proche
                         </button>
                         <button
                             onClick={() => setSortBy('price')}
                             className={cn(
-                                "flex items-center gap-2 px-4 h-10 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg border",
+                                "flex items-center gap-2 px-3 h-9 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-lg border",
                                 sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
                             )}
                         >
-                            <Zap size={14} /> Moins Cher
+                            <Zap size={12} /> Moins Cher
                         </button>
 
                         <div className="hidden sm:flex flex-1" />
 
-                        <div className="px-3 h-10 flex items-center bg-zinc-900/90 backdrop-blur-md rounded-xl border border-white/10 text-[9px] font-black text-muted-foreground whitespace-nowrap">
+                        <div className="px-3 h-9 flex items-center bg-zinc-900/90 backdrop-blur-md rounded-lg border border-white/10 text-[9px] font-black text-muted-foreground whitespace-nowrap">
                             {pharmacies.length} DISPONIBLES
                         </div>
                     </div>
@@ -289,21 +289,21 @@ function MapContent() {
             </div>
 
             {/* --- SIDEBAR TOOLS --- */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+            <div className="absolute right-4 top-[45%] -translate-y-1/2 z-20 flex flex-col gap-2.5">
                 <button
                     onClick={() => requestLocation()}
                     className={cn(
-                        "w-12 h-12 flex items-center justify-center rounded-2xl shadow-2xl transition-all active:scale-95 border",
+                        "w-10 h-10 flex items-center justify-center rounded-xl shadow-2xl transition-all active:scale-95 border",
                         isLocating ? "bg-primary animate-pulse" : "bg-card text-primary border-white/10"
                     )}
                 >
-                    <Target size={24} />
+                    <Target size={22} />
                 </button>
                 <button
                     onClick={() => setMapView(p => ({ ...p, pitch: p.pitch === 60 ? 0 : 60 }))}
-                    className="w-12 h-12 flex items-center justify-center bg-card text-foreground rounded-2xl shadow-2xl border border-white/10 active:scale-95 transition-all"
+                    className="w-10 h-10 flex items-center justify-center bg-card text-foreground rounded-xl shadow-2xl border border-white/10 active:scale-95 transition-all"
                 >
-                    <Layers size={22} />
+                    <Layers size={21} />
                 </button>
             </div>
 
@@ -372,7 +372,7 @@ function MapContent() {
                                 </button>
                             </div>
 
-                            <div className="flex gap-4 overflow-x-auto pb-4 px-2 scrollbar-hide snap-x">
+                            <div className="flex gap-3 overflow-x-auto pb-4 px-1 scrollbar-hide snap-x">
                                 {pharmacies.slice(0, 6).map((p) => (
                                     <div
                                         key={p.id}
@@ -380,20 +380,20 @@ function MapContent() {
                                             setSelectedPharmacy(p);
                                             setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                         }}
-                                        className="min-w-[240px] bg-card/90 backdrop-blur-xl rounded-3xl p-5 shadow-2xl border border-white/5 snap-center active:scale-95 transition-all"
+                                        className="min-w-[210px] bg-card/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/10 snap-center active:scale-95 transition-all outline-none"
                                     >
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div className={cn("w-10 h-10 rounded-2xl flex items-center justify-center text-xl",
+                                        <div className="flex justify-between items-start mb-2">
+                                            <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center text-sm",
                                                 p.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
                                             )}>
                                                 {p.status === 'guard' ? '🟣' : '🟢'}
                                             </div>
-                                            <span className="text-[10px] font-black text-primary px-2 py-1 bg-primary/10 rounded-lg italic">
+                                            <span className="text-[9px] font-black text-primary px-2 py-0.5 bg-primary/10 rounded-md italic">
                                                 {p.distance?.toFixed(1)} KM
                                             </span>
                                         </div>
-                                        <h4 className="font-black text-base text-foreground truncate mb-1 italic">{p.name}</h4>
-                                        <div className="flex items-center justify-between text-[10px] text-muted-foreground font-black">
+                                        <h4 className="font-black text-sm text-foreground truncate mb-1 italic">{p.name}</h4>
+                                        <div className="flex items-center justify-between text-[9px] text-muted-foreground font-black">
                                             <span className="flex items-center gap-1 italic uppercase tracking-tighter">
                                                 <Clock size={10} /> {getEstimatedTime(p.distance || 0)}
                                             </span>

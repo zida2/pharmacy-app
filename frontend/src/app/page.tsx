@@ -177,15 +177,15 @@ export default function HomePage() {
       </div>
 
       {/* Top Bar / Search */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-8 bg-gradient-to-b from-background via-background/90 to-transparent">
-        <div className="max-w-7xl mx-auto space-y-4">
+      <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-4 bg-gradient-to-b from-background via-background/90 to-transparent">
+        <div className="max-w-7xl mx-auto space-y-3">
           {/* Greeting & Quick Actions */}
-          <div className="flex justify-between items-start pt-4">
+          <div className="flex justify-between items-start pt-3">
             <div>
-              <h1 className="text-2xl font-black italic tracking-tight text-foreground">
+              <h1 className="text-xl font-black italic tracking-tight text-foreground leading-none">
                 Bonjour 👋
               </h1>
-              <p className="text-[10px] font-black uppercase tracking-widest text-primary">
+              <p className="text-[9px] font-black uppercase tracking-widest text-primary mt-1">
                 Quelle pharmacie cherchez-vous ?
               </p>
               <div className="flex items-center gap-2 mt-2 px-1">
@@ -266,7 +266,7 @@ export default function HomePage() {
               <button
                 key={cat.id}
                 onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
-                className="flex items-center gap-1.5 px-3 py-2 bg-card border border-border rounded-xl whitespace-nowrap shadow-sm text-[9px] font-extrabold uppercase tracking-wider text-foreground/80 active:scale-95 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-lg whitespace-nowrap shadow-sm text-[8px] font-extrabold uppercase tracking-wider text-foreground/80 active:scale-95 transition-all outline-none"
               >
                 <span>{cat.icon}</span>
                 {cat.label}
@@ -288,7 +288,7 @@ export default function HomePage() {
 
       {/* Content Area - Scrollable Feed */}
       <div className="flex-1 overflow-y-auto pb-nav">
-        <div className="max-w-xl mx-auto px-4 pt-[15rem] space-y-6">
+        <div className="max-w-xl mx-auto px-4 pt-[13rem] space-y-6">
           <div className="flex justify-between items-center px-1">
             <h2 className="text-xl font-black italic text-foreground tracking-tight">Pharmacies à proximité</h2>
             <div className="bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
