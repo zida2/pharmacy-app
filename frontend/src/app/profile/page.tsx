@@ -432,9 +432,14 @@ export default function ProfilePage() {
                 {/* PILULIER INTELLIGENT */}
                 <section className="space-y-4">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <div className="w-1.5 h-6 bg-primary rounded-full" />
-                            <h2 className="font-bold text-lg italic text-foreground">Mon Pilulier Intelligent 🔔</h2>
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                                <Bell className="animate-tada" size={24} />
+                            </div>
+                            <div>
+                                <h2 className="font-black text-xl italic tracking-tighter text-foreground">Mon Pilulier</h2>
+                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] opacity-60">Suivi Intelligent</p>
+                            </div>
                         </div>
                         <button
                             onClick={() => {
@@ -446,134 +451,201 @@ export default function ProfilePage() {
                                 setNewTime("08:00");
                                 setNewDays(["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]);
                             }}
-                            className="p-2 bg-primary/10 text-primary rounded-xl transition hover:bg-primary/20 active:scale-95"
+                            className="w-10 h-10 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 active:scale-90 transition-all"
                         >
                             <Plus size={20} />
                         </button>
                     </div>
 
                     {isAdding && (
-                        <div className="glass-card p-6 rounded-3xl border-primary/40 animate-in fade-in slide-in-from-top-4">
-                            <h3 className="font-black mb-4 text-foreground">{editingIndex !== null ? "Modifier le Rappel" : "Nouveau Rappel"}</h3>
-                            <input
-                                type="text"
-                                autoComplete="off"
-                                placeholder="Nom du médicament"
-                                className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl mb-3 outline-none focus:ring-2 font-bold focus:ring-primary/20 text-foreground"
-                                value={newMed}
-                                onChange={(e) => setNewMed(e.target.value)}
-                            />
+                        <div className="glass-card p-6 rounded-[2.5rem] border-primary/30 shadow-2xl animate-in zoom-in-95 duration-300 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
 
-                            <div className="grid grid-cols-2 gap-3 mb-3">
-                                <input
-                                    type="time"
-                                    autoComplete="off"
-                                    className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl outline-none focus:ring-2 font-bold focus:ring-primary/20 text-foreground"
-                                    value={newTime}
-                                    onChange={(e) => setNewTime(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    autoComplete="off"
-                                    placeholder="Dose (ex: 1 cp)"
-                                    className="w-full p-4 bg-secondary dark:bg-zinc-800 rounded-2xl outline-none focus:ring-2 font-bold focus:ring-primary/20 text-foreground"
-                                    value={newDose}
-                                    onChange={(e) => setNewDose(e.target.value)}
-                                />
-                            </div>
+                            <h3 className="font-black text-lg italic mb-6 text-foreground flex items-center gap-2">
+                                {editingIndex !== null ? <Edit size={18} /> : <Plus size={18} />}
+                                {editingIndex !== null ? "Modifier" : "Ajouter un médicament"}
+                            </h3>
 
-                            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
-                                {["Avant repas", "Après repas", "A jeun", "Coucher"].map(opt => (
+                            <div className="space-y-5">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Médicament</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="off"
+                                        placeholder="Ex: Doliprane 1000"
+                                        className="w-full p-4 bg-secondary/50 border-2 border-transparent focus:border-primary/20 rounded-2xl outline-none font-bold text-foreground transition-all"
+                                        value={newMed}
+                                        onChange={(e) => setNewMed(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Heure</label>
+                                        <input
+                                            type="time"
+                                            className="w-full p-4 bg-secondary/50 border-2 border-transparent focus:border-primary/20 rounded-2xl outline-none font-bold text-foreground transition-all"
+                                            value={newTime}
+                                            onChange={(e) => setNewTime(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Dosage</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Ex: 1 cp"
+                                            className="w-full p-4 bg-secondary/50 border-2 border-transparent focus:border-primary/20 rounded-2xl outline-none font-bold text-foreground transition-all"
+                                            value={newDose}
+                                            onChange={(e) => setNewDose(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Moment de prise</label>
+                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                        {["Avant repas", "Après repas", "A jeun", "Coucher"].map(opt => (
+                                            <button
+                                                key={opt}
+                                                onClick={() => setNewInstruction(opt)}
+                                                className={cn(
+                                                    "px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all border-2",
+                                                    newInstruction === opt
+                                                        ? "bg-primary border-primary text-white shadow-lg shadow-primary/20"
+                                                        : "bg-secondary/40 border-transparent text-muted-foreground hover:bg-secondary"
+                                                )}
+                                            >
+                                                {opt}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Fréquence</label>
+                                    <div className="flex justify-between gap-1 p-1 bg-secondary/40 rounded-2xl border border-white/5">
+                                        {["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((d) => (
+                                            <button
+                                                key={d}
+                                                onClick={() => {
+                                                    if (newDays.includes(d)) {
+                                                        setNewDays(newDays.filter(day => day !== d));
+                                                    } else {
+                                                        setNewDays([...newDays, d]);
+                                                    }
+                                                }}
+                                                className={cn(
+                                                    "w-10 h-10 rounded-xl text-[10px] font-black flex items-center justify-center transition-all",
+                                                    newDays.includes(d)
+                                                        ? "bg-primary text-white shadow-md"
+                                                        : "text-muted-foreground hover:bg-secondary"
+                                                )}
+                                            >
+                                                {d[0]}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-3 pt-2">
                                     <button
-                                        key={opt}
-                                        onClick={() => setNewInstruction(opt)}
-                                        className={cn("px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all", newInstruction === opt ? "bg-primary text-white" : "bg-secondary text-muted-foreground")}
+                                        onClick={() => { setIsAdding(false); setEditingIndex(null); }}
+                                        className="flex-1 py-4 bg-secondary/80 rounded-2xl font-black text-xs uppercase tracking-widest text-foreground active:scale-95 transition-all"
                                     >
-                                        {opt}
+                                        Annuler
                                     </button>
-                                ))}
-                            </div>
-
-                            {/* Day Selector */}
-                            <div className="flex justify-between mb-4 gap-1">
-                                {["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((d) => (
                                     <button
-                                        key={d}
-                                        onClick={() => {
-                                            if (newDays.includes(d)) {
-                                                setNewDays(newDays.filter(day => day !== d));
-                                            } else {
-                                                setNewDays([...newDays, d]);
-                                            }
-                                        }}
-                                        className={cn(
-                                            "w-8 h-8 rounded-full text-[10px] font-black flex items-center justify-center transition-all",
-                                            newDays.includes(d) ? "bg-primary text-white" : "bg-secondary text-muted-foreground"
-                                        )}
+                                        onClick={addReminder}
+                                        className="flex-[2] py-4 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-primary/20 active:scale-95 transition-all"
                                     >
-                                        {d[0]}
+                                        {editingIndex !== null ? "Enregistrer" : "Confirmer"}
                                     </button>
-                                ))}
-                            </div>
-
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => { setIsAdding(false); setEditingIndex(null); }}
-                                    className="flex-1 py-3 bg-secondary rounded-xl font-bold text-sm text-foreground"
-                                >
-                                    Annuler
-                                </button>
-                                <button
-                                    onClick={addReminder}
-                                    className="flex-1 py-3 bg-primary text-white rounded-xl font-black text-sm"
-                                >
-                                    {editingIndex !== null ? "Enregistrer" : "Ajouter"}
-                                </button>
+                                </div>
                             </div>
                         </div>
                     )}
 
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-1 gap-4">
                         {reminders.length === 0 ? (
-                            <div className="text-center py-10 opacity-30 italic font-bold">Aucun rappel configuré</div>
-                        ) : reminders.map((rem, i) => (
-                            <div key={i} onClick={() => startEdit(i)} className={cn("glass-card p-5 rounded-3xl border-primary/20 flex items-center justify-between group transition-all hover:translate-x-1 cursor-pointer active:scale-95", !rem.active && "opacity-60")}>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-                                        <Clock size={24} />
-                                    </div>
-                                    <div>
-                                        <div className="font-black text-lg leading-tight text-foreground flex items-center gap-2">
-                                            {rem.med}
-                                            <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase">{rem.dose || "1 cp"}</span>
-                                        </div>
-                                        <div className="text-xs text-muted-foreground font-bold">{rem.time} • {rem.days}</div>
-                                        {rem.instruction && <div className="text-[10px] text-muted-foreground font-medium italic mt-0.5">{rem.instruction}</div>}
-                                    </div>
+                            <div className="text-center py-16 bg-secondary/20 rounded-[2.5rem] border border-dashed border-border/40">
+                                <div className="w-16 h-16 bg-secondary/40 rounded-full flex items-center justify-center mx-auto mb-4 grayscale opacity-20">
+                                    <Zap size={32} />
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); deleteReminder(i); }}
-                                        className="p-2 text-red-500 hover:bg-red-500/10 rounded-full transition-all"
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
-                                    <label className="relative inline-flex items-center cursor-pointer" onClick={(e) => e.stopPropagation()}>
-                                        <input
-                                            type="checkbox"
-                                            checked={rem.active}
-                                            className="sr-only peer"
-                                            onChange={() => {
-                                                const newRem = [...reminders];
-                                                newRem[i].active = !newRem[i].active;
-                                                setReminders(newRem);
-                                            }}
-                                        />
-                                        <div className="w-11 h-6 bg-gray-200 dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                                    </label>
-                                </div>
+                                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest opacity-40">Votre pilulier est vide</p>
                             </div>
-                        ))}
+                        ) : reminders.map((rem, i) => {
+                            const [h] = rem.time.split(':').map(Number);
+                            const isNight = h >= 19 || h < 6;
+                            const isMorning = h >= 6 && h < 12;
+
+                            return (
+                                <div
+                                    key={i}
+                                    onClick={() => startEdit(i)}
+                                    className={cn(
+                                        "relative overflow-hidden glass-card p-5 rounded-[2rem] border-primary/10 flex items-center justify-between group transition-all hover:bg-secondary/40 cursor-pointer active:scale-[0.98]",
+                                        !rem.active && "opacity-60 bg-secondary/10"
+                                    )}
+                                >
+                                    {/* Visual indicators */}
+                                    <div className={cn(
+                                        "absolute top-0 left-0 w-1.5 h-full transition-all",
+                                        isMorning ? "bg-amber-400" : isNight ? "bg-indigo-600" : "bg-orange-500",
+                                        !rem.active && "bg-slate-400"
+                                    )} />
+
+                                    <div className="flex items-center gap-5 relative z-10">
+                                        <div className={cn(
+                                            "w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner transition-all group-hover:scale-110",
+                                            isMorning ? "bg-amber-400/10 text-amber-600" :
+                                                isNight ? "bg-indigo-600/10 text-indigo-600" :
+                                                    "bg-orange-500/10 text-orange-600",
+                                            !rem.active && "bg-slate-200 text-slate-400"
+                                        )}>
+                                            {isMorning ? <Sun size={24} /> : isNight ? <Moon size={24} /> : <Sparkles size={24} />}
+                                        </div>
+                                        <div>
+                                            <div className="font-black text-xl italic leading-tight text-foreground flex items-center gap-2">
+                                                {rem.med}
+                                                <span className="text-[9px] font-black uppercase tracking-widest bg-primary/10 text-primary px-2 py-0.5 rounded-lg border border-primary/5">{rem.dose || "1 cp"}</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <div className="text-sm font-black text-foreground italic">{rem.time}</div>
+                                                <div className="w-1 h-1 bg-muted-foreground rounded-full opacity-30" />
+                                                <div className="text-[10px] font-bold text-muted-foreground uppercase">{rem.days}</div>
+                                            </div>
+                                            {rem.instruction && (
+                                                <div className="mt-1 flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase italic tracking-tight bg-emerald-500/5 px-2 py-0.5 rounded-md w-fit">
+                                                    <Check size={10} /> {rem.instruction}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col items-end gap-3 relative z-10">
+                                        <label className="relative inline-flex items-center cursor-pointer" onClick={(e) => e.stopPropagation()}>
+                                            <input
+                                                type="checkbox"
+                                                checked={rem.active}
+                                                className="sr-only peer"
+                                                onChange={() => {
+                                                    const newRem = [...reminders];
+                                                    newRem[i].active = !newRem[i].active;
+                                                    setReminders(newRem);
+                                                }}
+                                            />
+                                            <div className="w-12 h-7 bg-secondary dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-inner"></div>
+                                        </label>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); deleteReminder(i); }}
+                                            className="p-2 text-red-500/40 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all opacity-0 group-hover:opacity-100"
+                                        >
+                                            <Trash2 size={16} />
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </section>
 
