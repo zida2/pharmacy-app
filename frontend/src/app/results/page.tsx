@@ -52,7 +52,7 @@ function ResultsContent() {
     return (
         <main className="min-h-screen bg-background pb-nav overflow-x-hidden">
             {/* Header */}
-            <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border pt-safe">
+            <header className="sticky top-0 z-30 bg-background border-b border-border pt-safe shadow-sm">
                 <div className="flex items-center gap-4 p-4 max-w-lg mx-auto">
                     <button
                         onClick={() => router.back()}
@@ -79,7 +79,7 @@ function ResultsContent() {
                         </button>
                         <button
                             onClick={() => router.push(`/map?q=${encodeURIComponent(query)}`)}
-                            className="btn-icon hover:bg-secondary text-foreground bg-secondary/50"
+                            className="btn-icon hover:bg-secondary text-foreground bg-secondary"
                         >
                             <MapIcon className="w-6 h-6" />
                         </button>
