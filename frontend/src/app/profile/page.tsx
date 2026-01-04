@@ -56,11 +56,7 @@ export default function ProfilePage() {
 
     const [activeDocument, setActiveDocument] = useState<any>(null);
     const [isAddingEntry, setIsAddingEntry] = useState(false);
-    const [healthEntries, setHealthEntries] = useState<any[]>([
-        { id: 1, date: "15 Dec 2025", type: "Ordonnance", provider: "Dr. Sawadogo", icon: <FileText className="text-primary" /> },
-        { id: 2, date: "02 Dec 2025", type: "Rapport Bio", provider: "Labo Saint-Jean", icon: <ClipboardList className="text-emerald-500" /> },
-        { id: 3, date: "10 Nov 2025", type: "Ordonnance", provider: "Clinique Suka", icon: <FileText className="text-primary" /> }
-    ]);
+    const [healthEntries, setHealthEntries] = useState<any[]>([]);
     const [newHealthEntry, setNewHealthEntry] = useState({ type: "Consultation", provider: "", date: new Date().toISOString().split('T')[0], notes: "" });
 
     // New Modal States for better UX (Replacing prompts)
@@ -138,6 +134,7 @@ export default function ProfilePage() {
                 if (profile.notificationSettings) setNotificationSettings(profile.notificationSettings);
                 if (profile.securitySettings) setSecuritySettings(profile.securitySettings);
                 if (profile.insurances) setInsurances(profile.insurances);
+                if (profile.healthEntries) setHealthEntries(profile.healthEntries);
 
                 // Check Premium Status
                 const isSubscribed = profile.userInfo?.isPremium === true;
@@ -191,7 +188,8 @@ export default function ProfilePage() {
                 subscriptions,
                 notificationSettings,
                 securitySettings,
-                insurances
+                insurances,
+                healthEntries
             });
         }, 1000); // Wait 1s after last change to sync
 
@@ -290,8 +288,7 @@ export default function ProfilePage() {
             date: new Date(newHealthEntry.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
             type: newHealthEntry.type,
             provider: newHealthEntry.provider,
-            notes: newHealthEntry.notes,
-            icon: newHealthEntry.type === "Ordonnance" ? <FileText className="text-primary" /> : <ClipboardList className="text-emerald-500" />
+            notes: newHealthEntry.notes
         };
 
         setHealthEntries([entry, ...healthEntries]);
@@ -1051,7 +1048,11 @@ export default function ProfilePage() {
                                         >
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center shadow-sm">
-                                                    {doc.icon || <FileText className="text-primary" />}
+                                                    {doc.type === "Ordonnance" ? (
+                                                        <FileText className="text-primary" />
+                                                    ) : (
+                                                        <ClipboardList className="text-emerald-500" />
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <div className="font-bold text-sm text-foreground">{doc.type}</div>

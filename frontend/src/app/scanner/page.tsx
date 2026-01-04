@@ -105,17 +105,43 @@ function ScannerContent() {
         router.push(returnUrl);
     };
 
-    const handleSaveDocument = () => {
-        alert("Document sauvegardé dans votre Carnet de Santé !");
-        router.push(returnUrl);
+    const handleSaveDocument = async () => {
+        if (!scannedDoc || !auth.currentUser) {
+            router.push(returnUrl);
+            return;
+        }
+
+        try {
+            const profile = await firebaseService.getUserProfile(auth.currentUser.uid) as any;
+            const currentEntries = profile?.healthEntries || [];
+
+            const newEntry = {
+                id: Date.now(),
+                date: scannedDoc.date,
+                type: scannedDoc.type,
+                provider: "Analyse IA Gemini",
+                notes: "Document numérisé via l'application.",
+                verified: true
+            };
+
+            await firebaseService.saveUserProfile(auth.currentUser.uid, {
+                healthEntries: [newEntry, ...currentEntries]
+            });
+
+            alert("Document sauvegardé dans votre Carnet de Santé !");
+            router.push(returnUrl);
+        } catch (error) {
+            console.error("Error saving document:", error);
+            alert("Erreur lors de la sauvegarde du document.");
+        }
     };
 
     return (
         <div className="container mx-auto max-w-lg min-h-screen flex flex-col pt-safe p-4">
             {/* Header */}
             <header className="py-4 flex items-center gap-4">
-                <button onClick={() => router.back()} className="p-3 bg-secondary rounded-2xl">
-                    <ArrowLeft size={24} />
+                <button onClick={() => router.back()} className="btn-icon bg-secondary">
+                    <ArrowLeft size={20} />
                 </button>
                 <h1 className="text-xl font-black italic tracking-tight">
                     {mode === "insurance" ? "Scanner Carte Assurance" : mode === "document" ? "Scanner Document" : "Scanner Ordonnance"}
@@ -158,15 +184,15 @@ function ScannerContent() {
                                 fileInputRef.current?.click();
                             }}
                             className={cn(
-                                "w-full py-4 text-white text-base font-black rounded-2xl shadow-xl transition active:scale-95 tracking-widest mt-4 flex items-center justify-center gap-2",
+                                "btn btn-primary w-full py-6 text-sm",
                                 ((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial)
                                     ? "bg-amber-500 shadow-amber-500/20"
-                                    : "bg-primary shadow-primary/20 hover:brightness-110"
+                                    : ""
                             )}
                         >
                             {((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) ? (
                                 <>
-                                    <Crown size={20} /> PASSER PREMIUM
+                                    <Crown size={18} /> PASSER PREMIUM
                                 </>
                             ) : (
                                 <>
@@ -231,7 +257,7 @@ function ScannerContent() {
                                 </div>
                                 <button
                                     onClick={handleSaveInsurance}
-                                    className="w-full py-4 bg-primary text-white text-base font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 transition active:scale-95 tracking-widest"
+                                    className="btn btn-primary w-full py-6 text-sm"
                                 >
                                     CONFIRMER & UTILISER
                                 </button>
@@ -258,7 +284,7 @@ function ScannerContent() {
                                 </div>
                                 <button
                                     onClick={handleSaveDocument}
-                                    className="w-full py-4 bg-primary text-white text-base font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 transition active:scale-95 tracking-widest"
+                                    className="btn btn-primary w-full py-6 text-sm"
                                 >
                                     ENREGISTRER 📂
                                 </button>
@@ -311,7 +337,7 @@ function ScannerContent() {
 
                         <button
                             onClick={() => setStep("upload")}
-                            className="w-full py-3 bg-secondary/50 text-muted-foreground font-bold rounded-xl transition hover:bg-secondary/80 text-xs uppercase"
+                            className="btn btn-secondary w-full py-6 text-xs"
                         >
                             REPRENDRE LA PHOTO
                         </button>
