@@ -1,0 +1,6 @@
+# Fichier de configuration Firebase Functions
+# Ne pas commiter dans Git
+node_modules/
+*.log
+.env
+.env.local
