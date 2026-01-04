@@ -1797,7 +1797,8 @@ export default function ProfilePage() {
                 message="Connectez-vous pour sauvegarder votre profil médical, vos rappels de pilulier et vos adresses en toute sécurité."
             />
 
-            {/* Super Admin Control Tower Access - Only for Admins or Pharmacy Staff */}
+            {/* PROFESSIONAL SPACE - HIDDEN FOR NOW */}
+            {/*
             {
                 (userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
                     <div className="mt-12 mb-32 text-center animate-in fade-in duration-1000 delay-700">
@@ -1816,7 +1817,6 @@ export default function ProfilePage() {
                     </div>
                 )
             }
-            {/* PROFESSIONAL ACCESS MODAL */}
             {
                 showAdminLogin && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-300">
@@ -1894,6 +1894,7 @@ export default function ProfilePage() {
                     </div>
                 )
             }
+            */}
         </main >
     );
 }
