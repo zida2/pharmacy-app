@@ -182,9 +182,9 @@ export default function ProductCard({
             </div>
 
             {/* Product Details */}
-            <div className="p-4 space-y-3">
+            <div className="p-3 space-y-2">
                 {/* Name */}
-                <h3 className="font-extrabold text-foreground line-clamp-2 leading-tight min-h-[2.5rem]">
+                <h3 className="font-extrabold text-foreground line-clamp-2 leading-tight min-h-[2.2rem] text-sm">
                     {product.name}
                 </h3>
 
@@ -218,7 +218,7 @@ export default function ProductCard({
                 {/* Price & Action */}
                 <div className="flex items-center justify-between pt-2 border-t border-border/50">
                     <div>
-                        <div className="text-2xl font-black text-primary font-mono leading-none">
+                        <div className="text-xl font-black text-primary font-mono leading-none">
                             {product.price}
                         </div>
                         <div className="text-[9px] font-bold text-muted-foreground uppercase">FCFA</div>
@@ -230,14 +230,14 @@ export default function ProductCard({
                                 onClick={onAddToCart}
                                 disabled={!isAvailable}
                                 className={cn(
-                                    "btn px-3 py-2",
+                                    "btn px-2 flex-1 min-w-[70px]",
                                     isAvailable
-                                        ? "bg-primary text-white shadow-lg shadow-primary/20"
+                                        ? "bg-primary text-white shadow-lg"
                                         : "bg-secondary text-muted-foreground cursor-not-allowed"
                                 )}
                             >
-                                <ShoppingCart size={16} />
-                                <span className="text-xs">Ajouter</span>
+                                <ShoppingCart size={14} />
+                                <span className="text-[10px]">AJOUTER</span>
                             </button>
                         ) : (
                             <div className="flex items-center gap-2">

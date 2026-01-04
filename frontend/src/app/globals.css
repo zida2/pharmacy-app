@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #6366f1;
-  --primary-rgb: 99, 102, 241;
+  --primary: #4f46e5;
+  /* Deeper Indigo for better accessibility */
+  --primary-rgb: 79, 70, 229;
   --primary-foreground: #ffffff;
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -12,7 +13,8 @@
   --border: rgba(226, 232, 240, 0.8);
   --muted-foreground: #64748b;
   --radius-custom: 1.5rem;
-  --pb-nav-height: 5rem;
+  --pb-nav-height: 6rem;
+  /* Increased for better clearance */
 }
 
 .dark {
@@ -98,14 +100,16 @@
   .btn-primary {
     background-color: var(--primary);
     color: var(--primary-foreground);
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+    /* Slightly reduced padding */
     box-shadow: 0 10px 15px -3px rgba(var(--primary-rgb), 0.2);
   }
 
   .btn-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+    /* Slightly reduced padding */
     border: 1px solid var(--border);
   }
 

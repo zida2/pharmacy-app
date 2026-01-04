@@ -107,7 +107,7 @@ function PharmacyContent() {
     }
 
     return (
-        <div className="min-h-screen bg-background pb-20">
+        <div className="min-h-screen bg-background pb-nav">
             {/* Header / Banner */}
             <div className="relative h-72 bg-slate-900 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
@@ -200,7 +200,7 @@ function PharmacyContent() {
                     </div>
 
                     {filteredProducts.length > 0 ? (
-                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                             {filteredProducts.map(product => {
                                 const cartItem = items.find(item => item.product.id === product.id && item.pharmacyId === pharmacy!.id);
                                 return (
