@@ -47,7 +47,7 @@ function ScannerContent() {
     const [scannedCard, setScannedCard] = useState<{ provider: string, number: string, coverage: number } | null>(null);
 
     // Document State
-    const [scannedDoc, setScannedDoc] = useState<{ type: string, date: string, preview: string } | null>(null);
+    const [scannedDoc, setScannedDoc] = useState<{ type: string, date: string, provider: string, notes: string } | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -74,8 +74,9 @@ function ScannerContent() {
             } else if (mode === "document") {
                 setScannedDoc({
                     type: "Rapport Médical",
-                    date: new Date().toLocaleDateString('fr-FR'),
-                    preview: "Doc #88392"
+                    date: new Date().toISOString().split('T')[0],
+                    provider: "Clinique Suka",
+                    notes: "Document numérisé via l'application."
                 });
             } else {
                 setScannedMeds([
@@ -120,10 +121,10 @@ function ScannerContent() {
 
             const newEntry = {
                 id: Date.now(),
-                date: scannedDoc.date,
+                date: new Date(scannedDoc.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
                 type: scannedDoc.type,
-                provider: "Analyse IA Gemini",
-                notes: "Document numérisé via l'application.",
+                provider: scannedDoc.provider,
+                notes: scannedDoc.notes,
                 verified: true,
                 image: preview
             };
@@ -269,20 +270,59 @@ function ScannerContent() {
                         ) : mode === "document" && scannedDoc ? (
                             // DOCUMENT RESULT
                             <>
-                                <div className="glass-card p-6 rounded-3xl border-primary/30 relative overflow-hidden bg-gradient-to-br from-primary/10 to-transparent flex flex-col items-center text-center">
-                                    <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6">
-                                        <CheckCircle size={40} className="text-primary" />
-                                    </div>
-                                    <h3 className="text-2xl font-black text-foreground mb-2">Document Numérisé !</h3>
-                                    <p className="text-muted-foreground font-medium mb-6">Votre document a été traité et converti au format PDF sécurisé.</p>
-
-                                    <div className="w-full p-4 bg-background/50 rounded-2xl border border-border/50 flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center shadow-sm">
-                                            <FileText className="text-primary" />
+                                <div className="glass-card p-6 rounded-3xl border-primary/30 relative overflow-hidden bg-gradient-to-br from-primary/10 to-transparent flex flex-col gap-6">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                                            <CheckCircle size={24} className="text-primary" />
                                         </div>
-                                        <div className="text-left">
-                                            <div className="font-bold text-foreground">{scannedDoc.type}</div>
-                                            <div className="text-xs text-muted-foreground">{scannedDoc.date} • 1.2 MB</div>
+                                        <h3 className="text-xl font-black text-foreground">Vérifier les données</h3>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1 block">Type de Document</label>
+                                            <select
+                                                className="input-standard w-full"
+                                                value={scannedDoc.type}
+                                                onChange={(e) => setScannedDoc({ ...scannedDoc, type: e.target.value })}
+                                            >
+                                                <option value="Rapport Médical">Rapport Médical</option>
+                                                <option value="Ordonnance">Ordonnance</option>
+                                                <option value="Analyse Bio">Analyse Biologique</option>
+                                                <option value="Certificat">Certificat Médical</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1 block">Date</label>
+                                            <input
+                                                type="date"
+                                                className="input-standard w-full"
+                                                value={scannedDoc.date}
+                                                onChange={(e) => setScannedDoc({ ...scannedDoc, date: e.target.value })}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1 block">Médecin / Structure</label>
+                                            <input
+                                                type="text"
+                                                placeholder="ex: Dr. Sawadogo"
+                                                className="input-standard w-full"
+                                                value={scannedDoc.provider}
+                                                onChange={(e) => setScannedDoc({ ...scannedDoc, provider: e.target.value })}
+                                            />
+                                        </div>
+
+                                        <div className="p-4 bg-background/50 rounded-2xl border border-border/50 flex items-center gap-4">
+                                            <div className="w-12 h-12 bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center shadow-sm overflow-hidden">
+                                                <img src={preview!} className="w-full h-full object-cover" />
+                                            </div>
+                                            <div className="text-left">
+                                                <div className="text-xs font-bold text-muted-foreground">Aperçu du scan</div>
+                                                <div className="text-[10px] text-primary font-black uppercase">Image capturée ✓</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -290,7 +330,7 @@ function ScannerContent() {
                                     onClick={handleSaveDocument}
                                     className="btn btn-primary w-full py-6 text-sm"
                                 >
-                                    ENREGISTRER 📂
+                                    ENREGISTRER DANS LE CARNET 📂
                                 </button>
                             </>
                         ) : (
