@@ -46,7 +46,7 @@ async function scrapePharmaciesByVille(ville: string) {
         const pharmacies: any[] = [];
 
         // Trouver l'article qui correspond à la ville ET à la date (ou le plus récent)
-        let articleLink = null;
+        let articleLink: string | undefined | null = null;
 
         // Sélecteurs larges pour trouver les liens d'articles
         $('.entry-title a, h3.spip a, .titre a, .h3 a').each((i, el) => {
