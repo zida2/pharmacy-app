@@ -166,7 +166,7 @@ function PharmacyContent() {
                             placeholder="Rechercher un produit dans cette pharmacie..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3.5 bg-background/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-lg focus:ring-2 focus:ring-primary/50 outline-none text-sm font-medium transition-all focus:scale-[1.01]"
+                            className="input-standard pl-10 bg-card border-none shadow-lg"
                         />
                     </div>
 
