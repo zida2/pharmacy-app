@@ -1798,6 +1798,22 @@ export default function ProfilePage() {
             />
 
             {/* PROFESSIONAL SPACE - HIDDEN FOR NOW */}
+            <div className="mt-8 mb-32 text-center opacity-50 hover:opacity-100 transition-opacity">
+                <button
+                    onClick={async () => {
+                        try {
+                            const res = await fetch('/api/populate-pharmacies');
+                            const data = await res.json();
+                            alert(data.message || 'Succès !');
+                        } catch (e) {
+                            alert('Erreur lors du peuplement');
+                        }
+                    }}
+                    className="px-4 py-2 bg-secondary rounded-xl text-[10px] font-bold uppercase tracking-widest text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                >
+                    🔧 Générer Pharmacies (Test)
+                </button>
+            </div>
             {/*
             {
                 (userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
