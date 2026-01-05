@@ -7,6 +7,21 @@ import { Pharmacy } from "./types";
  */
 export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
     {
+        "id": "pharm-marjean",
+        "name": "Pharmacie Marjean",
+        "location": {
+            "lat": 12.3338,
+            "lng": -1.5471,
+            "address": "Cissin, Face Station Shell",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 37 46 46",
+        "status": "guard",
+        "isGuardToday": true,
+        "deliveryAvailable": true,
+        "source": "Manual Import"
+    },
+    {
         "id": "pharm-avenir",
         "name": "Pharmacie Avenir",
         "location": {

@@ -136,7 +136,7 @@ function MapContent() {
 
         // Distance & Sort
         pharms.sort((a, b) => (a.distance || 0) - (b.distance || 0));
-        if (sortBy === 'price' && productQuery) {
+        if (sortBy === 'price') {
             pharms.sort((a, b) => (a.foundProductPrice || 99999) - (b.foundProductPrice || 99999));
         }
 

@@ -54,31 +54,38 @@ export const firebaseService = {
 
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
-            if (!term) {
-                const pharmacies = await this.getPharmacies();
-                const pharmaciesWithDistance = pharmacies.map(p => {
-                    let distance = 999;
-                    if (p.location && typeof p.location.lat === 'number' && typeof p.location.lng === 'number') {
-                        // Use a 1.4 factor to estimate road distance from straight-line (honest estimation)
-                        const straight = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
-                        distance = straight * 1.4;
-                    }
-                    return { ...p, distance };
-                }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
 
-                return pharmaciesWithDistance.slice(0, 50).map(p => ({ pharmacy: p }));
+            const q = term?.toLowerCase() || "";
+            const isEmergencySearch = q.includes("garde") || q.includes("urgence");
+
+            // If no term, just return nearby
+            if (!q) {
+                const pharmacies = await this.getPharmacies();
+                return pharmacies.map(p => {
+                    const straight = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                    return { pharmacy: { ...p, distance: straight * 1.4 } };
+                }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
             }
 
-            const q = term.toLowerCase();
+            // 1. Search for Products
             const productSnap = await getDocs(
                 query(collection(db, "products"),
                     where("name", ">=", term),
                     where("name", "<=", term + '\uf8ff'))
             );
-
             const products = productSnap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Product));
+
+            // 2. Search for Pharmacies by Name (Direct match)
+            const pharmacySnap = await getDocs(
+                query(collection(db, "pharmacies"),
+                    where("name", ">=", term),
+                    where("name", "<=", term + '\uf8ff'))
+            );
+            const matchingPharmacies = pharmacySnap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Pharmacy));
+
             const finalResults: { pharmacy: Pharmacy; product?: Product }[] = [];
 
+            // Process Product Matches
             for (const prod of products) {
                 const invSnap = await getDocs(
                     query(collection(db, "pharmacy_inventory"),
@@ -90,16 +97,28 @@ export const firebaseService = {
                     const inv = invDoc.data() as PharmacyInventory;
                     const pharmacy = await this.getPharmacyById(inv.pharmacyId);
                     if (pharmacy) {
-                        const distance = (pharmacy.location && typeof pharmacy.location.lat === 'number' && typeof pharmacy.location.lng === 'number')
-                            ? calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng }) * 1.4
-                            : 999;
-
+                        const dist = calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng }) * 1.4;
                         finalResults.push({
-                            pharmacy: { ...pharmacy, distance },
+                            pharmacy: { ...pharmacy, distance: dist },
                             product: { ...prod, price: inv.price, stock: inv.stock, inStock: inv.inStock }
                         });
                     }
                 }
+            }
+
+            // Process Direct Pharmacy Matches (if not already added)
+            for (const pharm of matchingPharmacies) {
+                if (!finalResults.some(r => r.pharmacy.id === pharm.id)) {
+                    const dist = calculateDistance(userLocation, { latitude: pharm.location.lat, longitude: pharm.location.lng }) * 1.4;
+                    finalResults.push({ pharmacy: { ...pharm, distance: dist } });
+                }
+            }
+
+            // Emergency filter: if searching for 'garde', boost those with status 'guard'
+            if (isEmergencySearch) {
+                return finalResults
+                    .filter(r => r.pharmacy.status === 'guard' || !isEmergencySearch)
+                    .sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
             }
 
             return finalResults.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
