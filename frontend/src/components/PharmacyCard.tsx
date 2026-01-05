@@ -88,9 +88,14 @@ export default function PharmacyCard({
                 )}
                 <div className="flex items-center gap-3">
                     {pharmacy.distance && (
-                        <div className="flex items-center gap-1.5 text-[10px] font-black text-primary bg-primary/5 px-2.5 py-0.5 rounded-full">
-                            <Navigation2 className="w-2.5 h-2.5" />
-                            <span>{pharmacy.distance.toFixed(1)} km</span>
+                        <div className="flex flex-col gap-0.5">
+                            <div className="flex items-center gap-1.5 text-[10px] font-black text-primary bg-primary/5 px-2.5 py-0.5 rounded-full w-fit">
+                                <Navigation2 className="w-2.5 h-2.5" />
+                                <span>{pharmacy.distance.toFixed(1)} km</span>
+                            </div>
+                            {(pharmacy as any).isStraightLine && (
+                                <span className="text-[7px] font-bold text-zinc-400 uppercase tracking-tighter pl-1">À vol d'oiseau</span>
+                            )}
                         </div>
                     )}
                     {pharmacy.phone && (

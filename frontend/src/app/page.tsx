@@ -147,7 +147,8 @@ export default function HomePage() {
               distance: calculateDistance(
                 { latitude: userLat, longitude: userLng },
                 { latitude: pharmLat, longitude: pharmLng }
-              )
+              ),
+              isStraightLine: true
             }
           };
         }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));

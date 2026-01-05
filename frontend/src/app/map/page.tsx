@@ -334,13 +334,18 @@ function MapContent() {
                             </div>
 
                             <div className="grid grid-cols-2 gap-3 mb-6">
-                                <div className="p-4 bg-zinc-900/50 rounded-3xl border border-white/5">
-                                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest block mb-1">Distance (Route)</span>
-                                    <span className="text-2xl font-black text-primary italic">{(roadInfo?.distance || selectedPharmacy.distance)?.toFixed(1) || '--'} KM</span>
+                                <div className="p-4 bg-zinc-50 rounded-3xl border border-zinc-100">
+                                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest block mb-1">{roadInfo ? "Distance Route" : "Vol d'oiseau"}</span>
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-2xl font-black text-primary italic">{(roadInfo?.distance || selectedPharmacy.distance || 0).toFixed(1)}</span>
+                                        <span className="text-[10px] font-bold text-zinc-400">KM</span>
+                                    </div>
                                 </div>
-                                <div className="p-4 bg-zinc-900/50 rounded-3xl border border-white/5">
-                                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest block mb-1">Trajet ({transportMode === 'walking' ? '👣' : transportMode === 'motorcycle' ? '🏍️' : '🚗'})</span>
-                                    <span className="text-2xl font-black text-foreground italic">{getEstimatedTime(roadInfo?.distance || selectedPharmacy.distance || 0, roadInfo?.duration)}</span>
+                                <div className="p-4 bg-zinc-50 rounded-3xl border border-zinc-100">
+                                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest block mb-1">Estimation Trajet</span>
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-2xl font-black text-foreground italic">{getEstimatedTime(roadInfo?.distance || selectedPharmacy.distance || 0, roadInfo?.duration)}</span>
+                                    </div>
                                 </div>
                             </div>
 
