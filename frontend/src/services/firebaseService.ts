@@ -56,10 +56,13 @@ export const firebaseService = {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
             if (!term) {
                 const pharmacies = await this.getPharmacies();
-                const pharmaciesWithDistance = pharmacies.map(p => ({
-                    ...p,
-                    distance: calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng })
-                })).sort((a, b) => (a.distance || 0) - (b.distance || 0));
+                const pharmaciesWithDistance = pharmacies.map(p => {
+                    let distance = 999;
+                    if (p.location && typeof p.location.lat === 'number' && typeof p.location.lng === 'number') {
+                        distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                    }
+                    return { ...p, distance };
+                }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
 
                 return pharmaciesWithDistance.slice(0, 50).map(p => ({ pharmacy: p }));
             }
@@ -85,10 +88,9 @@ export const firebaseService = {
                     const inv = invDoc.data() as PharmacyInventory;
                     const pharmacy = await this.getPharmacyById(inv.pharmacyId);
                     if (pharmacy) {
-                        const distance = calculateDistance(
-                            userLocation,
-                            { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng }
-                        );
+                        const distance = (pharmacy.location && typeof pharmacy.location.lat === 'number' && typeof pharmacy.location.lng === 'number')
+                            ? calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng })
+                            : 999;
 
                         finalResults.push({
                             pharmacy: { ...pharmacy, distance },
@@ -102,10 +104,13 @@ export const firebaseService = {
 
         } catch (error) {
             const pharmacies = await this.getPharmacies();
-            const pharmsWithDist = pharmacies.map(p => ({
-                ...p,
-                distance: calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng })
-            })).sort((a, b) => a.distance - b.distance);
+            const pharmsWithDist = pharmacies.map(p => {
+                let distance = 999;
+                if (p.location && typeof p.location.lat === 'number' && typeof p.location.lng === 'number') {
+                    distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                }
+                return { ...p, distance };
+            }).sort((a, b) => a.distance - b.distance);
 
             if (!term) return pharmsWithDist.map(p => ({ pharmacy: p }));
 

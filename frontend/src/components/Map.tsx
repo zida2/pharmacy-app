@@ -158,6 +158,7 @@ export default function Map({
 
         const fetchRoute = async () => {
             try {
+                if (!userLocation || !destination || !userLocation[0] || !userLocation[1] || !destination[0] || !destination[1]) return;
                 const profile = transportMode === 'walking' ? 'foot' : 'driving';
                 const response = await fetch(
                     `https://router.project-osrm.org/route/v1/${profile}/${userLocation[0]},${userLocation[1]};${destination[0]},${destination[1]}?overview=full&geometries=geojson`
@@ -227,6 +228,7 @@ export default function Map({
         markersRef.current = [];
 
         pharmacies.forEach(pharmacy => {
+            if (!pharmacy.location || typeof pharmacy.location.lat !== 'number' || typeof pharmacy.location.lng !== 'number') return;
             const color = pharmacy.status === "guard" ? "#818cf8" : pharmacy.status === "open" ? "#10b981" : "#6b7280";
 
             // Custom HTML Marker
