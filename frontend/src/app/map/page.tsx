@@ -218,7 +218,7 @@ function MapContent() {
                     <div className="flex items-center gap-2 pointer-events-auto">
                         <button
                             onClick={() => router.back()}
-                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-card/95 backdrop-blur-2xl rounded-xl shadow-2xl border border-white/10 text-foreground active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-xl border border-zinc-200 text-zinc-900 active:scale-90 transition-transform"
                         >
                             <ArrowLeft size={20} />
                         </button>
@@ -232,7 +232,7 @@ function MapContent() {
                                 value={productQuery}
                                 onChange={(e) => setProductQuery(e.target.value)}
                                 placeholder="Recherche..."
-                                className="w-full h-10 pl-11 pr-4 bg-card/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground/60 text-xs font-bold"
+                                className="w-full h-10 pl-11 pr-4 bg-white border border-zinc-200 rounded-xl shadow-xl text-zinc-900 focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-zinc-400 text-[10px] font-black uppercase tracking-widest"
                             />
                         </div>
 
@@ -245,12 +245,12 @@ function MapContent() {
                     </div>
 
                     {/* Secondary Row: Quick Filters (Better Spacing) */}
-                    <div className="flex items-center gap-3 pointer-events-auto">
+                    <div className="flex items-center gap-2 pointer-events-auto">
                         <button
                             onClick={() => setSortBy('distance')}
                             className={cn(
-                                "flex items-center gap-2 px-3 h-9 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-lg border",
-                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
+                                "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
+                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-white text-zinc-600 border-zinc-200"
                             )}
                         >
                             <Locate size={12} /> Proche
@@ -258,8 +258,8 @@ function MapContent() {
                         <button
                             onClick={() => setSortBy('price')}
                             className={cn(
-                                "flex items-center gap-2 px-3 h-9 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-lg border",
-                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card/95 backdrop-blur-md text-foreground border-white/10"
+                                "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
+                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-white text-zinc-600 border-zinc-200"
                             )}
                         >
                             <Zap size={12} /> Moins Cher
@@ -267,7 +267,7 @@ function MapContent() {
 
                         <div className="hidden sm:flex flex-1" />
 
-                        <div className="px-3 h-9 flex items-center bg-zinc-900/90 backdrop-blur-md rounded-lg border border-white/10 text-[9px] font-black text-muted-foreground whitespace-nowrap">
+                        <div className="px-3 h-8 flex items-center bg-zinc-900 border border-zinc-800 text-[8px] font-black text-white/90 rounded-lg uppercase tracking-widest">
                             {pharmacies.length} DISPONIBLES
                         </div>
                     </div>
@@ -290,26 +290,26 @@ function MapContent() {
             </div>
 
             {/* --- SIDEBAR TOOLS --- */}
-            <div className="absolute right-4 top-[45%] -translate-y-1/2 z-20 flex flex-col gap-2.5">
+            <div className="absolute right-4 top-[40%] -translate-y-1/2 z-30 flex flex-col gap-2.5">
                 <button
                     onClick={() => requestLocation()}
                     className={cn(
-                        "w-10 h-10 flex items-center justify-center rounded-xl shadow-2xl transition-all active:scale-95 border",
-                        isLocating ? "bg-primary animate-pulse" : "bg-card text-primary border-white/10"
+                        "w-10 h-10 flex items-center justify-center rounded-xl shadow-xl transition-all active:scale-95 border",
+                        isLocating ? "bg-primary text-white" : "bg-white text-primary border-zinc-200"
                     )}
                 >
                     <Target size={22} />
                 </button>
                 <button
                     onClick={() => setMapView(p => ({ ...p, pitch: p.pitch === 60 ? 0 : 60 }))}
-                    className="w-10 h-10 flex items-center justify-center bg-card text-foreground rounded-xl shadow-2xl border border-white/10 active:scale-95 transition-all"
+                    className="w-10 h-10 flex items-center justify-center bg-white text-zinc-600 rounded-xl shadow-xl border border-zinc-200 active:scale-95 transition-all"
                 >
                     <Layers size={21} />
                 </button>
             </div>
 
-            {/* --- BOTTOM SHEET (HARMONIEUX) --- */}
-            <div className="absolute bottom-0 left-0 right-0 z-30 p-4 pointer-events-none">
+            {/* --- BOTTOM SHEET (LIFTED FURTHER FOR NAVIGATION BAR) --- */}
+            <div className="absolute bottom-[100px] left-0 right-0 z-30 p-4 pointer-events-none">
                 <div className="max-w-xl mx-auto pointer-events-auto">
 
                     {selectedPharmacy ? (
