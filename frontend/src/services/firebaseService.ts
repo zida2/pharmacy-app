@@ -59,7 +59,9 @@ export const firebaseService = {
                 const pharmaciesWithDistance = pharmacies.map(p => {
                     let distance = 999;
                     if (p.location && typeof p.location.lat === 'number' && typeof p.location.lng === 'number') {
-                        distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                        // Use a 1.4 factor to estimate road distance from straight-line (honest estimation)
+                        const straight = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                        distance = straight * 1.4;
                     }
                     return { ...p, distance };
                 }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
@@ -89,7 +91,7 @@ export const firebaseService = {
                     const pharmacy = await this.getPharmacyById(inv.pharmacyId);
                     if (pharmacy) {
                         const distance = (pharmacy.location && typeof pharmacy.location.lat === 'number' && typeof pharmacy.location.lng === 'number')
-                            ? calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng })
+                            ? calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng }) * 1.4
                             : 999;
 
                         finalResults.push({
@@ -107,7 +109,7 @@ export const firebaseService = {
             const pharmsWithDist = pharmacies.map(p => {
                 let distance = 999;
                 if (p.location && typeof p.location.lat === 'number' && typeof p.location.lng === 'number') {
-                    distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                    distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
                 }
                 return { ...p, distance };
             }).sort((a, b) => a.distance - b.distance);
