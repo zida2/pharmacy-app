@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, SortAsc, Zap, ChevronRight, Gpu, Target, Locate, ShieldAlert, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, SortAsc, Zap, ChevronRight, Cpu, Target, Locate, ShieldAlert, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AssistanceModal from "@/components/AssistanceModal";
 

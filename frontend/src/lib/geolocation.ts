@@ -12,9 +12,13 @@ export interface Coordinates {
  * Returns distance in kilometers
  */
 export function calculateDistance(
-    coord1: Coordinates,
-    coord2: Coordinates
+    coord1: Coordinates | null | undefined,
+    coord2: Coordinates | null | undefined
 ): number {
+    if (!coord1 || !coord2 || typeof coord1.latitude !== 'number' || typeof coord2.latitude !== 'number') {
+        return 999;
+    }
+
     const R = 6371; // Earth's radius in kilometers
 
     const lat1 = toRadians(coord1.latitude);
