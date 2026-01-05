@@ -16,7 +16,7 @@ export default function LiveChat() {
     const [message, setMessage] = useState("");
     const [chat, setChat] = useState<Message[]>([
         {
-            text: "Bonjour ! 👋 Je suis Pharmy, votre assistant pharmacien virtuel. Comment puis-je vous aider aujourd'hui ?",
+            text: "Bonjour ! 👋 Je suis Pharmy, votre compagnon santé. \n\nIci, la recherche de médicaments est **100% GRATUITE**. \n\nComment puis-je vous aider aujourd'hui ?",
             isUser: false,
             timestamp: new Date()
         }
@@ -229,9 +229,9 @@ export default function LiveChat() {
                         </button>
                     </div>
 
-                    {/* Quick Actions */}
+                    {/* Quick Actions & WhatsApp */}
                     <div className="p-3 bg-secondary/30 dark:bg-zinc-900/30 border-t border-border/50">
-                        <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+                        <div className="flex gap-2 overflow-x-auto scrollbar-hide mb-2">
                             {[
                                 { label: "Pharmacie de garde", icon: "🚨" },
                                 { label: "Livraison", icon: "🚚" },
@@ -244,13 +244,23 @@ export default function LiveChat() {
                                         setMessage(action.label);
                                         setTimeout(() => handleSend(), 100);
                                     }}
-                                    className="px-3 py-1.5 bg-card dark:bg-zinc-800 border border-border rounded-full text-[10px] font-bold whitespace-nowrap hover:bg-primary/10 transition-all active:scale-95 flex items-center gap-1"
+                                    className="px-3 py-1.5 bg-white dark:bg-zinc-800 border border-border rounded-full text-[10px] font-black whitespace-nowrap hover:bg-primary/5 transition-all active:scale-95 flex items-center gap-1 shadow-sm"
                                 >
                                     <span>{action.icon}</span>
                                     {action.label}
                                 </button>
                             ))}
                         </div>
+
+                        <a
+                            href="https://wa.me/22670000000" // Remplacez par votre numéro réel
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full flex items-center justify-center gap-2 py-2 bg-[#25D366] text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all"
+                        >
+                            <Phone size={14} />
+                            Urgence WhatsApp
+                        </a>
                     </div>
                 </div>
             )}

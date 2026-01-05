@@ -126,6 +126,19 @@ export default function HomePage() {
   };
 
 
+  // Offline Cache Logic
+  useEffect(() => {
+    const cachedResults = localStorage.getItem('offline_pharmacies_cache');
+    if (cachedResults && results.length === 0) {
+      try {
+        const parsed = JSON.parse(cachedResults);
+        setResults(parsed);
+      } catch (e) {
+        console.error("Failed to parse cached pharmacies", e);
+      }
+    }
+  }, []);
+
   const handleSearch = async (query: string, locationOverride?: { lat: number; lng: number }) => {
     setSearchQuery(query);
     setIsLoading(true);
@@ -156,8 +169,14 @@ export default function HomePage() {
       }
 
       setResults(processedData);
+
+      // Cache the first 10 results for offline mode
+      if (processedData.length > 0) {
+        localStorage.setItem('offline_pharmacies_cache', JSON.stringify(processedData.slice(0, 10)));
+      }
     } catch (error) {
       console.error("Search failed", error);
+      // On failure, keep the current results (which might be the cached ones)
     } finally {
       setIsLoading(false);
     }
@@ -192,7 +211,18 @@ export default function HomePage() {
               </p>
               <div className="flex items-center gap-2 mt-2 px-1">
                 {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold">Localisation en cours...</span>}
-                {locationStatus === 'success' && <div className="flex items-center text-emerald-500 gap-1.5"><MapPin size={12} /><span className="text-[10px] font-black uppercase tracking-wider">Position précise</span></div>}
+                {locationStatus === 'success' && (
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center text-emerald-500 gap-1.5">
+                      <MapPin size={12} />
+                      <span className="text-[10px] font-black uppercase tracking-wider">Position précise</span>
+                    </div>
+                    <div className="flex items-center bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">
+                      <Sparkles size={10} className="mr-1" />
+                      <span className="text-[9px] font-black uppercase tracking-widest">Recherche Gratuite</span>
+                    </div>
+                  </div>
+                )}
                 {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1.5"><AlertTriangle size={12} /><span className="text-[10px] font-black uppercase tracking-wider">Position approximative</span></div>}
                 {locationStatus === 'denied' && (
                   <button onClick={retryGeolocation} className="flex items-center text-red-500 gap-1.5 hover:underline decoration-2 underline-offset-2 transition-all">
