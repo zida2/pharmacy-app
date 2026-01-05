@@ -761,48 +761,6 @@ export default function ProfilePage() {
                     </div>
                 </section >
 
-                {/* ESPACE PROFESSIONNEL - Only for verified staff */}
-                {
-                    (userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
-                        <section className="space-y-3 animate-in slide-in-from-bottom-4">
-                            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary px-1">Espace Professionnel</h2>
-                            <button
-                                onClick={() => router.push("/admin")}
-                                className="w-full p-5 bg-gradient-to-br from-primary/20 to-secondary/30 rounded-2xl border border-primary/30 flex items-center justify-between group hover:shadow-2xl transition-all active:scale-[0.98]"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
-                                        <LayoutDashboard size={20} />
-                                    </div>
-                                    <div className="text-left">
-                                        <div className="font-extrabold text-base text-foreground italic">PharmaManager</div>
-                                        <div className="text-[9px] font-black uppercase tracking-widest text-primary">Gestion Pharmacie & Stocks</div>
-                                    </div>
-                                </div>
-                                <ChevronRight size={18} className="text-primary group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <p className="text-[9px] text-center text-muted-foreground font-medium italic opacity-50 px-6">Accès réservé aux pharmaciens et agents agréés.</p>
-                        </section>
-                    )
-                }
-
-                {/* ACCESS GATE FOR PROFESSIONAL SPACE */}
-                {
-                    auth.currentUser && userInfo.role !== 'admin' && userInfo.role !== 'pharmacy' && (
-                        <div className="pt-4 border-t border-border/20">
-                            <button
-                                onClick={() => {
-                                    setShowAdminLogin(true);
-                                    setAdminError("");
-                                }}
-                                className="w-full py-4 bg-slate-900 border border-white/5 rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest text-primary hover:bg-slate-800 transition-all active:scale-95 group shadow-xl"
-                            >
-                                <Shield size={16} className="group-hover:rotate-12 transition-transform" />
-                                Accès Espace Professionnel
-                            </button>
-                        </div>
-                    )
-                }
 
                 <button
                     onClick={() => {
