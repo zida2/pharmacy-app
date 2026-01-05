@@ -50,6 +50,7 @@ export interface Pharmacy {
     deliveryFee?: number;
     deliveryRadius?: number;
     distance?: number; // Calculated on client
+    source?: string; // Data source identifier (Fused, Discovery, etc)
     createdAt?: any;
     updatedAt?: any;
 }
