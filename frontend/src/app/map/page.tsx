@@ -313,7 +313,7 @@ function MapContent() {
 
                     {selectedPharmacy ? (
                         /* Selected Pharmacy Panel */
-                        <div className="bg-card/95 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-2xl border border-white/10 animate-in slide-in-from-bottom-20 duration-500">
+                        <div className="bg-white rounded-[2.5rem] p-6 shadow-2xl border border-zinc-100 animate-in slide-in-from-bottom-20 duration-500">
                             <div className="flex justify-between items-start mb-6">
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2">
@@ -322,13 +322,13 @@ function MapContent() {
                                         )}>
                                             {selectedPharmacy.status === 'guard' ? 'Garde' : 'Ouvert'}
                                         </span>
-                                        <h3 className="text-xl font-black italic text-foreground tracking-tight">{selectedPharmacy.name}</h3>
+                                        <h3 className="text-xl font-black italic text-black tracking-tight">{selectedPharmacy.name}</h3>
                                     </div>
-                                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <p className="text-xs text-zinc-600 flex items-center gap-1">
                                         <MapPin size={12} className="text-primary" /> {selectedPharmacy.location.address || 'Localisation disponible'}
                                     </p>
                                 </div>
-                                <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-secondary rounded-full">
+                                <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-zinc-100 rounded-full text-zinc-600">
                                     <X size={20} />
                                 </button>
                             </div>
@@ -380,7 +380,7 @@ function MapContent() {
                                             setSelectedPharmacy(p);
                                             setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                         }}
-                                        className="min-w-[210px] bg-card/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/10 snap-center active:scale-95 transition-all outline-none"
+                                        className="min-w-[220px] bg-white rounded-2xl p-4 shadow-xl border border-zinc-200 snap-center active:scale-95 transition-all outline-none"
                                     >
                                         <div className="flex justify-between items-start mb-2">
                                             <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center text-sm",
@@ -392,8 +392,8 @@ function MapContent() {
                                                 {p.distance?.toFixed(1)} KM
                                             </span>
                                         </div>
-                                        <h4 className="font-black text-sm text-foreground truncate mb-1 italic">{p.name}</h4>
-                                        <div className="flex items-center justify-between text-[9px] text-muted-foreground font-black">
+                                        <h4 className="font-black text-sm text-zinc-900 truncate mb-1 italic">{p.name}</h4>
+                                        <div className="flex items-center justify-between text-[9px] text-zinc-500 font-black">
                                             <span className="flex items-center gap-1 italic uppercase tracking-tighter">
                                                 <Clock size={10} /> {getEstimatedTime(p.distance || 0)}
                                             </span>
@@ -448,7 +448,7 @@ function MapContent() {
                                     setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                     setShowFullList(false);
                                 }}
-                                className="p-6 bg-card border border-white/5 rounded-3xl flex items-center justify-between group active:scale-[0.98] transition-all"
+                                className="p-6 bg-white border border-zinc-200 rounded-3xl flex items-center justify-between group active:scale-[0.98] transition-all"
                             >
                                 <div className="flex items-center gap-5">
                                     <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-2xl",
@@ -457,7 +457,7 @@ function MapContent() {
                                         {p.status === 'guard' ? '🟣' : '🟢'}
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className="font-black text-lg italic text-foreground tracking-tight group-hover:text-primary transition-colors">{p.name}</h4>
+                                        <h4 className="font-black text-lg italic text-black tracking-tight group-hover:text-primary transition-colors">{p.name}</h4>
                                         <div className="flex gap-2">
                                             <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{p.distance?.toFixed(1)} KM</span>
                                             <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{getEstimatedTime(p.distance || 0)}</span>
