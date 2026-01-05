@@ -43,8 +43,8 @@ export default function LiveChat() {
         }
 
         // Pharmacy guard/emergency
-        if (/(garde|urgence|nuit|dimanche|férié|ouvert maintenant)/i.test(msg)) {
-            return "🚨 Pour trouver les pharmacies de garde les plus proches de vous :\n\n1. Activez votre géolocalisation\n2. Cliquez sur l'onglet 'Carte' en bas\n3. Les pharmacies de garde sont marquées en violet 🟣\n\nVoulez-vous que je vous redirige vers la carte ?";
+        if (/(garde|urgence|nuit|dimanche|férié|ouvert maintenant|danger|secours|malade|grave)/i.test(msg)) {
+            return "🚨 **URGENCE DÉTECTÉE** 🚨\n\nVous n'êtes pas seul(e). Voici les numéros d'urgence immédiate au Burkina :\n\n📞 **SAMU : 112**\n📞 **Pompiers : 18**\n📞 **Police : 17**\n\nJe peux aussi chercher une pharmacie de garde ouverte maintenant. Voulez-vous que je localise la plus proche ?";
         }
 
         // Medication search

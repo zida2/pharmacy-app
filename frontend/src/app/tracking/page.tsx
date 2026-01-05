@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, CheckCircle, Package, Truck, Home, Phone, Timer } from "lucide-react";
+import { ArrowLeft, CheckCircle, Package, Truck, Home, Phone, Timer, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Order } from "@/services/types";
+import AssistanceModal from "@/components/AssistanceModal";
 
 export default function TrackingPage() {
     const router = useRouter();
@@ -14,6 +15,7 @@ export default function TrackingPage() {
     const [status, setStatus] = useState<string>("pending");
     const [eta, setEta] = useState(15);
     const [driverLocation, setDriverLocation] = useState<[number, number]>([-1.5197, 12.3714]);
+    const [showAssistance, setShowAssistance] = useState(false);
 
     useEffect(() => {
         const fetchLatestOrder = async () => {
@@ -57,6 +59,10 @@ export default function TrackingPage() {
 
     return (
         <main className="min-h-screen bg-background flex flex-col relative">
+            <AssistanceModal
+                isOpen={showAssistance}
+                onClose={() => setShowAssistance(false)}
+            />
             {/* Map Background */}
             <div className="absolute inset-0 z-0">
                 <Map
@@ -73,6 +79,12 @@ export default function TrackingPage() {
                     className="p-3 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-full shadow-lg border border-border/20"
                 >
                     <ArrowLeft size={24} className="text-foreground" />
+                </button>
+                <button
+                    onClick={() => setShowAssistance(true)}
+                    className="p-3 bg-red-500 shadow-lg shadow-red-500/20 text-white rounded-full animate-pulse ml-2"
+                >
+                    <AlertTriangle size={24} />
                 </button>
             </header>
 

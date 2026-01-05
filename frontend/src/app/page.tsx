@@ -5,13 +5,14 @@ import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
-import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight } from "lucide-react";
+import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { useCart } from "@/context/CartContext";
 import { auth } from "@/services/firebase";
 import AuthPrompt from "@/components/AuthPrompt";
+import AssistanceModal from "@/components/AssistanceModal";
 import { calculateDistance } from "@/lib/geolocation";
 
 export default function HomePage() {
@@ -189,6 +190,8 @@ export default function HomePage() {
     }
   };
 
+  const [showAssistance, setShowAssistance] = useState(false);
+
   return (
     <main className="relative w-full h-screen flex flex-col bg-background">
       {/* Dynamic Background Gradient - Smoother */}
@@ -196,6 +199,11 @@ export default function HomePage() {
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-500/5 rounded-full blur-[120px]" />
       </div>
+
+      <AssistanceModal
+        isOpen={showAssistance}
+        onClose={() => setShowAssistance(false)}
+      />
 
       {/* Top Bar / Search */}
       <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-4 bg-gradient-to-b from-background via-background/90 to-transparent">
@@ -234,28 +242,23 @@ export default function HomePage() {
             </div>
             <div className="flex items-center gap-3">
               <button
+                onClick={() => setShowAssistance(true)}
+                className="btn-icon bg-red-500 shadow-lg shadow-red-500/20 text-white animate-pulse"
+              >
+                <AlertTriangle size={20} />
+              </button>
+              <button
                 onClick={() => toggleTheme()}
                 className="btn-icon bg-secondary shadow-sm text-foreground"
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              <button
-                onClick={() => router.push('/profile')}
-                className="btn-icon bg-secondary shadow-sm text-foreground relative"
-              >
-                <User size={20} />
-                {premiumState.isPremium && (
-                  <div className="absolute -top-1 -right-1 bg-amber-500 text-white p-0.5 rounded-full border-2 border-background">
-                    <Crown size={8} />
-                  </div>
-                )}
               </button>
             </div>
           </div>
 
           {/* Premium/Trial Banner on Home */}
           {premiumState.isTrial && (
-            <div className="px-6 mb-4">
+            <div className="px-1">
               <div
                 onClick={() => router.push('/profile')}
                 className="p-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl border border-amber-500/30 flex items-center justify-between cursor-pointer group"
@@ -321,6 +324,21 @@ export default function HomePage() {
       {/* Content Area - Scrollable Feed */}
       <div className="flex-1 overflow-y-auto pb-nav">
         <div className="max-w-xl mx-auto px-4 pt-[13rem] space-y-6">
+
+          {/* Reassurance Banner */}
+          <div
+            onClick={() => setShowAssistance(true)}
+            className="p-5 bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-[2.5rem] flex items-center gap-4 cursor-pointer hover:bg-red-500/15 transition-all group"
+          >
+            <div className="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
+              <ShieldAlert size={24} />
+            </div>
+            <div>
+              <h3 className="text-sm font-black italic text-red-700 dark:text-red-400">Besoin d'aide urgente ?</h3>
+              <p className="text-[10px] font-bold text-red-600/70 uppercase tracking-widest mt-0.5">Cliquez ici • On s'occupe de vous</p>
+            </div>
+          </div>
+
           <div className="flex justify-between items-center px-1">
             <h2 className="text-xl font-black italic text-foreground tracking-tight">Pharmacies à proximité</h2>
             <div className="bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
@@ -359,12 +377,15 @@ export default function HomePage() {
           </div>
 
           {/* Help Card */}
-          <div className="p-6 bg-primary rounded-[2.5rem] text-white shadow-xl shadow-primary/20 relative overflow-hidden group">
+          <div
+            onClick={() => setShowAssistance(true)}
+            className="p-6 bg-primary rounded-[2.5rem] text-white shadow-xl shadow-primary/20 relative overflow-hidden group cursor-pointer"
+          >
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
             <div className="relative z-10">
-              <h3 className="text-xl font-black italic mb-2">Besoin d'aide ? 🚑</h3>
-              <p className="text-sm font-medium text-white/80 mb-4 leading-relaxed">Notre assistant est là pour vous 24h/24.</p>
-              <button className="px-6 py-2.5 bg-white text-primary font-black rounded-xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Contacter</button>
+              <h3 className="text-xl font-black italic mb-2">Assistance 24h/24 🚑</h3>
+              <p className="text-sm font-medium text-white/80 mb-4 leading-relaxed">Notre équipe de pharmaciens est mobilisée pour vous aider à chaque instant.</p>
+              <button className="px-6 py-2.5 bg-white text-primary font-black rounded-xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Consulter un expert</button>
             </div>
           </div>
         </div>

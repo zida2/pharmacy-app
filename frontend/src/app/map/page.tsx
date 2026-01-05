@@ -5,8 +5,9 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Map from "@/components/Map";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy } from "@/services/types";
-import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, SortAsc, Zap, ChevronRight, Gpu, Target, Locate } from "lucide-react";
+import { ArrowLeft, Navigation as NavigationIcon, MapPin, X, Search, Layers, Clock, Camera, SortAsc, Zap, ChevronRight, Gpu, Target, Locate, ShieldAlert, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AssistanceModal from "@/components/AssistanceModal";
 
 // Nominatim Geocoding Response Type
 interface GeocodingResult {
@@ -61,6 +62,7 @@ function MapContent() {
         pitch: 0
     });
     const [showFullList, setShowFullList] = useState(false);
+    const [showAssistance, setShowAssistance] = useState(false);
 
     // 1. Initial Load & Background Location Tracking
     useEffect(() => {
@@ -211,6 +213,10 @@ function MapContent() {
 
     return (
         <main className="relative w-full h-screen overflow-hidden bg-zinc-950">
+            <AssistanceModal
+                isOpen={showAssistance}
+                onClose={() => setShowAssistance(false)}
+            />
             {/* --- TOP HUD (AÉRÉ & STRUCTURÉ) --- */}
             <div className="absolute top-0 left-0 right-0 z-30 p-4 pt-10 pointer-events-none">
                 <div className="max-w-xl mx-auto space-y-3">
@@ -291,6 +297,12 @@ function MapContent() {
 
             {/* --- SIDEBAR TOOLS --- */}
             <div className="absolute right-4 top-[40%] -translate-y-1/2 z-30 flex flex-col gap-2.5">
+                <button
+                    onClick={() => setShowAssistance(true)}
+                    className="w-10 h-10 flex items-center justify-center bg-red-500 text-white rounded-xl shadow-xl animate-pulse shadow-red-500/20 active:scale-95 transition-all"
+                >
+                    <AlertTriangle size={24} />
+                </button>
                 <button
                     onClick={() => requestLocation()}
                     className={cn(
