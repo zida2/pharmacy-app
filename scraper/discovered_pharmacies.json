@@ -1,0 +1,882 @@
+[
+  {
+    "name": "Pharmacie de l´avenir",
+    "lat": 12.3751998,
+    "lng": -1.4938723,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Dunia",
+    "lat": 12.3593046,
+    "lng": -1.4951501,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Talba",
+    "lat": 12.3762421,
+    "lng": -1.4909633,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Teranga",
+    "lat": 12.3817592,
+    "lng": -1.4934187,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie wend Kuuni",
+    "lat": 12.3755238,
+    "lng": -1.4875664,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Camille",
+    "lat": 12.3758268,
+    "lng": -1.4779569,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de la Fraternité",
+    "lat": 12.3908138,
+    "lng": -1.4764622,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Taoko",
+    "lat": 12.3877702,
+    "lng": -1.4784469,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Benaia",
+    "lat": 12.3503395,
+    "lng": -1.4796989,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Ouedreago",
+    "lat": 12.3354559,
+    "lng": -1.4985111,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie circulaire sede",
+    "lat": 12.3325736,
+    "lng": -1.5166729,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Kaboré Dominique",
+    "lat": 12.3299218,
+    "lng": -1.5262859,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Faso",
+    "lat": 12.3178393,
+    "lng": -1.5217902,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Kouma",
+    "lat": 12.3130946,
+    "lng": -1.5289169,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l´amitié",
+    "lat": 12.3346448,
+    "lng": -1.5351653,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Saint Julien",
+    "lat": 12.3344771,
+    "lng": -1.5262218,
+    "phone": "25 38 06 10",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie maignon",
+    "lat": 12.3505338,
+    "lng": -1.5264106,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "EX Pharmacie du Goulmou",
+    "lat": 12.3420654,
+    "lng": -1.5527006,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Ex Pharmacie de Pissy",
+    "lat": 12.335166,
+    "lng": -1.5631997,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie wend la lafi",
+    "lat": 12.3422993,
+    "lng": -1.5729105,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du progrès",
+    "lat": 12.3437164,
+    "lng": -1.5686962,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Boulmiougou",
+    "lat": 12.3328999,
+    "lng": -1.5829698,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l'Unité",
+    "lat": 12.3521275,
+    "lng": -1.5561694,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du rivage",
+    "lat": 12.3539218,
+    "lng": -1.5525645,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Maré",
+    "lat": 12.3631848,
+    "lng": -1.5498232,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l´hippodrome",
+    "lat": 12.375924,
+    "lng": -1.5573961,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de la jeunesse",
+    "lat": 12.3706171,
+    "lng": -1.5580827,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Wend Lamita",
+    "lat": 12.3810463,
+    "lng": -1.5503923,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l´espoir",
+    "lat": 12.3726963,
+    "lng": -1.5456802,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de la providance",
+    "lat": 12.37304,
+    "lng": -1.5382644,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Baraka",
+    "lat": 12.3786779,
+    "lng": -1.5396613,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie wend denda",
+    "lat": 12.3768378,
+    "lng": -1.5439292,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Vidal",
+    "lat": 12.3765947,
+    "lng": -1.5369941,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de la liberté",
+    "lat": 12.3776946,
+    "lng": -1.531408,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de dapoya",
+    "lat": 12.3799582,
+    "lng": -1.5230395,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de la Savane",
+    "lat": 12.3769736,
+    "lng": -1.5208938,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de Signonghin",
+    "lat": 12.3867265,
+    "lng": -1.5624233,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3901186,
+    "lng": -1.4820831,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "002",
+    "lat": 12.3774398,
+    "lng": -1.5112048,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Saint François d'Assises",
+    "lat": 12.3820165,
+    "lng": -1.4890606,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Saint Lazare",
+    "lat": 12.3685791,
+    "lng": -1.4997016,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Augustine",
+    "lat": 12.327115,
+    "lng": -1.5000203,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Yennenga",
+    "lat": 12.35118,
+    "lng": -1.4880845,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "pharmacie de pissy",
+    "lat": 12.3367241,
+    "lng": -1.5639541,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Goulmou",
+    "lat": 12.3392273,
+    "lng": -1.549132,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Sahel",
+    "lat": 12.3662116,
+    "lng": -1.5149834,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "PHAMACIE DE L'INDEPENDANCE",
+    "lat": 12.3702719,
+    "lng": -1.5158385,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie 1200 Logements",
+    "lat": 12.3668409,
+    "lng": -1.4938745,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Saint Jean",
+    "lat": 12.342753,
+    "lng": -1.4937944,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Carrefour",
+    "lat": 12.3677055,
+    "lng": -1.5309441,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l'Univers",
+    "lat": 12.3828526,
+    "lng": -1.4254886,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Dispensaire Ridwane",
+    "lat": 12.3426727,
+    "lng": -1.5456867,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "KATRA",
+    "lat": 12.3469782,
+    "lng": -1.5030581,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie WATI",
+    "lat": 12.3443667,
+    "lng": -1.5405179,
+    "phone": "+22625385292",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Wend Som",
+    "lat": 12.403473,
+    "lng": -1.5774737,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Centre medical urbain du secteur 16",
+    "lat": 12.385767,
+    "lng": -1.5733674,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharamacie Ar-Rahama",
+    "lat": 12.3895185,
+    "lng": -1.5741417,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Galiam",
+    "lat": 12.3996961,
+    "lng": -1.566242,
+    "phone": "25480567",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Sacré-Coeur",
+    "lat": 12.3512132,
+    "lng": -1.5462563,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Delwindé",
+    "lat": 12.4011373,
+    "lng": -1.4721023,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sotisse",
+    "lat": 12.3971219,
+    "lng": -1.4685073,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sainte Trinité",
+    "lat": 12.3685354,
+    "lng": -1.4883668,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "phamacie flayiri",
+    "lat": 12.3383643,
+    "lng": -1.5088647,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Kadiogo",
+    "lat": 12.3603046,
+    "lng": -1.5172985,
+    "phone": "",
+    "address": "Avenue Kwamé N'Krumah",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3777284,
+    "lng": -1.5320989,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie De La Cathédrale",
+    "lat": 12.3632079,
+    "lng": -1.5281878,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Saint Antoine de Padou",
+    "lat": 12.3610814,
+    "lng": -1.5341603,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie des Ecoles",
+    "lat": 12.3818477,
+    "lng": -1.5162101,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Garage et dépôt de véhicules",
+    "lat": 12.33298,
+    "lng": -1.5006379,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "pharmacie du musée",
+    "lat": 12.3795464,
+    "lng": -1.4691108,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Natilgé",
+    "lat": 12.3624307,
+    "lng": -1.481346,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie du Jourdin",
+    "lat": 12.3730987,
+    "lng": -1.4741128,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Taoko",
+    "lat": 12.3872713,
+    "lng": -1.4691459,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Naab Raga",
+    "lat": 12.3524179,
+    "lng": -1.531649,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3783794,
+    "lng": -1.5001141,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "pharmacie de l'avenir",
+    "lat": 12.3749954,
+    "lng": -1.4939046,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Nongui",
+    "lat": 12.3845751,
+    "lng": -1.5749971,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Depot pharmaceutique urbain",
+    "lat": 12.3718701,
+    "lng": -1.5248155,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie AMORO",
+    "lat": 12.3610665,
+    "lng": -1.5398783,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie RAYIB-TIGA",
+    "lat": 12.4073949,
+    "lng": -1.5077501,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "pharmacie Camille",
+    "lat": 12.3757004,
+    "lng": -1.4786192,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3297808,
+    "lng": -1.6153263,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3334888,
+    "lng": -1.6051825,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.4058633,
+    "lng": -1.540253,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Kossodo",
+    "lat": 12.4171874,
+    "lng": -1.473243,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie El-Wanogo",
+    "lat": 12.3984754,
+    "lng": -1.4637411,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie  DJIMBIA",
+    "lat": 12.401461,
+    "lng": -1.5142148,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Phytofla Dr. DAKUYO",
+    "lat": 12.329985,
+    "lng": -1.4896433,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie NOOM-WENDE",
+    "lat": 12.319006,
+    "lng": -1.5379561,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Augustine",
+    "lat": 12.3257765,
+    "lng": -1.5031566,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "NATILGE",
+    "lat": 12.3586322,
+    "lng": -1.4833299,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3122191,
+    "lng": -1.4888953,
+    "phone": "",
+    "address": "Avenue Ousmane Sembène",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Fasovet+",
+    "lat": 12.368644,
+    "lng": -1.4934044,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3901972,
+    "lng": -1.5977229,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie AFIYA",
+    "lat": 12.3553431,
+    "lng": -1.4688761,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Merdipharm",
+    "lat": 12.4169968,
+    "lng": -1.5017305,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l'hôpital",
+    "lat": 12.3822028,
+    "lng": -1.5066304,
+    "phone": "25306664",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Ninrwa",
+    "lat": 12.4052066,
+    "lng": -1.456637,
+    "phone": "",
+    "address": "Rue kond Noom",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Phcie Coura",
+    "lat": 12.3274061,
+    "lng": -1.5207275,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "BARKWENDE",
+    "lat": 12.3737293,
+    "lng": -1.6084504,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Georgette",
+    "lat": 12.4102792,
+    "lng": -1.6323174,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Adodoa",
+    "lat": 12.3337005,
+    "lng": -1.5620612,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie le Rocher",
+    "lat": 12.3162047,
+    "lng": -1.5151577,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie la concorde",
+    "lat": 12.3657673,
+    "lng": -1.5183549,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 12.3100363,
+    "lng": -1.4830274,
+    "phone": "",
+    "address": "Balkuy",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Camille",
+    "lat": 12.3758214,
+    "lng": -1.4788017,
+    "phone": "",
+    "address": "Boulevard Charles de Gaulle",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie Sans Nom",
+    "lat": 0,
+    "lng": 0,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de l'Hôpital",
+    "lat": 0,
+    "lng": 0,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Pharmacie de Koulouba",
+    "lat": 0,
+    "lng": 0,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  },
+  {
+    "name": "Magnificat",
+    "lat": 0,
+    "lng": 0,
+    "phone": "",
+    "address": "",
+    "source": "OpenStreetMap"
+  }
+]

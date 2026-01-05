@@ -1,939 +1,1529 @@
 import { Pharmacy } from "./types";
 
 /**
- * 🏥 BASE DE DONNÉES COMPLÈTE DES PHARMACIES DU BURKINA FASO
- * Source: Ordre National des Pharmaciens du Burkina Faso (ONPBF) - 2024
- * Mise à jour: Décembre 2024
+ * Dataset Master (Fused ONPBF + Maps/OSM)
+ * This file acts as a local fallback for the app.
+ * Generated automatically by discovery/enrichment scripts.
  */
-
 export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
-    // OUAGADOUGOU - CENTRE VILLE
-    {
-        id: "pharm-cathedrale",
-        name: "Pharmacie de la Cathédrale",
-        location: { lat: 12.3656, lng: -1.5271, address: "38 Avenue de la Cathédrale", city: "Ouagadougou" },
-        phone: "+226 25 31 28 07",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 210,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-centre",
-        name: "Pharmacie Centre",
-        location: { lat: 12.3678, lng: -1.5265, address: "460 Avenue de la Nation", city: "Ouagadougou" },
-        phone: "+226 25 31 16 60",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 145,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-kadiogo",
-        name: "Pharmacie Kadiogo",
-        location: { lat: 12.3685, lng: -1.5258, address: "1207 Avenue Kwamé N'Krumah", city: "Ouagadougou" },
-        phone: "+226 25 31 87 88",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-gare",
-        name: "Pharmacie de la Gare",
-        location: { lat: 12.3692, lng: -1.5245, address: "103 Rue des Douanes", city: "Ouagadougou" },
-        phone: "+226 25 31 62 06",
-        status: "open",
-        rating: 4.5,
-        reviewCount: 98,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-diawara",
-        name: "Pharmacie Diawara",
-        location: { lat: 12.3688, lng: -1.5268, address: "Rue du Grand Marché", city: "Ouagadougou" },
-        phone: "+226 25 30 61 68",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 132,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - PATTE D'OIE / OUAGA 2000
-    {
-        id: "pharm-patte-oie",
-        name: "Pharmacie de la Patte d'Oie",
-        location: { lat: 12.3250, lng: -1.5120, address: "Boulevard France-Afrique", city: "Ouagadougou" },
-        phone: "+226 25 37 00 00",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 256,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-faso",
-        name: "Pharmacie Faso",
-        location: { lat: 12.3265, lng: -1.5135, address: "Boulevard France-Afrique", city: "Ouagadougou" },
-        phone: "+226 25 38 19 29",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-principale",
-        name: "Pharmacie Principale",
-        location: { lat: 12.3280, lng: -1.5095, address: "Ouaga 2000", city: "Ouagadougou" },
-        phone: "+226 25 37 54 15",
-        status: "open",
-        rating: 4.9,
-        reviewCount: 312,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-augustine",
-        name: "Pharmacie Augustine",
-        location: { lat: 12.3295, lng: -1.5088, address: "Ouaga 2000", city: "Ouagadougou" },
-        phone: "+226 25 37 61 00",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 245,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-beatitudes",
-        name: "Pharmacie des Béatitudes",
-        location: { lat: 12.3305, lng: -1.5075, address: "Boulevard France-Afrique Ouaga 2000", city: "Ouagadougou" },
-        phone: "+226 25 37 47 11",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 198,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-kouma",
-        name: "Pharmacie Kouma",
-        location: { lat: 12.3285, lng: -1.5102, address: "Boulevard France-Afrique Ouaga 2000", city: "Ouagadougou" },
-        phone: "+226 25 38 57 42",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - KOULOUBA / GOUNGHIN
-    {
-        id: "pharm-koulouba",
-        name: "Pharmacie Koulouba",
-        location: { lat: 12.3680, lng: -1.5240, address: "Koulouba, Face Festival des Glaces", city: "Ouagadougou" },
-        phone: "+226 25 31 19 18",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 192,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-diaby",
-        name: "Pharmacie Diaby",
-        location: { lat: 12.3675, lng: -1.5235, address: "Face au Festival des Glaces", city: "Ouagadougou" },
-        phone: "+226 25 33 50 00",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-amaro",
-        name: "Pharmacie Amaro",
-        location: { lat: 12.3720, lng: -1.5180, address: "Avenue du Kadiogo Gounghin", city: "Ouagadougou" },
-        phone: "+226 25 34 33 28",
-        status: "open",
-        rating: 4.5,
-        reviewCount: 134,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-la-croix",
-        name: "Pharmacie La Croix",
-        location: { lat: 12.3735, lng: -1.5195, address: "Gounghin, Près de l'échangeur de l'ouest", city: "Ouagadougou" },
-        phone: "+226 25 34 12 64",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 187,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-unite",
-        name: "Pharmacie Unité",
-        location: { lat: 12.3740, lng: -1.5200, address: "Gounghin, Face au Jardin de la Challenge", city: "Ouagadougou" },
-        phone: "+226 25 40 27 57",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 145,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - 1200 LOGEMENTS / DASSASGHO
-    {
-        id: "pharm-1200-logements",
-        name: "Pharmacie 1200 Logements",
-        location: { lat: 12.3425, lng: -1.4985, address: "Avenue Babanguida face à l'Hôpital Saint CAMILLE", city: "Ouagadougou" },
-        phone: "+226 25 36 02 52",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 223,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-avenir",
-        name: "Pharmacie Avenir",
-        location: { lat: 12.3435, lng: -1.4975, address: "1200 Lgt, Avenue BABANGUIDA face à la station Total", city: "Ouagadougou" },
-        phone: "+226 25 36 13 38",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 198,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-camille",
-        name: "Pharmacie Camille",
-        location: { lat: 12.3445, lng: -1.4965, address: "Avenue Charles De Gaulle", city: "Ouagadougou" },
-        phone: "+226 25 36 61 27",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-wend-kuuni",
-        name: "Pharmacie Wend Kuuni",
-        location: { lat: 12.3455, lng: -1.4955, address: "Boulevard Charles De Gaulle", city: "Ouagadougou" },
-        phone: "+226 25 36 20 15",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - TAMPOUY / CISSIN
-    {
-        id: "pharm-angele",
-        name: "Pharmacie Angèle",
-        location: { lat: 12.3580, lng: -1.4890, address: "Tampouy côté Sud du Centre Médical Paul VI", city: "Ouagadougou" },
-        phone: "+226 25 35 07 17",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 201,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-ar-rahma",
-        name: "Pharmacie Ar-Rahma",
-        location: { lat: 12.3595, lng: -1.4875, address: "Avenue Yatenga à Tampouy", city: "Ouagadougou" },
-        phone: "+226 25 35 09 86",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-baowendsom",
-        name: "Pharmacie Baowendsom",
-        location: { lat: 12.3605, lng: -1.4865, address: "Tampouy sur le nouveau goudron", city: "Ouagadougou" },
-        phone: "+226 25 41 44 99",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 192,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-gemme",
-        name: "Pharmacie Gemme",
-        location: { lat: 12.3615, lng: -1.4855, address: "Cité AZIMMO Tampouy", city: "Ouagadougou" },
-        phone: "+226 62 70 50 50",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 215,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-amitie-miyougou",
-        name: "Pharmacie Amitié Miyougou",
-        location: { lat: 12.3520, lng: -1.4920, address: "Boulevard de la circulation, Secteur 25 Cissin", city: "Ouagadougou" },
-        phone: "+226 25 38 52 36",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - PISSY / BOULMIOUGOU
-    {
-        id: "pharm-adadoa",
-        name: "Pharmacie Adadoa",
-        location: { lat: 12.3385, lng: -1.5425, address: "Entre le CMA de Pissy et le Centre Médical Source de Vie", city: "Ouagadougou" },
-        phone: "+226 63 88 39 39",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-adama",
-        name: "Pharmacie Adama",
-        location: { lat: 12.3395, lng: -1.5435, address: "En face du Marché de Pissy", city: "Ouagadougou" },
-        phone: "+226 62 33 77 77",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-boulmiougou",
-        name: "Pharmacie Boulmiougou",
-        location: { lat: 12.3365, lng: -1.5485, address: "Secteur 27, 166 rue de Boassa, Pissy", city: "Ouagadougou" },
-        phone: "+226 25 43 12 68",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 198,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-venegre",
-        name: "Pharmacie Vénégré",
-        location: { lat: 12.3375, lng: -1.5495, address: "Arrondissement 6 non loin de la Clinique EL Fateh Suka", city: "Ouagadougou" },
-        phone: "+226 25 43 09 87",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 145,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - TANGHIN / ZONE 1
-    {
-        id: "pharm-jean-paul-ii",
-        name: "Pharmacie Jean Paul II",
-        location: { lat: 12.3825, lng: -1.5085, address: "Tanghin face à Arb-Yaar Secteur 17", city: "Ouagadougou" },
-        phone: "+226 25 41 81 54",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 201,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-meteba",
-        name: "Pharmacie Meteba",
-        location: { lat: 12.3835, lng: -1.5095, address: "Tanghin", city: "Ouagadougou" },
-        phone: "+226 25 33 53 33",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-desa",
-        name: "Pharmacie Desa",
-        location: { lat: 12.3845, lng: -1.5105, address: "Tanghin, non loin de Hôtel Ricardo", city: "Ouagadougou" },
-        phone: "+226 25 47 50 50",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-lanibougna",
-        name: "Pharmacie Lanibougna",
-        location: { lat: 12.3855, lng: -1.5115, address: "Tanghin, quartier Nonghin", city: "Ouagadougou" },
-        phone: "+226 25 48 07 97",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-lanzane",
-        name: "Pharmacie Lanzané",
-        location: { lat: 12.3865, lng: -1.5125, address: "En face de l'Auto-École Magnificat à la Zone Une (1)", city: "Ouagadougou" },
-        phone: "+226 25 47 10 65",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 192,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - KOSSODO / BENDOGO
-    {
-        id: "pharm-kossodo",
-        name: "Pharmacie Kossodo",
-        location: { lat: 12.4125, lng: -1.4685, address: "En face de l'abattoir de Kossodo", city: "Ouagadougou" },
-        phone: "+226 25 35 63 04",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-delwinde",
-        name: "Pharmacie Delwindé",
-        location: { lat: 12.4135, lng: -1.4675, address: "Secteur 42, à 700m de l'échangeur de l'EST", city: "Ouagadougou" },
-        phone: "+226 25 36 72 80",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-jabneel",
-        name: "Pharmacie Jabnéel",
-        location: { lat: 12.4085, lng: -1.4725, address: "Route Côté Sud SONABEL Bendogo", city: "Ouagadougou" },
-        phone: "+226 25 36 66 01",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-
-    // OUAGADOUGOU - AUTRES QUARTIERS
-    {
-        id: "pharm-aeroport",
-        name: "Pharmacie Aéroport",
-        location: { lat: 12.3535, lng: -1.5125, address: "Face à l'ASECNA à 500m de l'Aéroport", city: "Ouagadougou" },
-        phone: "+226 25 31 42 22",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 234,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-hamdalaye",
-        name: "Pharmacie Hamdalaye",
-        location: { lat: 12.3755, lng: -1.5325, address: "Quartier Hamdalaye (Secteur 8)", city: "Ouagadougou" },
-        phone: "+226 25 34 36 94",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-dapoya",
-        name: "Pharmacie Dapoya",
-        location: { lat: 12.3695, lng: -1.5285, address: "Dapoya, face immeuble Acimex", city: "Ouagadougou" },
-        phone: "+226 25 31 32 01",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 192,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-karpala",
-        name: "Pharmacie Karpala",
-        location: { lat: 12.3485, lng: -1.5385, address: "Route CFAO-KARPALA", city: "Ouagadougou" },
-        phone: "+226 25 37 14 14",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-koumajer",
-        name: "Pharmacie Koumajer",
-        location: { lat: 12.3495, lng: -1.5395, address: "Non loin du Palais de Justice Karpala", city: "Ouagadougou" },
-        phone: "+226 25 40 20 20",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-kawsar",
-        name: "Pharmacie Kawsar",
-        location: { lat: 12.3505, lng: -1.5405, address: "Karpala à 600m de la division fiscale", city: "Ouagadougou" },
-        phone: "+226 73 20 77 87",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-hippodrome",
-        name: "Pharmacie de l'Hippodrome",
-        location: { lat: 12.3765, lng: -1.5215, address: "116 boulevard Tensoba Bugum", city: "Ouagadougou" },
-        phone: "+226 25 34 02 32",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 198,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-sigri",
-        name: "Pharmacie Sigri",
-        location: { lat: 12.3775, lng: -1.5225, address: "Nonsin", city: "Ouagadougou" },
-        phone: "+226 25 34 64 22",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-jourdain",
-        name: "Pharmacie Jourdain",
-        location: { lat: 12.3425, lng: -1.5015, address: "Boulevard Tansoba, 100m de l'hôpital Pédiatrique", city: "Ouagadougou" },
-        phone: "+226 25 36 06 86",
-        status: "open",
-        rating: 4.8,
-        reviewCount: 223,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-hôpital",
-        name: "Pharmacie de l'Hôpital",
-        location: { lat: 12.3665, lng: -1.5295, address: "À côté de l'Hôpital Yalgado Ouedraogo", city: "Ouagadougou" },
-        phone: "+226 25 30 66 41",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 245,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-bethania",
-        name: "Pharmacie Bethania",
-        location: { lat: 12.3705, lng: -1.5255, address: "Avenue Oumarou KANAZOE côté Est CBC", city: "Ouagadougou" },
-        phone: "+226 25 31 31 41",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-keneya",
-        name: "Pharmacie Keneya",
-        location: { lat: 12.3715, lng: -1.5265, address: "Avenue Oumarou KANAZOE porte 734", city: "Ouagadougou" },
-        phone: "+226 25 30 71 38",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 192,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-vidal-bafa",
-        name: "Pharmacie Vidal Bafa",
-        location: { lat: 12.3725, lng: -1.5275, address: "Avenue Oumarou Kanazoé, Secteur 7", city: "Ouagadougou" },
-        phone: "+226 25 31 52 88",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-heera",
-        name: "Pharmacie Heera",
-        location: { lat: 12.3685, lng: -1.5275, address: "Avenue MOGHO NAABA non loin de l'église Jean XXIII", city: "Ouagadougou" },
-        phone: "+226 25 31 66 10",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-espoir",
-        name: "Pharmacie Espoir",
-        location: { lat: 12.3595, lng: -1.5385, address: "Larlé face à la Maison des Jeunes", city: "Ouagadougou" },
-        phone: "+226 25 31 54 12",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-cite-an-iii",
-        name: "Pharmacie Cité An III",
-        location: { lat: 12.3605, lng: -1.5395, address: "Larlé en face de la maternité Pogbi", city: "Ouagadougou" },
-        phone: "+226 25 33 19 66",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-danouma",
-        name: "Pharmacie Danouma",
-        location: { lat: 12.3515, lng: -1.4895, address: "Bonheur Ville à 300mètres du rond-point de la transition", city: "Ouagadougou" },
-        phone: "+226 25 39 55 54",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-bonheur",
-        name: "Pharmacie Bonheur",
-        location: { lat: 12.3525, lng: -1.4885, address: "Bonheur Ville à 100 mètres de l'Église du 75ème anniversaire", city: "Ouagadougou" },
-        phone: "+226 63 73 81 82",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-flayiri",
-        name: "Pharmacie Flayiri",
-        location: { lat: 12.3895, lng: -1.4985, address: "ZAD Face à la Station PETROFA", city: "Ouagadougou" },
-        phone: "+226 25 40 73 44",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-wayalghin",
-        name: "Pharmacie Wayalghin",
-        location: { lat: 12.3905, lng: -1.4975, address: "En Face du mur du camps CRS", city: "Ouagadougou" },
-        phone: "+226 25 39 52 08",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-el-wanoogo",
-        name: "Pharmacie El-Wanoogo",
-        location: { lat: 12.3915, lng: -1.4965, address: "À côté du Marché de Wayalghin", city: "Ouagadougou" },
-        phone: "+226 25 40 70 22",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-elite",
-        name: "Pharmacie Elite",
-        location: { lat: 12.3925, lng: -1.4955, address: "Avenue Yennega route de Yagma", city: "Ouagadougou" },
-        phone: "+226 25 41 91 77",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-rimkieta",
-        name: "Pharmacie de l'Alliance",
-        location: { lat: 12.4025, lng: -1.4855, address: "Rimkièta à 50 mètres du Lycée Général Kadiogo III", city: "Ouagadougou" },
-        phone: "+226 66 06 35 39",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-barkwende",
-        name: "Pharmacie Barkwendé",
-        location: { lat: 12.4035, lng: -1.4845, address: "Arrondissement 8, Secteur 35, Face à la cité de Rimkièta", city: "Ouagadougou" },
-        phone: "+226 25 40 85 90",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-crystal",
-        name: "Pharmacie Crystal",
-        location: { lat: 12.4045, lng: -1.4835, address: "Face à la nouvelle Mairie de l'Arrondissement 9", city: "Ouagadougou" },
-        phone: "+226 60 46 08 08",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-des-apotres",
-        name: "Pharmacie des Apôtres",
-        location: { lat: 12.4155, lng: -1.4725, address: "Arrondissement 12, Secteur 52", city: "Ouagadougou" },
-        phone: "+226 25 38 03 82",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-el-shaddai",
-        name: "Pharmacie El Shaddai",
-        location: { lat: 12.4065, lng: -1.4815, address: "Benogo à 100 mètres du Pont Ana na yélé", city: "Ouagadougou" },
-        phone: "+226 25 41 00 02",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-denisa",
-        name: "Pharmacie Denisa",
-        location: { lat: 12.3285, lng: -1.4685, address: "Secteur 14 Komsilga non loin du CHU de Tengandogo", city: "Ouagadougou" },
-        phone: "+226 71 82 76 60",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-song-taaba",
-        name: "Pharmacie Song-Taaba",
-        location: { lat: 12.3465, lng: -1.4785, address: "Nioko 1", city: "Ouagadougou" },
-        phone: "+226 25 36 64 62",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-hope",
-        name: "Pharmacie Hope",
-        location: { lat: 12.3475, lng: -1.4775, address: "Route de Fada, Nioko 1, Saaba", city: "Ouagadougou" },
-        phone: "+226 71 14 22 22",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-st-bernard",
-        name: "Pharmacie St Bernard",
-        location: { lat: 12.3565, lng: -1.4685, address: "Cité SOCOGIB", city: "Ouagadougou" },
-        phone: "+226 25 45 14 82",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-viel",
-        name: "Pharmacie Vièl",
-        location: { lat: 12.3575, lng: -1.4695, address: "Route de Kamboincé, Porte des soeurs après CMA PAUL VI", city: "Ouagadougou" },
-        phone: "+226 25 45 98 25",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-wend-yam",
-        name: "Pharmacie Wend Yam",
-        location: { lat: 12.4285, lng: -1.5125, address: "Route de Ouahigouya, à la fin des deux voies", city: "Ouagadougou" },
-        phone: "+226 25 48 30 47",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-hamid",
-        name: "Pharmacie Hamid",
-        location: { lat: 12.3185, lng: -1.5685, address: "Route Nationale N°1 (RN1) en face de la SONAPOST de Zagtouly", city: "Ouagadougou" },
-        phone: "+226 79 61 31 72",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-choukroullah",
-        name: "Pharmacie Choukroullah",
-        location: { lat: 12.3985, lng: -1.4585, address: "300m du Centre Médical de Nagrin", city: "Ouagadougou" },
-        phone: "+226 25 40 93 76",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-circulaire-sede",
-        name: "Pharmacie Circulaire Sède",
-        location: { lat: 12.3795, lng: -1.5125, address: "ex Secteur 15, face à la Station TOTAL Ouaga-inter", city: "Ouagadougou" },
-        phone: "+226 25 47 61 27",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 178,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-agora-rood-wooko",
-        name: "Pharmacie Agora Rood Wooko",
-        location: { lat: 12.3805, lng: -1.5135, address: "Marché Rood Wooko face à DIACFA Librairie", city: "Ouagadougou" },
-        phone: "+226 25 30 88 90",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 167,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-lalle",
-        name: "Pharmacie Lallé",
-        location: { lat: 12.3815, lng: -1.5145, address: "Avenue Pierre Claver BADEMBIE NIEZIEN", city: "Ouagadougou" },
-        phone: "+226 79 07 06 22",
-        status: "open",
-        rating: 4.7,
-        reviewCount: 189,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
-    },
-    {
-        id: "pharm-les-champions",
-        name: "Pharmacie Les Champions",
-        location: { lat: 12.3825, lng: -1.5155, address: "À environ 100 mètres du marché de 14 Yaar", city: "Ouagadougou" },
-        phone: "+226 51 00 15 25",
-        status: "open",
-        rating: 4.6,
-        reviewCount: 156,
-        isVerified: true,
-        deliveryAvailable: true,
-        deliveryFee: 1000
+    {
+        "id": "pharm-avenir",
+        "name": "Pharmacie Avenir",
+        "location": {
+            "lat": 12.3751998,
+            "lng": -1.4938723,
+            "address": "1200 Lgt, Avenue BABANGUIDA face à la station Total",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 13 38",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 198,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-wend-kuuni",
+        "name": "Pharmacie Wend Kuuni",
+        "location": {
+            "lat": 12.3755238,
+            "lng": -1.4875664,
+            "address": "Boulevard Charles De Gaulle",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 20 15",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 189,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-camille",
+        "name": "Pharmacie Camille",
+        "location": {
+            "lat": 12.3758268,
+            "lng": -1.4779569,
+            "address": "Avenue Charles De Gaulle",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 61 27",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-circulaire-sede",
+        "name": "Pharmacie Circulaire Sède",
+        "location": {
+            "lat": 12.3325736,
+            "lng": -1.5166729,
+            "address": "ex Secteur 15, face à la Station TOTAL Ouaga-inter",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 47 61 27",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 178,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-faso",
+        "name": "Pharmacie Faso",
+        "location": {
+            "lat": 12.3178393,
+            "lng": -1.5217902,
+            "address": "Boulevard France-Afrique",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 38 19 29",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 189,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-kouma",
+        "name": "Pharmacie Kouma",
+        "location": {
+            "lat": 12.3130946,
+            "lng": -1.5289169,
+            "address": "Boulevard France-Afrique Ouaga 2000",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 38 57 42",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-boulmiougou",
+        "name": "Pharmacie Boulmiougou",
+        "location": {
+            "lat": 12.3328999,
+            "lng": -1.5829698,
+            "address": "Secteur 27, 166 rue de Boassa, Pissy",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 43 12 68",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 198,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-unite",
+        "name": "Pharmacie Unité",
+        "location": {
+            "lat": 12.3521275,
+            "lng": -1.5561694,
+            "address": "Gounghin, Face au Jardin de la Challenge",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 40 27 57",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 145,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-hippodrome",
+        "name": "Pharmacie de l'Hippodrome",
+        "location": {
+            "lat": 12.375924,
+            "lng": -1.5573961,
+            "address": "116 boulevard Tensoba Bugum",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 34 02 32",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 198,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-espoir",
+        "name": "Pharmacie Espoir",
+        "location": {
+            "lat": 12.3726963,
+            "lng": -1.5456802,
+            "address": "Larlé face à la Maison des Jeunes",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 54 12",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 156,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-vidal-bafa",
+        "name": "Pharmacie Vidal Bafa",
+        "location": {
+            "lat": 12.3765947,
+            "lng": -1.5369941,
+            "address": "Avenue Oumarou Kanazoé, Secteur 7",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 52 88",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-dapoya",
+        "name": "Pharmacie Dapoya",
+        "location": {
+            "lat": 12.3799582,
+            "lng": -1.5230395,
+            "address": "Dapoya, face immeuble Acimex",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 32 01",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 192,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-augustine",
+        "name": "Pharmacie Augustine",
+        "location": {
+            "lat": 12.327115,
+            "lng": -1.5000203,
+            "address": "Ouaga 2000",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 37 61 00",
+        "status": "open",
+        "rating": 4.8,
+        "reviewCount": 245,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-boulmiougou",
+        "name": "Pharmacie Boulmiougou",
+        "location": {
+            "lat": 12.3392273,
+            "lng": -1.549132,
+            "address": "Secteur 27, 166 rue de Boassa, Pissy",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 43 12 68",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 198,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-1200-logements",
+        "name": "Pharmacie 1200 Logements",
+        "location": {
+            "lat": 12.3668409,
+            "lng": -1.4938745,
+            "address": "Avenue Babanguida face à l'Hôpital Saint CAMILLE",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 02 52",
+        "status": "open",
+        "rating": 4.8,
+        "reviewCount": 223,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-baowendsom",
+        "name": "Pharmacie Baowendsom",
+        "location": {
+            "lat": 12.403473,
+            "lng": -1.5774737,
+            "address": "Tampouy sur le nouveau goudron",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 41 44 99",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 192,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-delwinde",
+        "name": "Pharmacie Delwindé",
+        "location": {
+            "lat": 12.4011373,
+            "lng": -1.4721023,
+            "address": "Secteur 42, à 700m de l'échangeur de l'EST",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 72 80",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 189,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-kadiogo",
+        "name": "Pharmacie Kadiogo",
+        "location": {
+            "lat": 12.3603046,
+            "lng": -1.5172985,
+            "address": "Avenue Kwamé N'Krumah",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 87 88",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 178,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-cathedrale",
+        "name": "Pharmacie de la Cathédrale",
+        "location": {
+            "lat": 12.3632079,
+            "lng": -1.5281878,
+            "address": "38 Avenue de la Cathédrale",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 28 07",
+        "status": "open",
+        "rating": 4.8,
+        "reviewCount": 210,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-jourdain",
+        "name": "Pharmacie Jourdain",
+        "location": {
+            "lat": 12.3730987,
+            "lng": -1.4741128,
+            "address": "Boulevard Tansoba, 100m de l'hôpital Pédiatrique",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 06 86",
+        "status": "open",
+        "rating": 4.8,
+        "reviewCount": 223,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-avenir",
+        "name": "Pharmacie Avenir",
+        "location": {
+            "lat": 12.3749954,
+            "lng": -1.4939046,
+            "address": "1200 Lgt, Avenue BABANGUIDA face à la station Total",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 13 38",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 198,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-camille",
+        "name": "Pharmacie Camille",
+        "location": {
+            "lat": 12.3757004,
+            "lng": -1.4786192,
+            "address": "Avenue Charles De Gaulle",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 61 27",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-kossodo",
+        "name": "Pharmacie Kossodo",
+        "location": {
+            "lat": 12.4171874,
+            "lng": -1.473243,
+            "address": "En face de l'abattoir de Kossodo",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 35 63 04",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 156,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-el-wanoogo",
+        "name": "Pharmacie El-Wanoogo",
+        "location": {
+            "lat": 12.3984754,
+            "lng": -1.4637411,
+            "address": "À côté du Marché de Wayalghin",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 40 70 22",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-augustine",
+        "name": "Pharmacie Augustine",
+        "location": {
+            "lat": 12.3257765,
+            "lng": -1.5031566,
+            "address": "Ouaga 2000",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 37 61 00",
+        "status": "open",
+        "rating": 4.8,
+        "reviewCount": 245,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-hôpital",
+        "name": "Pharmacie de l'Hôpital",
+        "location": {
+            "lat": 12.3822028,
+            "lng": -1.5066304,
+            "address": "À côté de l'Hôpital Yalgado Ouedraogo",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 30 66 41",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 245,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-barkwende",
+        "name": "Pharmacie Barkwendé",
+        "location": {
+            "lat": 12.3737293,
+            "lng": -1.6084504,
+            "address": "Arrondissement 8, Secteur 35, Face à la cité de Rimkièta",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 40 85 90",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 178,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-camille",
+        "name": "Pharmacie Camille",
+        "location": {
+            "lat": 12.3758214,
+            "lng": -1.4788017,
+            "address": "Boulevard Charles de Gaulle",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 61 27",
+        "status": "open",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-hôpital",
+        "name": "Pharmacie de l'Hôpital",
+        "location": {
+            "lat": 0,
+            "lng": 0,
+            "address": "À côté de l'Hôpital Yalgado Ouedraogo",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 30 66 41",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 245,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "pharm-koulouba",
+        "name": "Pharmacie Koulouba",
+        "location": {
+            "lat": 0,
+            "lng": 0,
+            "address": "Koulouba, Face Festival des Glaces",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 19 18",
+        "status": "open",
+        "rating": 4.7,
+        "reviewCount": 192,
+        "isVerified": true,
+        "deliveryAvailable": true,
+        "deliveryFee": 1000,
+        "source": "Fused (ONPBF + OSM)"
+    },
+    {
+        "id": "disc_pharmaciedunia",
+        "name": "Pharmacie Dunia",
+        "location": {
+            "lat": 12.3593046,
+            "lng": -1.4951501,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacietalba",
+        "name": "Pharmacie Talba",
+        "location": {
+            "lat": 12.3762421,
+            "lng": -1.4909633,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieteranga",
+        "name": "Pharmacie Teranga",
+        "location": {
+            "lat": 12.3817592,
+            "lng": -1.4934187,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelafraternit",
+        "name": "Pharmacie de la Fraternité",
+        "location": {
+            "lat": 12.3908138,
+            "lng": -1.4764622,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacietaoko",
+        "name": "Pharmacie Taoko",
+        "location": {
+            "lat": 12.3877702,
+            "lng": -1.4784469,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciebenaia",
+        "name": "Pharmacie Benaia",
+        "location": {
+            "lat": 12.3503395,
+            "lng": -1.4796989,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieouedreago",
+        "name": "Pharmacie Ouedreago",
+        "location": {
+            "lat": 12.3354559,
+            "lng": -1.4985111,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciekabordominique",
+        "name": "Pharmacie Kaboré Dominique",
+        "location": {
+            "lat": 12.3299218,
+            "lng": -1.5262859,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelamiti",
+        "name": "Pharmacie de l´amitié",
+        "location": {
+            "lat": 12.3346448,
+            "lng": -1.5351653,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciesaintjulien",
+        "name": "Pharmacie Saint Julien",
+        "location": {
+            "lat": 12.3344771,
+            "lng": -1.5262218,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "25 38 06 10",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciemaignon",
+        "name": "Pharmacie maignon",
+        "location": {
+            "lat": 12.3505338,
+            "lng": -1.5264106,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_expharmaciedugoulmou",
+        "name": "EX Pharmacie du Goulmou",
+        "location": {
+            "lat": 12.3420654,
+            "lng": -1.5527006,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_expharmaciedepissy",
+        "name": "Ex Pharmacie de Pissy",
+        "location": {
+            "lat": 12.335166,
+            "lng": -1.5631997,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciewendlalafi",
+        "name": "Pharmacie wend la lafi",
+        "location": {
+            "lat": 12.3422993,
+            "lng": -1.5729105,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieduprogrs",
+        "name": "Pharmacie du progrès",
+        "location": {
+            "lat": 12.3437164,
+            "lng": -1.5686962,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedurivage",
+        "name": "Pharmacie du rivage",
+        "location": {
+            "lat": 12.3539218,
+            "lng": -1.5525645,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciemar",
+        "name": "Pharmacie Maré",
+        "location": {
+            "lat": 12.3631848,
+            "lng": -1.5498232,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelajeunesse",
+        "name": "Pharmacie de la jeunesse",
+        "location": {
+            "lat": 12.3706171,
+            "lng": -1.5580827,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciewendlamita",
+        "name": "Pharmacie Wend Lamita",
+        "location": {
+            "lat": 12.3810463,
+            "lng": -1.5503923,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelaprovidance",
+        "name": "Pharmacie de la providance",
+        "location": {
+            "lat": 12.37304,
+            "lng": -1.5382644,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciebaraka",
+        "name": "Pharmacie Baraka",
+        "location": {
+            "lat": 12.3786779,
+            "lng": -1.5396613,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciewenddenda",
+        "name": "Pharmacie wend denda",
+        "location": {
+            "lat": 12.3768378,
+            "lng": -1.5439292,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelalibert",
+        "name": "Pharmacie de la liberté",
+        "location": {
+            "lat": 12.3776946,
+            "lng": -1.531408,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelasavane",
+        "name": "Pharmacie de la Savane",
+        "location": {
+            "lat": 12.3769736,
+            "lng": -1.5208938,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedesignonghin",
+        "name": "Pharmacie de Signonghin",
+        "location": {
+            "lat": 12.3867265,
+            "lng": -1.5624233,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_",
+        "name": "002",
+        "location": {
+            "lat": 12.3774398,
+            "lng": -1.5112048,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciesaintfranoisdassises",
+        "name": "Pharmacie Saint François d'Assises",
+        "location": {
+            "lat": 12.3820165,
+            "lng": -1.4890606,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_saintlazare",
+        "name": "Saint Lazare",
+        "location": {
+            "lat": 12.3685791,
+            "lng": -1.4997016,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieyennenga",
+        "name": "Pharmacie Yennenga",
+        "location": {
+            "lat": 12.35118,
+            "lng": -1.4880845,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedepissy",
+        "name": "pharmacie de pissy",
+        "location": {
+            "lat": 12.3367241,
+            "lng": -1.5639541,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedusahel",
+        "name": "Pharmacie du Sahel",
+        "location": {
+            "lat": 12.3662116,
+            "lng": -1.5149834,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_phamaciedelindependance",
+        "name": "PHAMACIE DE L'INDEPENDANCE",
+        "location": {
+            "lat": 12.3702719,
+            "lng": -1.5158385,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciesaintjean",
+        "name": "Pharmacie Saint Jean",
+        "location": {
+            "lat": 12.342753,
+            "lng": -1.4937944,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieducarrefour",
+        "name": "Pharmacie du Carrefour",
+        "location": {
+            "lat": 12.3677055,
+            "lng": -1.5309441,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedelunivers",
+        "name": "Pharmacie de l'Univers",
+        "location": {
+            "lat": 12.3828526,
+            "lng": -1.4254886,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_dispensaireridwane",
+        "name": "Dispensaire Ridwane",
+        "location": {
+            "lat": 12.3426727,
+            "lng": -1.5456867,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_katra",
+        "name": "KATRA",
+        "location": {
+            "lat": 12.3469782,
+            "lng": -1.5030581,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciewati",
+        "name": "Pharmacie WATI",
+        "location": {
+            "lat": 12.3443667,
+            "lng": -1.5405179,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "+22625385292",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_centremedicalurbaindusecteur",
+        "name": "Centre medical urbain du secteur 16",
+        "location": {
+            "lat": 12.385767,
+            "lng": -1.5733674,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharamaciearrahama",
+        "name": "Pharamacie Ar-Rahama",
+        "location": {
+            "lat": 12.3895185,
+            "lng": -1.5741417,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciegaliam",
+        "name": "Pharmacie Galiam",
+        "location": {
+            "lat": 12.3996961,
+            "lng": -1.566242,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "25480567",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedusacrcoeur",
+        "name": "Pharmacie du Sacré-Coeur",
+        "location": {
+            "lat": 12.3512132,
+            "lng": -1.5462563,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciesotisse",
+        "name": "Pharmacie Sotisse",
+        "location": {
+            "lat": 12.3971219,
+            "lng": -1.4685073,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciesaintetrinit",
+        "name": "Pharmacie Sainte Trinité",
+        "location": {
+            "lat": 12.3685354,
+            "lng": -1.4883668,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_phamacieflayiri",
+        "name": "phamacie flayiri",
+        "location": {
+            "lat": 12.3383643,
+            "lng": -1.5088647,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_saintantoinedepadou",
+        "name": "Saint Antoine de Padou",
+        "location": {
+            "lat": 12.3610814,
+            "lng": -1.5341603,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedesecoles",
+        "name": "Pharmacie des Ecoles",
+        "location": {
+            "lat": 12.3818477,
+            "lng": -1.5162101,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_garageetdptdevhicules",
+        "name": "Garage et dépôt de véhicules",
+        "location": {
+            "lat": 12.33298,
+            "lng": -1.5006379,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedumuse",
+        "name": "pharmacie du musée",
+        "location": {
+            "lat": 12.3795464,
+            "lng": -1.4691108,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_natilg",
+        "name": "Natilgé",
+        "location": {
+            "lat": 12.3624307,
+            "lng": -1.481346,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_taoko",
+        "name": "Taoko",
+        "location": {
+            "lat": 12.3872713,
+            "lng": -1.4691459,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_naabraga",
+        "name": "Naab Raga",
+        "location": {
+            "lat": 12.3524179,
+            "lng": -1.531649,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacienongui",
+        "name": "Pharmacie Nongui",
+        "location": {
+            "lat": 12.3845751,
+            "lng": -1.5749971,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_depotpharmaceutiqueurbain",
+        "name": "Depot pharmaceutique urbain",
+        "location": {
+            "lat": 12.3718701,
+            "lng": -1.5248155,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieamoro",
+        "name": "Pharmacie AMORO",
+        "location": {
+            "lat": 12.3610665,
+            "lng": -1.5398783,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacierayibtiga",
+        "name": "Pharmacie RAYIB-TIGA",
+        "location": {
+            "lat": 12.4073949,
+            "lng": -1.5077501,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciedjimbia",
+        "name": "Pharmacie  DJIMBIA",
+        "location": {
+            "lat": 12.401461,
+            "lng": -1.5142148,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_phytofladrdakuyo",
+        "name": "Phytofla Dr. DAKUYO",
+        "location": {
+            "lat": 12.329985,
+            "lng": -1.4896433,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacienoomwende",
+        "name": "Pharmacie NOOM-WENDE",
+        "location": {
+            "lat": 12.319006,
+            "lng": -1.5379561,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_natilge",
+        "name": "NATILGE",
+        "location": {
+            "lat": 12.3586322,
+            "lng": -1.4833299,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_fasovet",
+        "name": "Fasovet+",
+        "location": {
+            "lat": 12.368644,
+            "lng": -1.4934044,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieafiya",
+        "name": "Pharmacie AFIYA",
+        "location": {
+            "lat": 12.3553431,
+            "lng": -1.4688761,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_merdipharm",
+        "name": "Merdipharm",
+        "location": {
+            "lat": 12.4169968,
+            "lng": -1.5017305,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacieninrwa",
+        "name": "Pharmacie Ninrwa",
+        "location": {
+            "lat": 12.4052066,
+            "lng": -1.456637,
+            "address": "Rue kond Noom",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_phciecoura",
+        "name": "Phcie Coura",
+        "location": {
+            "lat": 12.3274061,
+            "lng": -1.5207275,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmaciegeorgette",
+        "name": "Pharmacie Georgette",
+        "location": {
+            "lat": 12.4102792,
+            "lng": -1.6323174,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_adodoa",
+        "name": "Adodoa",
+        "location": {
+            "lat": 12.3337005,
+            "lng": -1.5620612,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacielerocher",
+        "name": "Pharmacie le Rocher",
+        "location": {
+            "lat": 12.3162047,
+            "lng": -1.5151577,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_pharmacielaconcorde",
+        "name": "Pharmacie la concorde",
+        "location": {
+            "lat": 12.3657673,
+            "lng": -1.5183549,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
+    },
+    {
+        "id": "disc_magnificat",
+        "name": "Magnificat",
+        "location": {
+            "lat": 0,
+            "lng": 0,
+            "address": "",
+            "city": "Ouagadougou"
+        },
+        "phone": "NC",
+        "status": "open",
+        "isVerified": false,
+        "source": "Discovery (Maps/OSM)"
     }
 ];
