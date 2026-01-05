@@ -309,7 +309,7 @@ function MapContent() {
             </div>
 
             {/* --- BOTTOM SHEET (LIFTED FURTHER FOR NAVIGATION BAR) --- */}
-            <div className="absolute bottom-[100px] left-0 right-0 z-30 p-4 pointer-events-none">
+            <div className="absolute bottom-[125px] left-0 right-0 z-30 p-4 pointer-events-none">
                 <div className="max-w-xl mx-auto pointer-events-auto">
 
                     {selectedPharmacy ? (
@@ -386,10 +386,10 @@ function MapContent() {
                                             setSelectedPharmacy(p);
                                             setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                         }}
-                                        className="min-w-[220px] bg-white rounded-2xl p-4 shadow-xl border border-zinc-200 snap-center active:scale-95 transition-all outline-none"
+                                        className="min-w-[210px] bg-white rounded-2xl p-3 shadow-xl border border-zinc-200 snap-center active:scale-95 transition-all outline-none"
                                     >
-                                        <div className="flex justify-between items-start mb-2">
-                                            <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center text-sm",
+                                        <div className="flex justify-between items-start mb-1.5">
+                                            <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center text-xs",
                                                 p.status === 'guard' ? "bg-primary/10" : "bg-emerald-500/10"
                                             )}>
                                                 {p.status === 'guard' ? '🟣' : '🟢'}
