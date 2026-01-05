@@ -32,49 +32,50 @@ export default function HomePage() {
   // Default to Ouagadougou center
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
 
-  // Initial load
+  // Initial load & Location Tracking
   useEffect(() => {
     setLocationStatus('loading');
+    let watchId: number | null = null;
 
-    // Try to get real location first
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
+      watchId = navigator.geolocation.watchPosition(
         (position) => {
           const loc = { lat: position.coords.latitude, lng: position.coords.longitude };
           setUserLocation(loc);
           setLocationStatus('success');
-          // Load pharmacies with real location
-          handleSearch("", loc);
         },
         (error) => {
-          console.warn("Geolocation error:", error.code, error.message);
-
+          console.warn("Geolocation tracking error:", error.code, error.message);
           if (error.code === 1) {
-            // Permission denied
             setLocationStatus('denied');
             setAuthMessage("📍 Activez la géolocalisation pour voir les pharmacies les plus proches de vous.");
-          } else {
-            // Other errors (timeout, unavailable)
+          } else if (locationStatus === 'loading') {
             setLocationStatus('default');
+            setUserLocation(DEFAULT_CENTER);
           }
-
-          // Fallback to default center
-          setUserLocation(DEFAULT_CENTER);
-          handleSearch("", DEFAULT_CENTER);
         },
         {
           enableHighAccuracy: true,
           timeout: 15000,
-          maximumAge: 60000 // 1 minute cache
+          maximumAge: 0 // Force fresh location tracking
         }
       );
     } else {
-      // Geolocation not supported
       setLocationStatus('default');
       setUserLocation(DEFAULT_CENTER);
-      handleSearch("", DEFAULT_CENTER);
     }
+
+    return () => {
+      if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    };
   }, []);
+
+  // Update results when location changes
+  useEffect(() => {
+    if (userLocation) {
+      handleSearch(searchQuery);
+    }
+  }, [userLocation]);
 
   // Check Premium Status
   useEffect(() => {

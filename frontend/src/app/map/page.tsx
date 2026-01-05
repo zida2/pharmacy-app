@@ -62,16 +62,33 @@ function MapContent() {
     });
     const [showFullList, setShowFullList] = useState(false);
 
-    // 1. Initial Load & Geolocation
+    // 1. Initial Load & Background Location Tracking
     useEffect(() => {
-        requestLocation(true); // Attempt silent geolocation on mount
+        let watchId: number | null = null;
+
+        if ("geolocation" in navigator) {
+            watchId = navigator.geolocation.watchPosition(
+                (position) => {
+                    const { longitude, latitude } = position.coords;
+                    setUserLocation([longitude, latitude]);
+                    setPermissionStatus("granted");
+                },
+                (error) => {
+                    console.warn("Background location error:", error);
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
 
         const handleSelect = (e: any) => {
             setSelectedPharmacy(e.detail);
         };
 
         window.addEventListener('pharmacySelected', handleSelect);
-        return () => window.removeEventListener('pharmacySelected', handleSelect);
+        return () => {
+            if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+            window.removeEventListener('pharmacySelected', handleSelect);
+        };
     }, []);
 
     // 2. Load Pharmacies when location or search changes
@@ -82,38 +99,22 @@ function MapContent() {
     const requestLocation = (silent = false) => {
         if (!silent) setIsLocating(true);
 
-        if (!navigator.geolocation) {
-            if (!silent) alert("Pardon, votre appareil ne supporte pas la géolocalisation.");
-            setPermissionStatus("denied");
-            setIsLocating(false);
-            return;
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { longitude, latitude } = position.coords;
+                    const newPos: [number, number] = [longitude, latitude];
+                    setUserLocation(newPos);
+                    setMapView({ center: newPos, zoom: 15, pitch: 0 });
+                    setIsLocating(false);
+                },
+                (error) => {
+                    if (!silent) alert("Pardon, activez votre GPS.");
+                    setIsLocating(false);
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
         }
-
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { longitude, latitude } = position.coords;
-                const newPos: [number, number] = [longitude, latitude];
-                setUserLocation(newPos);
-                setPermissionStatus("granted");
-                setIsLocating(false);
-
-                // Anim map to user
-                setMapView({
-                    center: newPos,
-                    zoom: 15,
-                    pitch: 0
-                });
-            },
-            (error) => {
-                console.warn("Location error:", error);
-                if (!silent) {
-                    setPermissionStatus("denied");
-                    alert("Activez votre GPS pour une meilleure expérience.");
-                }
-                setIsLocating(false);
-            },
-            { enableHighAccuracy: true, timeout: 10000 }
-        );
     };
 
     const loadPharmacies = async () => {
