@@ -1,0 +1,16 @@
+{
+    "name": "onpbf-scraper",
+    "version": "1.0.0",
+    "description": "Scraper officiel pour l'Ordre National des Pharmaciens du Burkina Faso",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "puppeteer": "^21.0.0",
+        "xlsx": "^0.18.5",
+        "axios": "^1.6.0",
+        "firebase-admin": "^11.11.0",
+        "dotenv": "^16.3.1"
+    }
+}

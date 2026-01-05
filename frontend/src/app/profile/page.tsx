@@ -91,10 +91,7 @@ export default function ProfilePage() {
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [isUpgrading, setIsUpgrading] = useState(false);
 
-    // Professional Access Logic
-    const [showAdminLogin, setShowAdminLogin] = useState(false);
-    const [adminCredentials, setAdminCredentials] = useState({ name: "", password: "" });
-    const [adminError, setAdminError] = useState("");
+
 
     // Track Auth & Load Data
     useEffect(() => {
@@ -1796,105 +1793,6 @@ export default function ProfilePage() {
                 onClose={() => setShowAuthPrompt(false)}
                 message="Connectez-vous pour sauvegarder votre profil médical, vos rappels de pilulier et vos adresses en toute sécurité."
             />
-
-            {/* PROFESSIONAL SPACE - HIDDEN FOR NOW */}
-            {/*
-            {
-                (userInfo.role === 'admin' || userInfo.role === 'pharmacy') && (
-                    <div className="mt-12 mb-32 text-center animate-in fade-in duration-1000 delay-700">
-                        <button
-                            onClick={() => router.push('/admin')}
-                            className="group flex flex-col items-center gap-3 mx-auto px-8 py-4 bg-slate-900/40 rounded-3xl border border-white/5 hover:border-primary/20 transition-all active:scale-95"
-                        >
-                            <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-[0_0_20px_rgba(99,102,241,0.1)]">
-                                <Shield size={24} />
-                            </div>
-                            <div>
-                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/50 group-hover:text-primary transition-colors">Portail Maître</div>
-                                <div className="text-sm font-black italic tracking-tighter text-foreground">Accès Tour de Contrôle</div>
-                            </div>
-                        </button>
-                    </div>
-                )
-            }
-            {
-                showAdminLogin && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-300">
-                        <div className="glass-card w-full max-w-sm p-8 rounded-[3rem] border-primary/30 shadow-2xl relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
-
-                            <button onClick={() => setShowAdminLogin(false)} className="absolute top-6 right-6 p-2 bg-secondary/50 rounded-full text-foreground/50 hover:text-foreground">
-                                <X size={18} />
-                            </button>
-
-                            <div className="flex flex-col items-center text-center gap-4 mb-8">
-                                <div className="w-16 h-16 bg-primary/10 rounded-3xl flex items-center justify-center text-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.2)]">
-                                    <Shield size={32} />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-black italic tracking-tighter text-foreground">Accès Professionnel</h3>
-                                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-60">Identification requise</p>
-                                </div>
-                            </div>
-
-                            <div className="space-y-4">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Identifiant</label>
-                                    <input
-                                        type="text"
-                                        autoComplete="off"
-                                        value={adminCredentials.name}
-                                        onChange={(e) => setAdminCredentials({ ...adminCredentials, name: e.target.value })}
-                                        placeholder="Nom d'utilisateur"
-                                        className="w-full p-4 bg-slate-900 border-2 border-white/5 rounded-2xl outline-none focus:border-primary/40 font-bold transition-all"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Mot de passe</label>
-                                    <input
-                                        type="password"
-                                        value={adminCredentials.password}
-                                        onChange={(e) => setAdminCredentials({ ...adminCredentials, password: e.target.value })}
-                                        placeholder="••••••••"
-                                        className="w-full p-4 bg-slate-900 border-2 border-white/5 rounded-2xl outline-none focus:border-primary/40 font-bold transition-all"
-                                    />
-                                </div>
-
-                                {adminError && (
-                                    <div className="text-[10px] text-red-500 font-bold text-center animate-shake py-2 border border-red-500/20 rounded-xl bg-red-500/5">
-                                        {adminError}
-                                    </div>
-                                )}
-
-                                <button
-                                    onClick={async () => {
-                                        if (adminCredentials.name === 'admin' && adminCredentials.password === 'admin') {
-                                            try {
-                                                await firebaseService.saveUserProfile(auth.currentUser!.uid, { role: 'admin' });
-                                                setUserInfo(prev => ({ ...prev, role: 'admin' }));
-                                                setShowAdminLogin(false);
-                                                alert("Accès Professionnel Déverrouillé ! 👑");
-                                            } catch (e) {
-                                                setAdminError("Erreur de synchronisation Cloud.");
-                                            }
-                                        } else {
-                                            setAdminError("Identifiants incorrects.");
-                                        }
-                                    }}
-                                    className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:brightness-110 active:scale-95 transition-all uppercase tracking-[0.2em] text-xs"
-                                >
-                                    Se Connecter au Portail
-                                </button>
-                            </div>
-
-                            <p className="mt-6 text-[9px] text-center text-muted-foreground italic opacity-40">
-                                L'utilisation non autorisée fera l'objet d'un signalement automatique.
-                            </p>
-                        </div>
-                    </div>
-                )
-            }
-            */}
-        </main >
+        </main>
     );
 }
