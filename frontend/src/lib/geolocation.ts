@@ -72,9 +72,9 @@ export async function getUserLocation(): Promise<Coordinates> {
                 resolve({ latitude: 12.3714, longitude: -1.5197 });
             },
             {
-                enableHighAccuracy: true, // Request GPS-level accuracy
-                timeout: 15000, // 15 seconds to get location
-                maximumAge: 60000, // Cache for only 1 minute (fresher location)
+                enableHighAccuracy: true,
+                timeout: 30000, // 30 seconds (better for slow GPS locks)
+                maximumAge: 300000, // Allow 5-minute old cached location
             }
         );
     });

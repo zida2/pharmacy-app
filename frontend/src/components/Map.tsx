@@ -75,7 +75,10 @@ export default function Map({
 
         map.current.addControl(new maplibregl.NavigationControl(), "top-right");
         map.current.addControl(new maplibregl.GeolocateControl({
-            positionOptions: { enableHighAccuracy: true },
+            positionOptions: {
+                enableHighAccuracy: true,
+                timeout: 30000 // 30 seconds for map geolocator
+            },
             trackUserLocation: true,
         }), "top-right");
 

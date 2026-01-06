@@ -20,16 +20,26 @@ import { calculateDistance, getUserLocation } from "@/lib/geolocation";
 
 const USE_REAL_BACKEND = process.env.NEXT_PUBLIC_USE_FIREBASE !== "false";
 
+// Helper to prevent Firebase from hanging forever on bad connections
+const withTimeout = <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise<T> => {
+    return Promise.race([
+        promise,
+        new Promise<T>((_, reject) =>
+            setTimeout(() => reject(new Error("Firebase Timeout")), timeoutMs)
+        )
+    ]);
+};
+
 export const firebaseService = {
     // 🏥 PHARMACIES
     async getPharmacies(): Promise<Pharmacy[]> {
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
-            const snap = await getDocs(collection(db, "pharmacies"));
+            const snap = await withTimeout(getDocs(collection(db, "pharmacies")), 8000) as any;
             if (snap.empty) throw new Error("No pharmacies in DB");
             return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Pharmacy));
         } catch (e) {
-            console.warn("Firebase fetch failed/disabled/empty, using full local dataset");
+            console.warn("Firebase fetch failed/timeout, using local fallback");
             return PHARMACIES_BURKINA_FASO;
         }
     },
@@ -37,7 +47,7 @@ export const firebaseService = {
     async getPharmacyById(id: string): Promise<Pharmacy | null> {
         try {
             if (USE_REAL_BACKEND) {
-                const d = await getDoc(doc(db, "pharmacies", id));
+                const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
                 if (d.exists()) {
                     return { id: d.id, ...d.data() } as Pharmacy;
                 }
@@ -270,9 +280,10 @@ export const firebaseService = {
     async getUserProfile(uid: string) {
         try {
             const userRef = doc(db, "users", uid);
-            const snap = await getDoc(userRef);
+            const snap = await withTimeout(getDoc(userRef), 10000) as any;
             return snap.exists() ? snap.data() : null;
         } catch (error) {
+            console.warn("User profile fetch timeout/error");
             return null;
         }
     },
