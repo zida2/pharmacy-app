@@ -53,30 +53,37 @@ function toRadians(degrees: number): number {
 export async function getUserLocation(): Promise<Coordinates> {
     return new Promise((resolve) => {
         if (!navigator.geolocation) {
-            // Default to Ouagadougou center if geolocation not available
             resolve({ latitude: 12.3714, longitude: -1.5197 });
             return;
         }
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                resolve({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
-            },
-            (error) => {
-                // Log the specific error for debugging
-                console.warn("Geolocation error:", error.code, error.message);
-                // On error, default to Ouagadougou center
-                resolve({ latitude: 12.3714, longitude: -1.5197 });
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 30000, // 30 seconds (better for slow GPS locks)
-                maximumAge: 300000, // Allow 5-minute old cached location
-            }
-        );
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 10000, // Reduced to 10s for first try
+            maximumAge: 300000,
+        };
+
+        const success = (position: GeolocationPosition) => {
+            resolve({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            });
+        };
+
+        const error = (err: GeolocationPositionError) => {
+            console.warn("High accuracy geolocation failed, trying low accuracy...", err.code);
+            // Fallback to low accuracy if high accuracy fails or times out
+            navigator.geolocation.getCurrentPosition(
+                (pos) => success(pos),
+                (err2) => {
+                    console.warn("Low accuracy geolocation also failed:", err2.code);
+                    resolve({ latitude: 12.3714, longitude: -1.5197 });
+                },
+                { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }
+            );
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
     });
 }
 
