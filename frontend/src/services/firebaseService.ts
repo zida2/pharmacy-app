@@ -122,14 +122,21 @@ export const firebaseService = {
                 }
             }
 
-            // Emergency filter: if searching for 'garde', boost those with status 'guard'
             if (isEmergencySearch) {
-                return finalResults
-                    .filter(r => r.pharmacy.status === 'guard' || !isEmergencySearch)
-                    .sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+                const filtered = finalResults
+                    .filter(r => r.pharmacy.status === 'guard' || !isEmergencySearch);
+
+                if (filtered.length > 0) {
+                    return filtered.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+                }
             }
 
-            return finalResults.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+            if (finalResults.length > 0) {
+                return finalResults.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+            }
+
+            // If zero results from real backend, force trigger local fallback logic below
+            throw new Error("No results found in real backend");
 
         } catch (error) {
             console.error("Search failed, using fallback:", error);

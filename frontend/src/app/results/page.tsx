@@ -23,7 +23,7 @@ function ResultsContent() {
 
     const [results, setResults] = useState<{ pharmacy: Pharmacy; product?: Product }[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filterDistance, setFilterDistance] = useState<number>(10);
+    const [filterDistance, setFilterDistance] = useState<number>(50);
     const [filterOpenOnly, setFilterOpenOnly] = useState(false);
     const [showFilters, setShowFilters] = useState(false);
 
@@ -73,7 +73,7 @@ function ResultsContent() {
                             )}
                         >
                             <SlidersHorizontal className="w-6 h-6" />
-                            {(filterOpenOnly || filterDistance < 10) && (
+                            {(filterOpenOnly || filterDistance < 50) && (
                                 <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></div>
                             )}
                         </button>
@@ -99,7 +99,7 @@ function ResultsContent() {
                                 <input
                                     type="range"
                                     min="2"
-                                    max="20"
+                                    max="100"
                                     step="1"
                                     value={filterDistance}
                                     onChange={(e) => setFilterDistance(Number(e.target.value))}
