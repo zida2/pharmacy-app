@@ -138,8 +138,12 @@ export const firebaseService = {
             // If zero results from real backend, force trigger local fallback logic below
             throw new Error("No results found in real backend");
 
-        } catch (error) {
-            console.error("Search failed, using fallback:", error);
+        } catch (error: any) {
+            if (error.message === "No results found in real backend") {
+                console.log("🔍 Base de données vide, passage à la recherche locale intelligente...");
+            } else {
+                console.warn("⚠️ Échec de la recherche serveur, utilisation du secours local:", error);
+            }
             const pharmacies = await this.getPharmacies();
             const q = term?.toLowerCase() || "";
 
