@@ -279,7 +279,7 @@ export default function Map({
                         </div>
                         <div class="p-4">
                             <div style="color: var(--muted-foreground); font-size: 12px; margin-bottom: 12px;">
-                                📍 ${pharmacy.location.address || "Ouagadougou"}
+                                📍 ${pharmacy.location?.address || "Ouagadougou"}
                             </div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-1.5">

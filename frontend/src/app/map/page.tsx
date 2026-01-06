@@ -167,7 +167,7 @@ function MapContent() {
 
     // Fetch real road distance when selection or transport mode changes
     useEffect(() => {
-        if (selectedPharmacy && userLocation) {
+        if (selectedPharmacy?.location?.lng && selectedPharmacy?.location?.lat && userLocation) {
             const profile = transportMode === 'walking' ? 'foot' : 'driving';
             fetch(`https://router.project-osrm.org/route/v1/${profile}/${userLocation[0]},${userLocation[1]};${selectedPharmacy.location.lng},${selectedPharmacy.location.lat}?overview=false`)
                 .then(res => res.json())
@@ -338,7 +338,7 @@ function MapContent() {
                                         <h3 className="text-xl font-black italic text-black tracking-tight">{selectedPharmacy.name}</h3>
                                     </div>
                                     <p className="text-xs text-zinc-600 flex items-center gap-1">
-                                        <MapPin size={12} className="text-primary" /> {selectedPharmacy.location.address || 'Localisation disponible'}
+                                        <MapPin size={12} className="text-primary" /> {selectedPharmacy.location?.address || 'Localisation disponible'}
                                     </p>
                                 </div>
                                 <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-zinc-100 rounded-full text-zinc-600">
@@ -364,7 +364,11 @@ function MapContent() {
 
                             <div className="flex gap-3">
                                 <button
-                                    onClick={() => setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat])}
+                                    onClick={() => {
+                                        if (selectedPharmacy?.location) {
+                                            setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat]);
+                                        }
+                                    }}
                                     className="flex-[2] h-14 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3 uppercase tracking-widest text-xs active:scale-95 transition-transform"
                                 >
                                     <NavigationIcon size={20} fill="currentColor" /> Itinéraire

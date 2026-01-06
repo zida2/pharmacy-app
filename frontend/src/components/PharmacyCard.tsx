@@ -78,7 +78,7 @@ export default function PharmacyCard({
 
             {/* Address & Distance */}
             <div className="grid grid-cols-1 gap-1.5 mb-4">
-                {pharmacy.location.address && (
+                {pharmacy.location?.address && (
                     <div className="flex items-center gap-2.5 text-[11px] text-zinc-500 font-medium">
                         <div className="w-7 h-7 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
                             <MapPin className="w-3.5 h-3.5" />

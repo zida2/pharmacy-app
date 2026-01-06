@@ -61,8 +61,10 @@ export const firebaseService = {
             // If no term, just return nearby
             if (!q) {
                 const pharmacies = await this.getPharmacies();
-                return pharmacies.map(p => {
-                    const straight = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng });
+                return pharmacies.filter(p => !!p).map(p => {
+                    const lat = p.location?.lat || 0;
+                    const lng = p.location?.lng || 0;
+                    const straight = calculateDistance(userLocation, { latitude: lat, longitude: lng });
                     return { pharmacy: { ...p, distance: straight * 1.4 } };
                 }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
             }
@@ -97,7 +99,9 @@ export const firebaseService = {
                     const inv = invDoc.data() as PharmacyInventory;
                     const pharmacy = await this.getPharmacyById(inv.pharmacyId);
                     if (pharmacy) {
-                        const dist = calculateDistance(userLocation, { latitude: pharmacy.location.lat, longitude: pharmacy.location.lng }) * 1.4;
+                        const lat = pharmacy.location?.lat || 0;
+                        const lng = pharmacy.location?.lng || 0;
+                        const dist = calculateDistance(userLocation, { latitude: lat, longitude: lng }) * 1.4;
                         finalResults.push({
                             pharmacy: { ...pharmacy, distance: dist },
                             product: { ...prod, price: inv.price, stock: inv.stock, inStock: inv.inStock }
@@ -132,7 +136,7 @@ export const firebaseService = {
             const pharmacies = await this.getPharmacies();
             const q = term?.toLowerCase() || "";
 
-            const pharmsWithDist = pharmacies.map(p => {
+            const pharmsWithDist = pharmacies.filter(p => !!p).map(p => {
                 let distance = 999;
                 if (p.location?.lat && p.location?.lng) {
                     distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
