@@ -146,15 +146,30 @@ export const firebaseService = {
 
             if (!q) return pharmsWithDist.map(p => ({ pharmacy: p }));
 
-            // Better Fallback Filter: Search products OR pharmacy names
-            const filtered = pharmsWithDist.filter(p =>
-                p.name.toLowerCase().includes(q) ||
-                (q.includes("para") && p.id === "pharm-marjean") // Mock match for demonstration
-            );
+            // Better Fallback Filter: Use keywords and trimming for intelligence
+            const cleanQuery = q.trim();
+            const keywords = cleanQuery.split(/\s+/).filter(k => k.length >= 3);
+
+            const filtered = pharmsWithDist.filter(p => {
+                const name = p.name.toLowerCase();
+
+                // 1. Precise match (trimmed)
+                if (name.includes(cleanQuery)) return true;
+
+                // 2. Specific typo tolerance for Marjean (common typo)
+                if ((cleanQuery.includes("marje") || cleanQuery.includes("marge")) && p.id === "pharm-marjean") return true;
+
+                // 3. Keyword matching (allows queries like "Pharmacie Marjean Ouaga")
+                if (keywords.length > 0) {
+                    return keywords.every(k => name.includes(k) || (p.location?.address?.toLowerCase().includes(k)));
+                }
+
+                return false;
+            });
 
             return filtered.map(p => ({
                 pharmacy: p,
-                product: q.includes("para") ? {
+                product: cleanQuery.includes("para") || cleanQuery.includes("med") ? {
                     id: "prod-para",
                     name: "Paracétamol 500mg",
                     price: 500 + Math.floor(Math.random() * 100),
