@@ -29,6 +29,7 @@ export default function HomePage() {
   const [locationStatus, setLocationStatus] = useState<'loading' | 'success' | 'denied' | 'default'>('loading');
   const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [showAssistance, setShowAssistance] = useState(false);
 
   // Default to Ouagadougou center
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
@@ -190,7 +191,7 @@ export default function HomePage() {
     }
   };
 
-  const [showAssistance, setShowAssistance] = useState(false);
+
 
   return (
     <main className="relative w-full h-screen flex flex-col bg-background">

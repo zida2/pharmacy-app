@@ -28,7 +28,6 @@ export default function LiveChat() {
         }
     ]);
 
-    if (!mounted) return null;
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -40,6 +39,8 @@ export default function LiveChat() {
     useEffect(() => {
         scrollToBottom();
     }, [chat, isTyping]);
+
+    if (!mounted) return null;
 
     // Intelligent response system
     const getIntelligentResponse = (userMessage: string): string => {
