@@ -44,8 +44,9 @@ function ResultsContent() {
     };
 
     const filteredResults = results.filter(r => {
-        if (filterOpenOnly && r.pharmacy.status !== "open") return false;
-        if (r.pharmacy.distance && r.pharmacy.distance > filterDistance) return false;
+        if (filterOpenOnly && r.pharmacy.status !== "open" && r.pharmacy.status !== "guard") return false;
+        // Don't filter out if distance is our fallback "999" (unknown/no GPS)
+        if (r.pharmacy.distance && r.pharmacy.distance > filterDistance && r.pharmacy.distance !== 999) return false;
         return true;
     });
 
