@@ -41,13 +41,16 @@ export default function Map({
 
     useEffect(() => {
         if (map.current && isLoaded) {
-            map.current.flyTo({
-                center: initialCenter,
-                zoom: initialZoom,
-                pitch: initialPitch,
-                bearing: initialBearing,
-                essential: true
-            });
+            const center = initialCenter;
+            if (typeof center[0] === 'number' && typeof center[1] === 'number') {
+                map.current.flyTo({
+                    center: center,
+                    zoom: initialZoom,
+                    pitch: initialPitch,
+                    bearing: initialBearing,
+                    essential: true
+                });
+            }
         }
     }, [initialCenter, initialZoom, isLoaded]);
 
@@ -90,6 +93,10 @@ export default function Map({
     useEffect(() => {
         if (!map.current || !isLoaded || !userLocation) return;
 
+        // Safety check for nulls in coordinates
+        if (typeof userLocation[0] !== 'number' || typeof userLocation[1] !== 'number' ||
+            isNaN(userLocation[0]) || isNaN(userLocation[1])) return;
+
         // Fly to user location on first acquisition or button click
         map.current.flyTo({
             center: userLocation,
@@ -111,11 +118,15 @@ export default function Map({
                     </div>
                 </div>
             `;
+            const validLng = isFinite(userLocation[0]) ? userLocation[0] : -1.5197;
+            const validLat = isFinite(userLocation[1]) ? userLocation[1] : 12.3714;
             userMarkerRef.current = new maplibregl.Marker({ element: el })
-                .setLngLat(userLocation)
+                .setLngLat([validLng, validLat])
                 .addTo(map.current);
         } else {
-            userMarkerRef.current?.setLngLat(userLocation);
+            const validLng = isFinite(userLocation[0]) ? userLocation[0] : (userMarkerRef.current?.getLngLat().lng || -1.5197);
+            const validLat = isFinite(userLocation[1]) ? userLocation[1] : (userMarkerRef.current?.getLngLat().lat || 12.3714);
+            userMarkerRef.current?.setLngLat([validLng, validLat]);
         }
     }, [userLocation, isLoaded]);
 

@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
 import PharmacyCard from "@/components/PharmacyCard";
-import { ArrowLeft, SlidersHorizontal, MapIcon, Search } from "lucide-react";
+import { ArrowLeft, SlidersHorizontal, Map, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ResultsPage() {
@@ -81,7 +81,7 @@ function ResultsContent() {
                             onClick={() => router.push(`/map?q=${encodeURIComponent(query)}`)}
                             className="btn-icon hover:bg-secondary text-foreground bg-secondary"
                         >
-                            <MapIcon className="w-6 h-6" />
+                            <Map className="w-6 h-6" />
                         </button>
                     </div>
                 </div>
