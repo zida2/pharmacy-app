@@ -158,6 +158,7 @@ export const firebaseService = {
             const keywords = cleanQuery.split(/\s+/).filter(k => k.length >= 3);
 
             const filtered = pharmsWithDist.filter(p => {
+                if (!p.name) return false;
                 const name = p.name.toLowerCase();
 
                 // 1. Precise match (trimmed)
@@ -168,7 +169,7 @@ export const firebaseService = {
 
                 // 3. Keyword matching (allows queries like "Pharmacie Marjean Ouaga")
                 if (keywords.length > 0) {
-                    return keywords.every(k => name.includes(k) || (p.location?.address?.toLowerCase().includes(k)));
+                    return keywords.every(k => name.includes(k) || (p.location?.address?.toLowerCase()?.includes(k) || false));
                 }
 
                 return false;
