@@ -59,8 +59,8 @@ export default function Map({
 
         map.current = new maplibregl.Map({
             container: mapContainer.current,
-            // OpenFreeMap Liberty style is much more detailed for West Africa
-            style: "https://tiles.openfreemap.org/styles/liberty",
+            // Carto Voyager - Cleaner, resembles Google Maps, highly reliable
+            style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
             center: initialCenter,
             zoom: initialZoom,
             pitch: initialPitch,
