@@ -389,19 +389,38 @@ function CheckoutContent() {
 
                                 {/* Phone Number Input for Selected Method */}
                                 {paymentMethod === method.id && (
-                                    <div className="mt-2 ml-2 animate-in slide-in-from-top-2">
-                                        <label className="text-[10px] font-black uppercase text-muted-foreground mb-1 block pl-1">Numéro {method.label}</label>
-                                        <input
-                                            type="tel"
-                                            placeholder="Ex: 00 00 00 00"
-                                            value={phoneNumber}
-                                            onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9\s]/g, ''))}
-                                            className="w-full p-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none font-mono text-lg font-bold tracking-widest transition-all"
-                                        />
-                                        <div className="flex items-center gap-2 mt-2 pl-1">
-                                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                                            <p className="text-[9px] text-muted-foreground italic">
-                                                En cliquant sur confirmer, un message de validation s'affichera sur votre téléphone.
+                                    <div className="mt-3 mx-1 p-4 bg-background/50 rounded-2xl border border-primary/20 animate-in slide-in-from-top-2 shadow-inner">
+                                        <label className="text-[10px] font-black uppercase text-muted-foreground mb-1.5 block pl-1">Numéro {method.label}</label>
+                                        <div className="relative">
+                                            <input
+                                                type="tel"
+                                                placeholder="Ex: 70 00 00 00"
+                                                value={phoneNumber}
+                                                onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9\s]/g, ''))}
+                                                className="w-full p-4 pl-12 rounded-xl bg-white dark:bg-zinc-800 border-2 border-transparent focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none font-mono text-xl font-black tracking-widest transition-all shadow-sm text-foreground"
+                                            />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-lg">📞</div>
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <button
+                                                onClick={handleOrder}
+                                                disabled={isProcessing || phoneNumber.length < 8}
+                                                className={cn(
+                                                    "w-full py-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95",
+                                                    phoneNumber.length >= 8
+                                                        ? "bg-primary text-white shadow-primary/25 hover:brightness-110"
+                                                        : "bg-secondary text-muted-foreground cursor-not-allowed"
+                                                )}
+                                            >
+                                                {isProcessing ? (
+                                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                                                ) : <CheckCircle size={16} />}
+                                                CONFIRMER LE PAIEMENT
+                                            </button>
+                                            <p className="text-[9px] text-muted-foreground italic mt-3 text-center flex items-center justify-center gap-1.5">
+                                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                                                Un code USSD sera envoyé au <span className="font-bold text-foreground">{phoneNumber || "..."}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -436,7 +455,7 @@ function CheckoutContent() {
                         ) : (
                             <>
                                 <CheckCircle size={16} />
-                                PAYER MAINTENANT
+                                CONFIRMER LA COMMANDE
                             </>
                         )}
                     </button>
