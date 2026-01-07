@@ -147,23 +147,7 @@ export const firebaseService = {
 
             // If zero results from real backend, normally we might fetch from OSM or similar.
             // But since user expects to see *something* near them during TEST, let's inject a "Test Pharmacy" if the list is empty near them.
-            if (finalResults.length === 0 && userLocation) {
-                console.log("Injecting Test Pharmacy for User context");
-                const testPharm: Pharmacy = {
-                    id: "test-pharm-loc",
-                    name: "Pharmacie de Test (Votre Position)",
-                    location: {
-                        lat: userLocation.latitude,
-                        lng: userLocation.longitude, // Slightly offset maybe? No, let's put it ON them so they see it.
-                        address: "Position Actuelle (Test)",
-                        city: "Test City"
-                    },
-                    status: "open",
-                    phone: "00 00 00 00",
-                    distance: 0.1
-                };
-                return [{ pharmacy: testPharm }];
-            }
+
 
 
 
@@ -171,14 +155,38 @@ export const firebaseService = {
             throw new Error("No results found in real backend");
 
         } catch (error: any) {
-            if (error.message === "No results found in real backend") {
-                console.log("🔍 Base de données vide, passage à la recherche locale intelligente...");
-            } else {
-                console.warn("⚠️ Échec de la recherche serveur, utilisation du secours local:", error);
+            console.warn("⚠️ Using OpenStreetMap Fallback for Pharmacies...");
+
+            // 1. Try fetching from OpenStreetMap (Overpass API)
+            try {
+                const osmPharmacies = await this.fetchPharmaciesFromOSM();
+                if (osmPharmacies.length > 0) {
+                    console.log(`✅ ${osmPharmacies.length} pharmacies found via OSM`);
+
+                    const pharmsWithDist = osmPharmacies.map(p => {
+                        let distance = 999;
+                        if (p.location?.lat && p.location?.lng) {
+                            distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
+                        }
+                        return { ...p, distance };
+                    }).sort((a, b) => a.distance - b.distance);
+
+                    // Filter if query exists
+                    const q = term?.toLowerCase().trim() || "";
+                    if (q) {
+                        const filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(q));
+                        return filtered.map(p => ({ pharmacy: p, product: undefined }));
+                    }
+
+                    return pharmsWithDist.map(p => ({ pharmacy: p, product: undefined }));
+                }
+            } catch (osmError) {
+                console.error("OSM Fallback failed:", osmError);
             }
+
+            // 2. Final Fallback: Local Static Data (if OSM fails)
             const pharmacies = await this.getPharmacies();
             const q = term?.toLowerCase() || "";
-
             const pharmsWithDist = pharmacies.filter(p => !!p).map(p => {
                 let distance = 999;
                 if (p.location?.lat && p.location?.lng) {
@@ -189,33 +197,43 @@ export const firebaseService = {
 
             if (!q) return pharmsWithDist.map(p => ({ pharmacy: p }));
 
-            // Better Fallback Filter: Use keywords and trimming for intelligence
             const cleanQuery = q.trim();
-            const keywords = cleanQuery.split(/\s+/).filter(k => k.length >= 3);
-
-            const filtered = pharmsWithDist.filter(p => {
-                if (!p.name) return false;
-                const name = p.name.toLowerCase();
-
-                // 1. Precise match (trimmed)
-                if (name.includes(cleanQuery)) return true;
-
-                // 2. Specific typo tolerance for Marjean (common typo)
-                if ((cleanQuery.includes("marje") || cleanQuery.includes("marge")) && p.id === "pharm-marjean") return true;
-
-                // 3. Keyword matching (allows queries like "Pharmacie Marjean Ouaga")
-                if (keywords.length > 0) {
-                    return keywords.every(k => name.includes(k) || (p.location?.address?.toLowerCase()?.includes(k) || false));
-                }
-
-                return false;
-            });
-
-            return filtered.map(p => ({
-                pharmacy: p,
-                product: undefined
-            }));
+            const filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(cleanQuery));
+            return filtered.map(p => ({ pharmacy: p, product: undefined }));
         }
+    },
+
+    // 🌍 OSM FETCH HELPER
+    async fetchPharmaciesFromOSM(): Promise<Pharmacy[]> {
+        const query = `
+            [out:json][timeout:25];
+            // Burkina Faso Area (approx bbox or query by name, using bbox for speed/reliability)
+            (
+              node["amenity"="pharmacy"](9.40, -5.52, 15.09, 2.41);
+            );
+            out body;
+        `;
+        const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.elements) return [];
+
+        return data.elements.map((el: any) => ({
+            id: `osm-${el.id}`,
+            name: el.tags.name || "Pharmacie Inconnue",
+            location: {
+                lat: el.lat,
+                lng: el.lon,
+                address: el.tags["addr:street"] || el.tags["addr:city"] || "Burkina Faso",
+                city: el.tags["addr:city"] || "Ouagadougou"
+            },
+            phone: el.tags.phone || el.tags["contact:phone"] || "NC",
+            status: "open", // Assumption for OSM data
+            isVerified: false,
+            source: "OpenStreetMap"
+        }));
     },
 
     async getPharmacyInventory(pharmacyId: string): Promise<Product[]> {
