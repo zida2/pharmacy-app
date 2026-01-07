@@ -30,7 +30,6 @@ function CheckoutContent() {
 
     const [step, setStep] = useState<"payment" | "success">("payment");
     const [isProcessing, setIsProcessing] = useState(false);
-    const [isChronic, setIsChronic] = useState(false);
     const [showAuthPrompt, setShowAuthPrompt] = useState(false);
     const [userInsurance, setUserInsurance] = useState<any>(null);
 
@@ -111,16 +110,12 @@ function CheckoutContent() {
                     paymentMethod: paymentMethod,
                     paymentPhoneNumber: phoneNumber,
                     agentCode: agentCode,
-                    pharmacyName: groupItems[0]?.pharmacyName || "Pharmacie",
-                    isChronic: isChronic
+                    pharmacyName: groupItems[0]?.pharmacyName || "Pharmacie"
                 });
                 orderIds.push(orderId);
             }
 
-            // If chronic, save subscription (simplified for first pharmacy or all)
-            if (isChronic && auth.currentUser) {
-                // ... (Keep existing subscription logic but maybe loop it too if needed, for simplicity let's skip deep complexity here)
-            }
+
 
             setIsProcessing(false);
             setStep("success");
@@ -330,27 +325,7 @@ function CheckoutContent() {
                     )}
                 </section>
 
-                {/* Chronic Treatment Subscription */}
-                <section className="animate-in slide-in-from-bottom-8 duration-500 delay-500">
-                    <div className="bg-card dark:bg-zinc-900 p-4 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
-                        <div className="flex items-start justify-between mb-3">
-                            <div>
-                                <h3 className="text-sm font-black italic text-primary">Abonnement Mensuel 🔄</h3>
-                                <p className="text-[10px] text-muted-foreground font-medium max-w-[180px] leading-snug">Livraison automatique chaque mois pour vos traitements réguliers.</p>
-                            </div>
-                            <div className="relative inline-flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    className="sr-only peer"
-                                    checked={isChronic}
-                                    onChange={(e) => setIsChronic(e.target.checked)}
-                                />
-                                <div className="w-9 h-5 bg-secondary dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-                            </div>
-                        </div>
-                        <div className="text-[8px] font-black text-primary px-2 py-0.5 bg-primary/10 rounded-full inline-block uppercase">ÉCONOMISEZ 10% SUR LA LIVRAISON</div>
-                    </div>
-                </section>
+
 
                 {/* Payment Methods with Phone Input */}
                 <section className="animate-in slide-in-from-bottom-8 duration-500 delay-600 pb-10">
