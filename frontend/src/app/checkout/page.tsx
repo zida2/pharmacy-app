@@ -130,7 +130,7 @@ function CheckoutContent() {
                 } else {
                     router.push('/orders');
                 }
-            }, 3000);
+            }, 4000);
 
         } catch (error) {
             console.error("Order creation failed:", error);
@@ -142,21 +142,24 @@ function CheckoutContent() {
     if (step === "success") {
         return (
             <main className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-700">
-                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6 animate-bounce">
-                    <CheckCircle className="w-12 h-12 text-primary" />
+                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                    <Truck className="w-12 h-12 text-primary" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-3">Paiement Validé !</h1>
+                <h1 className="text-3xl font-bold text-foreground mb-3">Commande Transmise 📨</h1>
                 <p className="text-muted-foreground mb-8 max-w-sm">
-                    Votre commande a été transmise aux pharmacies. Le code agent <span className="font-bold text-primary">{agentCode}</span> a validé la transaction.
+                    Votre commande a bien été reçue !<br />
+                    <span className="font-bold text-foreground">En attente de validation par la pharmacie.</span>
                     <br /><br />
-                    <span className="text-xs italic bg-secondary p-1 rounded">Redirection automatique...</span>
+                    Vous recevrez une notification une fois la commande acceptée pour procéder au paiement final si nécessaire.
+                    <br /><br />
+                    <span className="text-xs italic bg-secondary p-1 rounded">Redirection vers le suivi...</span>
                 </p>
                 <div className="flex flex-col gap-3 w-full max-w-xs">
                     <button
                         onClick={() => router.push("/orders")}
-                        className="w-full py-5 bg-primary text-white rounded-2xl font-black shadow-xl hover:brightness-110 transition active:scale-95 flex items-center justify-center gap-2"
+                        className="w-full py-5 bg-secondary text-foreground rounded-2xl font-black shadow-sm hover:bg-secondary/80 transition active:scale-95 flex items-center justify-center gap-2"
                     >
-                        VOIR MES COMMANDES 📦
+                        VOIR MES COMMANDES
                     </button>
                 </div>
             </main>
