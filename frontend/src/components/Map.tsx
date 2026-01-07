@@ -291,9 +291,14 @@ export default function Map({
                                 </div>
                                 ${pharmacy.distance ? `<span style="font-size: 12px; font-weight: 900; color: #6366f1;">${pharmacy.distance.toFixed(1)} km</span>` : ''}
                             </div>
-                            <button onclick="window.location.href='/pharmacy?id=${pharmacy.id}'" style="width: 100%; padding: 10px; background-color: #6366f1; color: white; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 12px; border: none; cursor: pointer;">
-                                Ouvrir la fiche
-                            </button>
+                            <div style="display: flex; gap: 8px; margin-top: 12px;">
+                                <button onclick="window.location.href='/pharmacy?id=${pharmacy.id}'" style="flex: 1; padding: 10px; background-color: #6366f1; color: white; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 12px; border: none; cursor: pointer;">
+                                    Ouvrir
+                                </button>
+                                <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${pharmacy.location.lat},${pharmacy.location.lng}', '_blank')" style="flex: 1; padding: 10px; background-color: #000; color: white; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                    <span>📍</span> Démarrer
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `);

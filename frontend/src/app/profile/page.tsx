@@ -414,7 +414,7 @@ export default function ProfilePage() {
                                 <div className="text-xs text-white/90 font-bold leading-tight">
                                     {premiumState.isTrial
                                         ? `Profitez de vos avantages pendant encore ${premiumState.daysLeft} jours !`
-                                        : "Passez Premium pour 5 000 FCFA / an !"
+                                        : "Passez Premium pour 1 000 FCFA / mois !"
                                     }
                                 </div>
                             </div>
@@ -1707,10 +1707,10 @@ export default function ProfilePage() {
                                 {/* Pricing */}
                                 <div className="bg-primary/5 p-4 rounded-3xl border border-primary/10 text-center relative overflow-hidden">
                                     <div className="absolute top-0 right-0 bg-primary text-white text-[9px] font-black px-2 py-1 rounded-bl-xl uppercase tracking-widest">Populaire</div>
-                                    <div className="text-3xl font-black text-primary mb-1">5 000 FCFA</div>
-                                    <div className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Par An</div>
+                                    <div className="text-3xl font-black text-primary mb-1">1 000 FCFA</div>
+                                    <div className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Par Mois</div>
                                     <div className="mt-2 text-[10px] text-emerald-500 font-bold flex items-center justify-center gap-1">
-                                        <Sparkles size={10} /> Essai de 15 jours offert
+                                        <Sparkles size={10} /> Presque gratuit !
                                     </div>
                                 </div>
 

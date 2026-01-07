@@ -105,6 +105,8 @@ export interface Order {
         location: { lat: number; lng: number };
     };
     paymentMethod: "orange" | "mtn" | "moov" | "card";
+    paymentPhoneNumber?: string;
+    agentCode?: string;
     paymentStatus: "pending" | "paid" | "failed";
     status: "pending" | "confirmed" | "preparing" | "ready" | "delivering" | "completed" | "cancelled";
     estimatedTime?: string;
