@@ -191,17 +191,17 @@ export const firebaseService = {
 
             return filtered.map(p => ({
                 pharmacy: p,
-                product: cleanQuery.includes("para") || cleanQuery.includes("med") ? {
-                    id: "prod-para",
-                    name: "Paracétamol 500mg",
-                    price: 500 + Math.floor(Math.random() * 100),
-                    inStock: true
-                } as any : undefined
+                product: undefined
             }));
         }
     },
 
     async getPharmacyInventory(pharmacyId: string): Promise<Product[]> {
+        // TODO: Re-enable this when API is connected
+        // Temporary: Empty stock for tests as requested
+        return [];
+
+        /*
         try {
             const invSnap = await getDocs(
                 query(collection(db, "pharmacy_inventory"), where("pharmacyId", "==", pharmacyId))
@@ -225,6 +225,7 @@ export const firebaseService = {
         } catch (e) {
             return [];
         }
+        */
     },
 
     // 🛒 ORDERS (USER SIDE)
