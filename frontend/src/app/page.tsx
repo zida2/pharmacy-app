@@ -466,7 +466,13 @@ export default function HomePage() {
               </button>
 
               <button
-                onClick={() => router.push("/teleconsultation")}
+                onClick={() => {
+                  if (lastConsultation?.id) {
+                    router.push(`/teleconsultation/chat?id=${lastConsultation.id}`);
+                  } else {
+                    router.push("/teleconsultation");
+                  }
+                }}
                 className="bg-card hover:bg-secondary/30 border border-border p-5 rounded-[2.5rem] flex flex-col items-start gap-4 transition-all group active:scale-95 text-left h-full"
               >
                 <div className="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">

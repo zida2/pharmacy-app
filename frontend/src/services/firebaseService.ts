@@ -451,9 +451,17 @@ export const firebaseService = {
         const user = auth.currentUser;
         if (!user) throw new Error("Auth required");
 
+        let userName = user.displayName || "Patient";
+        try {
+            const profile = await this.getUserProfile(user.uid);
+            if (profile?.userInfo?.name) userName = profile.userInfo.name;
+        } catch (e) {
+            console.warn("Could not fetch profile name, using default");
+        }
+
         const consultationData: any = {
             userId: user.uid,
-            userName: user.displayName || "Patient",
+            userName,
             status: "pending",
             type,
             subject,
