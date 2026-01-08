@@ -32,6 +32,9 @@ export default function HomePage() {
   const [showAssistance, setShowAssistance] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [treatments, setTreatments] = useState<any[]>([]);
+  const [userName, setUserName] = useState<string>("Visiteur");
+  const [lastConsultation, setLastConsultation] = useState<any>(null);
 
   // Network listener & Install Prompt
   useEffect(() => {
@@ -62,7 +65,85 @@ export default function HomePage() {
     }
   };
 
-  // Default to Ouagadougou center
+  // Fetch User Data & Treatments
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
+      if (user) {
+        setUserName(user.displayName || "Utilisateur");
+        try {
+          const treatData = await firebaseService.getUserTreatments();
+          setTreatments(treatData);
+
+          const consultData = await firebaseService.getUserConsultations();
+          if (consultData && consultData.length > 0) {
+            setLastConsultation(consultData[0]);
+          }
+
+          // Sync premium state
+          const profile = await firebaseService.getUserProfile(user.uid) as any;
+          if (profile?.userInfo) {
+            setUserName(profile.userInfo.name || user.displayName || "Utilisateur");
+
+            const isSubscribed = profile.userInfo?.isPremium === true;
+            const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date();
+            const now = new Date();
+            const diffTime = Math.abs(now.getTime() - creationTime.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const trialRemaining = Math.max(0, 15 - diffDays);
+            const isTrial = !isSubscribed && trialRemaining > 0;
+
+            setPremiumState({
+              isPremium: isSubscribed,
+              isTrial: isTrial,
+              daysLeft: isTrial ? trialRemaining : 0
+            });
+          }
+        } catch (e) {
+          console.error("Home data fetch error:", e);
+        }
+      } else {
+        setUserName("Visiteur");
+        setTreatments([]);
+        setPremiumState({ isPremium: false, isTrial: false, daysLeft: 0 });
+      }
+      setIsAuthLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const getNextDoseInfo = () => {
+    if (treatments.length === 0) return "Aucun traitement";
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMin = now.getMinutes();
+    const currentTimeMinutes = currentHour * 60 + currentMin;
+
+    let nearestTimeValue = 24 * 60 + 1;
+    let nearestDose = "";
+
+    treatments.forEach(t => {
+      if (t.times && Array.isArray(t.times)) {
+        t.times.forEach((timeStr: string) => {
+          const [h, m] = timeStr.split(':').map(Number);
+          const timeVal = h * 60 + m;
+
+          if (timeVal > currentTimeMinutes && timeVal < nearestTimeValue) {
+            nearestTimeValue = timeVal;
+            nearestDose = `${t.medicineName} à ${timeStr}`;
+          }
+        });
+      }
+    });
+
+    if (!nearestDose && treatments.length > 0) {
+      // Find first dose of tomorrow
+      return `Prochaine : Demain matin`;
+    }
+
+    return nearestDose ? `Prochaine : ${nearestDose}` : "Aucune prise prévue";
+  };
+
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
 
   // Initial load & Location Tracking
@@ -109,34 +190,6 @@ export default function HomePage() {
       handleSearch(searchQuery);
     }
   }, [userLocation]);
-
-  // Check Premium Status
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
-      setIsAuthLoading(true);
-      if (user) {
-        const profile = await firebaseService.getUserProfile(user.uid) as any;
-        const isSubscribed = profile?.userInfo?.isPremium === true;
-
-        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date();
-        const now = new Date();
-        const diffTime = Math.abs(now.getTime() - creationTime.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const trialRemaining = Math.max(0, 15 - diffDays);
-        const isTrial = !isSubscribed && trialRemaining > 0;
-
-        setPremiumState({
-          isPremium: isSubscribed,
-          isTrial: isTrial,
-          daysLeft: isTrial ? trialRemaining : 0
-        });
-      } else {
-        setPremiumState({ isPremium: false, isTrial: false, daysLeft: 0 });
-      }
-      setIsAuthLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
 
   const retryGeolocation = () => {
     setLocationStatus('loading');
@@ -264,7 +317,7 @@ export default function HomePage() {
           <div className="flex justify-between items-start pt-3">
             <div>
               <h1 className="text-xl font-black italic tracking-tight text-foreground leading-none">
-                Bonjour 👋
+                Bonjour {userName} 👋
               </h1>
               <p className="text-[9px] font-black uppercase tracking-widest text-primary mt-1">
                 Quelle pharmacie cherchez-vous ?
@@ -352,7 +405,11 @@ export default function HomePage() {
             ].map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => cat.id === "urgent" ? handleSearch("pharmacie de garde") : handleSearch(cat.label)}
+                onClick={() => {
+                  if (cat.id === "garde") return router.push("/results?filter=garde");
+                  if (cat.id === "urgent") return router.push("/results?filter=open");
+                  handleSearch(cat.label);
+                }}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-lg whitespace-nowrap shadow-sm text-[8px] font-extrabold uppercase tracking-wider text-foreground/80 active:scale-95 transition-all outline-none"
               >
                 <span>{cat.icon}</span>
@@ -382,7 +439,9 @@ export default function HomePage() {
             <div className="flex justify-between items-center px-1">
               <h2 className="text-xl font-black italic text-foreground tracking-tight">Votre Santé</h2>
               <div className="bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                <span className="text-[10px] font-black text-emerald-600 uppercase">Compagnon Actif</span>
+                <span className="text-[10px] font-black text-emerald-600 uppercase">
+                  {treatments.filter(t => t.isActive).length} Suivis Actifs
+                </span>
               </div>
             </div>
 
@@ -396,7 +455,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-black text-foreground">Traitements</h3>
-                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">Prochaine prise : 14h</p>
+                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">{getNextDoseInfo()}</p>
                 </div>
               </button>
 
@@ -409,7 +468,9 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-black text-foreground">Conseil Expert</h3>
-                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">Chat instantané</p>
+                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">
+                    {lastConsultation ? `Dernier : ${lastConsultation.subject}` : "Chat instantané"}
+                  </p>
                 </div>
               </button>
             </div>

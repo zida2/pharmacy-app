@@ -20,6 +20,7 @@ function ResultsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const query = searchParams.get("q") || "";
+    const filterParam = searchParams.get("filter");
 
     const [results, setResults] = useState<{ pharmacy: Pharmacy; product?: Product }[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -28,8 +29,11 @@ function ResultsContent() {
     const [showFilters, setShowFilters] = useState(false);
 
     useEffect(() => {
+        if (filterParam === "garde" || filterParam === "open") {
+            setFilterOpenOnly(true);
+        }
         loadResults();
-    }, [query]);
+    }, [query, filterParam]);
 
     const loadResults = async () => {
         setIsLoading(true);
@@ -45,6 +49,7 @@ function ResultsContent() {
 
     const filteredResults = results.filter(r => {
         if (filterOpenOnly && r.pharmacy.status !== "open" && r.pharmacy.status !== "guard") return false;
+        if (filterParam === "garde" && r.pharmacy.status !== "guard") return false;
         // Don't filter out if distance is our fallback "999" (unknown/no GPS)
         if (r.pharmacy.distance && r.pharmacy.distance > filterDistance && r.pharmacy.distance !== 999) return false;
         return true;

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Phone, ShieldAlert, Heart, X, MessageSquare, MapPin, Activity, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Phone, ShieldAlert, Heart, X, MessageSquare, MapPin, Activity, ChevronRight, Stethoscope } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface AssistanceModalProps {
@@ -10,6 +11,7 @@ interface AssistanceModalProps {
 }
 
 export default function AssistanceModal({ isOpen, onClose }: AssistanceModalProps) {
+    const router = useRouter();
     if (!isOpen) return null;
 
     const emergencyNumbers = [
@@ -86,6 +88,23 @@ export default function AssistanceModal({ isOpen, onClose }: AssistanceModalProp
                             <div className="w-12 h-0.5 bg-emerald-500/20 rounded-full" />
                         </div>
                         <div className="gap-4 flex flex-col">
+                            <button
+                                onClick={() => {
+                                    onClose();
+                                    router.push("/teleconsultation");
+                                }}
+                                className="flex items-center gap-5 p-5 bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-[2.2rem] hover:bg-primary/10 transition-all group active:scale-[0.98] text-left"
+                            >
+                                <div className="w-14 h-14 bg-primary text-white rounded-[1.2rem] flex items-center justify-center shadow-lg shadow-primary/20 flex-shrink-0 group-hover:rotate-6 transition-transform">
+                                    <Stethoscope size={26} />
+                                </div>
+                                <div className="flex-1">
+                                    <h4 className="font-black text-base text-primary italic">Téléconsultation</h4>
+                                    <p className="text-[10px] font-black uppercase text-primary/70 tracking-widest mt-0.5">Assistance Immédiate dans l'App</p>
+                                </div>
+                                <ChevronRight className="text-primary/40 group-hover:translate-x-1 transition-transform" />
+                            </button>
+
                             <a
                                 href="https://wa.me/22670000000"
                                 target="_blank"
