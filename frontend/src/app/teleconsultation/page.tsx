@@ -33,6 +33,7 @@ export default function TeleconsultationPage() {
     const router = useRouter();
     const [consultations, setConsultations] = useState<Consultation[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isStarting, setIsStarting] = useState(false);
     const [activeTab, setActiveTab] = useState<"new" | "history">("new");
     const [showAuthPrompt, setShowAuthPrompt] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -62,16 +63,21 @@ export default function TeleconsultationPage() {
     };
 
     const handleStartConsultation = async (type: "chat" | "video", subject: string) => {
-        if (!isAuthenticated) {
+        const user = auth.currentUser;
+        if (!user) {
             setShowAuthPrompt(true);
             return;
         }
 
+        setIsStarting(true);
         try {
             const id = await firebaseService.createConsultation(type, subject);
             router.push(`/teleconsultation/chat?id=${id}`);
         } catch (error) {
             console.error("Failed to start consultation", error);
+            alert("Erreur lors de la création de la consultation. Veuillez réessayer.");
+        } finally {
+            setIsStarting(false);
         }
     };
 
@@ -132,7 +138,13 @@ export default function TeleconsultationPage() {
             </div>
 
             <div className="px-6 -mt-2 relative z-10">
-                {activeTab === "new" ? (
+                {isStarting ? (
+                    <div className="flex-1 flex flex-col items-center justify-center py-20 text-center animate-in fade-in duration-500">
+                        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+                        <h2 className="text-xl font-black italic">Connexion au service...</h2>
+                        <p className="text-sm text-muted-foreground mt-2">Nous préparons votre salle de consultation sécurisée.</p>
+                    </div>
+                ) : activeTab === "new" ? (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         {/* Instant Options */}
                         <div className="grid grid-cols-2 gap-4">
