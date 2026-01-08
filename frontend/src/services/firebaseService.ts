@@ -462,6 +462,18 @@ export const firebaseService = {
         }
 
         const docRef = await addDoc(collection(db, "consultations"), consultationData);
+
+        // Add welcome message
+        await addDoc(collection(db, "messages"), {
+            consultationId: docRef.id,
+            senderId: "system",
+            senderName: "Assistant PharmaBF",
+            senderRole: "pharmacist",
+            text: `Bonjour ${consultationData.userName}, bienvenue dans votre espace de consultation sécurisé. Un pharmacien va vous assister pour votre demande : ${subject}.`,
+            type: "text",
+            createdAt: serverTimestamp()
+        });
+
         return docRef.id;
     },
 

@@ -35,12 +35,14 @@ function ChatContent() {
 
         // Fetch Consultation Details
         const fetchDetails = async () => {
-            const data = await firebaseService.getOrderById(consultationId); // Reusing getOrderById if it works for any doc, or use new one
-            // Better to use dedicated function
-            const docRef = doc(db, "consultations", consultationId);
-            const d = await getDoc(docRef);
-            if (d.exists()) {
-                setConsultation({ id: d.id, ...d.data() } as Consultation);
+            try {
+                const docRef = doc(db, "consultations", consultationId);
+                const d = await getDoc(docRef);
+                if (d.exists()) {
+                    setConsultation({ id: d.id, ...d.data() } as Consultation);
+                }
+            } catch (err) {
+                console.error("Error fetching consultation:", err);
             }
         };
         fetchDetails();
@@ -61,6 +63,12 @@ function ChatContent() {
             setTimeout(() => {
                 scrollRef.current?.scrollIntoView({ behavior: "smooth" });
             }, 100);
+        }, (error: any) => {
+            console.error("Chat listener error:", error);
+            setLoading(false);
+            if (error.code === 'failed-precondition') {
+                alert("Erreur de configuration de la base de données (index manquant). Contactez le support.");
+            }
         });
 
         return () => unsubscribe();
@@ -148,7 +156,11 @@ function ChatContent() {
                                 {msg.text}
                             </div>
                             <span className="text-[9px] text-muted-foreground mt-1 px-2">
-                                {new Date(msg.createdAt?.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                {msg.createdAt ? (
+                                    new Date(msg.createdAt?.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                ) : (
+                                    "Envoi..."
+                                )}
                             </span>
                         </div>
                     );
