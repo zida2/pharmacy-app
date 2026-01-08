@@ -18,13 +18,6 @@ export default function LiveChat() {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    // Hide if on teleconsultation chat
-    if (pathname === "/teleconsultation/chat") return null;
-
     const [chat, setChat] = useState<Message[]>([
         {
             text: "Bonjour ! 👋 Je suis Pharmy, votre compagnon santé. \n\nIci, la recherche de médicaments est **100% GRATUITE**. \n\nComment puis-je vous aider aujourd'hui ?",
@@ -36,16 +29,19 @@ export default function LiveChat() {
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll to bottom
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
     useEffect(() => {
-        scrollToBottom();
-    }, [chat, isTyping]);
+        setMounted(true);
+    }, []);
 
-    if (!mounted) return null;
+    // Auto-scroll to bottom
+    useEffect(() => {
+        if (mounted && isOpen) {
+            messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [chat, isTyping, mounted, isOpen]);
+
+    // Hide if on teleconsultation chat OR not mounted
+    if (!mounted || pathname === "/teleconsultation/chat") return null;
 
     // Intelligent response system
     const getIntelligentResponse = (userMessage: string): string => {
