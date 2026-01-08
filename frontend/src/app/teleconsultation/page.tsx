@@ -38,7 +38,7 @@ export default function TeleconsultationPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user: any) => {
             setIsAuthenticated(!!user);
             if (user) {
                 fetchConsultations();
@@ -249,7 +249,7 @@ export default function TeleconsultationPage() {
                 )}
             </div>
 
-            {showAuthPrompt && <AuthPrompt onClose={() => setShowAuthPrompt(false)} />}
+            {showAuthPrompt && <AuthPrompt isOpen={showAuthPrompt} onClose={() => setShowAuthPrompt(false)} />}
         </main>
     );
 }
