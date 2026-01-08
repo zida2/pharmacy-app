@@ -16,6 +16,7 @@ import {
     deleteDoc
 } from "firebase/firestore";
 import { db, auth } from "./firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage, Treatment, Insurance } from "./types";
 import { PHARMACIES_BURKINA_FASO } from "./pharmaciesData";
 import { calculateDistance, getUserLocation } from "@/lib/geolocation";
@@ -439,6 +440,10 @@ export const firebaseService = {
     async syncUserProfile(userData: any) {
         const user = auth.currentUser;
         if (user) await this.saveUserProfile(user.uid, userData);
+    },
+
+    async resetPassword(email: string) {
+        return sendPasswordResetEmail(auth, email);
     },
 
     // 🩺 TELE-CONSULTATION

@@ -90,6 +90,7 @@ export default function ProfilePage() {
     const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [isUpgrading, setIsUpgrading] = useState(false);
+    const [isSendingReset, setIsSendingReset] = useState(false);
 
 
 
@@ -1310,7 +1311,30 @@ export default function ProfilePage() {
                                         </label>
                                     </div>
                                 ))}
-                                <button className="w-full py-4 text-primary font-black text-xs uppercase tracking-widest bg-primary/5 rounded-2xl">Changer mon mot de passe</button>
+                                <button
+                                    onClick={async () => {
+                                        const user = auth.currentUser;
+                                        if (!user || !user.email) {
+                                            alert("Veuillez vous connecter pour changer votre mot de passe.");
+                                            return;
+                                        }
+
+                                        try {
+                                            setIsSendingReset(true);
+                                            await firebaseService.resetPassword(user.email);
+                                            alert(`Un email de réinitialisation a été envoyé à ${user.email}. Veuillez vérifier votre boîte de réception.`);
+                                        } catch (error) {
+                                            console.error("Reset error:", error);
+                                            alert("Erreur lors de l'envoi de l'email de réinitialisation.");
+                                        } finally {
+                                            setIsSendingReset(false);
+                                        }
+                                    }}
+                                    disabled={isSendingReset}
+                                    className="w-full py-4 text-primary font-black text-xs uppercase tracking-widest bg-primary/5 rounded-2xl flex items-center justify-center gap-2"
+                                >
+                                    {isSendingReset ? <Loader2 className="animate-spin" /> : "Changer mon mot de passe"}
+                                </button>
                             </div>
                         </div>
                     </div>
