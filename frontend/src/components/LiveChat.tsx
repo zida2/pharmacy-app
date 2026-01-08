@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { MessageCircle, X, Send, Phone, User, Check, Bot, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ interface Message {
 }
 
 export default function LiveChat() {
+    const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
@@ -19,6 +21,9 @@ export default function LiveChat() {
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // Hide if on teleconsultation chat
+    if (pathname === "/teleconsultation/chat") return null;
 
     const [chat, setChat] = useState<Message[]>([
         {

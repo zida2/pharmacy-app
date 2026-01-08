@@ -55,7 +55,7 @@ export default function BottomNav() {
     };
 
     // Hide on some pages if needed (e.g. login, scanner)
-    const hideOn = ["/login", "/scanner"];
+    const hideOn = ["/login", "/scanner", "/teleconsultation/chat"];
     if (hideOn.includes(pathname)) return null;
 
     return (

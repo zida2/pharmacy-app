@@ -56,6 +56,10 @@
   svg {
     transition: color 0.3s ease, fill 0.3s ease;
   }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
 }
 
 /* Custom Utilities */

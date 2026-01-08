@@ -97,7 +97,7 @@ function ChatContent() {
     }
 
     return (
-        <div className="flex flex-col h-screen bg-background">
+        <div className="flex flex-col h-[100dvh] bg-background relative overflow-hidden">
             {/* Header */}
             <header className="p-4 border-b bg-card/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -169,7 +169,7 @@ function ChatContent() {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-card border-t mb-2">
+            <div className="p-4 bg-card border-t pb-safe">
                 <form
                     onSubmit={handleSendMessage}
                     className="flex bg-secondary/50 rounded-[2rem] p-1.5 pl-4 items-center gap-2 border border-border focus-within:border-primary transition-all shadow-sm"
