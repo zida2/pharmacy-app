@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Home, ShoppingCart, MapPin, User, Search } from "lucide-react";
+import { Home, ShoppingCart, MapPin, User, Search, Stethoscope } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { auth } from "@/services/firebase";
@@ -18,6 +18,12 @@ export default function BottomNav() {
             icon: Home,
             path: "/",
             active: pathname === "/",
+        },
+        {
+            label: "Santé",
+            icon: Stethoscope,
+            path: "/teleconsultation",
+            active: pathname.startsWith("/teleconsultation"),
         },
         {
             label: "Panier",

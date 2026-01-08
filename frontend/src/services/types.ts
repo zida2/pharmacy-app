@@ -46,6 +46,7 @@ export interface Pharmacy {
     reviewCount?: number;
     isVerified?: boolean;
     isGuardToday?: boolean;
+    guardGroup?: string; // Group A, B, C, D for automated rotation
     deliveryAvailable?: boolean;
     deliveryFee?: number;
     deliveryRadius?: number;
@@ -67,6 +68,7 @@ export interface Product {
     id: string;
     name: string;
     description?: string;
+    activeIngredient?: string; // Molecule name for generic search like Alliance
     category?: "medicament" | "parapharmacie" | "materiel";
     images?: string[];
     requiresPrescription?: boolean;
@@ -107,8 +109,9 @@ export interface Order {
     paymentMethod: "orange" | "mtn" | "moov" | "card";
     paymentPhoneNumber?: string;
     agentCode?: string;
+    prescriptionImageUrl?: string;
     paymentStatus: "pending" | "paid" | "failed";
-    status: "pending" | "confirmed" | "preparing" | "ready" | "delivering" | "completed" | "cancelled";
+    status: "pending" | "confirmed" | "preparing" | "ready" | "delivering" | "completed" | "cancelled" | "quote_requested" | "quote_received";
     estimatedTime?: string;
     deliveryPersonId?: string;
     deliveryLocation?: { lat: number; lng: number };
@@ -137,7 +140,7 @@ export interface Review {
     createdAt: any;
 }
 
-// 🏍️ Delivery Person Types
+// 🏥 Delivery Person Types
 export interface DeliveryPerson {
     id: string;
     name: string;
@@ -147,5 +150,62 @@ export interface DeliveryPerson {
     currentLocation?: { lat: number; lng: number };
     rating: number;
     deliveryCount: number;
+    createdAt: any;
+}
+
+// 🩺 Tele-consultation Types
+export interface Consultation {
+    id: string;
+    userId: string;
+    userName: string;
+    pharmacistId?: string;
+    pharmacistName?: string;
+    pharmacyId?: string;
+    status: "pending" | "active" | "completed" | "cancelled";
+    type: "chat" | "video";
+    subject?: string;
+    lastMessage?: string;
+    unreadCount?: number;
+    createdAt: any;
+    updatedAt: any;
+}
+
+export interface ChatMessage {
+    id: string;
+    consultationId: string;
+    senderId: string;
+    senderName: string;
+    senderRole: "user" | "pharmacist";
+    text: string;
+    type: "text" | "image" | "prescription";
+    fileUrl?: string;
+    createdAt: any;
+}
+
+// 💊 Pill Reminder Types
+export interface Treatment {
+    id: string;
+    userId: string;
+    medicineName: string;
+    dosage: string; // e.g. "1 comprimé"
+    frequency: string; // e.g. "3 fois par jour"
+    times: string[]; // e.g. ["08:00", "14:00", "20:00"]
+    startDate: string;
+    duration?: string; // e.g. "7 jours"
+    isActive: boolean;
+    createdAt: any;
+}
+
+// 🛡️ Insurance Types
+export interface Insurance {
+    id: string;
+    userId: string;
+    provider: string; // e.g. "SONAR", "UAB", "Caisse"
+    policyNumber: string;
+    coverageRate: number; // e.g. 80 for 80%
+    expiryDate: string;
+    beneficiaries: string[];
+    isVerified: boolean;
+    cardImageUrl?: string;
     createdAt: any;
 }

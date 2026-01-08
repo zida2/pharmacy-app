@@ -1,22 +1,41 @@
 {
-    "name": "PharmaBF",
+    "name": "PharmaBF - Ma Santé au Burkina",
     "short_name": "PharmaBF",
-    "description": "Trouvez vos médicaments dans les pharmacies du Burkina Faso",
+    "description": "Pharmacies de garde, Pillulier et Devis d'ordonnance au Burkina Faso",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
+    "background_color": "#0f172a",
     "theme_color": "#10b981",
     "orientation": "portrait",
+    "scope": "/",
+    "id": "/",
     "icons": [
         {
-            "src": "/logo.png",
-            "sizes": "192x192",
-            "type": "image/png"
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "/logo.png",
+            "src": "/icon-512.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "PharmaBF Icon"
         }
     ]
 }

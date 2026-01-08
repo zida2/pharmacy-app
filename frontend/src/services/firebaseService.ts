@@ -11,10 +11,12 @@ import {
     serverTimestamp,
     orderBy,
     limit,
-    Timestamp
+    Timestamp,
+    onSnapshot,
+    deleteDoc
 } from "firebase/firestore";
 import { db, auth } from "./firebase";
-import { Pharmacy, Product, Order, PharmacyInventory } from "./types";
+import { Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage, Treatment, Insurance } from "./types";
 import { PHARMACIES_BURKINA_FASO } from "./pharmaciesData";
 import { calculateDistance, getUserLocation } from "@/lib/geolocation";
 
@@ -30,31 +32,97 @@ const withTimeout = <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise
     ]);
 };
 
+// Automated Guard Rotation Logic (Groups 1, 2, 3, 4)
+const getCurrentGuardGroup = (): string => {
+    // Reference: Saturday, Jan 4th, 2025 was a Group 1 start (Real world sync)
+    const refDate = new Date(2025, 0, 4);
+    const now = new Date();
+
+    // Difference in weeks
+    const diffMs = now.getTime() - refDate.getTime();
+    const diffWeeks = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
+
+    // Cycle: 1 -> 2 -> 3 -> 4
+    const cycle = ["1", "2", "3", "4"];
+    const index = ((diffWeeks % 4) + 4) % 4;
+    return cycle[index];
+};
+
+// Stable group assignment for pharmacies without explicit data
+const getStableGuardGroup = (id: string): string => {
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+        hash = ((hash << 5) - hash) + id.charCodeAt(i);
+        hash |= 0;
+    }
+    const index = Math.abs(hash) % 4;
+    return ["1", "2", "3", "4"][index];
+};
+
 export const firebaseService = {
     // 🏥 PHARMACIES
     async getPharmacies(): Promise<Pharmacy[]> {
+        const currentGroup = getCurrentGuardGroup();
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
             const snap = await withTimeout(getDocs(collection(db, "pharmacies")), 8000) as any;
             if (snap.empty) throw new Error("No pharmacies in DB");
-            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Pharmacy));
+            return snap.docs.map((d: any) => {
+                const data = d.data();
+                const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
+                const isGuard = assignedGroup === currentGroup;
+                return {
+                    id: d.id,
+                    ...data,
+                    guardGroup: assignedGroup,
+                    isGuardToday: isGuard,
+                    status: isGuard ? "guard" : (data.status || "open")
+                } as Pharmacy;
+            });
         } catch (e) {
             console.warn("Firebase fetch failed/timeout, using local fallback");
-            return PHARMACIES_BURKINA_FASO;
+            return PHARMACIES_BURKINA_FASO.map(p => {
+                const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
+                const isGuard = assignedGroup === currentGroup;
+                return {
+                    ...p,
+                    guardGroup: assignedGroup,
+                    isGuardToday: isGuard,
+                    status: isGuard ? "guard" : "open"
+                } as Pharmacy;
+            });
         }
     },
 
     async getPharmacyById(id: string): Promise<Pharmacy | null> {
+        const currentGroup = getCurrentGuardGroup();
         try {
             if (USE_REAL_BACKEND) {
                 const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
                 if (d.exists()) {
-                    return { id: d.id, ...d.data() } as Pharmacy;
+                    const data = d.data();
+                    const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
+                    const isGuard = assignedGroup === currentGroup;
+                    return {
+                        id: d.id,
+                        ...data,
+                        guardGroup: assignedGroup,
+                        isGuardToday: isGuard,
+                        status: isGuard ? "guard" : (data.status || "open")
+                    } as Pharmacy;
                 }
             }
-            return PHARMACIES_BURKINA_FASO.find(p => p.id === id) || null;
+            const p = PHARMACIES_BURKINA_FASO.find(p => p.id === id);
+            if (!p) return null;
+            const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
+            const isGuard = assignedGroup === currentGroup;
+            return { ...p, guardGroup: assignedGroup, isGuardToday: isGuard, status: isGuard ? "guard" : "open" };
         } catch (e) {
-            return PHARMACIES_BURKINA_FASO.find(p => p.id === id) || null;
+            const p = PHARMACIES_BURKINA_FASO.find(p => p.id === id);
+            if (!p) return null;
+            const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
+            const isGuard = assignedGroup === currentGroup;
+            return { ...p, guardGroup: assignedGroup, isGuardToday: isGuard, status: isGuard ? "guard" : "open" };
         }
     },
 
@@ -79,13 +147,21 @@ export const firebaseService = {
                 }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
             }
 
-            // 1. Search for Products
-            const productSnap = await getDocs(
-                query(collection(db, "products"),
+            // 1. Search for Products by Name or Active Ingredient
+            const [nameSnap, ingredientSnap] = await Promise.all([
+                getDocs(query(collection(db, "products"),
                     where("name", ">=", term),
-                    where("name", "<=", term + '\uf8ff'))
-            );
-            const products = productSnap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Product));
+                    where("name", "<=", term + '\uf8ff'))),
+                getDocs(query(collection(db, "products"),
+                    where("activeIngredient", ">=", term),
+                    where("activeIngredient", "<=", term + '\uf8ff')))
+            ]);
+
+            const productsMap = new Map<string, Product>();
+            nameSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
+            ingredientSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
+
+            const products = Array.from(productsMap.values());
 
             // 2. Search for Pharmacies by Name (Direct match)
             const pharmacySnap = await getDocs(
@@ -363,5 +439,124 @@ export const firebaseService = {
     async syncUserProfile(userData: any) {
         const user = auth.currentUser;
         if (user) await this.saveUserProfile(user.uid, userData);
+    },
+
+    // 🩺 TELE-CONSULTATION
+    async createConsultation(type: "chat" | "video", subject: string, pharmacyId?: string): Promise<string> {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const consultationData: any = {
+            userId: user.uid,
+            userName: user.displayName || "Patient",
+            status: "pending",
+            type,
+            subject,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+            unreadCount: 0
+        };
+
+        if (pharmacyId) {
+            consultationData.pharmacyId = pharmacyId;
+        }
+
+        const docRef = await addDoc(collection(db, "consultations"), consultationData);
+        return docRef.id;
+    },
+
+    async getUserConsultations(): Promise<Consultation[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(
+                collection(db, "consultations"),
+                where("userId", "==", user.uid),
+                orderBy("updatedAt", "desc")
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Consultation));
+        } catch (e) {
+            console.error("Error fetching consultations:", e);
+            return [];
+        }
+    },
+
+    async sendChatMessage(consultationId: string, text: string, type: "text" | "image" | "prescription" = "text") {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const msg: any = {
+            consultationId,
+            senderId: user.uid,
+            senderName: user.displayName || "Patient",
+            senderRole: "user",
+            text,
+            type,
+            createdAt: serverTimestamp()
+        };
+
+        await addDoc(collection(db, "messages"), msg);
+
+        // Update consultation last message
+        const consultRef = doc(db, "consultations", consultationId);
+        await updateDoc(consultRef, {
+            lastMessage: text,
+            updatedAt: serverTimestamp()
+        });
+    },
+
+    // 💊 TREATMENTS (PILL REMINDER)
+    async createTreatment(data: Partial<Treatment>) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+        return await addDoc(collection(db, "treatments"), {
+            ...data,
+            userId: user.uid,
+            isActive: true,
+            createdAt: serverTimestamp()
+        });
+    },
+
+    async getUserTreatments(): Promise<Treatment[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(collection(db, "treatments"), where("userId", "==", user.uid));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Treatment));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    async deleteTreatment(id: string) {
+        await deleteDoc(doc(db, "treatments", id));
+    },
+
+    // 🛡️ INSURANCE
+    async createInsurance(data: Partial<Insurance>) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+        return await addDoc(collection(db, "insurances"), {
+            ...data,
+            userId: user.uid,
+            isVerified: false,
+            createdAt: serverTimestamp()
+        });
+    },
+
+    async getUserInsurances(): Promise<Insurance[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(collection(db, "insurances"), where("userId", "==", user.uid));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Insurance));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
     }
 };

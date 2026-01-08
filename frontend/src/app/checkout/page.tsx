@@ -8,6 +8,7 @@ import { firebaseService } from "@/services/firebaseService";
 import { auth } from "@/services/firebase";
 import AuthPrompt from "@/components/AuthPrompt";
 import { useCart } from "@/context/CartContext";
+import { Insurance } from "@/services/types";
 
 export default function CheckoutPage() {
     return (
@@ -31,7 +32,7 @@ function CheckoutContent() {
     const [step, setStep] = useState<"payment" | "success">("payment");
     const [isProcessing, setIsProcessing] = useState(false);
     const [showAuthPrompt, setShowAuthPrompt] = useState(false);
-    const [userInsurance, setUserInsurance] = useState<any>(null);
+    const [userInsurance, setUserInsurance] = useState<Insurance | null>(null);
 
     // Group items by pharmacy
     const pharmacyGroups = React.useMemo(() => {
@@ -47,9 +48,9 @@ function CheckoutContent() {
     useEffect(() => {
         const fetchInsurance = async () => {
             if (auth.currentUser) {
-                const profile = await firebaseService.getUserProfile(auth.currentUser.uid) as any;
-                if (profile?.insurance) {
-                    setUserInsurance(profile.insurance);
+                const insurances = await firebaseService.getUserInsurances();
+                if (insurances.length > 0) {
+                    setUserInsurance(insurances[0]); // Take first one by default
                 }
             }
         };
@@ -70,9 +71,6 @@ function CheckoutContent() {
             setShowAuthPrompt(true);
             return;
         }
-        if (!process.env.NEXT_PUBLIC_USE_FIREBASE && !agentCode.trim()) {
-            // Just a fallback check, though we auto-fill now
-        }
 
         if ((paymentMethod === 'orange' || paymentMethod === 'moov' || paymentMethod === 'mtn') && phoneNumber.length < 8) {
             alert("Veuillez entrer un numéro de téléphone valide pour le paiement.");
@@ -87,12 +85,12 @@ function CheckoutContent() {
 
             for (const pId of groupIds) {
                 const groupItems = pharmacyGroups[pId];
-                // Calculate subtotal for this group
                 const groupSubtotal = groupItems.reduce((sum, item) => sum + ((item.product.price || 0) * item.quantity), 0);
-                const groupDeliveryFee = deliveryMode === "delivery" ? 1000 : 0; // Flat fee per pharmacy interaction or one global? Usually per delivery. Let's assume per delivery for now or users will exploit.
-                // Strategically: Multi-pharmacy = Multi delivery.
+                const groupDeliveryFee = deliveryMode === "delivery" ? 1000 : 0;
 
-                const finalTotal = groupSubtotal + groupDeliveryFee;
+                // Tiers-Payant logic per order
+                const coverage = userInsurance?.isVerified ? (groupSubtotal * (userInsurance.coverageRate / 100)) : 0;
+                const finalTotal = (groupSubtotal - coverage) + groupDeliveryFee;
 
                 const orderId = await firebaseService.createOrder({
                     pharmacyId: pId,
@@ -110,20 +108,16 @@ function CheckoutContent() {
                     paymentMethod: paymentMethod,
                     paymentPhoneNumber: phoneNumber,
                     agentCode: agentCode,
-                    pharmacyName: groupItems[0]?.pharmacyName || "Pharmacie"
+                    pharmacyName: groupItems[0]?.pharmacyName || "Pharmacie",
+                    status: "pending"
                 });
                 orderIds.push(orderId);
             }
-
-
 
             setIsProcessing(false);
             setStep("success");
             clearCart();
 
-            // Wait a bit then redirect
-            // If single order -> tracking
-            // If multiple -> orders list
             setTimeout(() => {
                 if (orderIds.length === 1) {
                     router.push(`/tracking?id=${orderIds[0]}`);
@@ -167,13 +161,10 @@ function CheckoutContent() {
     }
 
     // Calculate global totals
-    // If delivery is selected, we charge 1000F per pharmacy (real logistics cost) or 1000F global? 
-    // User wants "stratégie rentable". Charging per pharmacy is fair but expensive check. 
-    // Let's charge 1000F Global for "Standard" and absorb cost, OR 1000F + 500F per extra.
-    // For simplicity of code: 1000F * number_of_pharmacies.
     const numberOfPharmacies = Object.keys(pharmacyGroups).length;
     const globalDeliveryFee = deliveryMode === "delivery" ? (1000 * numberOfPharmacies) : 0;
-    const finalTotal = totalPrice + globalDeliveryFee;
+    const insuranceCoverage = userInsurance?.isVerified ? (totalPrice * (userInsurance.coverageRate / 100)) : 0;
+    const finalTotal = (totalPrice - insuranceCoverage) + globalDeliveryFee;
 
     return (
         <main className="min-h-screen bg-background pb-nav">
@@ -215,13 +206,26 @@ function CheckoutContent() {
                         );
                     })}
 
-                    <div className="bg-secondary/20 p-4 rounded-2xl border border-dashed border-border/50">
-                        <div className="flex justify-between items-center text-[11px] font-medium text-muted-foreground">
-                            <span>Frais de service ({numberOfPharmacies} colis)</span>
+                    <div className="bg-secondary/20 p-4 rounded-2xl border border-dashed border-border/50 space-y-2">
+                        <div className="flex justify-between items-center text-[10px] font-medium text-muted-foreground uppercase tracking-widest">
+                            <span>Base Médicaments</span>
+                            <span className="font-bold text-foreground">{totalPrice} F</span>
+                        </div>
+
+                        {insuranceCoverage > 0 && (
+                            <div className="flex justify-between items-center text-[10px] font-black text-emerald-500 uppercase tracking-widest">
+                                <span>Prise en charge Assurance</span>
+                                <span>- {insuranceCoverage} F</span>
+                            </div>
+                        )}
+
+                        <div className="flex justify-between items-center text-[10px] font-medium text-muted-foreground uppercase tracking-widest">
+                            <span>Livraison ({numberOfPharmacies} colis)</span>
                             <span className="font-bold text-foreground">{globalDeliveryFee} F</span>
                         </div>
+
                         <div className="flex justify-between items-center text-lg font-black pt-2 border-t border-border/10 mt-1">
-                            <span className="text-xs uppercase tracking-tighter">Total Net</span>
+                            <span className="text-xs uppercase tracking-tighter italic">Reste à payer</span>
                             <span className="text-primary">{finalTotal} F</span>
                         </div>
                     </div>
@@ -294,19 +298,21 @@ function CheckoutContent() {
                         <div className="p-4 bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 rounded-2xl relative overflow-hidden">
                             <div className="flex justify-between items-start mb-3">
                                 <div>
-                                    <div className="text-[9px] font-black uppercase text-muted-foreground tracking-widest">Active</div>
+                                    <div className="text-[9px] font-black uppercase text-muted-foreground tracking-widest">
+                                        {userInsurance.isVerified ? "Vérifiée ✓" : "En attente de validation"}
+                                    </div>
                                     <div className="text-lg font-black text-foreground">{userInsurance.provider}</div>
                                 </div>
-                                <CheckCircle className="text-primary" size={20} />
+                                <CheckCircle className={cn(userInsurance.isVerified ? "text-primary" : "text-muted-foreground")} size={20} />
                             </div>
                             <div className="flex items-center gap-3 text-xs font-medium text-foreground/80">
                                 <div className="bg-background/50 px-2 py-1 rounded-lg border border-border/50">
                                     <span className="text-[8px] text-muted-foreground block font-black uppercase">Matricule</span>
-                                    {userInsurance.number}
+                                    {userInsurance.policyNumber}
                                 </div>
                                 <div className="bg-background/50 px-2 py-1 rounded-lg border border-border/50">
                                     <span className="text-[8px] text-muted-foreground block font-black uppercase">Taux</span>
-                                    <span className="text-green-500 font-black">{userInsurance.coverage}%</span>
+                                    <span className="text-green-500 font-black">{userInsurance.coverageRate}%</span>
                                 </div>
                             </div>
                         </div>

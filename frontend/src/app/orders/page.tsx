@@ -48,17 +48,25 @@ function OrderContent() {
                         <div key={order.id} className="glass-card p-6 rounded-[2rem] border-primary/10 hover:border-primary/30 transition-all flex flex-col gap-4">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <p className="text-[10px] font-black uppercase text-primary tracking-widest mb-1">{order.orderNumber}</p>
-                                    <h3 className="font-black text-lg italic leading-tight">{order.items[0]?.productName || "Commande Pharmacie"}</h3>
-                                    <p className="text-[10px] text-muted-foreground font-bold uppercase">{order.pharmacyName}</p>
+                                    <p className="text-[10px] font-black uppercase text-primary tracking-widest mb-1">{order.orderNumber || "DEVIS EN ATTENTE"}</p>
+                                    <h3 className="font-black text-lg italic leading-tight">
+                                        {order.status === 'quote_requested' || order.status === 'quote_received'
+                                            ? "Analyse Ordonnance 📸"
+                                            : (order.items[0]?.productName || "Commande Pharmacie")}
+                                    </h3>
+                                    <p className="text-[10px] text-muted-foreground font-bold uppercase">{order.pharmacyName || "Toutes les pharmacies"}</p>
                                 </div>
                                 <span className={cn(
                                     "px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-sm",
                                     order.status === 'completed' ? "bg-emerald-500/10 text-emerald-500" :
                                         order.status === 'cancelled' ? "bg-red-500/10 text-red-500" :
-                                            "bg-amber-500/10 text-amber-500 animate-pulse"
+                                            order.status === 'quote_requested' ? "bg-purple-500/10 text-purple-500 animate-pulse" :
+                                                order.status === 'quote_received' ? "bg-emerald-500/20 text-emerald-600 font-black ring-1 ring-emerald-500/30" :
+                                                    "bg-amber-500/10 text-amber-500 animate-pulse"
                                 )}>
-                                    {order.status}
+                                    {order.status === 'quote_requested' ? "Analyse en cours" :
+                                        order.status === 'quote_received' ? "Devis Reçu !" :
+                                            order.status}
                                 </span>
                             </div>
 

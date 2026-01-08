@@ -5,7 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
-import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert } from "lucide-react";
+import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert, Clock, Stethoscope, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
@@ -30,6 +30,37 @@ export default function HomePage() {
   const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [showAssistance, setShowAssistance] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  // Network listener & Install Prompt
+  useEffect(() => {
+    const handleStatus = () => setIsOffline(!navigator.onLine);
+    const handleInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('online', handleStatus);
+    window.addEventListener('offline', handleStatus);
+    window.addEventListener('beforeinstallprompt', handleInstallPrompt);
+    handleStatus();
+
+    return () => {
+      window.removeEventListener('online', handleStatus);
+      window.removeEventListener('offline', handleStatus);
+      window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+    }
+  };
 
   // Default to Ouagadougou center
   const DEFAULT_CENTER = { lat: 12.3714, lng: -1.5197 };
@@ -209,6 +240,26 @@ export default function HomePage() {
       {/* Top Bar / Search */}
       <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-4 bg-gradient-to-b from-background via-background/90 to-transparent">
         <div className="max-w-7xl mx-auto space-y-3">
+
+          {isOffline && (
+            <div className="bg-amber-500 text-[10px] font-black uppercase tracking-[0.2em] text-white py-1.5 px-4 rounded-full flex items-center justify-center gap-2 animate-in slide-in-from-top-4 mt-2 shadow-lg shadow-amber-500/20">
+              <ShieldAlert size={14} />
+              <span>Mode Hors-Ligne • Accès local uniquement</span>
+            </div>
+          )}
+
+          {deferredPrompt && (
+            <button
+              onClick={handleInstallClick}
+              className="w-full bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 px-4 rounded-2xl flex items-center justify-center gap-2 animate-in bounce-in shadow-xl shadow-primary/20 border border-white/20"
+            >
+              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                <Plus size={14} />
+              </div>
+              Installer l'application sur mon téléphone
+            </button>
+          )}
+
           {/* Greeting & Quick Actions */}
           <div className="flex justify-between items-start pt-3">
             <div>
@@ -326,17 +377,58 @@ export default function HomePage() {
       <div className="flex-1 overflow-y-auto pb-nav">
         <div className="max-w-xl mx-auto px-4 pt-[13rem] space-y-6">
 
-          {/* Reassurance Banner */}
-          <div
-            onClick={() => setShowAssistance(true)}
-            className="p-5 bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-[2.5rem] flex items-center gap-4 cursor-pointer hover:bg-red-500/15 transition-all group"
-          >
-            <div className="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
-              <ShieldAlert size={24} />
+          {/* Health Dashboard Section */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center px-1">
+              <h2 className="text-xl font-black italic text-foreground tracking-tight">Votre Santé</h2>
+              <div className="bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                <span className="text-[10px] font-black text-emerald-600 uppercase">Compagnon Actif</span>
+              </div>
             </div>
-            <div>
-              <h3 className="text-sm font-black italic text-red-700 dark:text-red-400">Besoin d'aide urgente ?</h3>
-              <p className="text-[10px] font-bold text-red-600/70 uppercase tracking-widest mt-0.5">Cliquez ici • On s'occupe de vous</p>
+
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                onClick={() => router.push("/treatment")}
+                className="bg-card hover:bg-secondary/30 border border-border p-5 rounded-[2.5rem] flex flex-col items-start gap-4 transition-all group active:scale-95 text-left h-full"
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
+                  <Clock size={24} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black text-foreground">Traitements</h3>
+                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">Prochaine prise : 14h</p>
+                </div>
+              </button>
+
+              <button
+                onClick={() => router.push("/teleconsultation")}
+                className="bg-card hover:bg-secondary/30 border border-border p-5 rounded-[2.5rem] flex flex-col items-start gap-4 transition-all group active:scale-95 text-left h-full"
+              >
+                <div className="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
+                  <Stethoscope size={24} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black text-foreground">Conseil Expert</h3>
+                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">Chat instantané</p>
+                </div>
+              </button>
+            </div>
+
+            {/* Emergency / Help SOS */}
+            <div
+              onClick={() => setShowAssistance(true)}
+              className="p-5 bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-[2.5rem] flex items-center justify-between cursor-pointer hover:bg-red-500/15 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:animate-pulse transition-transform">
+                  <AlertTriangle size={24} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black italic text-red-700 dark:text-red-400">Besoin d'aide SOS ?</h3>
+                  <p className="text-[10px] font-bold text-red-600/70 uppercase tracking-widest mt-0.5">Assistance Immédiate</p>
+                </div>
+              </div>
+              <ChevronRight size={20} className="text-red-500 opacity-50 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
 

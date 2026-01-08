@@ -141,6 +141,36 @@ function ScannerContent() {
         }
     };
 
+    const handleRequestQuote = async () => {
+        if (!auth.currentUser) {
+            alert("Veuillez vous connecter pour demander un devis.");
+            router.push("/login?returnUrl=/scanner");
+            return;
+        }
+
+        try {
+            setStep("scanning"); // Show loading state
+
+            await firebaseService.createOrder({
+                status: "quote_requested",
+                prescriptionImageUrl: preview || undefined,
+                items: [], // Will be filled by pharmacy
+                total: 0,
+                subtotal: 0,
+                deliveryFee: 1000,
+                deliveryMode: "delivery",
+                paymentMethod: "orange",
+            });
+
+            alert("📝 Demande de devis transmise ! Les pharmacies partenaires analysent votre photo. Vous recevrez une notification d'ici 10 minutes.");
+            router.push("/orders");
+        } catch (error) {
+            console.error("Failed to request quote", error);
+            alert("Une erreur est survenue lors de l'envoi du devis.");
+            setStep("results");
+        }
+    };
+
     return (
         <div className="container mx-auto max-w-lg min-h-screen flex flex-col pt-safe p-4">
             {/* Header */}
@@ -375,6 +405,17 @@ function ScannerContent() {
                                     >
                                         Trouver en pharmacie 💊
                                     </button>
+
+                                    <button
+                                        onClick={handleRequestQuote}
+                                        className="w-full py-4 bg-secondary text-foreground text-sm font-black rounded-2xl border border-primary/20 hover:bg-secondary/80 transition active:scale-95 tracking-widest uppercase flex items-center justify-center gap-2"
+                                    >
+                                        <Sparkles size={18} className="text-primary" />
+                                        Demander un Devis Complet 📑
+                                    </button>
+                                    <p className="text-[10px] text-center text-muted-foreground font-medium px-4">
+                                        Envoyez la photo à nos pharmaciens partenaires pour recevoir un devis total (prix + livraison).
+                                    </p>
                                 </div>
                             </>
                         )}
