@@ -215,6 +215,28 @@
   }
 }
 
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(20deg);
+  }
+
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+.animate-wave {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
 .animate-in {
   animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }

@@ -111,6 +111,12 @@ export default function HomePage() {
     return () => unsubscribe();
   }, []);
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 18 || hour < 5) return "Bonsoir";
+    return "Bonjour";
+  };
+
   const getNextDoseInfo = () => {
     if (treatments.length === 0) return "Aucun traitement";
 
@@ -316,8 +322,8 @@ export default function HomePage() {
           {/* Greeting & Quick Actions */}
           <div className="flex justify-between items-start pt-3">
             <div>
-              <h1 className="text-xl font-black italic tracking-tight text-foreground leading-none">
-                Bonjour {userName} 👋
+              <h1 className="text-xl font-black italic tracking-tight text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-1000">
+                {getGreeting()} <span className="text-primary">{userName}</span> <span className="animate-wave">👋</span>
               </h1>
               <p className="text-[9px] font-black uppercase tracking-widest text-primary mt-1">
                 Quelle pharmacie cherchez-vous ?
