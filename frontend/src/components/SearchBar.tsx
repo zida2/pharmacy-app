@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -21,9 +21,25 @@ export default function SearchBar({
             <input
                 type="text"
                 placeholder="Rechercher un médicament..."
-                className="input-standard pl-12 pr-4 bg-secondary border-none shadow-sm"
+                className="input-standard pl-12 pr-10 bg-secondary border-none shadow-sm"
                 {...props}
             />
+            {props.value && (
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (props.onChange) {
+                            const event = {
+                                target: { value: "" }
+                            } as React.ChangeEvent<HTMLInputElement>;
+                            props.onChange(event);
+                        }
+                    }}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                    <X className="h-4 w-4" />
+                </button>
+            )}
         </div>
     );
 }

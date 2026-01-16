@@ -87,7 +87,8 @@ export default function ProfilePage() {
     });
 
     // Premium Logic
-    const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, daysLeft: 0 });
+    const [premiumState, setPremiumState] = useState({ isPremium: false, isTrial: false, isPending: false, daysLeft: 0 });
+    const [transactionId, setTransactionId] = useState("");
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [isUpgrading, setIsUpgrading] = useState(false);
     const [isSendingReset, setIsSendingReset] = useState(false);
@@ -153,6 +154,7 @@ export default function ProfilePage() {
                 setPremiumState({
                     isPremium: isSubscribed,
                     isTrial: isTrial,
+                    isPending: profile.premiumRequest?.status === "pending",
                     daysLeft: isTrial ? trialRemaining : 0
                 });
 
@@ -384,7 +386,7 @@ export default function ProfilePage() {
                                             onClick={() => setShowPremiumModal(true)}
                                             className="flex items-center gap-1 text-[8px] font-black uppercase text-amber-600 bg-amber-500/20 px-2 py-0.5 rounded-full animate-pulse border border-amber-500/30"
                                         >
-                                            <Crown size={10} /> {premiumState.isTrial ? 'Premium Actif' : 'Activer Premium'}
+                                            <Crown size={10} /> {premiumState.isPending ? 'Activation en attente...' : premiumState.isTrial ? 'Premium Actif' : 'Activer Premium'}
                                         </button>
                                     )}
                                 </div>
@@ -1728,43 +1730,95 @@ export default function ProfilePage() {
                                     ))}
                                 </div>
 
-                                {/* Pricing */}
-                                <div className="bg-primary/5 p-4 rounded-3xl border border-primary/10 text-center relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 bg-primary text-white text-[9px] font-black px-2 py-1 rounded-bl-xl uppercase tracking-widest">Populaire</div>
-                                    <div className="text-3xl font-black text-primary mb-1">1 000 FCFA</div>
-                                    <div className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Par Mois</div>
-                                    <div className="mt-2 text-[10px] text-emerald-500 font-bold flex items-center justify-center gap-1">
-                                        <Sparkles size={10} /> Presque gratuit !
+                                {premiumState.isPending ? (
+                                    <div className="bg-amber-500/10 p-6 rounded-3xl border border-amber-500/20 text-center space-y-3">
+                                        <Clock className="text-amber-500 mx-auto animate-pulse" size={40} />
+                                        <h4 className="font-black text-amber-600 uppercase text-xs tracking-widest">Validation en cours</h4>
+                                        <p className="text-[10px] text-muted-foreground font-medium leading-relaxed">
+                                            Nous vérifions votre transfert. Votre compte sera activé dans quelques minutes dès que la transaction sera confirmée.
+                                        </p>
+                                        <button
+                                            onClick={() => setShowPremiumModal(false)}
+                                            className="w-full py-3 bg-secondary text-foreground rounded-xl font-black text-[10px] uppercase tracking-widest"
+                                        >
+                                            D'accord
+                                        </button>
                                     </div>
-                                </div>
+                                ) : (
+                                    <>
+                                        {/* Pricing */}
+                                        <div className="bg-primary/5 p-4 rounded-3xl border border-primary/10 text-center relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 bg-primary text-white text-[9px] font-black px-2 py-1 rounded-bl-xl uppercase tracking-widest">Abonnement MOnsuel</div>
+                                            <div className="text-3xl font-black text-primary mb-1">1 000 FCFA</div>
+                                            <div className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Une fois le transfert effectué</div>
+                                        </div>
 
-                                <button
-                                    onClick={async () => {
-                                        setIsUpgrading(true);
-                                        // Simulate Payment
-                                        await new Promise(r => setTimeout(r, 2000));
-                                        if (!currentUid) return;
-                                        try {
-                                            await firebaseService.upgradeUserToPremium(currentUid, 'yearly');
-                                            // Update local state to reflect change immediately
-                                            setPremiumState(prev => ({ ...prev, isPremium: true }));
-                                            setUserInfo(prev => ({ ...prev, level: "Platinum 👑" }));
-                                            setShowPremiumModal(false);
-                                            alert("Bienvenue dans le club Premium ! 👑");
-                                        } catch (e) {
-                                            alert("Erreur lors du paiement.");
-                                        } finally {
-                                            setIsUpgrading(false);
-                                        }
-                                    }}
-                                    disabled={isUpgrading}
-                                    className="w-full py-4 bg-gradient-to-r from-primary to-emerald-600 text-white font-black rounded-2xl shadow-xl shadow-primary/30 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-2"
-                                >
-                                    {isUpgrading ? <Loader2 className="animate-spin" /> : "Activer mon Premium"}
-                                </button>
-                                <p className="text-[9px] text-center text-muted-foreground opacity-50">
-                                    Paiement sécurisé via Orange Money / Moov Money
-                                </p>
+                                        <div className="space-y-4">
+                                            <div className="p-4 bg-secondary/30 rounded-2xl space-y-3 border border-border/50">
+                                                <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                                                    <span className="w-1.5 h-1.5 bg-primary rounded-full" /> Instructions de transfert
+                                                </div>
+                                                <div className="grid grid-cols-1 gap-2">
+                                                    <div className="flex items-center justify-between p-3 bg-white dark:bg-zinc-800 rounded-xl border border-orange-500/20 shadow-sm">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-6 h-6 bg-[#FF6600] rounded-md scale-90 flex items-center justify-center text-[10px] text-white font-bold">O</div>
+                                                            <span className="text-xs font-black text-foreground">Orange Money</span>
+                                                        </div>
+                                                        <span className="text-sm font-black text-orange-600 tracking-tighter">06 13 90 16</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-between p-3 bg-white dark:bg-zinc-800 rounded-xl border border-blue-500/20 shadow-sm">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-6 h-6 bg-[#002B7F] rounded-md scale-90 flex items-center justify-center text-[10px] text-white font-bold">M</div>
+                                                            <span className="text-xs font-black text-foreground">Moov Money</span>
+                                                        </div>
+                                                        <span className="text-sm font-black text-blue-600 tracking-tighter">62 20 28 77</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">ID de Transaction (du SMS)</label>
+                                                <input
+                                                    type="text"
+                                                    autoComplete="off"
+                                                    placeholder="Copiez-collez l'ID ici..."
+                                                    className="w-full p-4 bg-secondary dark:bg-zinc-800 border-2 border-transparent focus:border-primary/20 rounded-2xl outline-none font-bold text-foreground transition-all"
+                                                    value={transactionId}
+                                                    onChange={(e) => setTransactionId(e.target.value)}
+                                                />
+                                                <p className="text-[8px] text-muted-foreground font-medium italic ml-2">L'ID reçu par SMS après votre transfert.</p>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={async () => {
+                                                if (!transactionId.trim()) {
+                                                    alert("Veuillez entrer l'ID de transaction reçu par SMS.");
+                                                    return;
+                                                }
+                                                setIsUpgrading(true);
+                                                if (!currentUid) return;
+                                                try {
+                                                    await firebaseService.requestPremiumActivation(currentUid, transactionId, 'monthly');
+                                                    setPremiumState(prev => ({ ...prev, isPending: true }));
+                                                    setTransactionId("");
+                                                    alert("Demande envoyée ! Nous activons votre compte dès confirmation du transfert.");
+                                                } catch (e) {
+                                                    alert("Erreur lors de l'envoi de la demande.");
+                                                } finally {
+                                                    setIsUpgrading(false);
+                                                }
+                                            }}
+                                            disabled={isUpgrading || !transactionId.trim()}
+                                            className="w-full py-4 bg-gradient-to-r from-primary to-indigo-600 text-white font-black rounded-2xl shadow-xl shadow-primary/30 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-50 disabled:grayscale"
+                                        >
+                                            {isUpgrading ? <Loader2 className="animate-spin" /> : "Vérifier mon paiement"}
+                                        </button>
+                                        <p className="text-[9px] text-center text-muted-foreground opacity-50">
+                                            Validation manuelle par notre équipe (en moins de 15 min).
+                                        </p>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

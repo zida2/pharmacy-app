@@ -34,22 +34,6 @@ const withTimeout = <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise
     ]);
 };
 
-// Automated Guard Rotation Logic (Groups 1, 2, 3, 4)
-const getCurrentGuardGroup = (): string => {
-    // Reference: Saturday, Jan 4th, 2025 was a Group 1 start (Real world sync)
-    const refDate = new Date(2025, 0, 4);
-    const now = new Date();
-
-    // Difference in weeks
-    const diffMs = now.getTime() - refDate.getTime();
-    const diffWeeks = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
-
-    // Cycle: 1 -> 2 -> 3 -> 4
-    const cycle = ["1", "2", "3", "4"];
-    const index = ((diffWeeks % 4) + 4) % 4;
-    return cycle[index];
-};
-
 // Stable group assignment for pharmacies without explicit data
 const getStableGuardGroup = (id: string): string => {
     let hash = 0;
@@ -57,8 +41,33 @@ const getStableGuardGroup = (id: string): string => {
         hash = ((hash << 5) - hash) + id.charCodeAt(i);
         hash |= 0;
     }
-    const index = Math.abs(hash) % 4;
-    return ["1", "2", "3", "4"][index];
+    const groups = ["1", "2", "3", "4"];
+    return groups[Math.abs(hash) % 4];
+};
+
+const getCurrentGuardGroup = (): string => {
+    // Burkina Faso: Guard rotation usually changes on Saturday evening (19:00) 
+    // or Sunday (depends on the specific ONPBF week).
+    // Let's use a stable reference: Group 1 started on Jan 4, 2025 (Saturday).
+    const refDate = new Date(2025, 0, 4);
+    const now = new Date();
+
+    // Total days since ref
+    const diffTime = now.getTime() - refDate.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    // A week is 7 days. But guard starts Saturday evening.
+    // If it's Saturday before 19:00, we are still in current week's group.
+    // If it's Saturday after 19:00, or Sunday, we move to next group.
+    let weeks = Math.floor(diffDays / 7);
+    const day = now.getDay(); // 0=Sun, 6=Sat
+    const hours = now.getHours();
+
+    if (day === 6 && hours >= 19) weeks += 1;
+    if (day === 0) weeks += 0; // Already counted by diffDays/7 since ref was Saturday
+
+    const cycle = ["1", "2", "3", "4"];
+    return cycle[((weeks % 4) + 4) % 4];
 };
 
 export const firebaseService = {
@@ -210,8 +219,8 @@ export const firebaseService = {
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
 
-            const q = term?.toLowerCase() || "";
-            const isEmergencySearch = q.includes("garde") || q.includes("urgence");
+            const q = term?.toLowerCase().trim() || "";
+            const isEmergencySearch = q.includes("garde") || q.includes("urgence") || q.includes("urgent");
 
             // If no term, just return nearby
             if (!q) {
@@ -287,11 +296,15 @@ export const firebaseService = {
 
             if (isEmergencySearch) {
                 const filtered = finalResults
-                    .filter(r => r.pharmacy.status === 'guard' || !isEmergencySearch);
+                    .filter(r => r.pharmacy.status === 'guard');
 
                 if (filtered.length > 0) {
                     return filtered.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
                 }
+
+                // If no results specifically marked 'guard', but it's an emergency search, 
+                // we should check even our standard fallback logic
+                throw new Error("No guard pharmacies found in real backend");
             }
 
             if (finalResults.length > 0) {
@@ -351,7 +364,15 @@ export const firebaseService = {
             if (!q) return pharmsWithDist.map(p => ({ pharmacy: p }));
 
             const cleanQuery = q.trim();
-            const filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(cleanQuery));
+            const isEmergencySearch = cleanQuery.includes("garde") || cleanQuery.includes("urgence") || cleanQuery.includes("urgent");
+
+            let filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(cleanQuery));
+
+            if (isEmergencySearch) {
+                // If searching for "garde", filter by guard status
+                filtered = pharmsWithDist.filter(p => p.status === 'guard');
+            }
+
             return filtered.map(p => ({ pharmacy: p, product: undefined }));
         }
     },
@@ -658,6 +679,82 @@ export const firebaseService = {
         } catch (e) {
             console.error(e);
             return [];
+        }
+    },
+
+    // 🏆 PREMIUM ACTIVATION (MANUAL VALIDATION)
+    async requestPremiumActivation(uid: string, transactionId: string, plan: string) {
+        try {
+            const userRef = doc(db, "users", uid);
+            await updateDoc(userRef, {
+                "premiumRequest": {
+                    transactionId,
+                    plan,
+                    status: "pending",
+                    requestedAt: serverTimestamp()
+                }
+            });
+
+            // Also add to a global pending_activations collection for easy admin view
+            await addDoc(collection(db, "premium_requests"), {
+                userId: uid,
+                transactionId,
+                plan,
+                status: "pending",
+                createdAt: serverTimestamp()
+            });
+
+            return true;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async getPendingPremiumRequests() {
+        try {
+            const q = query(collection(db, "premium_requests"), where("status", "==", "pending"), orderBy("createdAt", "desc"));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() }));
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    },
+
+    async validatePremiumRequest(requestId: string, userId: string, plan: string) {
+        try {
+            const batch = writeBatch(db);
+
+            // 1. Mark request as approved
+            batch.update(doc(db, "premium_requests", requestId), {
+                status: "approved",
+                approvedAt: serverTimestamp()
+            });
+
+            // 2. Upgrade User
+            batch.update(doc(db, "users", userId), {
+                "userInfo.isPremium": true,
+                "userInfo.premiumPlan": plan,
+                "userInfo.premiumSince": serverTimestamp(),
+                "premiumRequest.status": "approved"
+            });
+
+            await batch.commit();
+            return true;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async rejectPremiumRequest(requestId: string, userId: string) {
+        try {
+            const batch = writeBatch(db);
+            batch.update(doc(db, "premium_requests", requestId), { status: "rejected" });
+            batch.update(doc(db, "users", userId), { "premiumRequest.status": "rejected" });
+            await batch.commit();
+            return true;
+        } catch (error) {
+            throw error;
         }
     }
 };

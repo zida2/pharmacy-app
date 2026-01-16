@@ -111,6 +111,20 @@ export default function HomePage() {
     return () => unsubscribe();
   }, []);
 
+  // Debounced Search Effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery.trim() !== "") {
+        handleSearch(searchQuery);
+      } else if (results.length > 0 && searchQuery === "") {
+        // If query cleared, show default (nearby)
+        handleSearch("");
+      }
+    }, 400); // 400ms debounce
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour >= 18 || hour < 5) return "Bonsoir";
@@ -232,7 +246,7 @@ export default function HomePage() {
   }, []);
 
   const handleSearch = async (query: string, locationOverride?: { lat: number; lng: number }) => {
-    setSearchQuery(query);
+    // setSearchQuery(query); // Removed to avoid circular updates if called from Cat buttons
     setIsLoading(true);
     const loc = locationOverride || userLocation;
     try {
@@ -276,9 +290,8 @@ export default function HomePage() {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/results?q=${encodeURIComponent(searchQuery)}`);
-    }
+    // No redirect anymore, search is handled by useEffect debounce
+    handleSearch(searchQuery);
   };
 
 
@@ -395,11 +408,9 @@ export default function HomePage() {
                   onClick={() => {
                     if (isActive) {
                       setSearchQuery("");
-                      handleSearch("");
                     } else {
                       const term = cat.id === "garde" ? "pharmacie de garde" : cat.id === "urgent" ? "ouvert" : cat.label;
                       setSearchQuery(term);
-                      handleSearch(term);
                     }
                   }}
                   className={cn(
@@ -416,12 +427,14 @@ export default function HomePage() {
             })}
           </div>
 
-          {isLoading && (
-            <div className="flex justify-center -mb-2">
-              <Loader2 className="animate-spin text-primary" size={20} />
-            </div>
-          )}
         </div>
+
+        {/* Absolute Progress Bar Loader - Doesn't shift content */}
+        {isLoading && (
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary/5 overflow-hidden">
+            <div className="h-full bg-primary animate-progress-flow w-full shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
+          </div>
+        )}
       </div>
 
 
@@ -504,10 +517,26 @@ export default function HomePage() {
               </span>
             </div>
 
-            <div className="space-y-4">
-              {results.length === 0 ? (
+            <div className={cn("space-y-4 transition-all duration-300", isLoading && results.length > 0 ? "opacity-50" : "opacity-100")}>
+              {isLoading && results.length === 0 ? (
+                // Skeletons to maintain height and stability
+                Array.from({ length: 3 }).map((_, i) => (
+                  <div key={`skel-${i}`} className="w-full h-40 bg-card rounded-3xl border border-border animate-pulse flex flex-col p-4 gap-4">
+                    <div className="flex justify-between">
+                      <div className="w-2/3 h-6 bg-muted rounded-lg" />
+                      <div className="w-12 h-6 bg-muted rounded-lg" />
+                    </div>
+                    <div className="w-full h-4 bg-muted/60 rounded-lg" />
+                    <div className="w-1/2 h-4 bg-muted/60 rounded-lg" />
+                    <div className="flex gap-2 mt-auto">
+                      <div className="flex-1 h-10 bg-muted/40 rounded-xl" />
+                      <div className="flex-[1.4] h-10 bg-muted/40 rounded-xl" />
+                    </div>
+                  </div>
+                ))
+              ) : results.length === 0 ? (
                 <div className="text-center py-16 flex flex-col items-center">
-                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 bg-slate-50 dark:bg-zinc-900 rounded-full flex items-center justify-center mb-4">
                     <Search size={24} className="text-slate-300" />
                   </div>
                   <h3 className="text-base font-bold text-slate-700 dark:text-slate-300">Aucune pharmacie trouvée</h3>
