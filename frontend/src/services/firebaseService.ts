@@ -183,7 +183,7 @@ export const firebaseService = {
             };
             batches.push(batch);
 
-            snap.docs.forEach((doc) => {
+            snap.docs.forEach((doc: any) => {
                 batch.ref.delete(doc.ref);
                 batch.count++;
                 if (batch.count >= 400) {
