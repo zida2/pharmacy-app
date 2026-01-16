@@ -127,6 +127,48 @@ export const firebaseService = {
         }
     },
 
+    async importPharmacies(pharmaciesData: any[]): Promise<{ success: number; failed: number }> {
+        let success = 0;
+        let failed = 0;
+
+        // Use batching (max 500 writes per batch in Firestore)
+        const BATCH_SIZE = 400;
+
+        // Need to import writeBatch from firebase/firestore first, checking imports...
+        // Assuming writeBatch is available or I can use sequential writes for simplicity in client SDK
+        // (Client SDK batching exists but sequential is safer for error handling per doc in Admin tools)
+        // Let's use sequential for better progress tracking in UI
+
+        for (const p of pharmaciesData) {
+            try {
+                // Map Python scraper format to Firestore format
+                const docId = p.id || `onpbf_${Math.random().toString(36).substring(7)}`;
+                const pharmacyData = {
+                    name: p.nom_pharmacie || p.name || "Pharmacie Inconnue",
+                    location: {
+                        city: p.ville || "Ouagadougou",
+                        address: p.adresse_complete || p.quartier || "",
+                        lat: p.latitude || 0,
+                        lng: p.longitude || 0
+                    },
+                    phone: p.telephone || "NC",
+                    guardGroup: p.groupe || getStableGuardGroup(docId),
+                    status: "open", // Default, will be recalculated by app logic
+                    updatedAt: serverTimestamp(),
+                    source: "ONPBF Scraper"
+                };
+
+                await setDoc(doc(db, "pharmacies", docId), pharmacyData, { merge: true });
+                success++;
+            } catch (error) {
+                console.error(`Failed to import pharmacy ${p.nom_pharmacie}:`, error);
+                failed++;
+            }
+        }
+
+        return { success, failed };
+    },
+
     // 💊 PRODUCTS & SEARCH
     async searchMedicines(term: string, coords?: { latitude: number; longitude: number }): Promise<{ pharmacy: Pharmacy; product?: Product }[]> {
         const userLocation = coords || await getUserLocation();
