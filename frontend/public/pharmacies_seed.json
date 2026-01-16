@@ -12,10 +12,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3316752,
+    "longitude": -1.5846717,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413576"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898059"
   },
   {
     "id": "pharm_avenir_ouagadougou",
@@ -30,10 +30,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3752224,
+    "longitude": -1.4939591,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413612"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898091"
   },
   {
     "id": "pharm_bang_poore_ouagadougou",
@@ -48,10 +48,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4227162,
+    "longitude": -1.5400065,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413653"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898129"
   },
   {
     "id": "pharm_baowendsom_ouagadougou",
@@ -66,10 +66,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4034896,
+    "longitude": -1.5774674,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413669"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898143"
   },
   {
     "id": "pharm_barkwende_ouagadougou",
@@ -84,10 +84,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3737293,
+    "longitude": -1.6084504,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413683"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898155"
   },
   {
     "id": "pharm_beatitudes_ouagadougou",
@@ -102,10 +102,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.307367,
+    "longitude": -1.528376,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413696"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898168"
   },
   {
     "id": "pharm_benaia_ouagadougou",
@@ -120,10 +120,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3503395,
+    "longitude": -1.4796989,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413708"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898179"
   },
   {
     "id": "pharm_bonheur_ouagadougou",
@@ -138,10 +138,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3139852,
+    "longitude": -1.5551909,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413720"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898192"
   },
   {
     "id": "pharm_camille_ouagadougou",
@@ -156,10 +156,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3758268,
+    "longitude": -1.4779569,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413732"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898203"
   },
   {
     "id": "pharm_centre_ouagadougou",
@@ -174,10 +174,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3701112,
+    "longitude": -1.5243046,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413744"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898214"
   },
   {
     "id": "pharm_crystal_ouagadougou",
@@ -192,10 +192,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413761"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898230"
   },
   {
     "id": "pharm_des_apotres_ouagadougou",
@@ -210,10 +210,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413775"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898243"
   },
   {
     "id": "pharm_desa_ouagadougou",
@@ -228,10 +228,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413786"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898254"
   },
   {
     "id": "pharm_diaby_ouagadougou",
@@ -246,10 +246,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413798"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898265"
   },
   {
     "id": "pharm_dominique_kabore_ouagadougou",
@@ -264,10 +264,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413812"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898279"
   },
   {
     "id": "pharm_el_wanogo_ouagadougou",
@@ -282,10 +282,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3984754,
+    "longitude": -1.4637411,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413825"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898291"
   },
   {
     "id": "pharm_elite_ouagadougou",
@@ -300,10 +300,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413836"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898302"
   },
   {
     "id": "pharm_guuduma_ouagadougou",
@@ -318,10 +318,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413847"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898327"
   },
   {
     "id": "pharm_hosanna_ouagadougou",
@@ -336,10 +336,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413859"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898339"
   },
   {
     "id": "pharm_jober_ouagadougou",
@@ -354,10 +354,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413871"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898352"
   },
   {
     "id": "pharm_katra_ouagadougou",
@@ -372,10 +372,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3469782,
+    "longitude": -1.5030581,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413881"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898364"
   },
   {
     "id": "pharm_keneya_ouagadougou",
@@ -390,10 +390,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413892"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898375"
   },
   {
     "id": "pharm_kossodo_ouagadougou",
@@ -408,10 +408,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4171874,
+    "longitude": -1.473243,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413904"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898388"
   },
   {
     "id": "pharm_lanibougna_ouagadougou",
@@ -426,10 +426,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413916"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898400"
   },
   {
     "id": "pharm_lanzane_ouagadougou",
@@ -444,10 +444,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413929"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898413"
   },
   {
     "id": "pharm_lendimi_ouagadougou",
@@ -462,10 +462,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413941"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898426"
   },
   {
     "id": "pharm_les_champions_ouagadougou",
@@ -480,10 +480,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413953"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898439"
   },
   {
     "id": "pharm_liberte_ouagadougou",
@@ -498,10 +498,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413965"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898452"
   },
   {
     "id": "pharm_lina_ouagadougou",
@@ -516,10 +516,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413977"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898464"
   },
   {
     "id": "pharm_magnificat_ouagadougou",
@@ -534,10 +534,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3288899,
+    "longitude": -1.4764359,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.413988"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898476"
   },
   {
     "id": "pharm_mare_ouagadougou",
@@ -552,10 +552,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3631848,
+    "longitude": -1.5498232,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414000"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898489"
   },
   {
     "id": "pharm_minitche_ouagadougou",
@@ -570,10 +570,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414013"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898502"
   },
   {
     "id": "pharm_monderou_ouagadougou",
@@ -588,10 +588,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414024"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898513"
   },
   {
     "id": "pharm_nanle_ouagadougou",
@@ -606,10 +606,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414036"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898526"
   },
   {
     "id": "pharm_neerwaya_ouagadougou",
@@ -624,10 +624,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414047"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898538"
   },
   {
     "id": "pharm_nouvelle_ouagadougou",
@@ -642,10 +642,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414058"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898549"
   },
   {
     "id": "pharm_pelega_ouagadougou",
@@ -660,10 +660,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414069"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898561"
   },
   {
     "id": "pharm_rayib_tiga_ouagadougou",
@@ -678,10 +678,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4073949,
+    "longitude": -1.5077501,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414081"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898573"
   },
   {
     "id": "pharm_rivage_ouagadougou",
@@ -696,10 +696,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414093"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898585"
   },
   {
     "id": "pharm_saint_bernard_ouagadougou",
@@ -714,10 +714,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414104"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898597"
   },
   {
     "id": "pharm_saint_francois_dassise_ouagadougou",
@@ -732,10 +732,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3820165,
+    "longitude": -1.4890606,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414120"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898613"
   },
   {
     "id": "pharm_saint_jean_ouagadougou",
@@ -750,10 +750,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.342753,
+    "longitude": -1.4937944,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414132"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898627"
   },
   {
     "id": "pharm_siloe_ouagadougou",
@@ -768,10 +768,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414150"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898639"
   },
   {
     "id": "pharm_song_taaba_ouagadougou",
@@ -786,10 +786,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414171"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898652"
   },
   {
     "id": "pharm_tale_ouagadougou",
@@ -804,10 +804,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414184"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898663"
   },
   {
     "id": "pharm_tenedia_ouagadougou",
@@ -822,10 +822,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414196"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898675"
   },
   {
     "id": "pharm_tengandogo_ouagadougou",
@@ -840,10 +840,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414207"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898686"
   },
   {
     "id": "pharm_trypano_ouagadougou",
@@ -858,10 +858,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414218"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898697"
   },
   {
     "id": "pharm_wend_la_laafi_ouagadougou",
@@ -876,10 +876,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3422993,
+    "longitude": -1.5729105,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414230"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898710"
   },
   {
     "id": "pharm_wend_lamita_ouagadougou",
@@ -894,10 +894,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3810463,
+    "longitude": -1.5503923,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414241"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898722"
   },
   {
     "id": "pharm_yathrib_ouagadougou",
@@ -912,10 +912,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414252"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898733"
   },
   {
     "id": "pharm_adadoua_ouagadougou",
@@ -930,10 +930,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414263"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898745"
   },
   {
     "id": "pharm_aeroport_ouagadougou",
@@ -948,10 +948,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414275"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898774"
   },
   {
     "id": "pharm_agora_rood_wooko_ouagadougou",
@@ -966,10 +966,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414288"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898789"
   },
   {
     "id": "pharm_amaro_ouagadougou",
@@ -984,10 +984,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414299"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898800"
   },
   {
     "id": "pharm_amina_ouagadougou",
@@ -1002,10 +1002,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414309"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898811"
   },
   {
     "id": "pharm_ar_rahma_ouagadougou",
@@ -1020,10 +1020,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414321"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898823"
   },
   {
     "id": "pharm_augustine_ouagadougou",
@@ -1038,10 +1038,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.327115,
+    "longitude": -1.5000203,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414332"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898835"
   },
   {
     "id": "pharm_bao_neere_ouagadougou",
@@ -1056,10 +1056,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414344"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898848"
   },
   {
     "id": "pharm_boulmiougou_ouagadougou",
@@ -1074,10 +1074,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3328999,
+    "longitude": -1.5829698,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414356"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898860"
   },
   {
     "id": "pharm_cathedrale_ouagadougou",
@@ -1092,10 +1092,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414369"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898874"
   },
   {
     "id": "pharm_cite_an_3_ouagadougou",
@@ -1110,10 +1110,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414382"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898888"
   },
   {
     "id": "pharm_danouma_ouagadougou",
@@ -1128,10 +1128,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414393"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898899"
   },
   {
     "id": "pharm_dapoya_ouagadougou",
@@ -1146,10 +1146,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414404"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898911"
   },
   {
     "id": "pharm_delwinde_ouagadougou",
@@ -1164,10 +1164,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4011373,
+    "longitude": -1.4721023,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414416"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898924"
   },
   {
     "id": "pharm_denisa_ouagadougou",
@@ -1182,10 +1182,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414428"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898937"
   },
   {
     "id": "pharm_faso_ouagadougou",
@@ -1200,10 +1200,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414439"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898948"
   },
   {
     "id": "pharm_flayiri_ouagadougou",
@@ -1218,10 +1218,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414450"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898959"
   },
   {
     "id": "pharm_hamdalaye_ouagadougou",
@@ -1236,10 +1236,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414461"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898970"
   },
   {
     "id": "pharm_hanniel_ouagadougou",
@@ -1254,10 +1254,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414472"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898982"
   },
   {
     "id": "pharm_hope_ouagadougou",
@@ -1272,10 +1272,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414483"
+    "date_mise_a_jour": "2026-01-16T20:30:33.898993"
   },
   {
     "id": "pharm_horizon_ouagadougou",
@@ -1290,10 +1290,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414494"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899005"
   },
   {
     "id": "pharm_jabneel_ouagadougou",
@@ -1308,10 +1308,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414506"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899017"
   },
   {
     "id": "pharm_jireh_ouagadougou",
@@ -1326,10 +1326,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414517"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899028"
   },
   {
     "id": "pharm_joriel_ouagadougou",
@@ -1344,10 +1344,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414527"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899040"
   },
   {
     "id": "pharm_jourdain_ouagadougou",
@@ -1362,10 +1362,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414538"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899051"
   },
   {
     "id": "pharm_karpala_ouagadougou",
@@ -1380,10 +1380,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414549"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899062"
   },
   {
     "id": "pharm_ko_viiga_ouagadougou",
@@ -1398,10 +1398,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414562"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899076"
   },
   {
     "id": "pharm_koulouba_ouagadougou",
@@ -1416,10 +1416,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.366555,
+    "longitude": -1.509623,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414572"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899087"
   },
   {
     "id": "pharm_koumajer_ouagadougou",
@@ -1434,10 +1434,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414583"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899098"
   },
   {
     "id": "pharm_les_lauriers_ouagadougou",
@@ -1452,10 +1452,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414594"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899110"
   },
   {
     "id": "pharm_marlass_ouagadougou",
@@ -1470,10 +1470,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414605"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899122"
   },
   {
     "id": "pharm_martin_ouagadougou",
@@ -1488,10 +1488,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414616"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899133"
   },
   {
     "id": "pharm_meira_ouagadougou",
@@ -1506,10 +1506,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414627"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899145"
   },
   {
     "id": "pharm_meteba_ouagadougou",
@@ -1524,10 +1524,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414638"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899157"
   },
   {
     "id": "pharm_mitspah_ouagadougou",
@@ -1542,10 +1542,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414649"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899168"
   },
   {
     "id": "pharm_nayyira_ouagadougou",
@@ -1560,10 +1560,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414660"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899179"
   },
   {
     "id": "pharm_neima_ouagadougou",
@@ -1578,10 +1578,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414671"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899190"
   },
   {
     "id": "pharm_nemadis_ouagadougou",
@@ -1596,10 +1596,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414681"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899201"
   },
   {
     "id": "pharm_primsante_ouagadougou",
@@ -1614,10 +1614,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414694"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899214"
   },
   {
     "id": "pharm_progres_ouagadougou",
@@ -1632,10 +1632,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3437164,
+    "longitude": -1.5686962,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414706"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899227"
   },
   {
     "id": "pharm_rakismanegre_ouagadougou",
@@ -1650,10 +1650,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414719"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899241"
   },
   {
     "id": "pharm_saint_joseph_ouagadougou",
@@ -1668,10 +1668,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414731"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899253"
   },
   {
     "id": "pharm_sainte_veronique_ouagadougou",
@@ -1686,10 +1686,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414744"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899268"
   },
   {
     "id": "pharm_samandin_ouagadougou",
@@ -1704,10 +1704,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414755"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899279"
   },
   {
     "id": "pharm_sangoule_lamizana_ouagadougou",
@@ -1722,10 +1722,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414768"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899293"
   },
   {
     "id": "pharm_schifeyi_ouagadougou",
@@ -1740,10 +1740,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414779"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899304"
   },
   {
     "id": "pharm_sig_noghin_ouagadougou",
@@ -1758,10 +1758,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414790"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899316"
   },
   {
     "id": "pharm_sigri_ouagadougou",
@@ -1776,10 +1776,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414801"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899327"
   },
   {
     "id": "pharm_somketa_ouagadougou",
@@ -1794,10 +1794,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414811"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899339"
   },
   {
     "id": "pharm_sud_ouagadougou",
@@ -1812,10 +1812,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414822"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899350"
   },
   {
     "id": "pharm_talba_ouagadougou",
@@ -1830,10 +1830,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3762421,
+    "longitude": -1.4909633,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414833"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899362"
   },
   {
     "id": "pharm_tanko_ouagadougou",
@@ -1848,10 +1848,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 13.086559,
+    "longitude": -1.086778,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414844"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899389"
   },
   {
     "id": "pharm_ti_bangre_ouagadougou",
@@ -1866,10 +1866,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414857"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899402"
   },
   {
     "id": "pharm_univers_ouagadougou",
@@ -1884,10 +1884,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414868"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899412"
   },
   {
     "id": "pharm_viim_ouagadougou",
@@ -1902,10 +1902,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414878"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899422"
   },
   {
     "id": "pharm_vincent_de_paul_ouagadougou",
@@ -1920,10 +1920,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414891"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899435"
   },
   {
     "id": "pharm_wati_ouagadougou",
@@ -1938,10 +1938,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3443667,
+    "longitude": -1.5405179,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414901"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899445"
   },
   {
     "id": "pharm_yobi_ouagadougou",
@@ -1956,10 +1956,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414911"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899455"
   },
   {
     "id": "pharm_zidou_ouagadougou",
@@ -1974,10 +1974,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414923"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899467"
   },
   {
     "id": "pharm_aimevo_ouagadougou",
@@ -1992,10 +1992,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414935"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899478"
   },
   {
     "id": "pharm_arzouma_ouagadougou",
@@ -2010,10 +2010,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414946"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899490"
   },
   {
     "id": "pharm_ave_maria_ouagadougou",
@@ -2028,10 +2028,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414958"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899502"
   },
   {
     "id": "pharm_balkuy_ouagadougou",
@@ -2046,10 +2046,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4644944,
+    "longitude": -3.4609729,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414969"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899512"
   },
   {
     "id": "pharm_baraka_ouagadougou",
@@ -2064,10 +2064,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3786779,
+    "longitude": -1.5396613,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414980"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899522"
   },
   {
     "id": "pharm_belle_ville_ouagadougou",
@@ -2082,10 +2082,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.414991"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899533"
   },
   {
     "id": "pharm_blessing_ouagadougou",
@@ -2100,10 +2100,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415002"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899544"
   },
   {
     "id": "pharm_carrefour_ouagadougou",
@@ -2118,10 +2118,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3677055,
+    "longitude": -1.5309441,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415012"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899554"
   },
   {
     "id": "pharm_charis_ouagadougou",
@@ -2136,10 +2136,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415023"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899565"
   },
   {
     "id": "pharm_christvi_ouagadougou",
@@ -2154,10 +2154,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415034"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899576"
   },
   {
     "id": "pharm_concorde_ouagadougou",
@@ -2172,10 +2172,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3657673,
+    "longitude": -1.5183549,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415046"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899587"
   },
   {
     "id": "pharm_coura_ouagadougou",
@@ -2190,10 +2190,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415083"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899598"
   },
   {
     "id": "pharm_djabal_ouagadougou",
@@ -2208,10 +2208,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415094"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899609"
   },
   {
     "id": "pharm_djimbia_ouagadougou",
@@ -2226,10 +2226,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.401461,
+    "longitude": -1.5142148,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415105"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899619"
   },
   {
     "id": "pharm_dunia_ouagadougou",
@@ -2244,10 +2244,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3593046,
+    "longitude": -1.4951501,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415115"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899630"
   },
   {
     "id": "pharm_ecoles_ouagadougou",
@@ -2262,10 +2262,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415125"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899640"
   },
   {
     "id": "pharm_fabere_ouagadougou",
@@ -2280,10 +2280,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415137"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899651"
   },
   {
     "id": "pharm_galiam_ouagadougou",
@@ -2298,10 +2298,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3996961,
+    "longitude": -1.566242,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415148"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899662"
   },
   {
     "id": "pharm_georgette_ouagadougou",
@@ -2316,10 +2316,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4102792,
+    "longitude": -1.6323174,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415158"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899673"
   },
   {
     "id": "pharm_hamamickely_ouagadougou",
@@ -2334,10 +2334,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415175"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899685"
   },
   {
     "id": "pharm_independance_ouagadougou",
@@ -2352,10 +2352,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415191"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899696"
   },
   {
     "id": "pharm_jeunesse_ouagadougou",
@@ -2370,10 +2370,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415203"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899707"
   },
   {
     "id": "pharm_kamboinsin_ouagadougou",
@@ -2388,10 +2388,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415213"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899718"
   },
   {
     "id": "pharm_kamin_ouagadougou",
@@ -2406,10 +2406,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415223"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899728"
   },
   {
     "id": "pharm_kilwin_ouagadougou",
@@ -2424,10 +2424,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415234"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899739"
   },
   {
     "id": "pharm_la_famille_ouagadougou",
@@ -2442,10 +2442,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415245"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899751"
   },
   {
     "id": "pharm_la_sainte_trinite_ouagadougou",
@@ -2460,10 +2460,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3685354,
+    "longitude": -1.4883668,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415258"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899764"
   },
   {
     "id": "pharm_naab_raga_ouagadougou",
@@ -2478,10 +2478,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3524179,
+    "longitude": -1.531649,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415269"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899775"
   },
   {
     "id": "pharm_naaba_koom_ouagadougou",
@@ -2496,10 +2496,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415280"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899786"
   },
   {
     "id": "pharm_nagrin_ouagadougou",
@@ -2514,10 +2514,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415290"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899797"
   },
   {
     "id": "pharm_ninrwa_ouagadougou",
@@ -2532,10 +2532,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.4052066,
+    "longitude": -1.456637,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415301"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899808"
   },
   {
     "id": "pharm_nonsin_ouagadougou",
@@ -2550,10 +2550,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415311"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899819"
   },
   {
     "id": "pharm_noom_wende_ouagadougou",
@@ -2568,10 +2568,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.319006,
+    "longitude": -1.5379561,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415323"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899831"
   },
   {
     "id": "pharm_pierre_tapsoba_ouagadougou",
@@ -2586,10 +2586,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415334"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899843"
   },
   {
     "id": "pharm_pissy_ouagadougou",
@@ -2604,10 +2604,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415344"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899853"
   },
   {
     "id": "pharm_renaissance_ouagadougou",
@@ -2622,10 +2622,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415355"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899865"
   },
   {
     "id": "pharm_saaba_ouagadougou",
@@ -2640,10 +2640,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415365"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899875"
   },
   {
     "id": "pharm_sacre_cur_ouagadougou",
@@ -2658,10 +2658,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415377"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899888"
   },
   {
     "id": "pharm_saint_lazare_ouagadougou",
@@ -2676,10 +2676,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3685791,
+    "longitude": -1.4997016,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415388"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899899"
   },
   {
     "id": "pharm_saint_michel_ouagadougou",
@@ -2694,10 +2694,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415400"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899912"
   },
   {
     "id": "pharm_sante_vitalite_ouagadougou",
@@ -2712,10 +2712,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415413"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899925"
   },
   {
     "id": "pharm_savane_ouagadougou",
@@ -2730,10 +2730,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415424"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899936"
   },
   {
     "id": "pharm_seneve_ouagadougou",
@@ -2748,10 +2748,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415435"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899946"
   },
   {
     "id": "pharm_taoko_ouagadougou",
@@ -2766,10 +2766,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3877702,
+    "longitude": -1.4784469,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415446"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899957"
   },
   {
     "id": "pharm_teranga_ouagadougou",
@@ -2784,10 +2784,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3817592,
+    "longitude": -1.4934187,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415458"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899968"
   },
   {
     "id": "pharm_tiyele_ouagadougou",
@@ -2802,10 +2802,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415468"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899979"
   },
   {
     "id": "pharm_wayalghin_ouagadougou",
@@ -2820,10 +2820,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415479"
+    "date_mise_a_jour": "2026-01-16T20:30:33.899991"
   },
   {
     "id": "pharm_wend_denda_ouagadougou",
@@ -2838,10 +2838,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3768378,
+    "longitude": -1.5439292,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415490"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900003"
   },
   {
     "id": "pharm_yempabou_ouagadougou",
@@ -2856,10 +2856,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415501"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900014"
   },
   {
     "id": "pharm_yennenga_ouagadougou",
@@ -2874,10 +2874,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.35118,
+    "longitude": -1.4880845,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415511"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900024"
   },
   {
     "id": "pharm_zone_i_ouagadougou",
@@ -2892,10 +2892,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415522"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900035"
   },
   {
     "id": "pharm_zoungrana_ouagadougou",
@@ -2910,10 +2910,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415532"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900046"
   },
   {
     "id": "pharm_1200_logements_ouagadougou",
@@ -2928,10 +2928,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3668409,
+    "longitude": -1.4938745,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415543"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900057"
   },
   {
     "id": "pharm_adama_ouagadougou",
@@ -2946,10 +2946,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415553"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900067"
   },
   {
     "id": "pharm_afiya_ouagadougou",
@@ -2964,10 +2964,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3553431,
+    "longitude": -1.4688761,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415564"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900078"
   },
   {
     "id": "pharm_amitie_miyougou_ouagadougou",
@@ -2982,10 +2982,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415577"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900090"
   },
   {
     "id": "pharm_angele_ouagadougou",
@@ -3000,10 +3000,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415587"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900101"
   },
   {
     "id": "pharm_bassinko_ouagadougou",
@@ -3018,10 +3018,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415598"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900112"
   },
   {
     "id": "pharm_bedjou_ouagadougou",
@@ -3036,10 +3036,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415608"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900123"
   },
   {
     "id": "pharm_bethania_ouagadougou",
@@ -3054,10 +3054,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415619"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900133"
   },
   {
     "id": "pharm_choukroullah_ouagadougou",
@@ -3072,10 +3072,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415630"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900143"
   },
   {
     "id": "pharm_circulaire_sede_ouagadougou",
@@ -3090,10 +3090,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3325736,
+    "longitude": -1.5166729,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415642"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900155"
   },
   {
     "id": "pharm_de_lalliance_ouagadougou",
@@ -3108,10 +3108,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415654"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900168"
   },
   {
     "id": "pharm_de_lhippodrome_ouagadougou",
@@ -3126,10 +3126,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.375924,
+    "longitude": -1.5573961,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415667"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900181"
   },
   {
     "id": "pharm_diawara_ouagadougou",
@@ -3144,10 +3144,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415677"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900192"
   },
   {
     "id": "pharm_el_shaddai_ouagadougou",
@@ -3162,10 +3162,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415688"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900202"
   },
   {
     "id": "pharm_espoir_ouagadougou",
@@ -3180,10 +3180,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415698"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900213"
   },
   {
     "id": "pharm_fraternite_ouagadougou",
@@ -3198,10 +3198,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415710"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900224"
   },
   {
     "id": "pharm_gare_ouagadougou",
@@ -3216,10 +3216,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415720"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900235"
   },
   {
     "id": "pharm_gemme_ouagadougou",
@@ -3234,10 +3234,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415730"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900246"
   },
   {
     "id": "pharm_hambila_ouagadougou",
@@ -3252,10 +3252,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415741"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900257"
   },
   {
     "id": "pharm_hamid_ouagadougou",
@@ -3270,10 +3270,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415751"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900269"
   },
   {
     "id": "pharm_hanahim_ouagadougou",
@@ -3288,10 +3288,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415761"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900279"
   },
   {
     "id": "pharm_hopital_ouagadougou",
@@ -3306,10 +3306,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415773"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900291"
   },
   {
     "id": "pharm_iris_ouagadougou",
@@ -3324,10 +3324,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415783"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900302"
   },
   {
     "id": "pharm_jean_paul_ii_ouagadougou",
@@ -3342,10 +3342,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415794"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900313"
   },
   {
     "id": "pharm_kadiogo_ouagadougou",
@@ -3360,10 +3360,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3603046,
+    "longitude": -1.5172985,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415805"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900325"
   },
   {
     "id": "pharm_kamalia_ouagadougou",
@@ -3378,10 +3378,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415815"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900336"
   },
   {
     "id": "pharm_kawsar_ouagadougou",
@@ -3396,10 +3396,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415825"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900346"
   },
   {
     "id": "pharm_kouma_ouagadougou",
@@ -3414,10 +3414,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3130946,
+    "longitude": -1.5289169,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415836"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900357"
   },
   {
     "id": "pharm_la_croix_ouagadougou",
@@ -3432,10 +3432,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415847"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900369"
   },
   {
     "id": "pharm_la_roche_ouagadougou",
@@ -3450,10 +3450,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3162047,
+    "longitude": -1.5151577,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415858"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900380"
   },
   {
     "id": "pharm_lalle_ouagadougou",
@@ -3468,10 +3468,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415869"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900392"
   },
   {
     "id": "pharm_le_rocher_ouagadougou",
@@ -3486,10 +3486,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3162047,
+    "longitude": -1.5151577,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415880"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900403"
   },
   {
     "id": "pharm_les_graces_ouagadougou",
@@ -3504,10 +3504,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415892"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900415"
   },
   {
     "id": "pharm_louis_pasteur_ouagadougou",
@@ -3522,10 +3522,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415903"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900427"
   },
   {
     "id": "pharm_maignon_ouagadougou",
@@ -3540,10 +3540,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3505338,
+    "longitude": -1.5264106,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415913"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900437"
   },
   {
     "id": "pharm_misericorde_ouagadougou",
@@ -3558,10 +3558,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415925"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900449"
   },
   {
     "id": "pharm_musee_ouagadougou",
@@ -3576,10 +3576,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415936"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900461"
   },
   {
     "id": "pharm_natilge_ouagadougou",
@@ -3594,10 +3594,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3624307,
+    "longitude": -1.481346,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415947"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900472"
   },
   {
     "id": "pharm_nioko_i_ouagadougou",
@@ -3612,10 +3612,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415958"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900483"
   },
   {
     "id": "pharm_nongui_ouagadougou",
@@ -3630,10 +3630,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3845751,
+    "longitude": -1.5749971,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415970"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900495"
   },
   {
     "id": "pharm_ouedraogo_remi_ouagadougou",
@@ -3648,10 +3648,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415983"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900507"
   },
   {
     "id": "pharm_pingdba_ouagadougou",
@@ -3666,10 +3666,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.415993"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900519"
   },
   {
     "id": "pharm_principale_ouagadougou",
@@ -3684,10 +3684,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416004"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900530"
   },
   {
     "id": "pharm_providence_ouagadougou",
@@ -3702,10 +3702,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416015"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900542"
   },
   {
     "id": "pharm_rima_ouagadougou",
@@ -3720,10 +3720,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416025"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900553"
   },
   {
     "id": "pharm_rimkieta_ouagadougou",
@@ -3738,10 +3738,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416037"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900565"
   },
   {
     "id": "pharm_sahel_ouagadougou",
@@ -3756,10 +3756,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416047"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900576"
   },
   {
     "id": "pharm_sainte_odile_ouagadougou",
@@ -3774,10 +3774,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416058"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900587"
   },
   {
     "id": "pharm_sira_ouagadougou",
@@ -3792,10 +3792,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416068"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900598"
   },
   {
     "id": "pharm_somgande_ouagadougou",
@@ -3810,10 +3810,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416079"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900610"
   },
   {
     "id": "pharm_sondogo_ouagadougou",
@@ -3828,10 +3828,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416090"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900621"
   },
   {
     "id": "pharm_sotisse_ouagadougou",
@@ -3846,10 +3846,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3971219,
+    "longitude": -1.4685073,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416100"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900632"
   },
   {
     "id": "pharm_unite_ouagadougou",
@@ -3864,10 +3864,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416111"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900643"
   },
   {
     "id": "pharm_venegre_ouagadougou",
@@ -3882,10 +3882,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416122"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900654"
   },
   {
     "id": "pharm_vidal_bafa_ouagadougou",
@@ -3900,10 +3900,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416133"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900665"
   },
   {
     "id": "pharm_viel_ouagadougou",
@@ -3918,10 +3918,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416145"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900677"
   },
   {
     "id": "pharm_wend_kuuni_ouagadougou",
@@ -3936,10 +3936,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3755238,
+    "longitude": -1.4875664,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416156"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900688"
   },
   {
     "id": "pharm_wend_yam_ouagadougou",
@@ -3954,10 +3954,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416169"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900699"
   },
   {
     "id": "pharm_wend_zinkre_ouagadougou",
@@ -3972,10 +3972,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416191"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900710"
   },
   {
     "id": "pharm_yan_marou_ouagadougou",
@@ -3990,10 +3990,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416206"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900721"
   },
   {
     "id": "pharm_yentema_ouagadougou",
@@ -4008,10 +4008,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 12.3656,
+    "longitude": -1.5339,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416217"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900731"
   },
   {
     "id": "pharm_aoudi_bobo_dioulasso",
@@ -4026,10 +4026,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1632288,
+    "longitude": -4.2924322,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416228"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900743"
   },
   {
     "id": "pharm_belleville_bobo_dioulasso",
@@ -4044,10 +4044,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416240"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900754"
   },
   {
     "id": "pharm_bethel_bobo_dioulasso",
@@ -4062,10 +4062,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.184057,
+    "longitude": -4.3212033,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416251"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900776"
   },
   {
     "id": "pharm_colombe_bobo_dioulasso",
@@ -4080,10 +4080,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416262"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900789"
   },
   {
     "id": "pharm_diyama_bobo_dioulasso",
@@ -4098,10 +4098,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416273"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900799"
   },
   {
     "id": "pharm_esperance_bobo_dioulasso",
@@ -4116,10 +4116,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416284"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900810"
   },
   {
     "id": "pharm_fanyansa_bobo_dioulasso",
@@ -4134,10 +4134,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416295"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900821"
   },
   {
     "id": "pharm_harmonie_bobo_dioulasso",
@@ -4152,10 +4152,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416306"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900832"
   },
   {
     "id": "pharm_jolean_bobo_dioulasso",
@@ -4170,10 +4170,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416316"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900842"
   },
   {
     "id": "pharm_kiri_bobo_dioulasso",
@@ -4188,10 +4188,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416327"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900853"
   },
   {
     "id": "pharm_levant_bobo_dioulasso",
@@ -4206,10 +4206,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1727733,
+    "longitude": -4.3030017,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416339"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900865"
   },
   {
     "id": "pharm_orlea_bobo_dioulasso",
@@ -4224,10 +4224,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416350"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900876"
   },
   {
     "id": "pharm_remedis_bobo_dioulasso",
@@ -4242,10 +4242,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416361"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900886"
   },
   {
     "id": "pharm_moderne_bobo_dioulasso",
@@ -4260,10 +4260,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1772549,
+    "longitude": -4.2981744,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416371"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900897"
   },
   {
     "id": "pharm_sala_bobo_dioulasso",
@@ -4278,10 +4278,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416382"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900908"
   },
   {
     "id": "pharm_sibiri_bobo_dioulasso",
@@ -4296,10 +4296,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1691325,
+    "longitude": -4.2509468,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416393"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900918"
   },
   {
     "id": "pharm_wobi_bobo_dioulasso",
@@ -4314,10 +4314,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416403"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900929"
   },
   {
     "id": "pharm_aeroport_bobo_dioulasso",
@@ -4332,10 +4332,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416414"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900939"
   },
   {
     "id": "pharm_bolibana_bobo_dioulasso",
@@ -4350,10 +4350,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416425"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900950"
   },
   {
     "id": "pharm_boulevard_bobo_dioulasso",
@@ -4368,10 +4368,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1836448,
+    "longitude": -4.2851032,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416435"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900960"
   },
   {
     "id": "pharm_christ_roi_bobo_dioulasso",
@@ -4386,10 +4386,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1767541,
+    "longitude": -4.2484981,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416447"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900972"
   },
   {
     "id": "pharm_djam_bobo_dioulasso",
@@ -4404,10 +4404,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416457"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900982"
   },
   {
     "id": "pharm_dinie_bobo_dioulasso",
@@ -4422,10 +4422,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416468"
+    "date_mise_a_jour": "2026-01-16T20:30:33.900993"
   },
   {
     "id": "pharm_djena_bobo_dioulasso",
@@ -4440,10 +4440,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416478"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901004"
   },
   {
     "id": "pharm_havvah_bobo_dioulasso",
@@ -4458,10 +4458,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416489"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901014"
   },
   {
     "id": "pharm_houet_nouvelle_bobo_dioulasso",
@@ -4476,10 +4476,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416501"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901026"
   },
   {
     "id": "pharm_kone_bobo_dioulasso",
@@ -4494,10 +4494,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1380721,
+    "longitude": -4.2827028,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416511"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901036"
   },
   {
     "id": "pharm_lafia_bobo_dioulasso",
@@ -4512,10 +4512,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.2148538,
+    "longitude": -4.3098723,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416522"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901047"
   },
   {
     "id": "pharm_lucien_bobo_dioulasso",
@@ -4530,10 +4530,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416533"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901058"
   },
   {
     "id": "pharm_mah_ta_bobo_dioulasso",
@@ -4548,10 +4548,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416544"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901069"
   },
   {
     "id": "pharm_nazindi_gouba_bobo_dioulasso",
@@ -4566,10 +4566,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416556"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901081"
   },
   {
     "id": "pharm_nazounki_bobo_dioulasso",
@@ -4584,10 +4584,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1899282,
+    "longitude": -4.3257634,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416566"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901092"
   },
   {
     "id": "pharm_sarfalao_bobo_dioulasso",
@@ -4602,10 +4602,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1594281,
+    "longitude": -4.2807897,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416577"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901102"
   },
   {
     "id": "pharm_sifoma_bobo_dioulasso",
@@ -4620,10 +4620,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1825278,
+    "longitude": -4.3075451,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416588"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901113"
   },
   {
     "id": "pharm_sya_ex_dafra_bobo_dioulasso",
@@ -4638,10 +4638,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416601"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901126"
   },
   {
     "id": "pharm_zoe_bobo_dioulasso",
@@ -4656,10 +4656,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416613"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901137"
   },
   {
     "id": "pharm_amirbouba_bobo_dioulasso",
@@ -4674,10 +4674,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416625"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901149"
   },
   {
     "id": "pharm_becy_bobo_dioulasso",
@@ -4692,10 +4692,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416636"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901160"
   },
   {
     "id": "pharm_boyam_bobo_dioulasso",
@@ -4710,10 +4710,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416647"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901171"
   },
   {
     "id": "pharm_entente_bobo_dioulasso",
@@ -4728,10 +4728,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416658"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901182"
   },
   {
     "id": "pharm_hayatt_bobo_dioulasso",
@@ -4746,10 +4746,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1783974,
+    "longitude": -4.3348672,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416668"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901193"
   },
   {
     "id": "pharm_hereso_bobo_dioulasso",
@@ -4764,10 +4764,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1713986,
+    "longitude": -4.267618,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416682"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901204"
   },
   {
     "id": "pharm_lame_bobo_dioulasso",
@@ -4782,10 +4782,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416701"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901215"
   },
   {
     "id": "pharm_medine_bobo_dioulasso",
@@ -4800,10 +4800,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1791624,
+    "longitude": -4.298749,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416713"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901226"
   },
   {
     "id": "pharm_oulagnan_traore_bobo_dioulasso",
@@ -4818,10 +4818,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416724"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901237"
   },
   {
     "id": "pharm_soudia_bobo_dioulasso",
@@ -4836,10 +4836,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416735"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901248"
   },
   {
     "id": "pharm_souligne_bobo_dioulasso",
@@ -4854,10 +4854,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1738429,
+    "longitude": -4.2998873,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416748"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901261"
   },
   {
     "id": "pharm_saint_antoine_bobo_dioulasso",
@@ -4872,10 +4872,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416759"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901272"
   },
   {
     "id": "pharm_saint_raphael_bobo_dioulasso",
@@ -4890,10 +4890,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416771"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901284"
   },
   {
     "id": "pharm_samhita_bobo_dioulasso",
@@ -4908,10 +4908,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416782"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901295"
   },
   {
     "id": "pharm_sanitas_bobo_dioulasso",
@@ -4926,10 +4926,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416792"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901306"
   },
   {
     "id": "pharm_tene_bobo_dioulasso",
@@ -4944,10 +4944,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416803"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901317"
   },
   {
     "id": "pharm_vitalis_bobo_dioulasso",
@@ -4962,10 +4962,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1912681,
+    "longitude": -4.3143332,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416814"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901341"
   },
   {
     "id": "pharm_yamba_bobo_dioulasso",
@@ -4980,10 +4980,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416825"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901352"
   },
   {
     "id": "pharm_abby_bobo_dioulasso",
@@ -4998,10 +4998,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416835"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901361"
   },
   {
     "id": "pharm_adama_traore_bobo_dioulasso",
@@ -5016,10 +5016,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416847"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901372"
   },
   {
     "id": "pharm_amine_bobo_dioulasso",
@@ -5034,10 +5034,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416857"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901382"
   },
   {
     "id": "pharm_aube_nouvelle_bobo_dioulasso",
@@ -5052,10 +5052,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416869"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901392"
   },
   {
     "id": "pharm_audrey_bobo_dioulasso",
@@ -5070,10 +5070,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416880"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901403"
   },
   {
     "id": "pharm_bien_etre_bobo_dioulasso",
@@ -5088,10 +5088,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416892"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901413"
   },
   {
     "id": "pharm_colma_bobo_dioulasso",
@@ -5106,10 +5106,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416903"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901423"
   },
   {
     "id": "pharm_dogona_bobo_dioulasso",
@@ -5124,10 +5124,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416913"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901433"
   },
   {
     "id": "pharm_ekossinnes_bobo_dioulasso",
@@ -5142,10 +5142,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416924"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901443"
   },
   {
     "id": "pharm_grace_divine_bobo_dioulasso",
@@ -5160,10 +5160,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416936"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901453"
   },
   {
     "id": "pharm_hadim_bobo_dioulasso",
@@ -5178,10 +5178,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1779075,
+    "longitude": -4.272701,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416946"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901463"
   },
   {
     "id": "pharm_hopital_bobo_dioulasso",
@@ -5196,10 +5196,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416957"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901473"
   },
   {
     "id": "pharm_jigiya_bobo_dioulasso",
@@ -5214,10 +5214,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416967"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901483"
   },
   {
     "id": "pharm_kanta_bobo_dioulasso",
@@ -5232,10 +5232,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416978"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901494"
   },
   {
     "id": "pharm_lafiabougou_bobo_dioulasso",
@@ -5250,10 +5250,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.416989"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901504"
   },
   {
     "id": "pharm_lakari_bobo_dioulasso",
@@ -5268,10 +5268,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.417000"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901514"
   },
   {
     "id": "pharm_sakaby_bobo_dioulasso",
@@ -5286,10 +5286,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.417011"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901525"
   },
   {
     "id": "pharm_samba_bobo_dioulasso",
@@ -5304,10 +5304,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.417021"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901535"
   },
   {
     "id": "pharm_siyara_bobo_dioulasso",
@@ -5322,10 +5322,10 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.417032"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901545"
   },
   {
     "id": "pharm_solidarite_bobo_dioulasso",
@@ -5340,9 +5340,9 @@
     "date_debut_garde": "N/A",
     "date_fin_garde": "N/A",
     "heures_ouverture": "08:00-22:00",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 11.1833,
+    "longitude": -4.2833,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T20:09:23.417043"
+    "date_mise_a_jour": "2026-01-16T20:30:33.901555"
   }
 ]

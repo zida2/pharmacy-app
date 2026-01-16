@@ -362,81 +362,66 @@ class PharmacyScraper:
     def geocode_address(self, address: str) -> Optional[Dict[str, float]]:
         """
         Géocode une adresse avec Nominatim (OpenStreetMap)
-        
-        Args:
-            address: Adresse à géocoder
-            
-        Returns:
-            Dictionnaire avec lat et lng, ou None
         """
         if not requests:
             return None
         
         try:
             url = "https://nominatim.openstreetmap.org/search"
-            # Ajout de 'pharmacie' pour aider la recherche
-            search_query = f"Pharmacie {address}"
-            params = {
-                'q': search_query,
-                'format': 'json',
-                'limit': 1
-            }
-            headers = {
-                'User-Agent': 'PharmacyApp-Scraper/1.0 (contact@example.com)'
-            }
+            # Version 1 : Pharmacie + Nom + Ville + Pays
+            search_query = f"Pharmacie {address}, Burkina Faso"
+            params = {'q': search_query, 'format': 'json', 'limit': 1}
+            headers = {'User-Agent': 'PharmacyApp-Scraper/1.0 (contact@example.com)'}
             
-            response = requests.get(url, params=params, headers=headers, timeout=10)
+            response = requests.get(url, params=params, headers=headers, timeout=15)
             data = response.json()
             
             if data and len(data) > 0:
-                return {
-                    'lat': float(data[0]['lat']),
-                    'lng': float(data[0]['lon'])
-                }
-            # Fallback sans "Pharmacie"
-            params['q'] = address
-            response = requests.get(url, params=params, headers=headers, timeout=10)
+                return {'lat': float(data[0]['lat']), 'lng': float(data[0]['lon'])}
+            
+            # Version 2 : Juste le nom + Ville + Pays (si 'Pharmacie' bloque)
+            params['q'] = f"{address}, Burkina Faso"
+            response = requests.get(url, params=params, headers=headers, timeout=15)
             data = response.json()
             if data and len(data) > 0:
-                return {
-                    'lat': float(data[0]['lat']),
-                    'lng': float(data[0]['lon'])
-                }
+                return {'lat': float(data[0]['lat']), 'lng': float(data[0]['lon'])}
                 
         except Exception as e:
             logger.warning(f"⚠️ Erreur de géocodage pour {address}: {e}")
+            time.sleep(2) # Petite pause en cas d'erreur réseau
         
         return None
     
-    def geocode_all(self, data: List[Dict], delay: float = 1.0) -> List[Dict]:
+    def geocode_all(self, data: List[Dict], delay: float = 1.2) -> List[Dict]:
         """
-        Géocode toutes les pharmacies
+        Géocode toutes les pharmacies avec sauvegarde progressive
         """
-        logger.info("📍 Géocodage des adresses en cours...")
-        logger.info("   (Cela peut prendre quelques minutes pour respecter les limitations de l'API)")
+        logger.info("📍 Géocodage des adresses en cours (Burkina Faso)...")
         
         count = 0
         total = len(data)
         
         for idx, pharmacy in enumerate(data):
-            # On ne géocode que si c'est à 0.0
             if pharmacy['latitude'] == 0.0:
-                # Construire une adresse de recherche optimisée
-                # Ex: "Pharmacie Nom, Ville" est souvent mieux que l'adresse complète parfois trop détaillée ou mal formatée
                 search_address = f"{pharmacy['nom_pharmacie']}, {pharmacy['ville']}"
-                
                 coords = self.geocode_address(search_address)
                 
                 if coords:
                     pharmacy['latitude'] = coords['lat']
                     pharmacy['longitude'] = coords['lng']
                     count += 1
-                    logger.info(f"   [{idx+1}/{total}] ✅ Trouvé: {pharmacy['nom_pharmacie']} ({coords['lat']}, {coords['lng']})")
+                    logger.info(f"   [{idx+1}/{total}] ✅ {pharmacy['nom_pharmacie']} -> {coords['lat']}, {coords['lng']}")
                 else:
-                    logger.info(f"   [{idx+1}/{total}] ❌ Non trouvé: {pharmacy['nom_pharmacie']}")
+                    logger.info(f"   [{idx+1}/{total}] ❌ {pharmacy['nom_pharmacie']} non localisée")
+                
+                # Sauvegarde intermédiaire tous les 20 items
+                if (idx + 1) % 20 == 0:
+                    self.save_to_json(data)
+                    logger.info("💾 Sauvegarde intermédiaire effectuée.")
                 
                 time.sleep(delay)
         
+        self.save_to_json(data)
         logger.info(f"📍 Géocodage terminé. {count}/{total} adresses trouvées.")
         return data
 
@@ -548,9 +533,9 @@ def main():
     """Point d'entrée principal"""
     scraper = PharmacyScraper(headless=True)
     
-    # Lancer le scraping SANS GEOCODAGE pour l'instant (trop lent car API limitée)
-    logger.info("ℹ️ Géocodage désactivé pour gagner du temps. Les adresses seront textuelles.")
-    data = scraper.run(enable_geocoding=False, export_excel=True)
+    # Lancer le scraping AVEC GEOCODAGE (requis pour la carte)
+    logger.info("⚠️ Le géocodage est réactivé. Cette opération peut prendre 10 à 15 minutes pour 297 pharmacies...")
+    data = scraper.run(enable_geocoding=True, export_excel=True)
     
     print("\n" + "="*60)
     print(f"✨ Scraping terminé! {len(data)} pharmacies extraites.")

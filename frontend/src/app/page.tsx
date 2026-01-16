@@ -284,7 +284,7 @@ export default function HomePage() {
 
 
   return (
-    <main className="relative w-full h-screen flex flex-col bg-slate-50 dark:bg-zinc-950 font-sans">
+    <main className="relative w-full h-screen flex flex-col bg-background font-sans">
 
       {/* Premium Background Pattern - Subtle & Professional */}
       <div className="fixed inset-0 z-0 bg-grid-slate-200/50 dark:bg-grid-slate-800/20 [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
@@ -295,7 +295,7 @@ export default function HomePage() {
       />
 
       {/* Premium Header / Search */}
-      <div className="relative z-20 pt-safe px-5 pb-5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-zinc-800/60 shadow-sm transition-all">
+      <div className="relative z-20 pt-safe px-5 pb-5 bg-background/80 backdrop-blur-xl border-b border-border shadow-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto space-y-5">
 
           {isOffline && (
@@ -383,24 +383,37 @@ export default function HomePage() {
           {/* Categories Quick Filter - Pills */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {[
-              { id: "garde", label: "De Garde", icon: "🌙", activeClass: "bg-indigo-50 text-indigo-600 border-indigo-100" },
-              { id: "urgent", label: "Urgences", icon: "🚨", activeClass: "bg-red-50 text-red-600 border-red-100" },
-              { id: "promo", label: "Promos", icon: "🏷️", activeClass: "bg-emerald-50 text-emerald-600 border-emerald-100" },
-              { id: "bebe", label: "Bébé", icon: "🍼", activeClass: "bg-blue-50 text-blue-600 border-blue-100" },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  if (cat.id === "garde") return router.push("/results?filter=garde");
-                  if (cat.id === "urgent") return router.push("/results?filter=open");
-                  handleSearch(cat.label);
-                }}
-                className={`flex items-center gap-2 px-4 py-2 bg-white dark:bg-zinc-800 border border-slate-100 dark:border-zinc-700/50 rounded-full whitespace-nowrap shadow-sm text-xs font-bold text-slate-600 dark:text-slate-300 active:scale-95 transition-all outline-none hover:bg-slate-50 dark:hover:bg-zinc-700`}
-              >
-                <span>{cat.icon}</span>
-                {cat.label}
-              </button>
-            ))}
+              { id: "garde", label: "De Garde", icon: "🌙" },
+              { id: "urgent", label: "Ouvertes", icon: "🚨" },
+              { id: "palu", label: "Paludisme", icon: "🦟" },
+              { id: "douleur", label: "Douleurs", icon: "💊" },
+            ].map((cat) => {
+              const isActive = searchQuery.toLowerCase().includes(cat.id) || searchQuery.toLowerCase().includes(cat.label.toLowerCase());
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    if (isActive) {
+                      setSearchQuery("");
+                      handleSearch("");
+                    } else {
+                      const term = cat.id === "garde" ? "pharmacie de garde" : cat.id === "urgent" ? "ouvert" : cat.label;
+                      setSearchQuery(term);
+                      handleSearch(term);
+                    }
+                  }}
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2 border rounded-full whitespace-nowrap shadow-sm text-xs font-bold transition-all outline-none hover:bg-secondary active:scale-95",
+                    isActive
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-card text-foreground border-border"
+                  )}
+                >
+                  <span>{cat.icon}</span>
+                  {cat.label}
+                </button>
+              )
+            })}
           </div>
 
           {isLoading && (
@@ -413,7 +426,7 @@ export default function HomePage() {
 
 
       {/* Content Area - Scrollable Feed */}
-      <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-zinc-950 scrollbar-hide">
+      <div className="flex-1 overflow-y-auto bg-background scrollbar-hide">
         <div className="max-w-2xl mx-auto px-5 pt-4 pb-32 space-y-8">
 
           {/* Health Dashboard Section */}
