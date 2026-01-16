@@ -150,17 +150,45 @@ class PharmacyScraper:
                         logger.warning(f"⚠️ Erreur lors de l'extraction d'une ligne: {e}")
                         continue
                 
-                # Vérifier s'il y a une page suivante
-                try:
-                    next_button = self.driver.find_element(
-                        By.CSS_SELECTOR, 
-                        ".dt-paging-button.next:not(.disabled)"
-                    )
-                    next_button.click()
-                    time.sleep(2)
+                # Tentative de passage à la page suivante avec plusieurs sélecteurs possibles
+                next_found = False
+                # Liste des sélecteurs potentiels pour le bouton "Suivant" (DataTables v1, v2, TablePress)
+                selectors = [
+                    ".dt-paging-button.next:not(.disabled)",      # DataTables 2 moderne
+                    ".paginate_button.next:not(.disabled)",       # DataTables 1.x (très courant)
+                    "#tablepress-2_next:not(.disabled)",          # ID spécifique TablePress
+                    "a.next:not(.disabled)",                      # Lien générique
+                    "//a[contains(text(), 'Suivant')]",           # XPath Texte
+                    "//a[contains(text(), 'Next')]"               # XPath Texte EN
+                ]
+                
+                for selector in selectors:
+                    try:
+                        if selector.startswith("//"):
+                            btn = self.driver.find_element(By.XPATH, selector)
+                        else:
+                            btn = self.driver.find_element(By.CSS_SELECTOR, selector)
+                            
+                        # Vérifier si le bouton est vraiment là et visible
+                        if btn and btn.is_displayed() and "disabled" not in btn.get_attribute("class"):
+                            # Scroll pour être sûr qu'il est visible
+                            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", btn)
+                            time.sleep(1)
+                            
+                            # Clic JavaScript (plus fiable que .click() standard)
+                            self.driver.execute_script("arguments[0].click();", btn)
+                            
+                            next_found = True
+                            logger.info(f"➡️ Passage page suivante via sélecteur: {selector}")
+                            break
+                    except Exception:
+                        continue
+                
+                if next_found:
+                    time.sleep(4) # Attente généreuse pour le chargement AJAX
                     page_num += 1
-                except:
-                    logger.info("✅ Toutes les pages ont été lues")
+                else:
+                    logger.info("✅ Aucune page suivante trouvée, fin du scraping.")
                     break
             
             logger.info(f"✅ {len(all_pharmacies)} pharmacies extraites de l'annuaire")

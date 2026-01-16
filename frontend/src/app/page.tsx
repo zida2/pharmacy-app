@@ -5,7 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
-import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert, Clock, Stethoscope, Plus } from "lucide-react";
+import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert, Clock, Stethoscope, Plus, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
@@ -284,110 +284,89 @@ export default function HomePage() {
 
 
   return (
-    <main className="relative w-full h-screen flex flex-col bg-background">
-      {/* Dynamic Background Gradient - Smoother */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-500/5 rounded-full blur-[120px]" />
-      </div>
+    <main className="relative w-full h-screen flex flex-col bg-slate-50 dark:bg-zinc-950 font-sans">
+
+      {/* Premium Background Pattern - Subtle & Professional */}
+      <div className="fixed inset-0 z-0 bg-grid-slate-200/50 dark:bg-grid-slate-800/20 [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
 
       <AssistanceModal
         isOpen={showAssistance}
         onClose={() => setShowAssistance(false)}
       />
 
-      {/* Top Bar / Search */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-safe px-4 pb-4 bg-gradient-to-b from-background via-background/90 to-transparent">
-        <div className="max-w-7xl mx-auto space-y-3">
+      {/* Premium Header / Search */}
+      <div className="relative z-20 pt-safe px-5 pb-5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-zinc-800/60 shadow-sm transition-all">
+        <div className="max-w-7xl mx-auto space-y-5">
 
           {isOffline && (
-            <div className="bg-amber-500 text-[10px] font-black uppercase tracking-[0.2em] text-white py-1.5 px-4 rounded-full flex items-center justify-center gap-2 animate-in slide-in-from-top-4 mt-2 shadow-lg shadow-amber-500/20">
+            <div className="bg-amber-500/10 text-amber-600 border border-amber-500/20 text-[10px] font-bold uppercase tracking-wider py-2 px-4 rounded-xl flex items-center justify-center gap-2 animate-in slide-in-from-top-2">
               <ShieldAlert size={14} />
-              <span>Mode Hors-Ligne • Accès local uniquement</span>
+              <span>Mode Hors-Ligne activé</span>
             </div>
           )}
 
           {deferredPrompt && (
             <button
               onClick={handleInstallClick}
-              className="w-full bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 px-4 rounded-2xl flex items-center justify-center gap-2 animate-in bounce-in shadow-xl shadow-primary/20 border border-white/20"
+              className="w-full bg-primary text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-95 transition-transform"
             >
-              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                <Plus size={14} />
-              </div>
-              Installer l'application sur mon téléphone
+              <Plus size={16} />
+              Installer l'application
             </button>
           )}
 
-          {/* Greeting & Quick Actions */}
-          <div className="flex justify-between items-start pt-3">
+          {/* Greeting & Header Actions */}
+          <div className="flex justify-between items-start pt-2">
             <div>
-              <h1 className="text-xl font-black italic tracking-tight text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-1000">
-                {getGreeting()} <span className="text-primary">{userName}</span> <span className="animate-wave">👋</span>
+              <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight animate-in fade-in slide-in-from-left-4 duration-700">
+                {getGreeting()}, <span className="text-primary">{userName}</span>
               </h1>
-              <p className="text-[9px] font-black uppercase tracking-widest text-primary mt-1">
-                Quelle pharmacie cherchez-vous ?
-              </p>
-              <div className="flex items-center gap-2 mt-2 px-1">
-                {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold">Localisation en cours...</span>}
+              <div className="flex items-center gap-2 mt-1.5">
+                {locationStatus === 'loading' && <span className="text-[10px] text-slate-400 animate-pulse font-medium">Localisation...</span>}
                 {locationStatus === 'success' && (
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center text-emerald-500 gap-1.5">
-                      <MapPin size={12} />
-                      <span className="text-[10px] font-black uppercase tracking-wider">Position précise</span>
-                    </div>
-                    <div className="flex items-center bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">
-                      <Sparkles size={10} className="mr-1" />
-                      <span className="text-[9px] font-black uppercase tracking-widest">Recherche Gratuite</span>
-                    </div>
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-md">
+                    <MapPin size={12} strokeWidth={2.5} />
+                    <span className="text-[10px] font-bold uppercase tracking-wide">Ouagadougou</span>
                   </div>
                 )}
-                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1.5"><AlertTriangle size={12} /><span className="text-[10px] font-black uppercase tracking-wider">Position approximative</span></div>}
-                {locationStatus === 'denied' && (
-                  <button onClick={retryGeolocation} className="flex items-center text-red-500 gap-1.5 hover:underline decoration-2 underline-offset-2 transition-all">
-                    <AlertTriangle size={12} />
-                    <span className="text-[10px] font-black uppercase tracking-wider">Activer GPS</span>
-                  </button>
-                )}
+                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={12} /><span className="text-[10px] font-medium">Position approx.</span></div>}
               </div>
             </div>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowAssistance(true)}
-                className="btn-icon bg-red-500 shadow-lg shadow-red-500/20 text-white animate-pulse"
+                className="w-10 h-10 rounded-full bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 flex items-center justify-center transition-colors"
               >
-                <AlertTriangle size={20} />
+                <AlertTriangle size={20} strokeWidth={2} />
               </button>
               <button
                 onClick={() => toggleTheme()}
-                className="btn-icon bg-secondary shadow-sm text-foreground"
+                className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-zinc-800 dark:text-zinc-400 flex items-center justify-center transition-colors"
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
             </div>
           </div>
 
-          {/* Premium/Trial Banner on Home */}
+          {/* Premium/Trial Banner */}
           {premiumState.isTrial && (
-            <div className="px-1">
-              <div
-                onClick={() => router.push('/profile')}
-                className="p-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl border border-amber-500/30 flex items-center justify-between cursor-pointer group"
-              >
-                <div className="flex items-center gap-3">
-                  <Gift className="text-amber-500 animate-bounce" size={18} />
-                  <span className="text-[10px] font-black uppercase text-amber-600 tracking-widest">
-                    Essai Premium : {premiumState.daysLeft} jours restants
-                  </span>
-                </div>
-                <ChevronRight size={14} className="text-amber-500 group-hover:translate-x-1 transition-transform" />
+            <div
+              onClick={() => router.push('/profile')}
+              className="p-3 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 rounded-xl border border-amber-100 dark:border-amber-800/30 flex items-center justify-between cursor-pointer group"
+            >
+              <div className="flex items-center gap-3">
+                <Gift className="text-amber-500" size={18} />
+                <span className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                  Essai Premium : {premiumState.daysLeft} jours restants
+                </span>
               </div>
+              <ChevronRight size={16} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
             </div>
           )}
 
-          {/* Search Row */}
-          <div className="flex gap-2 items-center">
-            <form onSubmit={handleSearchSubmit} className="flex-1 min-w-0">
+          {/* Search Bar - Modern & Clean */}
+          <div className="flex gap-3 items-center">
+            <form onSubmit={handleSearchSubmit} className="flex-1 shadow-sm">
               <SearchBar
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -395,19 +374,19 @@ export default function HomePage() {
             </form>
             <button
               onClick={() => router.push("/scanner")}
-              className="btn-icon bg-primary text-white shadow-lg shadow-primary/20 shrink-0"
+              className="w-12 h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl flex items-center justify-center shadow-lg active:scale-95 transition-transform"
             >
-              <Camera size={20} />
+              <Camera size={22} strokeWidth={2} />
             </button>
           </div>
 
-          {/* Categories Quick Filter */}
+          {/* Categories Quick Filter - Pills */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {[
-              { id: "garde", label: "Garde", icon: "🟣" },
-              { id: "urgent", label: "Urgent", icon: "🚨" },
-              { id: "promo", label: "Promos", icon: "🏷️" },
-              { id: "bebe", label: "Bébé", icon: "🍼" },
+              { id: "garde", label: "De Garde", icon: "🌙", activeClass: "bg-indigo-50 text-indigo-600 border-indigo-100" },
+              { id: "urgent", label: "Urgences", icon: "🚨", activeClass: "bg-red-50 text-red-600 border-red-100" },
+              { id: "promo", label: "Promos", icon: "🏷️", activeClass: "bg-emerald-50 text-emerald-600 border-emerald-100" },
+              { id: "bebe", label: "Bébé", icon: "🍼", activeClass: "bg-blue-50 text-blue-600 border-blue-100" },
             ].map((cat) => (
               <button
                 key={cat.id}
@@ -416,7 +395,7 @@ export default function HomePage() {
                   if (cat.id === "urgent") return router.push("/results?filter=open");
                   handleSearch(cat.label);
                 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-lg whitespace-nowrap shadow-sm text-[8px] font-extrabold uppercase tracking-wider text-foreground/80 active:scale-95 transition-all outline-none"
+                className={`flex items-center gap-2 px-4 py-2 bg-white dark:bg-zinc-800 border border-slate-100 dark:border-zinc-700/50 rounded-full whitespace-nowrap shadow-sm text-xs font-bold text-slate-600 dark:text-slate-300 active:scale-95 transition-all outline-none hover:bg-slate-50 dark:hover:bg-zinc-700`}
               >
                 <span>{cat.icon}</span>
                 {cat.label}
@@ -426,10 +405,7 @@ export default function HomePage() {
 
           {isLoading && (
             <div className="flex justify-center -mb-2">
-              <div className="px-3 py-1 bg-primary/10 rounded-full border border-primary/20 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" />
-                <span className="text-[8px] font-black uppercase text-primary tracking-widest">Recherche...</span>
-              </div>
+              <Loader2 className="animate-spin text-primary" size={20} />
             </div>
           )}
         </div>
@@ -437,31 +413,31 @@ export default function HomePage() {
 
 
       {/* Content Area - Scrollable Feed */}
-      <div className="flex-1 overflow-y-auto pb-nav">
-        <div className="max-w-xl mx-auto px-4 pt-[13rem] space-y-6">
+      <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-zinc-950 scrollbar-hide">
+        <div className="max-w-2xl mx-auto px-5 pt-4 pb-32 space-y-8">
 
           {/* Health Dashboard Section */}
           <div className="space-y-4">
-            <div className="flex justify-between items-center px-1">
-              <h2 className="text-xl font-black italic text-foreground tracking-tight">Votre Santé</h2>
-              <div className="bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                <span className="text-[10px] font-black text-emerald-600 uppercase">
-                  {treatments.filter(t => t.isActive).length} Suivis Actifs
+            <div className="flex justify-between items-end px-1">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Votre Santé</h2>
+              {treatments.filter(t => t.isActive).length > 0 && (
+                <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">
+                  {treatments.filter(t => t.isActive).length} actifs
                 </span>
-              </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => router.push("/treatment")}
-                className="bg-card hover:bg-secondary/30 border border-border p-5 rounded-[2.5rem] flex flex-col items-start gap-4 transition-all group active:scale-95 text-left h-full"
+                className="bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
               >
-                <div className="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
-                  <Clock size={24} />
+                <div className="w-10 h-10 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Clock size={20} />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black text-foreground">Traitements</h3>
-                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">{getNextDoseInfo()}</p>
+                  <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">Traitements</h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-1">{getNextDoseInfo()}</p>
                 </div>
               </button>
 
@@ -473,87 +449,79 @@ export default function HomePage() {
                     router.push("/teleconsultation");
                   }
                 }}
-                className="bg-card hover:bg-secondary/30 border border-border p-5 rounded-[2.5rem] flex flex-col items-start gap-4 transition-all group active:scale-95 text-left h-full"
+                className="bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
               >
-                <div className="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
-                  <Stethoscope size={24} />
+                <div className="w-10 h-10 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Stethoscope size={20} />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black text-foreground">Conseil Expert</h3>
-                  <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest mt-1">
-                    {lastConsultation ? `Dernier : ${lastConsultation.subject}` : "Chat instantané"}
+                  <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">Consultation</h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                    {lastConsultation ? "Poursuivre le chat" : "Parler à un médecin"}
                   </p>
                 </div>
               </button>
             </div>
 
-            {/* Emergency / Help SOS */}
+            {/* Emergency Banner */}
             <div
               onClick={() => setShowAssistance(true)}
-              className="p-5 bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-[2.5rem] flex items-center justify-between cursor-pointer hover:bg-red-500/15 transition-all group"
+              className="w-full bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 p-4 rounded-2xl flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:animate-pulse transition-transform">
-                  <AlertTriangle size={24} />
-                </div>
-                <div>
-                  <h3 className="text-sm font-black italic text-red-700 dark:text-red-400">Besoin d'aide SOS ?</h3>
-                  <p className="text-[10px] font-bold text-red-600/70 uppercase tracking-widest mt-0.5">Assistance Immédiate</p>
-                </div>
+              <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 animate-pulse">
+                <AlertTriangle size={20} />
               </div>
-              <ChevronRight size={20} className="text-red-500 opacity-50 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center px-1">
-            <h2 className="text-xl font-black italic text-foreground tracking-tight">Pharmacies à proximité</h2>
-            <div className="bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-              <span className="text-[10px] font-black text-primary uppercase">{results.length} trouvées</span>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {results.length === 0 ? (
-              <div className="text-center py-20 bg-card/50 rounded-[2.5rem] border border-dashed border-border flex flex-col items-center">
-                <div className="w-20 h-20 bg-secondary/50 rounded-full flex items-center justify-center mb-4">
-                  <Search size={32} className="text-muted-foreground/50" />
-                </div>
-                <h3 className="text-xl font-black text-foreground mb-2">Aucun résultat</h3>
-                <p className="text-sm text-muted-foreground max-w-[200px]">Essayez de rechercher un autre médicament ou changez de filtre.</p>
+              <div className="flex-1">
+                <h3 className="text-sm font-bold text-red-800 dark:text-red-400">Urgence Médicale ?</h3>
+                <p className="text-xs text-red-600/80 mt-0.5">Appuyez ici pour une assistance immédiate 24/7</p>
               </div>
-            ) : (
-              results.map(({ pharmacy, product }, index) => (
-                <div
-                  key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`}
-                  className="animate-in fade-in slide-in-from-bottom-4 duration-700"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <PharmacyCard
-                    pharmacy={pharmacy}
-                    product={product ? {
-                      name: product.name,
-                      price: product.price || 0,
-                      id: product.id
-                    } : undefined}
-                    showActions={true}
-                  />
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Help Card */}
-          <div
-            onClick={() => setShowAssistance(true)}
-            className="p-6 bg-primary rounded-[2.5rem] text-white shadow-xl shadow-primary/20 relative overflow-hidden group cursor-pointer"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-            <div className="relative z-10">
-              <h3 className="text-xl font-black italic mb-2">Assistance 24h/24 🚑</h3>
-              <p className="text-sm font-medium text-white/80 mb-4 leading-relaxed">Notre équipe de pharmaciens est mobilisée pour vous aider à chaque instant.</p>
-              <button className="px-6 py-2.5 bg-white text-primary font-black rounded-xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Consulter un expert</button>
+              <ChevronRight className="text-red-400" size={18} />
             </div>
           </div>
+
+          {/* Divider */}
+          <div className="h-px bg-slate-100 dark:bg-zinc-800 w-full" />
+
+          {/* Pharmacies Results */}
+          <div>
+            <div className="flex justify-between items-center px-1 mb-4">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Pharmacies à proximité</h2>
+              <span className="text-xs font-medium text-slate-400">
+                {results.length} résultats
+              </span>
+            </div>
+
+            <div className="space-y-4">
+              {results.length === 0 ? (
+                <div className="text-center py-16 flex flex-col items-center">
+                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4">
+                    <Search size={24} className="text-slate-300" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-700 dark:text-slate-300">Aucune pharmacie trouvée</h3>
+                  <p className="text-sm text-slate-400 mt-1 max-w-[200px]">Essayez de modifier votre recherche ou activez la localisation.</p>
+                </div>
+              ) : (
+                results.map(({ pharmacy, product }, index) => (
+                  <div
+                    key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`}
+                    className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <PharmacyCard
+                      pharmacy={pharmacy}
+                      product={product ? {
+                        name: product.name,
+                        price: product.price || 0,
+                        id: product.id
+                      } : undefined}
+                      showActions={true}
+                    />
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
         </div>
       </div>
 
