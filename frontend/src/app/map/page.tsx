@@ -366,7 +366,9 @@ function MapContent() {
                                 <button
                                     onClick={() => {
                                         if (selectedPharmacy?.location) {
-                                            setDestinationCoords([selectedPharmacy.location.lng, selectedPharmacy.location.lat]);
+                                            const { lat, lng } = selectedPharmacy.location;
+                                            // Ouvrir Google Maps avec la destination
+                                            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank');
                                         }
                                     }}
                                     className="flex-[2] h-14 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3 uppercase tracking-widest text-xs active:scale-95 transition-transform"
