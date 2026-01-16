@@ -186,9 +186,21 @@ function ScannerContent() {
             <div className="flex-1 flex flex-col gap-6 w-full pb-10">
 
                 {step === "upload" && (
-                    <div className="flex-1 flex flex-col items-center justify-center gap-8 animate-in fade-in duration-700">
-                        <div className="w-64 h-48 bg-primary/5 rounded-[2rem] border-4 border-dashed border-primary/20 flex items-center justify-center relative overflow-hidden group hover:bg-primary/10 transition-colors">
-                            {mode === "insurance" ? <CreditCard size={64} className="text-primary/40" /> : mode === "document" ? <FileText size={64} className="text-primary/40" /> : <FileText size={64} className="text-primary/40" />}
+                    <div className="flex-1 flex flex-col items-center justify-center gap-8 animate-in fade-in duration-700 px-4">
+                        <div
+                            onClick={() => fileInputRef.current?.click()}
+                            className="w-full max-w-sm aspect-[4/3] bg-slate-50 dark:bg-zinc-900 rounded-[2rem] border-2 border-dashed border-slate-200 dark:border-zinc-800 flex flex-col items-center justify-center relative overflow-hidden group hover:border-primary/50 hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all cursor-pointer shadow-sm hover:shadow-md"
+                        >
+                            <div className="w-20 h-20 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
+                                {mode === "insurance" ? <CreditCard size={32} className="text-primary" /> : <Camera size={32} className="text-primary" />}
+                            </div>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Prendre une photo</h3>
+                            <p className="text-sm text-slate-400 mt-1 mb-8">ou importer depuis la galerie</p>
+
+                            <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0">
+                                <span>Commencer</span> <ArrowLeft className="rotate-180" size={12} />
+                            </div>
+
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -197,49 +209,30 @@ function ScannerContent() {
                                 className="absolute inset-0 opacity-0 cursor-pointer"
                             />
                         </div>
-                        <div className="text-center space-y-2">
-                            <h2 className="text-2xl font-black">
-                                {mode === "insurance" ? "Photo de la carte" : mode === "document" ? "Photo du document" : "Photo de l'ordonnance"}
+
+                        <div className="text-center max-w-xs space-y-3">
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-white leading-tight">
+                                {mode === "insurance" ? "Numérisez votre assurance" : mode === "document" ? "Archives Médicales" : "Analyse d'Ordonnance"}
                             </h2>
-                            <p className="text-muted-foreground text-sm max-w-[250px] mx-auto">
+                            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                                 {mode === "insurance"
-                                    ? "Cadrez bien votre carte d'assurance pour extraire les informations."
-                                    : mode === "document"
-                                        ? "Numérisez vos rapports médicaux pour votre carnet de santé."
-                                        : "Notre IA va déchiffrer l'écriture du médecin et trouver vos médicaments."}
+                                    ? "L'IA extraira automatiquement votre numéro de police et le taux de couverture."
+                                    : "Notre algorithme identifie les médicaments et vérifie leur disponibilité immédiate."}
                             </p>
                         </div>
-                        <button
-                            onClick={() => {
-                                if ((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) {
-                                    if (!auth.currentUser) alert("Connectez-vous pour utiliser le scanner intelligent !");
-                                    else router.push('/profile?showPremium=true');
-                                    return;
-                                }
-                                fileInputRef.current?.click();
-                            }}
-                            className={cn(
-                                "btn btn-primary w-full py-6 text-sm",
-                                ((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial)
-                                    ? "bg-amber-500 shadow-amber-500/20"
-                                    : ""
-                            )}
-                        >
-                            {((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) ? (
-                                <>
-                                    <Crown size={18} /> PASSER PREMIUM
-                                </>
-                            ) : (
-                                <>
-                                    DÉMARRER LE SCAN 📸
-                                </>
-                            )}
-                        </button>
-                        {((mode === "insurance" || mode === "document") && !premiumState.isPremium && !premiumState.isTrial) && (
-                            <p className="text-[10px] text-amber-500 font-black uppercase tracking-widest animate-pulse mt-2">
-                                <Lock size={10} className="inline mr-1" /> Fonctionnalité Premium
+
+                        <div className="w-full max-w-xs">
+                            <button
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-xl shadow-lg shadow-slate-900/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+                            >
+                                <Camera size={20} />
+                                Activer la Caméra
+                            </button>
+                            <p className="text-[10px] text-center text-slate-400 mt-4 flex items-center justify-center gap-1.5">
+                                <ShieldCheck size={12} /> Traitement sécurisé et confidentiel
                             </p>
-                        )}
+                        </div>
                     </div>
                 )}
 

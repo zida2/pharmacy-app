@@ -548,9 +548,9 @@ def main():
     """Point d'entrée principal"""
     scraper = PharmacyScraper(headless=True)
     
-    # Lancer le scraping AVEC GEOCODAGE activé
-    logger.info("⚠️ Le géocodage est activé. Cela peut prendre 5-10 minutes.")
-    data = scraper.run(enable_geocoding=True, export_excel=True)
+    # Lancer le scraping SANS GEOCODAGE pour l'instant (trop lent car API limitée)
+    logger.info("ℹ️ Géocodage désactivé pour gagner du temps. Les adresses seront textuelles.")
+    data = scraper.run(enable_geocoding=False, export_excel=True)
     
     print("\n" + "="*60)
     print(f"✨ Scraping terminé! {len(data)} pharmacies extraites.")
