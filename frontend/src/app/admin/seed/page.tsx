@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { firebaseService } from "@/services/firebaseService";
-import { Upload, Database, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Upload, Database, CheckCircle, AlertCircle, Loader2, Trash2 } from "lucide-react";
 
 export default function SeedPage() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -33,6 +33,23 @@ export default function SeedPage() {
             console.error(error);
             setStatus("error");
             setMessage(error.message || "Une erreur est survenue");
+        }
+    };
+
+    const handleClear = async () => {
+        if (!confirm("⚠️ ATTENTION : Cela va SUPPRIMER toutes les pharmacies de la base de données. Êtes-vous sûr ?")) return;
+
+        setStatus("loading");
+        setMessage("Suppression des pharmacies en cours...");
+
+        try {
+            const count = await firebaseService.clearPharmacies();
+            setStatus("success");
+            setMessage(`Base de données nettoyée. ${count} pharmacies supprimées.`);
+        } catch (error: any) {
+            console.error(error);
+            setStatus("error");
+            setMessage(error.message || "Erreur lors de la suppression");
         }
     };
 
@@ -89,24 +106,37 @@ export default function SeedPage() {
                         </div>
                     )}
 
-                    {/* Action Button */}
-                    <button
-                        onClick={handleImport}
-                        disabled={status === "loading"}
-                        className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all transform active:scale-95 ${status === "loading"
+                    {/* Action Buttons */}
+                    <div className="space-y-3">
+                        <button
+                            onClick={handleClear}
+                            disabled={status === "loading"}
+                            className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all transform active:scale-95 ${status === "loading"
+                                ? "bg-slate-100 text-slate-400 cursor-not-allowed"
+                                : "bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
+                                }`}
+                        >
+                            <Trash2 size={20} />
+                            Vider la base de données
+                        </button>
+                        <button
+                            onClick={handleImport}
+                            disabled={status === "loading"}
+                            className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all transform active:scale-95 ${status === "loading"
                                 ? "bg-slate-100 text-slate-400 cursor-not-allowed"
                                 : "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-500/25"
-                            }`}
-                    >
-                        {status === "loading" ? (
-                            "Traitement..."
-                        ) : (
-                            <>
-                                <Upload size={20} />
-                                Lancer l'import Firestore
-                            </>
-                        )}
-                    </button>
+                                }`}
+                        >
+                            {status === "loading" ? (
+                                "Traitement..."
+                            ) : (
+                                <>
+                                    <Upload size={20} />
+                                    Lancer l'import Firestore
+                                </>
+                            )}
+                        </button>
+                    </div>
 
                     <p className="text-xs text-center text-slate-400">
                         Assurez-vous que le fichier <code>/public/pharmacies_seed.json</code> existe.

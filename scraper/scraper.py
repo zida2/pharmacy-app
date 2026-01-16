@@ -265,6 +265,15 @@ class PharmacyScraper:
             clean = f'+226{clean}'
         return clean
     
+    def generate_id(self, name: str, city: str) -> str:
+        """Génère un ID stable basé sur le nom"""
+        # Normalisation simple (suppression accents, espaces, etc.)
+        import unicodedata
+        text = f"{name} {city}"
+        text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8')
+        text = re.sub(r'[^\w\s-]', '', text).lower()
+        return f"pharm_{re.sub(r'[-\s]+', '_', text)}"
+
     def normalize_and_enrich(self) -> List[Dict]:
         """
         Normalise les données et enrichit avec les informations de garde
@@ -294,9 +303,12 @@ class PharmacyScraper:
             # Extraire le quartier de l'adresse
             quartier = pharm['adresse_complete'].split(',')[0].strip() if pharm['adresse_complete'] else ''
             
+            # Générer un ID stable
+            stable_id = self.generate_id(pharm['nom_pharmacie'], pharm['ville'])
+            
             # Créer l'objet final
             pharmacy_data = {
-                'id': f"onpbf_{idx + 1}",
+                'id': stable_id,
                 'nom_pharmacie': pharm['nom_pharmacie'],
                 'ville': pharm['ville'],
                 'quartier': quartier,
@@ -334,13 +346,15 @@ class PharmacyScraper:
         
         try:
             url = "https://nominatim.openstreetmap.org/search"
+            # Ajout de 'pharmacie' pour aider la recherche
+            search_query = f"Pharmacie {address}"
             params = {
-                'q': address,
+                'q': search_query,
                 'format': 'json',
                 'limit': 1
             }
             headers = {
-                'User-Agent': 'ONPBF-Scraper-Python/1.0'
+                'User-Agent': 'PharmacyApp-Scraper/1.0 (contact@example.com)'
             }
             
             response = requests.get(url, params=params, headers=headers, timeout=10)
@@ -351,6 +365,16 @@ class PharmacyScraper:
                     'lat': float(data[0]['lat']),
                     'lng': float(data[0]['lon'])
                 }
+            # Fallback sans "Pharmacie"
+            params['q'] = address
+            response = requests.get(url, params=params, headers=headers, timeout=10)
+            data = response.json()
+            if data and len(data) > 0:
+                return {
+                    'lat': float(data[0]['lat']),
+                    'lng': float(data[0]['lon'])
+                }
+                
         except Exception as e:
             logger.warning(f"⚠️ Erreur de géocodage pour {address}: {e}")
         
@@ -358,30 +382,36 @@ class PharmacyScraper:
     
     def geocode_all(self, data: List[Dict], delay: float = 1.0) -> List[Dict]:
         """
-        Géocode toutes les pharmacies (optionnel, prend du temps)
-        
-        Args:
-            data: Liste des pharmacies
-            delay: Délai entre chaque requête (secondes)
-            
-        Returns:
-            Liste des pharmacies avec coordonnées
+        Géocode toutes les pharmacies
         """
-        logger.info("📍 Géocodage des adresses (1 requête par seconde)...")
+        logger.info("📍 Géocodage des adresses en cours...")
+        logger.info("   (Cela peut prendre quelques minutes pour respecter les limitations de l'API)")
         
-        for pharmacy in data:
-            address = f"{pharmacy['nom_pharmacie']}, {pharmacy['ville']}, Burkina Faso"
-            coords = self.geocode_address(address)
-            
-            if coords:
-                pharmacy['latitude'] = coords['lat']
-                pharmacy['longitude'] = coords['lng']
-                logger.info(f"✅ {pharmacy['nom_pharmacie']}: {coords['lat']}, {coords['lng']}")
-            
-            time.sleep(delay)
+        count = 0
+        total = len(data)
         
+        for idx, pharmacy in enumerate(data):
+            # On ne géocode que si c'est à 0.0
+            if pharmacy['latitude'] == 0.0:
+                # Construire une adresse de recherche optimisée
+                # Ex: "Pharmacie Nom, Ville" est souvent mieux que l'adresse complète parfois trop détaillée ou mal formatée
+                search_address = f"{pharmacy['nom_pharmacie']}, {pharmacy['ville']}"
+                
+                coords = self.geocode_address(search_address)
+                
+                if coords:
+                    pharmacy['latitude'] = coords['lat']
+                    pharmacy['longitude'] = coords['lng']
+                    count += 1
+                    logger.info(f"   [{idx+1}/{total}] ✅ Trouvé: {pharmacy['nom_pharmacie']} ({coords['lat']}, {coords['lng']})")
+                else:
+                    logger.info(f"   [{idx+1}/{total}] ❌ Non trouvé: {pharmacy['nom_pharmacie']}")
+                
+                time.sleep(delay)
+        
+        logger.info(f"📍 Géocodage terminé. {count}/{total} adresses trouvées.")
         return data
-    
+
     def save_to_json(self, data: List[Dict], filename: str = "pharmacies_burkina.json"):
         """
         Sauvegarde les données en JSON
@@ -427,13 +457,10 @@ class PharmacyScraper:
             clean_item = {}
             for k, v in item.items():
                 if isinstance(v, str):
-                    # Méthode 1: Table de traduction ASCII de base
+                    # Nettoyage
                     v_clean = v.translate(illegal_chars)
-                    
-                    # Méthode 2: Regex openpyxl si disponible
                     if ILLEGAL_CHARACTERS_RE:
                         v_clean = ILLEGAL_CHARACTERS_RE.sub("", v_clean)
-                        
                     clean_item[k] = v_clean
                 else:
                     clean_item[k] = v
@@ -493,8 +520,9 @@ def main():
     """Point d'entrée principal"""
     scraper = PharmacyScraper(headless=True)
     
-    # Lancer le scraping (sans géocodage par défaut pour aller plus vite)
-    data = scraper.run(enable_geocoding=False, export_excel=True)
+    # Lancer le scraping AVEC GEOCODAGE activé
+    logger.info("⚠️ Le géocodage est activé. Cela peut prendre 5-10 minutes.")
+    data = scraper.run(enable_geocoding=True, export_excel=True)
     
     print("\n" + "="*60)
     print(f"✨ Scraping terminé! {len(data)} pharmacies extraites.")

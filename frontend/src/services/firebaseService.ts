@@ -13,7 +13,8 @@ import {
     limit,
     Timestamp,
     onSnapshot,
-    deleteDoc
+    deleteDoc,
+    writeBatch
 } from "firebase/firestore";
 import { db, auth } from "./firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
@@ -167,6 +168,39 @@ export const firebaseService = {
         }
 
         return { success, failed };
+    },
+
+    async clearPharmacies(): Promise<number> {
+        try {
+            const snap = await getDocs(collection(db, "pharmacies"));
+            const total = snap.size;
+
+            // Delete in batches (max 500)
+            const batches: any[] = [];
+            let batch = {
+                ref: writeBatch(db),
+                count: 0
+            };
+            batches.push(batch);
+
+            snap.docs.forEach((doc) => {
+                batch.ref.delete(doc.ref);
+                batch.count++;
+                if (batch.count >= 400) {
+                    batch = {
+                        ref: writeBatch(db),
+                        count: 0
+                    };
+                    batches.push(batch);
+                }
+            });
+
+            await Promise.all(batches.map(b => b.count > 0 ? b.ref.commit() : Promise.resolve()));
+            return total;
+        } catch (error) {
+            console.error("Error clearing pharmacies:", error);
+            throw error;
+        }
     },
 
     // 💊 PRODUCTS & SEARCH

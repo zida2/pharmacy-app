@@ -1,6 +1,6 @@
 [
   {
-    "id": "onpbf_1",
+    "id": "pharm_archanges_ouagadougou",
     "nom_pharmacie": "Archanges",
     "ville": "Ouagadougou",
     "quartier": "Pissy",
@@ -15,10 +15,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.902922"
+    "date_mise_a_jour": "2026-01-16T19:51:10.583545"
   },
   {
-    "id": "onpbf_2",
+    "id": "pharm_avenir_ouagadougou",
     "nom_pharmacie": "Avenir",
     "ville": "Ouagadougou",
     "quartier": "1296 av. BABANGUIDA face à la station Total",
@@ -33,10 +33,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.902953"
+    "date_mise_a_jour": "2026-01-16T19:51:10.583576"
   },
   {
-    "id": "onpbf_3",
+    "id": "pharm_bang_poore_ouagadougou",
     "nom_pharmacie": "Bang-Pooré",
     "ville": "Ouagadougou",
     "quartier": "Sect. 17 Tanghin devant Arb-Yaar derrière les rails à 100m du Collège Privé Protestant II",
@@ -51,10 +51,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.902967"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584126"
   },
   {
-    "id": "onpbf_4",
+    "id": "pharm_baowendsom_ouagadougou",
     "nom_pharmacie": "Baowendsom",
     "ville": "Ouagadougou",
     "quartier": "Tampouy sur le nouveau goudron du collège Notre Dame de l'Espérance non loin de \"La Roche\"",
@@ -69,10 +69,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.902979"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584148"
   },
   {
-    "id": "onpbf_5",
+    "id": "pharm_barkwende_ouagadougou",
     "nom_pharmacie": "Barkwende",
     "ville": "Ouagadougou",
     "quartier": "Arrdt 8",
@@ -87,10 +87,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.902990"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584163"
   },
   {
-    "id": "onpbf_6",
+    "id": "pharm_beatitudes_ouagadougou",
     "nom_pharmacie": "Beatitudes",
     "ville": "Ouagadougou",
     "quartier": "Blvd. France-Afrique Ouaga 2000 en face de la cite Azimo",
@@ -105,10 +105,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903001"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584176"
   },
   {
-    "id": "onpbf_7",
+    "id": "pharm_benaia_ouagadougou",
     "nom_pharmacie": "Benaia",
     "ville": "Ouagadougou",
     "quartier": "Katre-yaare ex secteur 29",
@@ -123,10 +123,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903011"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584187"
   },
   {
-    "id": "onpbf_8",
+    "id": "pharm_bonheur_ouagadougou",
     "nom_pharmacie": "Bonheur",
     "ville": "Ouagadougou",
     "quartier": "Bonheur Ville à 100 mètres de l’Eglise du 75ème anniversaire",
@@ -141,10 +141,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903022"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584198"
   },
   {
-    "id": "onpbf_9",
+    "id": "pharm_camille_ouagadougou",
     "nom_pharmacie": "Camille",
     "ville": "Ouagadougou",
     "quartier": "Av. Charles De Gaule - Hôtel des \u001fnances de Dassasgho",
@@ -159,10 +159,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903032"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584209"
   },
   {
-    "id": "onpbf_10",
+    "id": "pharm_centre_ouagadougou",
     "nom_pharmacie": "Centre",
     "ville": "Ouagadougou",
     "quartier": "460",
@@ -177,10 +177,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903044"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584227"
   },
   {
-    "id": "onpbf_11",
+    "id": "pharm_crystal_ouagadougou",
     "nom_pharmacie": "Crystal",
     "ville": "Ouagadougou",
     "quartier": "Face à la nouvelle Mairie de l’Arrdt 9 ; vers Centre Medical DON ORIONE",
@@ -195,10 +195,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903063"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584241"
   },
   {
-    "id": "onpbf_12",
+    "id": "pharm_des_apotres_ouagadougou",
     "nom_pharmacie": "Des Apotres",
     "ville": "Ouagadougou",
     "quartier": "Arrdt 12",
@@ -213,10 +213,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903076"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584254"
   },
   {
-    "id": "onpbf_13",
+    "id": "pharm_desa_ouagadougou",
     "nom_pharmacie": "Desa",
     "ville": "Ouagadougou",
     "quartier": "Tanghin",
@@ -231,10 +231,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903083"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584265"
   },
   {
-    "id": "onpbf_14",
+    "id": "pharm_diaby_ouagadougou",
     "nom_pharmacie": "Diaby",
     "ville": "Ouagadougou",
     "quartier": "Face au Festival des Glaces à Koulouba",
@@ -249,10 +249,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903089"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584276"
   },
   {
-    "id": "onpbf_15",
+    "id": "pharm_dominique_kabore_ouagadougou",
     "nom_pharmacie": "Dominique Kaboré",
     "ville": "Ouagadougou",
     "quartier": "200 mètres du rond-point de la Pa\u001ee d’oie",
@@ -267,10 +267,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903096"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584290"
   },
   {
-    "id": "onpbf_16",
+    "id": "pharm_el_wanogo_ouagadougou",
     "nom_pharmacie": "El Wanogo",
     "ville": "Ouagadougou",
     "quartier": "A côté du Marché de Wayalghin",
@@ -285,10 +285,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903101"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584301"
   },
   {
-    "id": "onpbf_17",
+    "id": "pharm_elite_ouagadougou",
     "nom_pharmacie": "Elite",
     "ville": "Ouagadougou",
     "quartier": "Avenue Yennega route de Yagma",
@@ -303,10 +303,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903107"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584312"
   },
   {
-    "id": "onpbf_18",
+    "id": "pharm_guuduma_ouagadougou",
     "nom_pharmacie": "GUUDUMA",
     "ville": "Ouagadougou",
     "quartier": "",
@@ -321,10 +321,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903113"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584323"
   },
   {
-    "id": "onpbf_19",
+    "id": "pharm_hosanna_ouagadougou",
     "nom_pharmacie": "Hosanna",
     "ville": "Ouagadougou",
     "quartier": "Route de Fada en face du Lycée Naba Yemdé",
@@ -339,10 +339,10 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903119"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584333"
   },
   {
-    "id": "onpbf_20",
+    "id": "pharm_jober_ouagadougou",
     "nom_pharmacie": "Jober",
     "ville": "Ouagadougou",
     "quartier": "Pissy Secteur 6 (ex-sec. 17)",
@@ -357,6 +357,6 @@
     "latitude": 0.0,
     "longitude": 0.0,
     "source": "ONPBF",
-    "date_mise_a_jour": "2026-01-16T19:22:31.903146"
+    "date_mise_a_jour": "2026-01-16T19:51:10.584344"
   }
 ]
