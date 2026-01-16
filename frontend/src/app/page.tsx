@@ -517,7 +517,7 @@ export default function HomePage() {
               </span>
             </div>
 
-            <div className={cn("space-y-4 transition-all duration-300", isLoading && results.length > 0 ? "opacity-50" : "opacity-100")}>
+            <div className="space-y-4">
               {isLoading && results.length === 0 ? (
                 // Skeletons to maintain height and stability
                 Array.from({ length: 3 }).map((_, i) => (
@@ -546,8 +546,6 @@ export default function HomePage() {
                 results.map(({ pharmacy, product }, index) => (
                   <div
                     key={`${pharmacy.id}-${product?.id || 'no-product'}-${index}`}
-                    className="animate-in fade-in slide-in-from-bottom-4 duration-500"
-                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <PharmacyCard
                       pharmacy={pharmacy}
