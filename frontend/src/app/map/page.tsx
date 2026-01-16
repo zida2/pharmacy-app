@@ -376,7 +376,7 @@ function MapContent() {
                                     <NavigationIcon size={20} fill="currentColor" /> Itinéraire
                                 </button>
                                 <button
-                                    onClick={() => router.push(`/pharmacy/${selectedPharmacy.id}`)}
+                                    onClick={() => router.push(`/pharmacy?id=${selectedPharmacy.id}`)}
                                     className="flex-1 h-14 bg-secondary text-foreground font-black rounded-2xl active:scale-95 transition-all text-xs uppercase tracking-widest"
                                 >
                                     Fiche
