@@ -27,7 +27,7 @@ function CheckoutContent() {
     const [paymentMethod, setPaymentMethod] = useState<"orange" | "moov" | "mtn" | "card">("orange");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [agentCode, setAgentCode] = useState("");
-    const [isAgentLoading, setIsAgentLoading] = useState(true);
+    // const [isAgentLoading, setIsAgentLoading] = useState(true); // Removed auto-generation
 
     const [step, setStep] = useState<"payment" | "success">("payment");
     const [isProcessing, setIsProcessing] = useState(false);
@@ -55,15 +55,6 @@ function CheckoutContent() {
             }
         };
         fetchInsurance();
-
-        // Simulate Agent Auto-Detection
-        const timer = setTimeout(() => {
-            const randomAgent = Math.floor(Math.random() * 800) + 100;
-            setAgentCode(`AG-${randomAgent}`);
-            setIsAgentLoading(false);
-        }, 1500);
-
-        return () => clearTimeout(timer);
     }, []);
 
     const handleOrder = async () => {
@@ -231,32 +222,28 @@ function CheckoutContent() {
                     </div>
                 </section>
 
-                {/* Agent Code Input (Auto-Filled) */}
+                {/* Agent Code Input (User Entry) */}
                 <section className="space-y-3 animate-in slide-in-from-bottom-4 duration-500 delay-100">
                     <div className="flex items-center gap-2 mb-1 px-1">
                         <div className="w-1.5 h-6 bg-primary rounded-full" />
-                        <h2 className="font-bold text-lg italic text-foreground">Validation Agent</h2>
+                        <h2 className="font-bold text-lg italic text-foreground">Code Agent / Partenaire</h2>
                     </div>
                     <div className="relative">
                         <input
                             type="text"
-                            readOnly
-                            value={isAgentLoading ? "Recherche d'un agent disponible..." : agentCode}
-                            className="input-standard bg-secondary/30 text-center font-mono tracking-widest font-black text-primary"
+                            value={agentCode}
+                            onChange={(e) => setAgentCode(e.target.value)}
+                            placeholder="Entrez le code agent (Optionnel)"
+                            className="input-standard bg-secondary/30 text-center font-mono tracking-widest font-black text-primary focus:bg-background transition-colors"
                         />
-                        {isAgentLoading && (
-                            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></div>
-                            </div>
-                        )}
-                        {!isAgentLoading && (
+                        {agentCode.length > 2 && (
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-green-500 text-white p-1 rounded-full animate-in zoom-in">
                                 <CheckCircle size={16} />
                             </div>
                         )}
                     </div>
                     <p className="text-xs text-muted-foreground px-2 text-center">
-                        Code assigné automatiquement pour validation rapide.
+                        Saisissez le code de votre agent ou partenaire si vous en avez un.
                     </p>
                 </section>
 
@@ -425,7 +412,7 @@ function CheckoutContent() {
                     </div>
                     <button
                         onClick={handleOrder}
-                        disabled={isProcessing || items.length === 0 || isAgentLoading}
+                        disabled={isProcessing || items.length === 0}
                         className={cn(
                             "btn btn-primary flex-[2] py-3.5 text-sm font-black italic shadow-lg shadow-primary/20",
                             (isProcessing || items.length === 0) && "opacity-50 grayscale cursor-not-allowed"
