@@ -76,7 +76,7 @@ export const firebaseService = {
         const currentGroup = getCurrentGuardGroup();
         try {
             if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
-            const snap = await withTimeout(getDocs(collection(db, "pharmacies")), 8000) as any;
+            const snap = await withTimeout(getDocs(collection(db, "pharmacies")), 12000) as any;
             if (snap.empty) throw new Error("No pharmacies in DB");
             return snap.docs.map((d: any) => {
                 const data = d.data();

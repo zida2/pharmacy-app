@@ -35,6 +35,7 @@ export default function HomePage() {
   const [treatments, setTreatments] = useState<any[]>([]);
   const [userName, setUserName] = useState<string>("Visiteur");
   const [lastConsultation, setLastConsultation] = useState<any>(null);
+  const [hasInitialLoad, setHasInitialLoad] = useState(false);
 
   // Network listener & Install Prompt
   useEffect(() => {
@@ -204,12 +205,13 @@ export default function HomePage() {
     };
   }, []);
 
-  // Update results when location changes
+  // Initial load of nearby pharmacies - Only once when location is first obtained
   useEffect(() => {
-    if (userLocation) {
-      handleSearch(searchQuery);
+    if (userLocation && !hasInitialLoad && !isLoading) {
+      setHasInitialLoad(true);
+      handleSearch(""); // Load nearby pharmacies once
     }
-  }, [userLocation]);
+  }, [userLocation, hasInitialLoad]);
 
   const retryGeolocation = () => {
     setLocationStatus('loading');
@@ -246,7 +248,12 @@ export default function HomePage() {
   }, []);
 
   const handleSearch = async (query: string, locationOverride?: { lat: number; lng: number }) => {
-    // setSearchQuery(query); // Removed to avoid circular updates if called from Cat buttons
+    // Prevent duplicate simultaneous searches
+    if (isLoading) {
+      console.log("⏭️ Search already in progress, skipping...");
+      return;
+    }
+
     setIsLoading(true);
     const loc = locationOverride || userLocation;
     try {
