@@ -1,11 +1,18 @@
-"use client";
-
-import React from "react";
-import { Sparkles, Thermometer, CloudRain, Sun, Moon, Wind, ArrowRight, BookOpen, Activity, TrendingUp } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Sparkles, Thermometer, CloudRain, Sun, Moon, Wind, ArrowRight, BookOpen, Activity, TrendingUp, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function HealthInsights() {
     const hour = new Date().getHours();
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    // Auto-rotate magazine tips
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % magazineTips.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
     // Contextual logic based on time AND season (Burkina Faso climate)
     const getContextualAdvice = () => {
@@ -92,8 +99,31 @@ export default function HealthInsights() {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-4">
+            {/* Breaking News Ticker - "Bande Annonce" Style */}
+            <div className="relative -mx-6 bg-primary/10 py-2 overflow-hidden border-y border-primary/10">
+                <div className="flex items-center gap-4 animate-marquee whitespace-nowrap px-6">
+                    <div className="flex items-center gap-2 text-primary font-black text-[9px] uppercase tracking-tighter shrink-0">
+                        <Zap size={10} className="fill-current" />
+                        FLASH SANTÉ :
+                    </div>
+                    <span className="text-[10px] font-bold text-foreground inline-flex gap-8">
+                        <span>• Nouveau vaccin R21 disponible dans 70 districts</span>
+                        <span>• Alerte Harmattan : Protégez vos yeux et vos lèvres</span>
+                        <span>• Nutrition : Le Moringa, super-aliment local à privilégier</span>
+                        <span>• Urgence : Numéro SOS Pharmacie 01 01 01 01</span>
+                    </span>
+                    {/* Duplicate for seamless loop */}
+                    <span className="text-[10px] font-bold text-foreground inline-flex gap-8 ml-8">
+                        <span>• Nouveau vaccin R21 disponible dans 70 districts</span>
+                        <span>• Alerte Harmattan : Protégez vos yeux et vos lèvres</span>
+                        <span>• Nutrition : Le Moringa, super-aliment local à privilégier</span>
+                        <span>• Urgence : Numéro SOS Pharmacie 01 01 01 01</span>
+                    </span>
+                </div>
+            </div>
+
             {/* Advice Header */}
-            <div className="flex justify-between items-end px-1">
+            <div className="flex justify-between items-end px-1 pt-2">
                 <div className="flex items-center gap-2">
                     <Sparkles className="text-primary" size={18} />
                     <h2 className="text-lg font-bold text-foreground tracking-tight">Focus Santé</h2>
@@ -134,42 +164,54 @@ export default function HealthInsights() {
                 </div>
             </div>
 
-            {/* Magazine Feed - Horizontal Scroll */}
+            {/* Magazine Feed - Automatic Animated Slider */}
             <div className="space-y-4">
                 <div className="flex items-center gap-2 px-1">
                     <TrendingUp className="text-primary" size={18} />
                     <h2 className="text-sm font-black text-foreground tracking-tighter uppercase italic">Magazine & Évolution</h2>
                 </div>
 
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6">
-                    {magazineTips.map((tip, i) => (
-                        <div
-                            key={i}
-                            onClick={() => setSelectedTip(tip)}
-                            className={cn(
-                                "min-w-[240px] p-5 rounded-[2rem] bg-gradient-to-br border border-white/5 flex flex-col justify-between h-44 shadow-sm active:scale-95 transition-all cursor-pointer group",
-                                tip.color
-                            )}
-                        >
-                            <div>
-                                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-foreground/40 mb-2 block">
-                                    {tip.category}
-                                </span>
-                                <h4 className="font-black text-sm text-foreground leading-tight group-hover:text-primary transition-colors">
-                                    {tip.title}
-                                </h4>
-                                <p className="text-[10px] text-muted-foreground mt-2 line-clamp-2 font-medium">
-                                    {tip.desc}
-                                </p>
-                            </div>
-                            <div className="flex justify-between items-end">
-                                <span className="text-2xl">{tip.image}</span>
-                                <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shadow-sm">
-                                    <ArrowRight size={14} className="text-primary" />
+                <div className="relative overflow-hidden -mx-6 px-6">
+                    <div
+                        className="flex gap-4 transition-all duration-700 ease-in-out pb-4"
+                        style={{ transform: `translateX(-${activeIndex * (240 + 16)}px)` }}
+                    >
+                        {magazineTips.map((tip, i) => (
+                            <div
+                                key={i}
+                                onClick={() => setSelectedTip(tip)}
+                                className={cn(
+                                    "min-w-[240px] p-5 rounded-[2rem] bg-gradient-to-br border border-white/5 flex flex-col justify-between h-44 shadow-sm active:scale-95 transition-all cursor-pointer group",
+                                    tip.color,
+                                    activeIndex === i ? "scale-100 opacity-100 ring-2 ring-primary/20" : "scale-95 opacity-50"
+                                )}
+                            >
+                                <div>
+                                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-foreground/40 mb-2 block">
+                                        {tip.category}
+                                    </span>
+                                    <h4 className="font-black text-sm text-foreground leading-tight group-hover:text-primary transition-colors">
+                                        {tip.title}
+                                    </h4>
+                                    <p className="text-[10px] text-muted-foreground mt-2 line-clamp-2 font-medium">
+                                        {tip.desc}
+                                    </p>
+                                </div>
+                                <div className="flex justify-between items-end">
+                                    <span className="text-2xl">{tip.image}</span>
+                                    <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shadow-sm">
+                                        <ArrowRight size={14} className="text-primary" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                    {/* Dots indicator */}
+                    <div className="flex justify-center gap-1.5 mt-2">
+                        {magazineTips.map((_, i) => (
+                            <div key={i} className={cn("h-1 rounded-full transition-all duration-500", activeIndex === i ? "w-6 bg-primary" : "w-1.5 bg-border")} />
+                        ))}
+                    </div>
                 </div>
             </div>
 

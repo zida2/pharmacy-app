@@ -288,6 +288,20 @@
   padding-bottom: calc(var(--pb-nav-height) + env(safe-area-inset-bottom));
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
 @keyframes progress-flow {
   0% {
     transform: translateX(-100%);
