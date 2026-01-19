@@ -13,6 +13,7 @@ import { useCart } from "@/context/CartContext";
 import { auth } from "@/services/firebase";
 import AuthPrompt from "@/components/AuthPrompt";
 import AssistanceModal from "@/components/AssistanceModal";
+import HealthInsights from "@/components/HealthInsights";
 import { calculateDistance } from "@/lib/geolocation";
 
 export default function HomePage() {
@@ -490,6 +491,9 @@ export default function HomePage() {
               <ChevronRight className="text-red-400" size={18} />
             </div>
           </div>
+
+          {/* Health Council & Magazine Section - Contextual & Evolving */}
+          <HealthInsights />
 
           {/* Divider */}
           <div className="h-px bg-slate-100 dark:bg-zinc-800 w-full" />
