@@ -330,37 +330,37 @@ export default function HomePage() {
           )}
 
           {/* Greeting & Header Actions - Enhanced Typography */}
-          <div className="flex justify-between items-end pt-4">
-            <div className="space-y-1">
+          <div className="flex justify-between items-center pt-6">
+            <div className="space-y-0.5">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/80 dark:text-primary animate-in fade-in slide-in-from-bottom-2 duration-500">
-                {getGreeting()}
+                {getGreeting()} <span className="animate-wave inline-block ml-1">👋</span>
               </p>
-              <h1 className="text-3xl font-black tracking-tighter text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-700">
-                Bonjour, <span className="text-primary italic">{userName}</span>
+              <h1 className="text-2xl font-black tracking-tighter text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-700">
+                Salut, <span className="text-primary italic">{userName}</span>
               </h1>
               <div className="flex items-center gap-2 pt-1">
-                {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold uppercase tracking-widest">Localisation en cours...</span>}
+                {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold uppercase tracking-widest">Localisation...</span>}
                 {locationStatus === 'success' && (
                   <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
                     <MapPin size={10} strokeWidth={3} className="animate-bounce" />
                     <span className="text-[10px] uppercase tracking-wider">Ouagadougou, BF</span>
                   </div>
                 )}
-                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={10} /><span className="text-[10px] font-bold uppercase">Position Approximative</span></div>}
+                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={10} /><span className="text-[10px] font-bold uppercase">Position Approx.</span></div>}
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowAssistance(true)}
-                className="w-11 h-11 rounded-2xl bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-400 flex items-center justify-center transition-all active:scale-90 border border-red-100/50 dark:border-red-500/20"
+                className="w-10 h-10 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-400 flex items-center justify-center transition-all active:scale-90 border border-red-100/50 dark:border-red-500/20 shadow-sm"
               >
-                <AlertTriangle size={22} strokeWidth={2.5} />
+                <AlertTriangle size={20} strokeWidth={2.5} />
               </button>
               <button
                 onClick={() => toggleTheme()}
-                className="w-11 h-11 rounded-2xl bg-secondary text-foreground hover:bg-accent flex items-center justify-center transition-all active:scale-90 border border-border/50 shadow-sm"
+                className="w-10 h-10 rounded-xl bg-secondary text-foreground hover:bg-accent flex items-center justify-center transition-all active:scale-90 border border-border/50 shadow-sm"
               >
-                {theme === 'dark' ? <Sun size={22} strokeWidth={2.5} /> : <Moon size={22} strokeWidth={2.5} />}
+                {theme === 'dark' ? <Sun size={20} strokeWidth={2.5} /> : <Moon size={20} strokeWidth={2.5} />}
               </button>
             </div>
           </div>
