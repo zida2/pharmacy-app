@@ -164,9 +164,9 @@
     transition: all 0.2s ease;
   }
 
-  /* Force icon colors */
-  svg:not(.text-primary):not(.text-indigo-500):not(.text-white):not(.text-red-500):not(.text-emerald-500) {
-    color: var(--foreground) !important;
+  /* Force icon colors - Removed !important to allow overrides */
+  svg:not(.text-primary):not(.text-indigo-500):not(.text-white):not(.text-red-500):not(.text-emerald-500):not(.text-slate-900) {
+    color: var(--foreground);
     opacity: 0.8;
   }
 
@@ -176,7 +176,7 @@
   }
 
   .btn-icon svg {
-    color: var(--foreground) !important;
+    color: var(--foreground);
   }
 
   .input-standard:focus {

@@ -377,9 +377,9 @@ export default function HomePage() {
             </form>
             <button
               onClick={() => router.push("/scanner")}
-              className="w-12 h-12 bg-foreground text-background dark:bg-white dark:text-slate-900 rounded-2xl flex items-center justify-center shadow-xl active:scale-95 transition-all hover:rotate-3"
+              className="w-12 h-12 bg-slate-900 dark:bg-primary text-white rounded-2xl flex items-center justify-center shadow-xl active:scale-95 transition-all hover:rotate-3 border border-white/10"
             >
-              <Camera size={24} strokeWidth={2.5} />
+              <Camera size={24} strokeWidth={2.5} className="text-white" />
             </button>
           </div>
 

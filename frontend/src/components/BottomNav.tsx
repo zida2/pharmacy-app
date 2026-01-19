@@ -82,7 +82,7 @@ export default function BottomNav() {
                                 size={22}
                                 className={cn(
                                     "transition-all duration-300",
-                                    item.active ? "scale-110 active:scale-90" : "group-hover:scale-110"
+                                    item.active ? "text-white scale-110" : "text-muted-foreground group-hover:text-foreground group-hover:scale-110"
                                 )}
                             />
                             <span className={cn(
