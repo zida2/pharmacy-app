@@ -141,12 +141,12 @@ export default function LoginPage() {
                     </h1>
                 </div>
 
-                {/* Main Card - Glassmorphism */}
-                <div className="w-full bg-slate-900/40 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 border border-white/10 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+                {/* Main Card - Enhanced Glassmorphism (More transparent & blurrier) */}
+                <div className="w-full bg-white/5 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 border border-white/20 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
 
                     <div className="text-center mb-8 relative z-10 text-white">
-                        <h2 className="text-2xl font-[900] italic tracking-tight">Bienvenue !</h2>
+                        <h2 className="text-2xl font-[900] italic tracking-tight drop-shadow-sm">Bienvenue !</h2>
                     </div>
 
                     <button
