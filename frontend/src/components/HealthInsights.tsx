@@ -70,21 +70,36 @@ export default function HealthInsights() {
         }
     ];
 
+    const [selectedTip, setSelectedTip] = React.useState<typeof magazineTips[0] | null>(null);
+    const [showAll, setShowAll] = React.useState(false);
+
     return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-4">
             {/* Advice Header */}
             <div className="flex justify-between items-end px-1">
                 <div className="flex items-center gap-2">
                     <Sparkles className="text-primary" size={18} />
                     <h2 className="text-lg font-bold text-foreground tracking-tight">Focus Santé</h2>
                 </div>
-                <button className="text-[10px] font-black uppercase text-primary tracking-widest hover:underline flex items-center gap-1">
+                <button
+                    onClick={() => setShowAll(true)}
+                    className="text-[10px] font-black uppercase text-primary tracking-widest hover:underline flex items-center gap-1 active:scale-95 transition-transform"
+                >
                     Tout voir <ArrowRight size={12} />
                 </button>
             </div>
 
             {/* Contextual Card - High Visual Impact */}
-            <div className={cn("relative p-5 rounded-3xl border border-white/10 overflow-hidden shadow-sm transition-all", advice.bg)}>
+            <div
+                onClick={() => setSelectedTip({
+                    category: "Conseil du moment",
+                    title: advice.title,
+                    desc: advice.desc,
+                    image: "✨",
+                    color: advice.bg
+                })}
+                className={cn("relative p-5 rounded-3xl border border-white/10 overflow-hidden shadow-sm transition-all cursor-pointer hover:brightness-110 active:scale-[0.98]", advice.bg)}
+            >
                 <div className="absolute -right-4 -top-4 opacity-10">
                     <advice.icon size={120} />
                 </div>
@@ -112,6 +127,7 @@ export default function HealthInsights() {
                     {magazineTips.map((tip, i) => (
                         <div
                             key={i}
+                            onClick={() => setSelectedTip(tip)}
                             className={cn(
                                 "min-w-[240px] p-5 rounded-[2rem] bg-gradient-to-br border border-white/5 flex flex-col justify-between h-44 shadow-sm active:scale-95 transition-all cursor-pointer group",
                                 tip.color
@@ -138,6 +154,33 @@ export default function HealthInsights() {
                     ))}
                 </div>
             </div>
+
+            {/* Detail Modal */}
+            {selectedTip && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-in fade-in duration-300">
+                    <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={() => setSelectedTip(null)} />
+                    <div className="relative w-full max-w-sm bg-card dark:bg-zinc-900 rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+                        <div className={cn("h-32 w-full bg-gradient-to-br flex items-center justify-center text-5xl", selectedTip.color)}>
+                            {selectedTip.image}
+                        </div>
+                        <div className="p-8 space-y-4">
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">{selectedTip.category}</span>
+                            <h3 className="text-2xl font-black text-foreground leading-tight tracking-tight">{selectedTip.title}</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                                {selectedTip.desc}
+                                {"\n\n"}
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                            <button
+                                onClick={() => setSelectedTip(null)}
+                                className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 active:scale-95 transition-all uppercase tracking-widest text-[10px]"
+                            >
+                                J'ai compris
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
