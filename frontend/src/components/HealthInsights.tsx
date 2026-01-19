@@ -77,12 +77,44 @@ export default function HealthInsights() {
             color: "from-emerald-500/20 to-emerald-500/5"
         },
         {
+            category: "Alerte",
+            title: "Dengue : Vigilance renforcée",
+            desc: "L'épidémie persiste au Burkina. Apprenez à reconnaître les signes et à éliminer les gîtes larvaires.",
+            fullContent: "La dengue reste un défi majeur avec plus de 100 000 cas suspectés en 2024. Le moustique 'Aedes aegypti' pique principalement le jour. \n\nConseils Prévention :\n• Éliminez les eaux stagnantes (pneus, pots de fleurs).\n• Portez des vêtements longs la journée.\n• Utilisez des répulsifs et dormez sous moustiquaire.\n\nSymptômes : Forte fièvre brutale, maux de tête intenses, douleurs articulaires. Attention : Évitez l'Aspirine et le Diclofénac sans avis médical, privilégiez le Paracétamol.",
+            image: "🚨",
+            color: "from-orange-500/20 to-orange-500/5"
+        },
+        {
             category: "Nutrition",
             title: "Le Moringa : L'Arbre Miracle local",
             desc: "Riche en fer et vitamines, le Moringa est une arme de choix contre la malnutrition et pour booster l'immunité.",
             fullContent: "Surnommé 'l'arbre miracle', le Moringa est un super-aliment d'exception cultivé au Burkina Faso. Ses feuilles contiennent 7 fois plus de vitamine C que les oranges et 4 fois plus de calcium que le lait. Utilisé pour combattre la malnutrition infantile et l'anémie, il aide aussi à réguler la glycémie. Conseils : Intégrez une cuillère à café de poudre de Moringa dans vos bouillies ou sauces locales pour un apport nutritionnel optimal au quotidien.",
             image: "🌿",
             color: "from-green-500/20 to-green-500/5"
+        },
+        {
+            category: "Santé",
+            title: "Diabète : Mangez Local & Équilibré",
+            desc: "Le Fonio, le Soumbala et le Mil sont vos alliés pour réguler votre glycémie naturellement.",
+            fullContent: "La gestion du diabète au Burkina peut être optimisée grâce à nos produits locaux. \n\nLes meilleurs choix :\n• Le Fonio : Index glycémique bas, idéal pour remplacer le riz blanc.\n• Le Soumbala : Riche en protéines, il aide à la santé cardiovasculaire.\n• Le Mil et le Sorgho : Consommés en grains entiers, ils apportent des fibres essentielles.\n\nConseil : Remplissez la moitié de votre assiette avec des feuilles locales (Boulvanka, Oseille) pour ralentir l'absorption des sucres.",
+            image: "🥗",
+            color: "from-amber-600/20 to-amber-600/5"
+        },
+        {
+            category: "Prévention",
+            title: "Méningite : Risque Saisonnier",
+            desc: "Pendant l'Harmattan, le risque de méningite augmente. Assurez-vous d'être à jour pour vos vaccins.",
+            fullContent: "Le Burkina Faso est dans la 'ceinture de la méningite'. Le vent sec et la poussière de l'Harmattan fragilisent vos voies respiratoires. \n\nPrévention :\n• Vaccination : Le MenAfriVac protège contre le sérogroupe A.\n• Hygiène : Lavez-vous les mains et évitez les lieux trop confinés et poussiéreux.\n\nSignes d'alerte : Raideur de la nuque, forte fièvre, maux de tête insupportables et vomissements en jet. En cas de doute, une consultation immédiate est vitale.",
+            image: "🛡️",
+            color: "from-blue-500/20 to-blue-500/5"
+        },
+        {
+            category: "Psychologie",
+            title: "Briser le Tabou : Santé Mentale",
+            desc: "Le bien-être émotionnel est aussi important que la santé physique. Ne restez pas seul avec votre détresse.",
+            fullContent: "La santé mentale n'est pas un signe de faiblesse. Face au stress, à l'anxiété ou au deuil, parler est le premier pas vers la guérison. \n\nAu Burkina, des organisations comme 'SOS Santé Mentale' offrent un soutien gratuit. \n\nSignes à surveiller :\n• Fatigue persistante et perte d'intérêt.\n• Troubles du sommeil fréquents.\n• Isolement inhabituel.\n\nVotre pharmacien peut aussi vous orienter vers des structures de soutien psychologique spécialisées.",
+            image: "🧠",
+            color: "from-purple-500/20 to-purple-500/5"
         },
         {
             category: "Prévention",
