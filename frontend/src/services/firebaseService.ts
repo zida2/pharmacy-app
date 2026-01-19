@@ -96,53 +96,52 @@ export const firebaseService = {
                 return [];
             }
             return snap.docs.map((d: any) => {
-                return snap.docs.map((d: any) => {
-                    const data = d.data();
+                const data = d.data();
 
-                    // Algorithmic Guard Enhancement
-                    // If DB doesn't explicitly specify guard status, calculate it based on group.
-                    const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
-                    const isGuardCalculated = assignedGroup === currentGroup;
+                // Algorithmic Guard Enhancement
+                // If DB doesn't explicitly specify guard status, calculate it based on group.
+                const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
+                const isGuardCalculated = assignedGroup === currentGroup;
 
-                    // Prefer DB 'guard' status, otherwise use calculation
-                    const isGuard = data.status === 'guard' || data.isGuardToday === true || isGuardCalculated;
+                // Prefer DB 'guard' status, otherwise use calculation
+                const isGuard = data.status === 'guard' || data.isGuardToday === true || isGuardCalculated;
 
-                    return {
-                        id: d.id,
-                        ...data,
-                        guardGroup: assignedGroup,
-                        isGuardToday: isGuard,
-                        status: getDynamicStatus(isGuard, data.status)
-                    } as Pharmacy;
-                });
-            } catch (e) {
-                console.error("Firebase fetch failed:", e);
-                return [];
-            }
-        },
-
-    async getPharmacyById(id: string): Promise < Pharmacy | null > {
-            const currentGroup = getCurrentGuardGroup();
-            try {
-                const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
-                if(d.exists()) {
-            const data = d.data();
-            const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
-            const isGuard = data.status === 'guard' || data.isGuardToday === true;
-            return {
-                id: d.id,
-                ...data,
-                guardGroup: assignedGroup,
-                isGuardToday: isGuard,
-                status: getDynamicStatus(isGuard, data.status)
-            } as Pharmacy;
+                return {
+                    id: d.id,
+                    ...data,
+                    guardGroup: assignedGroup,
+                    isGuardToday: isGuard,
+                    status: getDynamicStatus(isGuard, data.status)
+                } as Pharmacy;
+            });
+        } catch (e) {
+            console.error("Firebase fetch failed:", e);
+            return [];
         }
-        return null;
-    } catch(e) {
-        console.error(e);
-        return null;
-    }
-},
+    },
+
+    async getPharmacyById(id: string): Promise<Pharmacy | null> {
+        const currentGroup = getCurrentGuardGroup();
+        try {
+            const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
+            if (d.exists()) {
+                const data = d.data();
+                const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
+                const isGuard = data.status === 'guard' || data.isGuardToday === true;
+                return {
+                    id: d.id,
+                    ...data,
+                    guardGroup: assignedGroup,
+                    isGuardToday: isGuard,
+                    status: getDynamicStatus(isGuard, data.status)
+                } as Pharmacy;
+            }
+            return null;
+        } catch (e) {
+            console.error(e);
+            return null;
+        }
+    },
 
     async importPharmacies(pharmaciesData: any[]): Promise<{ success: number; failed: number }> {
         let success = 0;
@@ -187,155 +186,179 @@ export const firebaseService = {
         return { success, failed };
     },
 
-        async clearPharmacies(): Promise < number > {
-            try {
-                const snap = await getDocs(collection(db, "pharmacies"));
-                const total = snap.size;
+    async clearPharmacies(): Promise<number> {
+        try {
+            const snap = await getDocs(collection(db, "pharmacies"));
+            const total = snap.size;
 
-                // Delete in batches (max 500)
-                const batches: any[] = [];
-                let batch = {
-                    ref: writeBatch(db),
-                    count: 0
-                };
-                batches.push(batch);
+            // Delete in batches (max 500)
+            const batches: any[] = [];
+            let batch = {
+                ref: writeBatch(db),
+                count: 0
+            };
+            batches.push(batch);
 
-                snap.docs.forEach((doc: any) => {
-                    batch.ref.delete(doc.ref);
-                    batch.count++;
-                    if (batch.count >= 400) {
-                        batch = {
-                            ref: writeBatch(db),
-                            count: 0
-                        };
-                        batches.push(batch);
-                    }
-                });
+            snap.docs.forEach((doc: any) => {
+                batch.ref.delete(doc.ref);
+                batch.count++;
+                if (batch.count >= 400) {
+                    batch = {
+                        ref: writeBatch(db),
+                        count: 0
+                    };
+                    batches.push(batch);
+                }
+            });
 
-                await Promise.all(batches.map(b => b.count > 0 ? b.ref.commit() : Promise.resolve()));
-                return total;
-            } catch(error) {
-                console.error("Error clearing pharmacies:", error);
-                throw error;
+            await Promise.all(batches.map(b => b.count > 0 ? b.ref.commit() : Promise.resolve()));
+            return total;
+        } catch (error) {
+            console.error("Error clearing pharmacies:", error);
+            throw error;
+        }
+    },
+
+    // 💊 PRODUCTS & SEARCH
+    async searchMedicines(term: string, coords?: { latitude: number; longitude: number }): Promise<{ pharmacy: Pharmacy; product?: Product }[]> {
+        const userLocation = coords || await getUserLocation();
+
+        try {
+            const q = term?.toLowerCase().trim() || "";
+            const isEmergencySearch = q.includes("garde") || q.includes("urgence") || q.includes("urgent");
+
+            // If no term, just return nearby
+            if (!q) {
+                const pharmacies = await this.getPharmacies();
+                return pharmacies.filter(p => !!p).map(p => {
+                    const lat = p.location?.lat || 0;
+                    const lng = p.location?.lng || 0;
+                    const straight = calculateDistance(userLocation, { latitude: lat, longitude: lng });
+                    return { pharmacy: { ...p, distance: straight * 1.4 } };
+                }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
             }
-        },
-
-            // 💊 PRODUCTS & SEARCH
-            async searchMedicines(term: string, coords ?: { latitude: number; longitude: number }): Promise < { pharmacy: Pharmacy; product?: Product }[] > {
-                const userLocation = coords || await getUserLocation();
-
-                try {
-                    const q = term?.toLowerCase().trim() || "";
-                    const isEmergencySearch = q.includes("garde") || q.includes("urgence") || q.includes("urgent");
-
-                    // If no term, just return nearby
-                    if(!q) {
-                        const pharmacies = await this.getPharmacies();
-                        return pharmacies.filter(p => !!p).map(p => {
-                            const lat = p.location?.lat || 0;
-                            const lng = p.location?.lng || 0;
-                            const straight = calculateDistance(userLocation, { latitude: lat, longitude: lng });
-                            return { pharmacy: { ...p, distance: straight * 1.4 } };
-                        }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
-                    }
 
             // 1. Search for Products by Name or Active Ingredient
             const [nameSnap, ingredientSnap] = await Promise.all([
-                        getDocs(query(collection(db, "products"),
-                            where("name", ">=", term),
-                            where("name", "<=", term + '\uf8ff'))),
-                        getDocs(query(collection(db, "products"),
-                            where("activeIngredient", ">=", term),
-                            where("activeIngredient", "<=", term + '\uf8ff')))
-                    ]);
+                getDocs(query(collection(db, "products"),
+                    where("name", ">=", term),
+                    where("name", "<=", term + '\uf8ff'))),
+                getDocs(query(collection(db, "products"),
+                    where("activeIngredient", ">=", term),
+                    where("activeIngredient", "<=", term + '\uf8ff')))
+            ]);
 
-                    const productsMap = new Map<string, Product>();
-                    nameSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
-                    ingredientSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
+            const productsMap = new Map<string, Product>();
+            nameSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
+            ingredientSnap.docs.forEach((d: any) => productsMap.set(d.id, { id: d.id, ...d.data() } as Product));
 
-                    const products = Array.from(productsMap.values());
+            const products = Array.from(productsMap.values());
 
-                    // 2. Search for Pharmacies by Name (Direct match)
-                    const pharmacySnap = await getDocs(
-                        query(collection(db, "pharmacies"),
-                            where("name", ">=", term),
-                            where("name", "<=", term + '\uf8ff'))
-                    );
-                    const matchingPharmacies = pharmacySnap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Pharmacy));
+            // 2. Search for Pharmacies by Name (Direct match)
+            const pharmacySnap = await getDocs(
+                query(collection(db, "pharmacies"),
+                    where("name", ">=", term),
+                    where("name", "<=", term + '\uf8ff'))
+            );
+            const matchingPharmacies = pharmacySnap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Pharmacy));
 
-                    const finalResults: { pharmacy: Pharmacy; product ?: Product } [] = [];
+            const finalResults: { pharmacy: Pharmacy; product?: Product }[] = [];
 
-// Process Product Matches
-for (const prod of products) {
-    const invSnap = await getDocs(
-        query(collection(db, "pharmacy_inventory"),
-            where("productId", "==", prod.id),
-            where("inStock", "==", true))
-    );
+            // Process Product Matches
+            for (const prod of products) {
+                const invSnap = await getDocs(
+                    query(collection(db, "pharmacy_inventory"),
+                        where("productId", "==", prod.id),
+                        where("inStock", "==", true))
+                );
 
-    for (const invDoc of invSnap.docs) {
-        const inv = invDoc.data() as PharmacyInventory;
-        const pharmacy = await this.getPharmacyById(inv.pharmacyId);
-        if (pharmacy) {
-            const lat = pharmacy.location?.lat || 0;
-            const lng = pharmacy.location?.lng || 0;
-            const dist = calculateDistance(userLocation, { latitude: lat, longitude: lng }) * 1.4;
-            finalResults.push({
-                pharmacy: { ...pharmacy, distance: dist },
-                product: { ...prod, price: inv.price, stock: inv.stock, inStock: inv.inStock }
-            });
-        }
-    }
-}
+                for (const invDoc of invSnap.docs) {
+                    const inv = invDoc.data() as PharmacyInventory;
+                    const pharmacy = await this.getPharmacyById(inv.pharmacyId);
+                    if (pharmacy) {
+                        const lat = pharmacy.location?.lat || 0;
+                        const lng = pharmacy.location?.lng || 0;
+                        const dist = calculateDistance(userLocation, { latitude: lat, longitude: lng }) * 1.4;
+                        finalResults.push({
+                            pharmacy: { ...pharmacy, distance: dist },
+                            product: { ...prod, price: inv.price, stock: inv.stock, inStock: inv.inStock }
+                        });
+                    }
+                }
+            }
 
-// Process Direct Pharmacy Matches (if not already added)
-for (const pharm of matchingPharmacies) {
-    if (!finalResults.some(r => r.pharmacy.id === pharm.id)) {
-        if (pharm.location?.lat && pharm.location?.lng) {
-            const dist = calculateDistance(userLocation, { latitude: pharm.location.lat, longitude: pharm.location.lng }) * 1.4;
-            finalResults.push({ pharmacy: { ...pharm, distance: dist } });
-        } else {
-            finalResults.push({ pharmacy: pharm });
-        }
-    }
-}
+            // Process Direct Pharmacy Matches (if not already added)
+            for (const pharm of matchingPharmacies) {
+                if (!finalResults.some(r => r.pharmacy.id === pharm.id)) {
+                    if (pharm.location?.lat && pharm.location?.lng) {
+                        const dist = calculateDistance(userLocation, { latitude: pharm.location.lat, longitude: pharm.location.lng }) * 1.4;
+                        finalResults.push({ pharmacy: { ...pharm, distance: dist } });
+                    } else {
+                        finalResults.push({ pharmacy: pharm });
+                    }
+                }
+            }
 
-if (isEmergencySearch) {
-    const filtered = finalResults
-        .filter(r => r.pharmacy.status === 'guard');
+            if (isEmergencySearch) {
+                const filtered = finalResults
+                    .filter(r => r.pharmacy.status === 'guard');
 
-    if (filtered.length > 0) {
-        return filtered.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
-    }
+                if (filtered.length > 0) {
+                    return filtered.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+                }
 
-    // If no results specifically marked 'guard', but it's an emergency search, 
-    // we should check even our standard fallback logic
-    throw new Error("No guard pharmacies found in real backend");
-}
+                // If no results specifically marked 'guard', but it's an emergency search, 
+                // we should check even our standard fallback logic
+                throw new Error("No guard pharmacies found in real backend");
+            }
 
-if (finalResults.length > 0) {
-    return finalResults.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
-}
+            if (finalResults.length > 0) {
+                return finalResults.sort((a, b) => (a.pharmacy.distance || 999) - (b.pharmacy.distance || 999));
+            }
 
-// If zero results from real backend, normally we might fetch from OSM or similar.
-// But since user expects to see *something* near them during TEST, let's inject a "Test Pharmacy" if the list is empty near them.
-
-
+            // If zero results from real backend, normally we might fetch from OSM or similar.
+            // But since user expects to see *something* near them during TEST, let's inject a "Test Pharmacy" if the list is empty near them.
 
 
-// If zero results from real backend, force trigger local fallback logic below
-throw new Error("No results found in real backend");
+
+
+            // If zero results from real backend, force trigger local fallback logic below
+            throw new Error("No results found in real backend");
 
         } catch (error: any) {
-    console.warn("⚠️ Using OpenStreetMap Fallback for Pharmacies...");
+            console.warn("⚠️ Using OpenStreetMap Fallback for Pharmacies...");
 
-    // 1. Try fetching from OpenStreetMap (Overpass API)
-    try {
-        const osmPharmacies = await this.fetchPharmaciesFromOSM();
-        if (osmPharmacies.length > 0) {
-            console.log(`✅ ${osmPharmacies.length} pharmacies found via OSM`);
+            // 1. Try fetching from OpenStreetMap (Overpass API)
+            try {
+                const osmPharmacies = await this.fetchPharmaciesFromOSM();
+                if (osmPharmacies.length > 0) {
+                    console.log(`✅ ${osmPharmacies.length} pharmacies found via OSM`);
 
-            const pharmsWithDist = osmPharmacies.map(p => {
+                    const pharmsWithDist = osmPharmacies.map(p => {
+                        let distance = 999;
+                        if (p.location?.lat && p.location?.lng) {
+                            distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
+                        }
+                        return { ...p, distance };
+                    }).sort((a, b) => a.distance - b.distance);
+
+                    // Filter if query exists
+                    const q = term?.toLowerCase().trim() || "";
+                    if (q) {
+                        const filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(q));
+                        return filtered.map(p => ({ pharmacy: p, product: undefined }));
+                    }
+
+                    return pharmsWithDist.map(p => ({ pharmacy: p, product: undefined }));
+                }
+            } catch (osmError) {
+                console.error("OSM Fallback failed:", osmError);
+            }
+
+            // 2. Final Fallback: Local Static Data (if OSM fails)
+            const pharmacies = await this.getPharmacies();
+            const q = term?.toLowerCase() || "";
+            const pharmsWithDist = pharmacies.filter(p => !!p).map(p => {
                 let distance = 999;
                 if (p.location?.lat && p.location?.lng) {
                     distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
@@ -343,49 +366,25 @@ throw new Error("No results found in real backend");
                 return { ...p, distance };
             }).sort((a, b) => a.distance - b.distance);
 
-            // Filter if query exists
-            const q = term?.toLowerCase().trim() || "";
-            if (q) {
-                const filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(q));
-                return filtered.map(p => ({ pharmacy: p, product: undefined }));
+            if (!q) return pharmsWithDist.map(p => ({ pharmacy: p }));
+
+            const cleanQuery = q.trim();
+            const isEmergencySearch = cleanQuery.includes("garde") || cleanQuery.includes("urgence") || cleanQuery.includes("urgent");
+
+            let filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(cleanQuery));
+
+            if (isEmergencySearch) {
+                // If searching for "garde", filter by guard status
+                filtered = pharmsWithDist.filter(p => p.status === 'guard');
             }
 
-            return pharmsWithDist.map(p => ({ pharmacy: p, product: undefined }));
+            return filtered.map(p => ({ pharmacy: p, product: undefined }));
         }
-    } catch (osmError) {
-        console.error("OSM Fallback failed:", osmError);
-    }
-
-    // 2. Final Fallback: Local Static Data (if OSM fails)
-    const pharmacies = await this.getPharmacies();
-    const q = term?.toLowerCase() || "";
-    const pharmsWithDist = pharmacies.filter(p => !!p).map(p => {
-        let distance = 999;
-        if (p.location?.lat && p.location?.lng) {
-            distance = calculateDistance(userLocation, { latitude: p.location.lat, longitude: p.location.lng }) * 1.4;
-        }
-        return { ...p, distance };
-    }).sort((a, b) => a.distance - b.distance);
-
-    if (!q) return pharmsWithDist.map(p => ({ pharmacy: p }));
-
-    const cleanQuery = q.trim();
-    const isEmergencySearch = cleanQuery.includes("garde") || cleanQuery.includes("urgence") || cleanQuery.includes("urgent");
-
-    let filtered = pharmsWithDist.filter(p => p.name.toLowerCase().includes(cleanQuery));
-
-    if (isEmergencySearch) {
-        // If searching for "garde", filter by guard status
-        filtered = pharmsWithDist.filter(p => p.status === 'guard');
-    }
-
-    return filtered.map(p => ({ pharmacy: p, product: undefined }));
-}
     },
 
     // 🌍 OSM FETCH HELPER
-    async fetchPharmaciesFromOSM(): Promise < Pharmacy[] > {
-    const query = `
+    async fetchPharmaciesFromOSM(): Promise<Pharmacy[]> {
+        const query = `
             [out:json][timeout:25];
             // Burkina Faso Area (approx bbox or query by name, using bbox for speed/reliability)
             (
@@ -393,30 +392,30 @@ throw new Error("No results found in real backend");
             );
             out body;
         `;
-    const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+        const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
 
-    const response = await fetch(url);
-    const data = await response.json();
+        const response = await fetch(url);
+        const data = await response.json();
 
-    if(!data.elements) return [];
+        if (!data.elements) return [];
 
-    return data.elements.map((el: any) => ({
-        id: `osm-${el.id}`,
-        name: el.tags.name || "Pharmacie Inconnue",
-        location: {
-            lat: el.lat,
-            lng: el.lon,
-            address: el.tags["addr:street"] || el.tags["addr:city"] || "Burkina Faso",
-            city: el.tags["addr:city"] || "Ouagadougou"
-        },
-        phone: el.tags.phone || el.tags["contact:phone"] || "NC",
-        status: "open", // Assumption for OSM data
-        isVerified: false,
-        source: "OpenStreetMap"
-    }));
-},
+        return data.elements.map((el: any) => ({
+            id: `osm-${el.id}`,
+            name: el.tags.name || "Pharmacie Inconnue",
+            location: {
+                lat: el.lat,
+                lng: el.lon,
+                address: el.tags["addr:street"] || el.tags["addr:city"] || "Burkina Faso",
+                city: el.tags["addr:city"] || "Ouagadougou"
+            },
+            phone: el.tags.phone || el.tags["contact:phone"] || "NC",
+            status: "open", // Assumption for OSM data
+            isVerified: false,
+            source: "OpenStreetMap"
+        }));
+    },
 
-    async getPharmacyInventory(pharmacyId: string): Promise < Product[] > {
+    async getPharmacyInventory(pharmacyId: string): Promise<Product[]> {
         // TODO: Re-enable this when API is connected
         // Temporary: Empty stock for tests as requested
         return [];
@@ -448,319 +447,319 @@ throw new Error("No results found in real backend");
         */
     },
 
-        // 🛒 ORDERS (USER SIDE)
-        async getUserOrders(): Promise < Order[] > {
-            const user = auth.currentUser;
-            if(!user) return [];
-            try {
-                const q = query(
-                    collection(db, "orders"),
-                    where("userId", "==", user.uid),
-                    orderBy("createdAt", "desc")
-                );
-                const snap = await getDocs(q);
-                return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Order));
-            } catch(e) {
-                return [];
-            }
-        },
+    // 🛒 ORDERS (USER SIDE)
+    async getUserOrders(): Promise<Order[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(
+                collection(db, "orders"),
+                where("userId", "==", user.uid),
+                orderBy("createdAt", "desc")
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Order));
+        } catch (e) {
+            return [];
+        }
+    },
 
-            async getOrderById(orderId: string): Promise < Order | null > {
-                try {
-                    const d = await getDoc(doc(db, "orders", orderId));
-                    return d.exists() ? ({ id: d.id, ...d.data() } as Order) : null;
-                } catch(e) {
-                    return null;
-                }
-            },
+    async getOrderById(orderId: string): Promise<Order | null> {
+        try {
+            const d = await getDoc(doc(db, "orders", orderId));
+            return d.exists() ? ({ id: d.id, ...d.data() } as Order) : null;
+        } catch (e) {
+            return null;
+        }
+    },
 
-                async createOrder(orderData: Partial<Order>): Promise < string > {
-                    const user = auth.currentUser;
-                    const finalOrder: any = {
-                        ...orderData,
-                        userId: user?.uid || "anonymous",
-                        orderNumber: `ORD-${Math.random().toString(36).substring(7).toUpperCase()}`,
-                        status: "pending",
-                        createdAt: serverTimestamp(),
-                        updatedAt: serverTimestamp()
-                    };
+    async createOrder(orderData: Partial<Order>): Promise<string> {
+        const user = auth.currentUser;
+        const finalOrder: any = {
+            ...orderData,
+            userId: user?.uid || "anonymous",
+            orderNumber: `ORD-${Math.random().toString(36).substring(7).toUpperCase()}`,
+            status: "pending",
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp()
+        };
 
-                    const docRef = await addDoc(collection(db, "orders"), finalOrder);
-                    return docRef.id;
-                },
+        const docRef = await addDoc(collection(db, "orders"), finalOrder);
+        return docRef.id;
+    },
 
-                    async cancelOrder(orderId: string) {
-    const orderRef = doc(db, "orders", orderId);
-    await updateDoc(orderRef, {
-        status: 'cancelled',
-        updatedAt: serverTimestamp()
-    });
-},
+    async cancelOrder(orderId: string) {
+        const orderRef = doc(db, "orders", orderId);
+        await updateDoc(orderRef, {
+            status: 'cancelled',
+            updatedAt: serverTimestamp()
+        });
+    },
 
     // 👤 USER PROFILE
     async getUserProfile(uid: string) {
-    try {
-        const userRef = doc(db, "users", uid);
-        const snap = await withTimeout(getDoc(userRef), 10000) as any;
-        return snap.exists() ? snap.data() : null;
-    } catch (error) {
-        console.warn("User profile fetch timeout/error");
-        return null;
-    }
-},
+        try {
+            const userRef = doc(db, "users", uid);
+            const snap = await withTimeout(getDoc(userRef), 10000) as any;
+            return snap.exists() ? snap.data() : null;
+        } catch (error) {
+            console.warn("User profile fetch timeout/error");
+            return null;
+        }
+    },
 
     async saveUserProfile(uid: string, data: any) {
-    try {
-        const userRef = doc(db, "users", uid);
-        await setDoc(userRef, {
-            ...data,
-            updatedAt: serverTimestamp()
-        }, { merge: true });
-    } catch (error) {
-        console.error("Error saving user profile:", error);
-    }
-},
+        try {
+            const userRef = doc(db, "users", uid);
+            await setDoc(userRef, {
+                ...data,
+                updatedAt: serverTimestamp()
+            }, { merge: true });
+        } catch (error) {
+            console.error("Error saving user profile:", error);
+        }
+    },
 
     async upgradeUserToPremium(uid: string, plan: 'monthly' | 'yearly' = 'yearly') {
-    try {
-        const userRef = doc(db, "users", uid);
-        const now = new Date();
-        const expiryDate = new Date();
-        if (plan === 'yearly') expiryDate.setFullYear(now.getFullYear() + 1);
-        else expiryDate.setMonth(now.getMonth() + 1);
+        try {
+            const userRef = doc(db, "users", uid);
+            const now = new Date();
+            const expiryDate = new Date();
+            if (plan === 'yearly') expiryDate.setFullYear(now.getFullYear() + 1);
+            else expiryDate.setMonth(now.getMonth() + 1);
 
-        await updateDoc(userRef, {
-            "userInfo.isPremium": true,
-            "userInfo.premiumExpiry": expiryDate.toISOString(),
-            "userInfo.plan": plan
-        });
-        return true;
-    } catch (error) {
-        throw error;
-    }
-},
+            await updateDoc(userRef, {
+                "userInfo.isPremium": true,
+                "userInfo.premiumExpiry": expiryDate.toISOString(),
+                "userInfo.plan": plan
+            });
+            return true;
+        } catch (error) {
+            throw error;
+        }
+    },
 
     async syncUserProfile(userData: any) {
-    const user = auth.currentUser;
-    if (user) await this.saveUserProfile(user.uid, userData);
-},
+        const user = auth.currentUser;
+        if (user) await this.saveUserProfile(user.uid, userData);
+    },
 
     async resetPassword(email: string) {
-    return sendPasswordResetEmail(auth, email);
-},
+        return sendPasswordResetEmail(auth, email);
+    },
 
     // 🩺 TELE-CONSULTATION
-    async createConsultation(type: "chat" | "video", subject: string, pharmacyId ?: string): Promise < string > {
-    const user = auth.currentUser;
-    if(!user) throw new Error("Auth required");
+    async createConsultation(type: "chat" | "video", subject: string, pharmacyId?: string): Promise<string> {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
 
-    let userName = user.displayName || "Patient";
-    try {
-        const profile = await this.getUserProfile(user.uid);
-        if(profile?.userInfo?.name) userName = profile.userInfo.name;
-    } catch(e) {
-        console.warn("Could not fetch profile name, using default");
-    }
+        let userName = user.displayName || "Patient";
+        try {
+            const profile = await this.getUserProfile(user.uid);
+            if (profile?.userInfo?.name) userName = profile.userInfo.name;
+        } catch (e) {
+            console.warn("Could not fetch profile name, using default");
+        }
 
         const consultationData: any = {
-        userId: user.uid,
-        userName,
-        status: "pending",
-        type,
-        subject,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-        unreadCount: 0
-    };
+            userId: user.uid,
+            userName,
+            status: "pending",
+            type,
+            subject,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+            unreadCount: 0
+        };
 
-    if(pharmacyId) {
-        consultationData.pharmacyId = pharmacyId;
-    }
+        if (pharmacyId) {
+            consultationData.pharmacyId = pharmacyId;
+        }
 
         const docRef = await addDoc(collection(db, "consultations"), consultationData);
 
-    // Add welcome message
-    await addDoc(collection(db, "messages"), {
-    consultationId: docRef.id,
-    senderId: "system",
-    senderName: "Assistant PharmaBF",
-    senderRole: "pharmacist",
-    text: `Bonjour ${consultationData.userName}, bienvenue dans votre espace de consultation sécurisé. Un pharmacien va vous assister pour votre demande : ${subject}.`,
-    type: "text",
-    createdAt: serverTimestamp()
-});
-
-return docRef.id;
-    },
-
-    async getUserConsultations(): Promise < Consultation[] > {
-    const user = auth.currentUser;
-    if(!user) return [];
-    try {
-        const q = query(
-            collection(db, "consultations"),
-            where("userId", "==", user.uid),
-            orderBy("updatedAt", "desc")
-        );
-        const snap = await getDocs(q);
-        return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Consultation));
-    } catch(e) {
-        console.error("Error fetching consultations:", e);
-        return [];
-    }
-},
-
-    async sendChatMessage(consultationId: string, text: string, type: "text" | "image" | "prescription" = "text") {
-    const user = auth.currentUser;
-    if (!user) throw new Error("Auth required");
-
-    const msg: any = {
-        consultationId,
-        senderId: user.uid,
-        senderName: user.displayName || "Patient",
-        senderRole: "user",
-        text,
-        type,
-        createdAt: serverTimestamp()
-    };
-
-    await addDoc(collection(db, "messages"), msg);
-
-    // Update consultation last message
-    const consultRef = doc(db, "consultations", consultationId);
-    await updateDoc(consultRef, {
-        lastMessage: text,
-        updatedAt: serverTimestamp()
-    });
-},
-
-    // 💊 TREATMENTS (PILL REMINDER)
-    async createTreatment(data: Partial<Treatment>) {
-    const user = auth.currentUser;
-    if (!user) throw new Error("Auth required");
-    return await addDoc(collection(db, "treatments"), {
-        ...data,
-        userId: user.uid,
-        isActive: true,
-        createdAt: serverTimestamp()
-    });
-},
-
-    async getUserTreatments(): Promise < Treatment[] > {
-    const user = auth.currentUser;
-    if(!user) return [];
-    try {
-        const q = query(collection(db, "treatments"), where("userId", "==", user.uid));
-        const snap = await getDocs(q);
-        return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Treatment));
-    } catch(e) {
-        console.error(e);
-        return [];
-    }
-},
-
-    async deleteTreatment(id: string) {
-    await deleteDoc(doc(db, "treatments", id));
-},
-
-    // 🛡️ INSURANCE
-    async createInsurance(data: Partial<Insurance>) {
-    const user = auth.currentUser;
-    if (!user) throw new Error("Auth required");
-    return await addDoc(collection(db, "insurances"), {
-        ...data,
-        userId: user.uid,
-        isVerified: false,
-        createdAt: serverTimestamp()
-    });
-},
-
-    async getUserInsurances(): Promise < Insurance[] > {
-    const user = auth.currentUser;
-    if(!user) return [];
-    try {
-        const q = query(collection(db, "insurances"), where("userId", "==", user.uid));
-        const snap = await getDocs(q);
-        return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Insurance));
-    } catch(e) {
-        console.error(e);
-        return [];
-    }
-},
-
-    // 🏆 PREMIUM ACTIVATION (MANUAL VALIDATION)
-    async requestPremiumActivation(uid: string, transactionId: string, plan: string) {
-    try {
-        const userRef = doc(db, "users", uid);
-        await updateDoc(userRef, {
-            "premiumRequest": {
-                transactionId,
-                plan,
-                status: "pending",
-                requestedAt: serverTimestamp()
-            }
-        });
-
-        // Also add to a global pending_activations collection for easy admin view
-        await addDoc(collection(db, "premium_requests"), {
-            userId: uid,
-            transactionId,
-            plan,
-            status: "pending",
+        // Add welcome message
+        await addDoc(collection(db, "messages"), {
+            consultationId: docRef.id,
+            senderId: "system",
+            senderName: "Assistant PharmaBF",
+            senderRole: "pharmacist",
+            text: `Bonjour ${consultationData.userName}, bienvenue dans votre espace de consultation sécurisé. Un pharmacien va vous assister pour votre demande : ${subject}.`,
+            type: "text",
             createdAt: serverTimestamp()
         });
 
-        return true;
-    } catch (error) {
-        throw error;
-    }
-},
+        return docRef.id;
+    },
+
+    async getUserConsultations(): Promise<Consultation[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(
+                collection(db, "consultations"),
+                where("userId", "==", user.uid),
+                orderBy("updatedAt", "desc")
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Consultation));
+        } catch (e) {
+            console.error("Error fetching consultations:", e);
+            return [];
+        }
+    },
+
+    async sendChatMessage(consultationId: string, text: string, type: "text" | "image" | "prescription" = "text") {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const msg: any = {
+            consultationId,
+            senderId: user.uid,
+            senderName: user.displayName || "Patient",
+            senderRole: "user",
+            text,
+            type,
+            createdAt: serverTimestamp()
+        };
+
+        await addDoc(collection(db, "messages"), msg);
+
+        // Update consultation last message
+        const consultRef = doc(db, "consultations", consultationId);
+        await updateDoc(consultRef, {
+            lastMessage: text,
+            updatedAt: serverTimestamp()
+        });
+    },
+
+    // 💊 TREATMENTS (PILL REMINDER)
+    async createTreatment(data: Partial<Treatment>) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+        return await addDoc(collection(db, "treatments"), {
+            ...data,
+            userId: user.uid,
+            isActive: true,
+            createdAt: serverTimestamp()
+        });
+    },
+
+    async getUserTreatments(): Promise<Treatment[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(collection(db, "treatments"), where("userId", "==", user.uid));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Treatment));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    async deleteTreatment(id: string) {
+        await deleteDoc(doc(db, "treatments", id));
+    },
+
+    // 🛡️ INSURANCE
+    async createInsurance(data: Partial<Insurance>) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+        return await addDoc(collection(db, "insurances"), {
+            ...data,
+            userId: user.uid,
+            isVerified: false,
+            createdAt: serverTimestamp()
+        });
+    },
+
+    async getUserInsurances(): Promise<Insurance[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(collection(db, "insurances"), where("userId", "==", user.uid));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Insurance));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    // 🏆 PREMIUM ACTIVATION (MANUAL VALIDATION)
+    async requestPremiumActivation(uid: string, transactionId: string, plan: string) {
+        try {
+            const userRef = doc(db, "users", uid);
+            await updateDoc(userRef, {
+                "premiumRequest": {
+                    transactionId,
+                    plan,
+                    status: "pending",
+                    requestedAt: serverTimestamp()
+                }
+            });
+
+            // Also add to a global pending_activations collection for easy admin view
+            await addDoc(collection(db, "premium_requests"), {
+                userId: uid,
+                transactionId,
+                plan,
+                status: "pending",
+                createdAt: serverTimestamp()
+            });
+
+            return true;
+        } catch (error) {
+            throw error;
+        }
+    },
 
     async getPendingPremiumRequests() {
-    try {
-        const q = query(collection(db, "premium_requests"), where("status", "==", "pending"), orderBy("createdAt", "desc"));
-        const snap = await getDocs(q);
-        return snap.docs.map((d: any) => ({ id: d.id, ...d.data() }));
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-},
+        try {
+            const q = query(collection(db, "premium_requests"), where("status", "==", "pending"), orderBy("createdAt", "desc"));
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() }));
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    },
 
     async validatePremiumRequest(requestId: string, userId: string, plan: string) {
-    try {
-        const batch = writeBatch(db);
+        try {
+            const batch = writeBatch(db);
 
-        // 1. Mark request as approved
-        batch.update(doc(db, "premium_requests", requestId), {
-            status: "approved",
-            approvedAt: serverTimestamp()
-        });
+            // 1. Mark request as approved
+            batch.update(doc(db, "premium_requests", requestId), {
+                status: "approved",
+                approvedAt: serverTimestamp()
+            });
 
-        // 2. Upgrade User
-        batch.update(doc(db, "users", userId), {
-            "userInfo.isPremium": true,
-            "userInfo.premiumPlan": plan,
-            "userInfo.premiumSince": serverTimestamp(),
-            "premiumRequest.status": "approved"
-        });
+            // 2. Upgrade User
+            batch.update(doc(db, "users", userId), {
+                "userInfo.isPremium": true,
+                "userInfo.premiumPlan": plan,
+                "userInfo.premiumSince": serverTimestamp(),
+                "premiumRequest.status": "approved"
+            });
 
-        await batch.commit();
-        return true;
-    } catch (error) {
-        throw error;
-    }
-},
+            await batch.commit();
+            return true;
+        } catch (error) {
+            throw error;
+        }
+    },
 
     async rejectPremiumRequest(requestId: string, userId: string) {
-    try {
-        const batch = writeBatch(db);
-        batch.update(doc(db, "premium_requests", requestId), { status: "rejected" });
-        batch.update(doc(db, "users", userId), { "premiumRequest.status": "rejected" });
-        await batch.commit();
-        return true;
-    } catch (error) {
-        throw error;
+        try {
+            const batch = writeBatch(db);
+            batch.update(doc(db, "premium_requests", requestId), { status: "rejected" });
+            batch.update(doc(db, "users", userId), { "premiumRequest.status": "rejected" });
+            await batch.commit();
+            return true;
+        } catch (error) {
+            throw error;
+        }
     }
-}
 };
