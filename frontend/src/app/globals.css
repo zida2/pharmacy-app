@@ -5,12 +5,16 @@
   /* Deeper Indigo for better accessibility */
   --primary-rgb: 79, 70, 229;
   --primary-foreground: #ffffff;
-  --background: #fdfdfd;
-  --foreground: #020617;
+  --background: #f0f4f8;
+  /* Softer, cool grey to reduce brightness */
+  --foreground: #1e293b;
+  /* Slate 800 - Softer than pure black */
   --card: #ffffff;
-  --secondary: #f1f5f9;
+  --secondary: #e2e8f0;
+  /* Slate 200 */
   --secondary-foreground: #475569;
-  --border: #e2e8f0;
+  --border: #cbd5e1;
+  /* Slate 300 - increased contrast */
   --muted-foreground: #64748b;
   --radius-custom: 1.5rem;
   --pb-nav-height: 6rem;

@@ -162,8 +162,14 @@ async function scrapeONPBF() {
         }
         */
 
-        // --- ÉTAPE 4 : EXPORT EXCEL ---
-        console.log('📁 Étape 4 : Génération du fichier Excel...');
+        // --- ÉTAPE 4 : EXPORT EXCEL & JSON ---
+        console.log('📁 Étape 4 : Génération des fichiers export...');
+
+        // Export JSON (Pour import facile via l'interface Web)
+        const jsonPath = path.join(__dirname, 'pharmacies_onpbf.json');
+        fs.writeFileSync(jsonPath, JSON.stringify(finalData, null, 2));
+        console.log(`✨ Fichier JSON exporté : ${jsonPath}`);
+
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.json_to_sheet(finalData);
         XLSX.utils.book_append_sheet(wb, ws, "Pharmacies");

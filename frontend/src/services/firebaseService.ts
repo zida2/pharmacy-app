@@ -22,7 +22,7 @@ import { Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage,
 import { PHARMACIES_BURKINA_FASO } from "./pharmaciesData";
 import { calculateDistance, getUserLocation } from "@/lib/geolocation";
 
-const USE_REAL_BACKEND = process.env.NEXT_PUBLIC_USE_FIREBASE !== "false";
+const USE_REAL_BACKEND = true; // FORCE REAL BACKEND FOR PRODUCTION
 
 // Helper to prevent Firebase from hanging forever on bad connections
 const withTimeout = <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise<T> => {
@@ -80,14 +80,12 @@ export const firebaseService = {
             if (snap.empty) throw new Error("No pharmacies in DB");
             return snap.docs.map((d: any) => {
                 const data = d.data();
-                const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
-                const isGuard = assignedGroup === currentGroup;
+                // DIRECT FROM FIREBASE (Scraped Data)
+                // If the scraper ran, 'status' and 'isGuardToday' are already correct in DB.
+                // We do NOT recalculate them with the algorithm to avoid overriding real data.
                 return {
                     id: d.id,
-                    ...data,
-                    guardGroup: assignedGroup,
-                    isGuardToday: isGuard,
-                    status: isGuard ? "guard" : (data.status || "open")
+                    ...data
                 } as Pharmacy;
             });
         } catch (e) {
@@ -163,7 +161,8 @@ export const firebaseService = {
                     },
                     phone: p.telephone || "NC",
                     guardGroup: p.groupe || getStableGuardGroup(docId),
-                    status: "open", // Default, will be recalculated by app logic
+                    status: (p.type_service === 'GARDE' || p.status === 'guard') ? 'guard' : 'open',
+                    isGuardToday: (p.type_service === 'GARDE' || p.isGuardToday === true),
                     updatedAt: serverTimestamp(),
                     source: "ONPBF Scraper"
                 };

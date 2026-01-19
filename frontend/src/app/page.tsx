@@ -463,7 +463,7 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => router.push("/treatment")}
-                className="bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
+                className="bg-card dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
               >
                 <div className="w-10 h-10 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Clock size={20} />
@@ -482,7 +482,7 @@ export default function HomePage() {
                     router.push("/teleconsultation");
                   }
                 }}
-                className="bg-white dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
+                className="bg-card dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 p-5 rounded-2xl flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all active:scale-[0.98] text-left group"
               >
                 <div className="w-10 h-10 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Stethoscope size={20} />

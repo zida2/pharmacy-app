@@ -109,8 +109,14 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="min-h-screen bg-background flex flex-col items-center justify-center p-6 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed">
-            <div className="w-full max-w-sm space-y-8 animate-in fade-in zoom-in duration-500">
+        <main className="min-h-screen w-full flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 via-white to-cyan-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
+            {/* Decorative Background Elements */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] animate-pulse" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-cyan-400/10 rounded-full blur-[120px]" />
+            </div>
+
+            <div className="w-full max-w-sm space-y-8 animate-in fade-in zoom-in duration-500 relative z-10">
 
                 {/* Logo & Intro */}
                 <div className="flex flex-col items-center text-center gap-2">

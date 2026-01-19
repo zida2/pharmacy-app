@@ -47,18 +47,19 @@ export default function PharmacyCard({
         }
     };
 
+
     return (
         <div
             onClick={onSelect}
             className={cn(
-                "snap-center min-w-[300px] p-4 rounded-3xl bg-white border border-border/60 shadow-lg transition-all cursor-pointer hover:shadow-xl active:scale-[0.98] duration-300",
+                "snap-center min-w-[300px] p-4 rounded-3xl bg-card border border-border/60 shadow-lg transition-all cursor-pointer hover:shadow-xl active:scale-[0.98] duration-300",
                 isSelected ? "ring-4 ring-primary/20 border-primary" : ""
             )}
         >
             {/* Header */}
             <div className="flex justify-between items-start mb-3">
                 <div className="flex-1 min-w-0">
-                    <h3 className="font-black text-lg text-zinc-900 mb-1 leading-tight truncate">{pharmacy.name}</h3>
+                    <h3 className="font-black text-lg text-foreground mb-1 leading-tight truncate">{pharmacy.name}</h3>
                     <div className="flex flex-wrap gap-1.5">
                         <span className={cn("inline-block px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider", getStatusColor(pharmacy.status))}>
                             {getStatusText(pharmacy.status)}
@@ -79,9 +80,9 @@ export default function PharmacyCard({
             {/* Address & Distance */}
             <div className="grid grid-cols-1 gap-1.5 mb-4">
                 {pharmacy.location?.address && (
-                    <div className="flex items-center gap-2.5 text-[11px] text-zinc-500 font-medium">
-                        <div className="w-7 h-7 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
-                            <MapPin className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2.5 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
+                        <div className="w-7 h-7 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+                            <MapPin className="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-300" />
                         </div>
                         <span className="line-clamp-1 italic">{pharmacy.location.address}</span>
                     </div>
@@ -114,7 +115,7 @@ export default function PharmacyCard({
                     <div className="relative z-10 flex justify-between items-center gap-4">
                         <div className="min-w-0">
                             <div className="text-[8px] font-black text-primary uppercase tracking-[0.15em] mb-0.5">DISPONIBILITÉ SCAN</div>
-                            <div className="font-black text-zinc-900 text-sm truncate uppercase tracking-tighter">{product.name}</div>
+                            <div className="font-black text-foreground text-sm truncate uppercase tracking-tighter">{product.name}</div>
                         </div>
                         <div className="text-right shrink-0">
                             <div className="text-xl font-black text-primary font-mono leading-none">{product.price}</div>

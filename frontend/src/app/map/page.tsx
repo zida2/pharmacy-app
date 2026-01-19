@@ -224,7 +224,7 @@ function MapContent() {
                     <div className="flex items-center gap-2 pointer-events-auto">
                         <button
                             onClick={() => router.back()}
-                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-xl border border-zinc-200 text-zinc-900 active:scale-90 transition-transform"
+                            className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-card rounded-xl shadow-xl border border-border/50 text-foreground active:scale-90 transition-transform"
                         >
                             <ArrowLeft size={20} />
                         </button>
@@ -238,7 +238,7 @@ function MapContent() {
                                 value={productQuery}
                                 onChange={(e) => setProductQuery(e.target.value)}
                                 placeholder="Recherche..."
-                                className="w-full h-10 pl-11 pr-4 bg-white border border-zinc-200 rounded-xl shadow-xl text-zinc-900 focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-zinc-400 text-[10px] font-black uppercase tracking-widest"
+                                className="w-full h-10 pl-11 pr-4 bg-card border border-border/50 rounded-xl shadow-xl text-foreground focus:ring-2 focus:ring-primary/50 outline-none transition-all placeholder:text-muted-foreground text-[10px] font-black uppercase tracking-widest"
                             />
                         </div>
 
@@ -256,7 +256,7 @@ function MapContent() {
                             onClick={() => setSortBy('distance')}
                             className={cn(
                                 "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
-                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-white text-zinc-600 border-zinc-200"
+                                sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card text-muted-foreground border-border/50"
                             )}
                         >
                             <Locate size={12} /> Proche
@@ -265,7 +265,7 @@ function MapContent() {
                             onClick={() => setSortBy('price')}
                             className={cn(
                                 "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
-                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-white text-zinc-600 border-zinc-200"
+                                sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card text-muted-foreground border-border/50"
                             )}
                         >
                             <Zap size={12} /> Moins Cher
@@ -307,14 +307,14 @@ function MapContent() {
                     onClick={() => requestLocation()}
                     className={cn(
                         "w-10 h-10 flex items-center justify-center rounded-xl shadow-xl transition-all active:scale-95 border",
-                        isLocating ? "bg-primary text-white" : "bg-white text-primary border-zinc-200"
+                        isLocating ? "bg-primary text-white" : "bg-card text-primary border-border/50"
                     )}
                 >
                     <Target size={22} />
                 </button>
                 <button
                     onClick={() => setMapView(p => ({ ...p, pitch: p.pitch === 60 ? 0 : 60 }))}
-                    className="w-10 h-10 flex items-center justify-center bg-white text-zinc-600 rounded-xl shadow-xl border border-zinc-200 active:scale-95 transition-all"
+                    className="w-10 h-10 flex items-center justify-center bg-card text-foreground rounded-xl shadow-xl border border-border/50 active:scale-95 transition-all"
                 >
                     <Layers size={21} />
                 </button>
@@ -326,7 +326,7 @@ function MapContent() {
 
                     {selectedPharmacy ? (
                         /* Selected Pharmacy Panel */
-                        <div className="bg-white rounded-[2.5rem] p-6 shadow-2xl border border-zinc-100 animate-in slide-in-from-bottom-20 duration-500">
+                        <div className="bg-card rounded-[2.5rem] p-6 shadow-2xl border border-zinc-100 animate-in slide-in-from-bottom-20 duration-500">
                             <div className="flex justify-between items-start mb-6">
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2">
@@ -335,7 +335,7 @@ function MapContent() {
                                         )}>
                                             {selectedPharmacy.status === 'guard' ? 'Garde' : 'Ouvert'}
                                         </span>
-                                        <h3 className="text-xl font-black italic text-black tracking-tight">{selectedPharmacy.name}</h3>
+                                        <h3 className="text-xl font-black italic text-foreground tracking-tight">{selectedPharmacy.name}</h3>
                                     </div>
                                     <p className="text-xs text-zinc-600 flex items-center gap-1">
                                         <MapPin size={12} className="text-primary" /> {selectedPharmacy.location?.address || 'Localisation disponible'}
@@ -404,7 +404,7 @@ function MapContent() {
                                             setSelectedPharmacy(p);
                                             setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                         }}
-                                        className="min-w-[210px] bg-white rounded-2xl p-3 shadow-xl border border-zinc-200 snap-center active:scale-95 transition-all outline-none"
+                                        className="min-w-[210px] bg-card rounded-2xl p-3 shadow-xl border border-zinc-200 snap-center active:scale-95 transition-all outline-none"
                                     >
                                         <div className="flex justify-between items-start mb-1.5">
                                             <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center text-xs",
@@ -416,8 +416,8 @@ function MapContent() {
                                                 {p.distance?.toFixed(1)} KM
                                             </span>
                                         </div>
-                                        <h4 className="font-black text-sm text-zinc-900 truncate mb-1 italic">{p.name}</h4>
-                                        <div className="flex items-center justify-between text-[9px] text-zinc-500 font-black">
+                                        <h4 className="font-black text-sm text-foreground truncate mb-1 italic">{p.name}</h4>
+                                        <div className="flex items-center justify-between text-[9px] text-muted-foreground font-black">
                                             <span className="flex items-center gap-1 italic uppercase tracking-tighter">
                                                 <Clock size={10} /> {getEstimatedTime(p.distance || 0)}
                                             </span>
@@ -472,7 +472,7 @@ function MapContent() {
                                     setMapView({ center: [p.location.lng, p.location.lat], zoom: 16, pitch: 45 });
                                     setShowFullList(false);
                                 }}
-                                className="p-6 bg-white border border-zinc-200 rounded-3xl flex items-center justify-between group active:scale-[0.98] transition-all"
+                                className="p-6 bg-card border border-zinc-200 rounded-3xl flex items-center justify-between group active:scale-[0.98] transition-all"
                             >
                                 <div className="flex items-center gap-5">
                                     <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-2xl",
@@ -481,7 +481,7 @@ function MapContent() {
                                         {p.status === 'guard' ? '🟣' : '🟢'}
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className="font-black text-lg italic text-black tracking-tight group-hover:text-primary transition-colors">{p.name}</h4>
+                                        <h4 className="font-black text-lg italic text-foreground tracking-tight group-hover:text-primary transition-colors">{p.name}</h4>
                                         <div className="flex gap-2">
                                             <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{p.distance?.toFixed(1)} KM</span>
                                             <span className="text-[9px] font-black px-2 py-1 bg-zinc-900 rounded-lg text-muted-foreground uppercase">{getEstimatedTime(p.distance || 0)}</span>
