@@ -7,41 +7,55 @@ import { cn } from "@/lib/utils";
 export default function HealthInsights() {
     const hour = new Date().getHours();
 
-    // Simple contextual logic based on time (Burkina Faso context)
+    // Contextual logic based on time AND season (Burkina Faso climate)
     const getContextualAdvice = () => {
-        if (hour >= 5 && hour < 11) {
+        const month = new Date().getMonth(); // 0 = Jan, 1 = Feb, etc.
+
+        // 1. Harmattan Season (December - February) - CURRENT
+        if (month <= 1 || month === 11) {
             return {
-                title: "Énergie du matin",
-                desc: "Un grand verre d'eau au réveil aide à éliminer les toxines.",
-                icon: Sun,
-                color: "text-amber-500",
-                bg: "bg-amber-500/10"
-            };
-        } else if (hour >= 11 && hour < 16) {
-            return {
-                title: "Forte Chaleur",
-                desc: "Il fait chaud à Ouaga. Buvez au moins 2.5L d'eau aujourd'hui.",
-                icon: Thermometer,
-                color: "text-orange-500",
-                bg: "bg-orange-500/10"
-            };
-        } else if (hour >= 16 && hour < 20) {
-            return {
-                title: "Détente du soir",
-                desc: "Préparez votre corps au repos. Évitez les écrans après 21h.",
-                icon: Moon,
-                color: "text-indigo-500",
-                bg: "bg-indigo-500/10"
-            };
-        } else {
-            return {
-                title: "Sommeil Réparateur",
-                desc: "Le sommeil renforce votre système immunitaire. Reposez-vous bien.",
-                icon: Activity,
-                color: "text-purple-500",
-                bg: "bg-purple-500/10"
+                title: "Alerte Harmattan",
+                desc: "Le vent sec et la poussière sont présents. Protégez vos voies respiratoires.",
+                fullContent: "La saison de l'Harmattan (décembre à février) apporte un vent sec chargé de poussière fine. \n\nPrécautions :\n• Portez un masque en extérieur pour éviter d'inhaler les poussières.\n• Hydratez votre peau avec du beurre de karité pour éviter les gerçures.\n• Buvez beaucoup d'eau, même si vous n'avez pas chaud, pour maintenir vos muqueuses hydratées.\n• Protégez les enfants et les personnes âgées, plus vulnérables aux infections respiratoires et à la méningite.",
+                icon: Wind,
+                color: "text-blue-500",
+                bg: "bg-blue-500/10"
             };
         }
+
+        // 2. Heatwave Season (March - May)
+        if (month >= 2 && month <= 4) {
+            return {
+                title: "Pic de Chaleur",
+                desc: "Températures extrêmes. Risque de déshydratation sévère.",
+                fullContent: "Pendant la période de forte chaleur (mars à mai), les températures peuvent dépasser 40°C. \n\nPrécautions :\n• Buvez au moins 3 litres d'eau par jour.\n• Évitez les efforts physiques entre 11h et 16h.\n• Restez à l'ombre et portez des vêtements légers en coton.\n• En cas de vertiges ou maux de tête intenses, consultez immédiatement : c'est peut-être un coup de chaleur.",
+                icon: Thermometer,
+                color: "text-orange-600",
+                bg: "bg-orange-600/10"
+            };
+        }
+
+        // 3. Rainy Season (June - October)
+        if (month >= 5 && month <= 9) {
+            return {
+                title: "Saison Pluvieuse",
+                desc: "Humidité élevée. Multiplication des moustiques et risques d'eau.",
+                fullContent: "L'hivernage (juin à octobre) est la période de haute transmission du paludisme. \n\nPrécautions :\n• Dormez systématiquement sous une moustiquaire imprégnée.\n• Éliminez les eaux stagnantes autour de votre concession.\n• Veillez à l'hygiène alimentaire pour éviter les maladies diarrhéiques.\n• En cas de fièvre, faites immédiatement un test (TDR) en pharmacie ou au CSPS.",
+                icon: CloudRain,
+                color: "text-emerald-500",
+                bg: "bg-emerald-500/10"
+            };
+        }
+
+        // Fallback by hour if no specific season logic (November)
+        return {
+            title: "Énergie & Santé",
+            desc: "Une alimentation équilibrée renforce votre système immunitaire.",
+            fullContent: "Prendre soin de sa santé passe avant tout par la prévention. Assurez-vous d'avoir un sommeil suffisant (7-8h) et de consommer des fruits de saison riches en vitamines pour rester en forme toute l'année.",
+            icon: Activity,
+            color: "text-primary",
+            bg: "bg-primary/10"
+        };
     };
 
     const advice = getContextualAdvice();
@@ -98,7 +112,7 @@ export default function HealthInsights() {
                     category: "Conseil du moment",
                     title: advice.title,
                     desc: advice.desc,
-                    fullContent: advice.desc + " Suivez ces conseils pour maintenir une santé optimale au quotidien.",
+                    fullContent: advice.fullContent,
                     image: "✨",
                     color: advice.bg
                 })}
