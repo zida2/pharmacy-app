@@ -13,9 +13,6 @@ export default function LoginPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [otp, setOtp] = useState("");
-    const [step, setStep] = useState<"phone" | "otp">("phone");
     const [isLoading, setIsLoading] = useState(false);
 
     const handleGoogleLogin = async () => {
@@ -123,41 +120,40 @@ export default function LoginPage() {
 
             <div className="w-full max-w-sm flex flex-col items-center relative z-10 animate-in fade-in zoom-in duration-500">
 
-                {/* Header Logo Section - Compacted */}
+                {/* Header Logo Section */}
                 <div className="flex flex-col items-center text-center mb-6 relative">
                     <div className="absolute inset-0 bg-gradient-to-b from-[#6366f1]/20 to-transparent blur-3xl -z-10 rounded-full w-32 h-32 mx-auto" />
 
-                    <div className="w-20 h-20 mb-4 relative">
-                        <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-[1.5rem] shadow-2xl rotate-3 border border-white/50" />
-                        <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-[1.5rem] shadow-lg -rotate-3 border border-white/50" />
-                        <div className="relative w-full h-full bg-white rounded-[1.3rem] p-3 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] flex items-center justify-center z-10 border border-slate-100">
+                    <div className="w-20 h-20 mb-4 relative drop-shadow-2xl">
+                        <div className="absolute inset-0 bg-white/10 backdrop-blur-xl rounded-[1.5rem] border border-white/20 rotate-3" />
+                        <div className="relative w-full h-full bg-white rounded-[1.3rem] p-3 flex items-center justify-center z-10 border border-white/50 shadow-xl">
                             <img
                                 src="/logo.png"
                                 alt="PharmaBF Logo"
-                                className="w-full h-full object-contain filter drop-shadow-sm"
+                                className="w-full h-full object-contain"
                             />
                         </div>
                     </div>
 
-                    <h1 className="text-3xl font-[900] italic tracking-tighter text-[#0F172A] mb-1 relative">
+                    <h1 className="text-3xl font-[900] italic tracking-tighter text-white mb-1 drop-shadow-md">
                         Pharma<span className="text-[#6366f1]">BF</span>
                         <span className="absolute -top-1 -right-2 w-2 h-2 bg-[#10b981] rounded-full animate-pulse" />
                     </h1>
                 </div>
 
-                {/* Main Card - Compacted */}
-                <div className="w-full bg-white rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] p-6 relative">
+                {/* Main Card - Glassmorphism */}
+                <div className="w-full bg-slate-900/40 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 border border-white/10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
 
-                    <div className="text-center mb-6">
-                        <h2 className="text-xl font-[900] italic text-[#0F172A]">Bienvenue !</h2>
+                    <div className="text-center mb-8 relative z-10 text-white">
+                        <h2 className="text-2xl font-[900] italic tracking-tight">Bienvenue !</h2>
                     </div>
 
-                    {/* Google Button - Restored Previous Design */}
                     <button
                         type="button"
                         onClick={handleGoogleLogin}
                         disabled={isLoading}
-                        className="w-full h-12 bg-white border-2 border-slate-100 rounded-xl flex items-center justify-center gap-3 text-sm font-bold text-slate-600 shadow-sm hover:bg-slate-50 hover:border-slate-200 active:scale-[0.98] transition-all mb-6 group"
+                        className="w-full h-12 bg-white flex items-center justify-center gap-3 rounded-xl transition-all mb-8 shadow-lg active:scale-[0.98] hover:bg-slate-50"
                     >
                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -165,28 +161,26 @@ export default function LoginPage() {
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                         </svg>
-                        Continuer avec Google
+                        <span className="text-slate-900 font-bold text-sm">Continuer avec Google</span>
                     </button>
 
-                    {/* Divider */}
-                    <div className="relative mb-6">
+                    <div className="relative mb-8">
                         <div className="absolute inset-0 flex items-center">
-                            <span className="w-full border-t border-slate-100" />
+                            <span className="w-full border-t border-white/10" />
                         </div>
-                        <div className="relative flex justify-center text-[9px] uppercase">
-                            <span className="bg-white px-3 text-slate-300 font-black tracking-widest">Ou email</span>
+                        <div className="relative flex justify-center text-[10px] uppercase font-black tracking-widest text-white/30">
+                            <span className="bg-transparent px-3">Ou email</span>
                         </div>
                     </div>
 
-                    {/* Tabs */}
-                    <div className="flex bg-slate-50 p-1 rounded-xl mb-6">
+                    <div className="flex bg-white/5 p-1 rounded-xl mb-8 border border-white/5">
                         <button
                             onClick={() => setMode("login")}
                             className={cn(
-                                "flex-1 h-8 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
+                                "flex-1 h-10 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
                                 mode === "login"
-                                    ? "bg-[#6366f1] text-white shadow-md shadow-indigo-500/20"
-                                    : "text-slate-400 hover:text-slate-600"
+                                    ? "bg-[#6366f1] text-white shadow-lg"
+                                    : "text-white/40 hover:text-white"
                             )}
                         >
                             Connexion
@@ -194,76 +188,57 @@ export default function LoginPage() {
                         <button
                             onClick={() => setMode("register")}
                             className={cn(
-                                "flex-1 h-8 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
+                                "flex-1 h-10 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
                                 mode === "register"
-                                    ? "bg-[#6366f1] text-white shadow-md shadow-indigo-500/20"
-                                    : "text-slate-400 hover:text-slate-600"
+                                    ? "bg-[#6366f1] text-white shadow-lg"
+                                    : "text-white/40 hover:text-white"
                             )}
                         >
                             Inscription
                         </button>
                     </div>
 
-                    {/* Form - Compacted */}
-                    <form onSubmit={handleEmailAuth} className="space-y-3">
+                    <form onSubmit={handleEmailAuth} className="space-y-4">
                         {mode === "register" && (
-                            <div className="group animate-in slide-in-from-top-2 duration-300">
-                                <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg className="h-4 w-4 text-slate-300 group-focus-within:text-[#6366f1] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        placeholder="Nom complet"
-                                        className="w-full h-10 pl-10 pr-3 bg-slate-50 rounded-xl border-none text-xs font-bold text-slate-700 placeholder:text-slate-300 focus:ring-2 focus:ring-[#6366f1]/20 transition-all"
-                                        required={mode === "register"}
-                                    />
-                                </div>
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-white/50 ml-1">Nom complet</label>
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Votre nom"
+                                    className="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#6366f1]/50 transition-all placeholder:text-white/20"
+                                    required={mode === "register"}
+                                />
                             </div>
                         )}
-
-                        <div className="group">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="h-4 w-4 text-slate-300 group-focus-within:text-[#6366f1] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="Email"
-                                    className="w-full h-10 pl-10 pr-3 bg-slate-50 rounded-xl border-none text-xs font-bold text-slate-700 placeholder:text-slate-300 focus:ring-2 focus:ring-[#6366f1]/20 transition-all"
-                                    required
-                                />
-                            </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-white/50 ml-1">Email</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Email"
+                                className="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#6366f1]/50 transition-all placeholder:text-white/20"
+                                required
+                            />
                         </div>
-
-                        <div className="group">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Lock className="h-4 w-4 text-slate-300 group-focus-within:text-[#6366f1] transition-colors" />
-                                </div>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Mot de passe"
-                                    className="w-full h-10 pl-10 pr-3 bg-slate-50 rounded-xl border-none text-xs font-bold text-slate-700 placeholder:text-slate-300 focus:ring-2 focus:ring-[#6366f1]/20 transition-all"
-                                    required
-                                />
-                            </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-white/50 ml-1">Mot de passe</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Mot de passe"
+                                className="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#6366f1]/50 transition-all placeholder:text-white/20"
+                                required
+                            />
                         </div>
 
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-3 mt-2 bg-[#6366f1] text-white font-black rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all text-[10px] tracking-[0.2em] uppercase"
+                            className="w-full py-4 mt-4 bg-[#6366f1] text-white font-black rounded-2xl shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all text-[11px] tracking-[0.2em] uppercase"
                         >
                             {isLoading ? "Chargement..." : mode === "register" ? "S'inscrire" : "Connexion"}
                         </button>
@@ -272,7 +247,7 @@ export default function LoginPage() {
                             <button
                                 type="button"
                                 onClick={() => router.push("/forgot-password")}
-                                className="text-[10px] font-black uppercase text-[#6366f1] tracking-widest hover:underline"
+                                className="text-[10px] font-black uppercase text-white/40 tracking-widest hover:text-white transition-colors underline underline-offset-4"
                             >
                                 Mot de passe oublié ?
                             </button>
@@ -280,11 +255,10 @@ export default function LoginPage() {
                     </form>
                 </div>
 
-                {/* Footer link - Compacted */}
-                <div className="text-center mt-4">
+                <div className="text-center mt-6">
                     <button
                         onClick={() => router.push("/")}
-                        className="text-[9px] font-black uppercase text-slate-400 hover:text-slate-600 transition-colors tracking-[0.2em]"
+                        className="text-[9px] font-black uppercase text-white/40 hover:text-white transition-colors tracking-[0.2em]"
                     >
                         Continuer en mode visiteur →
                     </button>
