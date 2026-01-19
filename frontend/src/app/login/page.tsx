@@ -109,9 +109,17 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 bg-[#F8FAFC] relative overflow-hidden font-sans">
-            {/* Subtle background pattern (grid) */}
-            <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
+        <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 bg-slate-900 relative overflow-hidden font-sans">
+            {/* Cinematic Background Image */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src="/login-bg.png"
+                    alt="Background"
+                    className="w-full h-full object-cover scale-105"
+                />
+                <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/20" />
+            </div>
 
             <div className="w-full max-w-sm flex flex-col items-center relative z-10 animate-in fade-in zoom-in duration-500">
 
