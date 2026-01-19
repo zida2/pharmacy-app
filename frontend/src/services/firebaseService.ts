@@ -19,10 +19,7 @@ import {
 import { db, auth } from "./firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage, Treatment, Insurance } from "./types";
-import { PHARMACIES_BURKINA_FASO } from "./pharmaciesData";
 import { calculateDistance, getUserLocation } from "@/lib/geolocation";
-
-const USE_REAL_BACKEND = true; // FORCE REAL BACKEND FOR PRODUCTION
 
 // Helper to prevent Firebase from hanging forever on bad connections
 const withTimeout = <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise<T> => {
@@ -70,68 +67,71 @@ const getCurrentGuardGroup = (): string => {
     return cycle[((weeks % 4) + 4) % 4];
 };
 
+const getDynamicStatus = (isGuard: boolean, baseStatus: string = "open"): "open" | "closed" | "guard" => {
+    if (isGuard) return "guard";
+    if (baseStatus === "closed" || baseStatus === "permanently_closed") return "closed";
+
+    // Dynamic Night Check: 22:00 to 06:30
+    const now = new Date();
+    const hours = now.getHours();
+    const mins = now.getMinutes();
+    const timeVal = hours * 100 + mins;
+
+    // late night (22:00+) or early morning (< 06:30)
+    if (timeVal >= 2200 || timeVal < 630) {
+        return "closed";
+    }
+
+    return "open";
+};
+
 export const firebaseService = {
     // 🏥 PHARMACIES
     async getPharmacies(): Promise<Pharmacy[]> {
         const currentGroup = getCurrentGuardGroup();
         try {
-            if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
             const snap = await withTimeout(getDocs(collection(db, "pharmacies")), 12000) as any;
-            if (snap.empty) throw new Error("No pharmacies in DB");
+            if (snap.empty) {
+                console.warn("No pharmacies found in DB");
+                return [];
+            }
             return snap.docs.map((d: any) => {
                 const data = d.data();
-                // DIRECT FROM FIREBASE (Scraped Data)
-                // If the scraper ran, 'status' and 'isGuardToday' are already correct in DB.
-                // We do NOT recalculate them with the algorithm to avoid overriding real data.
+                // Ensure we use dynamic time checking even for real backend data
+                // If the DB says 'guard', trust it. If it says 'open', check time.
+                const isGuard = data.status === 'guard' || data.isGuardToday === true;
                 return {
                     id: d.id,
-                    ...data
+                    ...data,
+                    status: getDynamicStatus(isGuard, data.status)
                 } as Pharmacy;
             });
         } catch (e) {
-            console.warn("Firebase fetch failed/timeout, using local fallback");
-            return PHARMACIES_BURKINA_FASO.map(p => {
-                const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
-                const isGuard = assignedGroup === currentGroup;
-                return {
-                    ...p,
-                    guardGroup: assignedGroup,
-                    isGuardToday: isGuard,
-                    status: isGuard ? "guard" : "open"
-                } as Pharmacy;
-            });
+            console.error("Firebase fetch failed:", e);
+            return [];
         }
     },
 
     async getPharmacyById(id: string): Promise<Pharmacy | null> {
         const currentGroup = getCurrentGuardGroup();
         try {
-            if (USE_REAL_BACKEND) {
-                const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
-                if (d.exists()) {
-                    const data = d.data();
-                    const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
-                    const isGuard = assignedGroup === currentGroup;
-                    return {
-                        id: d.id,
-                        ...data,
-                        guardGroup: assignedGroup,
-                        isGuardToday: isGuard,
-                        status: isGuard ? "guard" : (data.status || "open")
-                    } as Pharmacy;
-                }
+            const d = await withTimeout(getDoc(doc(db, "pharmacies", id)), 5000) as any;
+            if (d.exists()) {
+                const data = d.data();
+                const assignedGroup = data.guardGroup || getStableGuardGroup(d.id);
+                const isGuard = data.status === 'guard' || data.isGuardToday === true;
+                return {
+                    id: d.id,
+                    ...data,
+                    guardGroup: assignedGroup,
+                    isGuardToday: isGuard,
+                    status: getDynamicStatus(isGuard, data.status)
+                } as Pharmacy;
             }
-            const p = PHARMACIES_BURKINA_FASO.find(p => p.id === id);
-            if (!p) return null;
-            const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
-            const isGuard = assignedGroup === currentGroup;
-            return { ...p, guardGroup: assignedGroup, isGuardToday: isGuard, status: isGuard ? "guard" : "open" };
+            return null;
         } catch (e) {
-            const p = PHARMACIES_BURKINA_FASO.find(p => p.id === id);
-            if (!p) return null;
-            const assignedGroup = p.guardGroup || getStableGuardGroup(p.id);
-            const isGuard = assignedGroup === currentGroup;
-            return { ...p, guardGroup: assignedGroup, isGuardToday: isGuard, status: isGuard ? "guard" : "open" };
+            console.error(e);
+            return null;
         }
     },
 
@@ -216,8 +216,6 @@ export const firebaseService = {
         const userLocation = coords || await getUserLocation();
 
         try {
-            if (!USE_REAL_BACKEND) throw new Error("Using Mock Mode");
-
             const q = term?.toLowerCase().trim() || "";
             const isEmergencySearch = q.includes("garde") || q.includes("urgence") || q.includes("urgent");
 
