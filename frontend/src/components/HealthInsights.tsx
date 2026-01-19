@@ -49,22 +49,25 @@ export default function HealthInsights() {
     const magazineTips = [
         {
             category: "Évolution",
-            title: "Le nouveau vaccin anti-paludique",
-            desc: "Tout savoir sur son déploiement à Ouagadougou et Bobo.",
+            title: "Le nouveau vaccin anti-paludique R21",
+            desc: "Le Burkina Faso lance le déploiement national du vaccin R21/Matrix-M en 2025 pour protéger 1,7 million d'enfants.",
+            fullContent: "Le Burkina Faso marque une étape historique avec le lancement national du vaccin R21/Matrix-M en août 2025. Déjà déployé dans 70 districts sanitaires, ce vaccin rejoint le RTS,S pour offrir une protection robuste. Administré gratuitement, le schéma vaccinal comprend 3 doses (5e, 6e, 7e mois) et un rappel au 15e mois. Les essais cliniques à Nanoro ont montré une efficacité de 77%, offrant un espoir immense contre le paludisme, qui touche encore des milliers de familles burkinabè.",
             image: "🦟",
             color: "from-emerald-500/20 to-emerald-500/5"
         },
         {
             category: "Nutrition",
-            title: "Les vertus du Moringa",
-            desc: "Comment intégrer ce super-aliment local dans vos plats.",
+            title: "Le Moringa : L'Arbre Miracle local",
+            desc: "Riche en fer et vitamines, le Moringa est une arme de choix contre la malnutrition et pour booster l'immunité.",
+            fullContent: "Surnommé 'l'arbre miracle', le Moringa est un super-aliment d'exception cultivé au Burkina Faso. Ses feuilles contiennent 7 fois plus de vitamine C que les oranges et 4 fois plus de calcium que le lait. Utilisé pour combattre la malnutrition infantile et l'anémie, il aide aussi à réguler la glycémie. Conseils : Intégrez une cuillère à café de poudre de Moringa dans vos bouillies ou sauces locales pour un apport nutritionnel optimal au quotidien.",
             image: "🌿",
             color: "from-green-500/20 to-green-500/5"
         },
         {
             category: "Prévention",
-            title: "Hypertension : Le tueur silencieux",
-            desc: "Conseils pour surveiller votre tension au quotidien.",
+            title: "Hypertension : Le Tueur Silencieux",
+            desc: "Près d'un adulte sur trois au Burkina Faso est hypertendu. Apprenez à surveiller votre tension régulièrement.",
+            fullContent: "L'hypertension artérielle (HTA) touche environ 30% des adultes au Burkina Faso, mais beaucoup l'ignorent. Sans symptômes précis, elle peut causer des AVC ou des crises cardiaques. Prévention : Réduisez le sel, évitez les cubes de bouillon trop salés, et pratiquez une marche rapide quotidienne. Conseil PharmaBF : Faites mesurer votre tension au moins une fois par trimestre en pharmacie ou en centre de santé. Un diagnostic précoce sauve des vies.",
             image: "💓",
             color: "from-red-500/20 to-red-500/5"
         }
@@ -95,6 +98,7 @@ export default function HealthInsights() {
                     category: "Conseil du moment",
                     title: advice.title,
                     desc: advice.desc,
+                    fullContent: advice.desc + " Suivez ces conseils pour maintenir une santé optimale au quotidien.",
                     image: "✨",
                     color: advice.bg
                 })}
@@ -166,10 +170,8 @@ export default function HealthInsights() {
                         <div className="p-8 space-y-4">
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">{selectedTip.category}</span>
                             <h3 className="text-2xl font-black text-foreground leading-tight tracking-tight">{selectedTip.title}</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                                {selectedTip.desc}
-                                {"\n\n"}
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p className="text-sm text-muted-foreground leading-relaxed font-medium whitespace-pre-wrap">
+                                {selectedTip.fullContent}
                             </p>
                             <button
                                 onClick={() => setSelectedTip(null)}
