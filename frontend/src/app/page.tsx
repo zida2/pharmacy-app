@@ -304,103 +304,86 @@ export default function HomePage() {
 
 
   return (
-    <main className="relative w-full h-screen flex flex-col bg-background font-sans">
+    <main className="relative w-full h-screen flex flex-col bg-background font-sans transition-colors duration-500 overflow-hidden">
 
-      {/* Premium Background Pattern - Subtle & Professional */}
-      <div className="fixed inset-0 z-0 bg-grid-slate-200/50 dark:bg-grid-slate-800/20 [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
+      {/* Premium Background - Dynamic Mesh Gradient & Grid */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-grid-slate-900/[0.04] dark:bg-grid-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,black,transparent)]" />
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/10 rounded-full blur-[120px] dark:bg-primary/20 animate-pulse" />
+        <div className="bottom-0 -right-4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] dark:bg-indigo-500/10 animate-pulse" />
+      </div>
 
       <AssistanceModal
         isOpen={showAssistance}
         onClose={() => setShowAssistance(false)}
       />
 
-      {/* Premium Header / Search */}
-      <div className="relative z-20 pt-safe px-5 pb-5 bg-background/80 backdrop-blur-xl border-b border-border shadow-sm transition-colors duration-300">
-        <div className="max-w-7xl mx-auto space-y-5">
+      {/* Premium Header / Search - Full Glassmorphism */}
+      <div className="relative z-20 pt-safe px-5 pb-6 bg-background/40 backdrop-blur-2xl border-b border-border transition-all duration-500">
+        <div className="max-w-3xl mx-auto space-y-6">
 
           {isOffline && (
-            <div className="bg-amber-500/10 text-amber-600 border border-amber-500/20 text-[10px] font-bold uppercase tracking-wider py-2 px-4 rounded-xl flex items-center justify-center gap-2 animate-in slide-in-from-top-2">
+            <div className="bg-amber-500/10 text-amber-600 border border-amber-500/20 text-[10px] font-black uppercase tracking-widest py-2 px-4 rounded-xl flex items-center justify-center gap-2 animate-in slide-in-from-top-2">
               <ShieldAlert size={14} />
               <span>Mode Hors-Ligne activé</span>
             </div>
           )}
 
-          {deferredPrompt && (
-            <button
-              onClick={handleInstallClick}
-              className="w-full bg-primary text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-95 transition-transform"
-            >
-              <Plus size={16} />
-              Installer l'application
-            </button>
-          )}
-
-          {/* Greeting & Header Actions */}
-          <div className="flex justify-between items-start pt-2">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight animate-in fade-in slide-in-from-left-4 duration-700">
-                {getGreeting()}, <span className="text-primary">{userName}</span>
+          {/* Greeting & Header Actions - Enhanced Typography */}
+          <div className="flex justify-between items-end pt-4">
+            <div className="space-y-1">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/80 dark:text-primary animate-in fade-in slide-in-from-bottom-2 duration-500">
+                {getGreeting()}
+              </p>
+              <h1 className="text-3xl font-black tracking-tighter text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-700">
+                Bonjour, <span className="text-primary italic">{userName}</span>
               </h1>
-              <div className="flex items-center gap-2 mt-1.5">
-                {locationStatus === 'loading' && <span className="text-[10px] text-slate-400 animate-pulse font-medium">Localisation...</span>}
+              <div className="flex items-center gap-2 pt-1">
+                {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold uppercase tracking-widest">Localisation en cours...</span>}
                 {locationStatus === 'success' && (
-                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-md">
-                    <MapPin size={12} strokeWidth={2.5} />
-                    <span className="text-[10px] font-bold uppercase tracking-wide">Ouagadougou</span>
+                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                    <MapPin size={10} strokeWidth={3} className="animate-bounce" />
+                    <span className="text-[10px] uppercase tracking-wider">Ouagadougou, BF</span>
                   </div>
                 )}
-                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={12} /><span className="text-[10px] font-medium">Position approx.</span></div>}
+                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={10} /><span className="text-[10px] font-bold uppercase">Position Approximative</span></div>}
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowAssistance(true)}
-                className="w-10 h-10 rounded-full bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 flex items-center justify-center transition-colors"
+                className="w-11 h-11 rounded-2xl bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-400 flex items-center justify-center transition-all active:scale-90 border border-red-100/50 dark:border-red-500/20"
               >
-                <AlertTriangle size={20} strokeWidth={2} />
+                <AlertTriangle size={22} strokeWidth={2.5} />
               </button>
               <button
                 onClick={() => toggleTheme()}
-                className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-zinc-800 dark:text-zinc-400 flex items-center justify-center transition-colors"
+                className="w-11 h-11 rounded-2xl bg-secondary text-foreground hover:bg-accent flex items-center justify-center transition-all active:scale-90 border border-border/50 shadow-sm"
               >
-                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                {theme === 'dark' ? <Sun size={22} strokeWidth={2.5} /> : <Moon size={22} strokeWidth={2.5} />}
               </button>
             </div>
           </div>
 
-          {/* Premium/Trial Banner */}
-          {premiumState.isTrial && (
-            <div
-              onClick={() => router.push('/profile')}
-              className="p-3 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 rounded-xl border border-amber-100 dark:border-amber-800/30 flex items-center justify-between cursor-pointer group"
-            >
-              <div className="flex items-center gap-3">
-                <Gift className="text-amber-500" size={18} />
-                <span className="text-xs font-bold text-amber-700 dark:text-amber-400">
-                  Essai Premium : {premiumState.daysLeft} jours restants
-                </span>
-              </div>
-              <ChevronRight size={16} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
-            </div>
-          )}
-
-          {/* Search Bar - Modern & Clean */}
+          {/* Search Bar - Ultra Modern & Glassy */}
           <div className="flex gap-3 items-center">
-            <form onSubmit={handleSearchSubmit} className="flex-1 shadow-sm">
-              <SearchBar
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+            <form onSubmit={handleSearchSubmit} className="flex-1 transition-all">
+              <div className="relative group">
+                <SearchBar
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
             </form>
             <button
               onClick={() => router.push("/scanner")}
-              className="w-12 h-12 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl flex items-center justify-center shadow-lg active:scale-95 transition-transform"
+              className="w-12 h-12 bg-foreground text-background dark:bg-white dark:text-slate-900 rounded-2xl flex items-center justify-center shadow-xl active:scale-95 transition-all hover:rotate-3"
             >
-              <Camera size={22} strokeWidth={2} />
+              <Camera size={24} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Categories Quick Filter - Pills */}
+          {/* Categories Quick Filter - Stylish Pills */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {[
               { id: "garde", label: "De Garde", icon: "🌙" },
@@ -413,21 +396,17 @@ export default function HomePage() {
                 <button
                   key={cat.id}
                   onClick={() => {
-                    if (isActive) {
-                      setSearchQuery("");
-                    } else {
-                      const term = cat.id === "garde" ? "pharmacie de garde" : cat.id === "urgent" ? "ouvert" : cat.label;
-                      setSearchQuery(term);
-                    }
+                    const term = cat.id === "garde" ? "pharmacie de garde" : cat.id === "urgent" ? "ouvert" : cat.label;
+                    setSearchQuery(isActive ? "" : term);
                   }}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 border rounded-full whitespace-nowrap shadow-sm text-xs font-bold transition-all outline-none hover:bg-secondary active:scale-95",
+                    "flex items-center gap-2 px-5 py-2.5 border rounded-2xl whitespace-nowrap shadow-sm text-xs font-black uppercase tracking-wider transition-all outline-none active:scale-95",
                     isActive
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card text-foreground border-border"
+                      ? "bg-primary text-white border-primary shadow-lg shadow-primary/20"
+                      : "bg-card/50 backdrop-blur-md text-foreground border-border hover:bg-card"
                   )}
                 >
-                  <span>{cat.icon}</span>
+                  <span className="text-sm">{cat.icon}</span>
                   {cat.label}
                 </button>
               )
@@ -436,10 +415,10 @@ export default function HomePage() {
 
         </div>
 
-        {/* Absolute Progress Bar Loader - Doesn't shift content */}
+        {/* Absolute Progress Bar Loader - Smooth & Glowing */}
         {isLoading && (
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary/5 overflow-hidden">
-            <div className="h-full bg-primary animate-progress-flow w-full shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
+          <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-transparent overflow-hidden">
+            <div className="h-full bg-primary animate-progress-flow w-full shadow-[0_0_12px_rgba(99,102,241,0.8)]" />
           </div>
         )}
       </div>
