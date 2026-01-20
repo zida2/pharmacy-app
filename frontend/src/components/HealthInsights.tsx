@@ -123,6 +123,38 @@ export default function HealthInsights() {
             fullContent: "L'hypertension artérielle (HTA) touche environ 30% des adultes au Burkina Faso, mais beaucoup l'ignorent. Sans symptômes précis, elle peut causer des AVC ou des crises cardiaques. Prévention : Réduisez le sel, évitez les cubes de bouillon trop salés, et pratiquez une marche rapide quotidienne. Conseil PharmaBF : Faites mesurer votre tension au moins une fois par trimestre en pharmacie ou en centre de santé. Un diagnostic précoce sauve des vies.",
             image: "💓",
             color: "from-red-500/20 to-red-500/5"
+        },
+        {
+            category: "Nutrition",
+            title: "Ulcères : Guide Alimentaire",
+            desc: "Apaisez votre estomac en choisissant les bons aliments et en évitant les irritants.",
+            fullContent: "Gérer un ulcère gastrique nécessite une discipline alimentaire pour favoriser la cicatrisation.\n\n✅ À privilégier :\n• Miel naturel : antibactérien puissant.\n• Chou (jus ou cuit) : contient de la glutamine protectrice.\n• Pommes de terre & Riz : des féculents doux pour la muqueuse.\n• Bananes mûres : agissent comme un pansement gastrique.\n\n❌ À éviter absolument :\n• Piment et épices fortes (poivre, gingembre excessif).\n• Café, boissons énergisantes et alcool.\n• Tabac (retarde la cicatrisation).\n• Agrumes (citron, orange) à jeun.",
+            image: "🍯",
+            color: "from-amber-500/20 to-amber-500/5"
+        },
+        {
+            category: "Santé",
+            title: "Anémie : Booster votre Fer",
+            desc: "L'anémie est fréquente chez les femmes et enfants. Voici comment retrouver votre énergie.",
+            fullContent: "L'anémie ferriprive (manque de fer) cause fatigue et essoufflement.\n\n🥩 Vos alliés Fer :\n• Foie de bœuf ou de poulet, viande rouge (2 fois/semaine).\n• Feuilles de Boulvanka (amaranthe) et Moringa.\n• Haricots secs et lentilles.\n\n💡 L'astuce cruciale :\nConsommez de la vitamine C (citron, goyave) pendant le repas pour absorber le fer végétal. \n\n⚠️ À éviter :\nNE BUVEZ PAS de thé ou de café pendant ou juste après le repas, car ils bloquent l'absorption du fer jusqu'à 80%.",
+            image: "🩸",
+            color: "from-rose-600/20 to-rose-600/5"
+        },
+        {
+            category: "Nutrition",
+            title: "Cholestérol : Le Gombo à la rescousse",
+            desc: "Réduisez le mauvais cholestérol naturellement avec nos produits locaux.",
+            fullContent: "L'excès de gras dans le sang bouche les artères. On peut agir par l'assiette.\n\n✨ Le Super-Héros Local :\nLe GOMBO. Sa texture visqueuse capte le mauvais cholestérol et l'élimine.\n\n✅ À privilégier :\n• Ail et Oignon : fluidifient le sang.\n• Poissons (Silure, Carpe) au lieu de la viande rouge grasse.\n• Huiles végétales de qualité (Tournesol, Soja) en petite quantité.\n\n❌ À éviter :\n• Fritures de rue (beignets dans l'huile réutilisée).\n• Peau de poulet et graisses animales visibles.\n• Boissons alcoolisées locales (Dolo) en excès.",
+            image: "🥗",
+            color: "from-emerald-600/20 to-emerald-600/5"
+        },
+        {
+            category: "Vitalité",
+            title: "Hydratation & Bonne Tenue",
+            desc: "Les boissons locales pour purifier votre corps et rester en forme.",
+            fullContent: "Pour une bonne tenue du corps et un teint éclatant, l'hydratation est la clé.\n\n🥤 Les meilleures options :\n• Kinkeliba : La 'tisane de longue vie' africaine. Excellente pour drainer le foie et les reins.\n• Jus de Bissap (Hibiscus) : Riche en vitamine C et antioxydants, il aide aussi à réguler la tension.\n• Eau de Bouye (Baobab) : Un probiotique naturel qui régule la digestion et renforce l'immunité.\n\n❌ À éviter :\n• Boissons gazeuses et sodas trop sucrés.\n• Consommation excessive de sucre blanc (préférez le miel ou laissez le goût naturel).",
+            image: "🌊",
+            color: "from-sky-500/20 to-sky-500/5"
         }
     ];
 
