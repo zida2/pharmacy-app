@@ -192,7 +192,7 @@ export default function HealthInsights() {
                 </button>
             </div>
 
-            {/* Contextual Card - High Visual Impact */}
+            {/* Contextual Card - High Visual Impact with Breathing Animation */}
             <div
                 onClick={() => setSelectedTip({
                     category: "Conseil du moment",
@@ -202,13 +202,16 @@ export default function HealthInsights() {
                     image: "✨",
                     color: advice.bg
                 })}
-                className={cn("relative p-5 rounded-3xl border border-white/10 overflow-hidden shadow-sm transition-all cursor-pointer hover:brightness-110 active:scale-[0.98]", advice.bg)}
+                className={cn("relative p-5 rounded-3xl border border-white/10 overflow-hidden shadow-sm transition-all cursor-pointer hover:brightness-110 active:scale-[0.98] animate-breathe animate-glow-border", advice.bg)}
             >
-                <div className="absolute -right-4 -top-4 opacity-10">
+                {/* Floating Background Icon with Gentle Rotation */}
+                <div className="absolute -right-4 -top-4 opacity-10 animate-gentle-rotate">
                     <advice.icon size={120} />
                 </div>
+                {/* Shimmer Overlay */}
+                <div className="absolute inset-0 animate-shimmer pointer-events-none" />
                 <div className="relative z-10 flex gap-4 items-start">
-                    <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-white dark:bg-zinc-900 shadow-sm border border-white/20", advice.color)}>
+                    <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-white dark:bg-zinc-900 shadow-sm border border-white/20 animate-heartbeat", advice.color)}>
                         <advice.icon size={24} strokeWidth={2.5} />
                     </div>
                     <div>
@@ -307,16 +310,18 @@ export default function HealthInsights() {
                                         color: advice.bg
                                     });
                                 }}
-                                className={cn("p-6 rounded-[2.5rem] border border-white/20 flex gap-5 cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden", advice.bg)}
+                                className={cn("p-6 rounded-[2.5rem] border border-white/20 flex gap-5 cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden animate-breathe animate-glow-border", advice.bg)}
                             >
-                                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-white/50 dark:bg-zinc-900/50 backdrop-blur shadow-sm", advice.color)}>
+                                {/* Shimmer Overlay */}
+                                <div className="absolute inset-0 animate-shimmer pointer-events-none opacity-50" />
+                                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-white/50 dark:bg-zinc-900/50 backdrop-blur shadow-sm animate-heartbeat", advice.color)}>
                                     <advice.icon size={28} strokeWidth={2.5} />
                                 </div>
-                                <div>
+                                <div className="relative z-10">
                                     <h4 className="font-black text-base text-foreground mb-1 uppercase tracking-tight">{advice.title}</h4>
                                     <p className="text-xs text-muted-foreground/80 font-medium leading-relaxed">{advice.desc}</p>
                                 </div>
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 transition-all group-hover:scale-110" />
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 transition-all animate-pulse-glow" />
                             </div>
 
                             {/* Magazine Tips */}
@@ -329,13 +334,20 @@ export default function HealthInsights() {
                                     onClick={() => setSelectedTip(tip)}
                                     style={{ animationDelay: `${300 + i * 100}ms` }}
                                     className={cn(
-                                        "p-6 rounded-[2.5rem] border border-white/10 flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all relative overflow-hidden group min-h-32 shadow-sm animate-slide-up-fade opacity-0 hover:border-emerald-500/30",
+                                        "p-6 rounded-[2.5rem] border border-white/10 flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all relative overflow-hidden group min-h-32 shadow-sm animate-cascade-in opacity-0 hover:border-emerald-500/30 hover:animate-breathe",
                                         tip.color
                                     )}
                                 >
+                                    {/* Floating emoji with enhanced leaf sway */}
                                     <div className="absolute right-4 bottom-4 text-5xl opacity-10 group-hover:opacity-40 group-hover:scale-125 group-hover:-rotate-12 transition-all duration-700 pointer-events-none animate-leaf-sway">
                                         {tip.image}
                                     </div>
+                                    {/* Floating particle effect on hover */}
+                                    <div className="absolute left-4 top-4 text-2xl opacity-0 group-hover:opacity-30 group-hover:animate-float-particle pointer-events-none transition-opacity duration-300">
+                                        🍃
+                                    </div>
+                                    {/* Shimmer overlay on hover */}
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer pointer-events-none transition-opacity" />
                                     <div className="relative z-10">
                                         <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-900/40 dark:text-emerald-100/40 mb-3 block">
                                             {tip.category}
@@ -348,7 +360,7 @@ export default function HealthInsights() {
                                         </p>
                                     </div>
                                     <div className="mt-4 flex justify-end">
-                                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-foreground group-hover:bg-primary group-hover:text-white transition-all group-hover:translate-x-1">
+                                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-foreground group-hover:bg-primary group-hover:text-white transition-all group-hover:translate-x-1 group-hover:animate-ripple">
                                             <ArrowRight size={14} />
                                         </div>
                                     </div>
@@ -373,13 +385,17 @@ export default function HealthInsights() {
             {selectedTip && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-6 animate-in fade-in duration-500">
                     <div className="absolute inset-0 bg-emerald-950/60 backdrop-blur-2xl transition-opacity duration-1000" onClick={() => setSelectedTip(null)} />
-                    <div className="relative w-full max-w-sm bg-white dark:bg-zinc-900 rounded-[3.5rem] border border-white/20 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-700 flex flex-col">
+                    <div className="relative w-full max-w-sm bg-white dark:bg-zinc-900 rounded-[3.5rem] border border-white/20 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-700 flex flex-col animate-glow-border">
                         <div className={cn("h-48 w-full bg-gradient-to-br flex items-center justify-center text-7xl relative", selectedTip.color)}>
                             <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] mix-blend-overlay animate-pulse-glow" />
+                            {/* Floating particles */}
+                            <div className="absolute top-4 left-4 text-2xl opacity-30 animate-float-particle">🍃</div>
+                            <div className="absolute bottom-8 right-8 text-xl opacity-20 animate-float-particle" style={{ animationDelay: '1s' }}>✨</div>
+                            <div className="absolute top-12 right-12 text-lg opacity-25 animate-float-particle" style={{ animationDelay: '2s' }}>🌿</div>
                             <span className="relative z-10 animate-float drop-shadow-2xl">{selectedTip.image}</span>
                             <button
                                 onClick={() => setSelectedTip(null)}
-                                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:rotate-90 transition-all active:scale-90 z-20"
+                                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:rotate-90 transition-all active:scale-90 z-20 hover:animate-heartbeat"
                             >
                                 <Zap size={18} fill="currentColor" />
                             </button>
