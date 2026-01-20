@@ -320,6 +320,56 @@
   animation: progress-flow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+@keyframes leaf-sway {
+
+  0%,
+  100% {
+    transform: rotate(-2deg) translateX(0);
+  }
+
+  50% {
+    transform: rotate(2deg) translateX(2px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-leaf-sway {
+  animation: leaf-sway 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-slide-up-fade {
+  animation: slide-up-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
@@ -329,10 +379,10 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(var(--primary-rgb), 0.2);
+  background: rgba(16, 185, 129, 0.2);
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--primary-rgb), 0.4);
+  background: rgba(16, 185, 129, 0.4);
 }

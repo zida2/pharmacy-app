@@ -320,19 +320,20 @@ export default function HealthInsights() {
                             </div>
 
                             {/* Magazine Tips */}
-                            <div className="px-2 pt-2">
+                            <div className="px-2 pt-2 animate-slide-up-fade" style={{ animationDelay: '200ms' }}>
                                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500/80">Sagesse & Médecine Verte</span>
                             </div>
                             {magazineTips.map((tip, i) => (
                                 <div
                                     key={i}
                                     onClick={() => setSelectedTip(tip)}
+                                    style={{ animationDelay: `${300 + i * 100}ms` }}
                                     className={cn(
-                                        "p-6 rounded-[2.5rem] border border-white/10 flex flex-col justify-between cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden group min-h-32 shadow-sm",
+                                        "p-6 rounded-[2.5rem] border border-white/10 flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-all relative overflow-hidden group min-h-32 shadow-sm animate-slide-up-fade opacity-0 hover:border-emerald-500/30",
                                         tip.color
                                     )}
                                 >
-                                    <div className="absolute right-4 bottom-4 text-5xl opacity-10 group-hover:opacity-40 group-hover:scale-125 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                    <div className="absolute right-4 bottom-4 text-5xl opacity-10 group-hover:opacity-40 group-hover:scale-125 group-hover:-rotate-12 transition-all duration-700 pointer-events-none animate-leaf-sway">
                                         {tip.image}
                                     </div>
                                     <div className="relative z-10">
@@ -347,7 +348,7 @@ export default function HealthInsights() {
                                         </p>
                                     </div>
                                     <div className="mt-4 flex justify-end">
-                                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-foreground group-hover:bg-primary group-hover:text-white transition-all">
+                                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-foreground group-hover:bg-primary group-hover:text-white transition-all group-hover:translate-x-1">
                                             <ArrowRight size={14} />
                                         </div>
                                     </div>
@@ -359,7 +360,7 @@ export default function HealthInsights() {
                         <div className="p-6 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-t border-black/5 dark:border-white/5">
                             <button
                                 onClick={() => setShowAll(false)}
-                                className="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black rounded-[1.5rem] shadow-xl shadow-emerald-600/20 active:scale-95 transition-all uppercase tracking-[0.2em] text-[11px] flex items-center justify-center gap-3"
+                                className="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black rounded-[1.5rem] shadow-xl shadow-emerald-600/20 active:scale-95 transition-all uppercase tracking-[0.2em] text-[11px] flex items-center justify-center gap-3 hover:translate-y-[-2px] hover:shadow-emerald-600/40"
                             >
                                 <BookOpen size={18} /> Revenir au Jardin
                             </button>
@@ -371,29 +372,29 @@ export default function HealthInsights() {
             {/* Detail Modal - Immersive Sanctuary View */}
             {selectedTip && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-6 animate-in fade-in duration-500">
-                    <div className="absolute inset-0 bg-emerald-950/60 backdrop-blur-2xl" onClick={() => setSelectedTip(null)} />
+                    <div className="absolute inset-0 bg-emerald-950/60 backdrop-blur-2xl transition-opacity duration-1000" onClick={() => setSelectedTip(null)} />
                     <div className="relative w-full max-w-sm bg-white dark:bg-zinc-900 rounded-[3.5rem] border border-white/20 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-700 flex flex-col">
                         <div className={cn("h-48 w-full bg-gradient-to-br flex items-center justify-center text-7xl relative", selectedTip.color)}>
-                            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] mix-blend-overlay" />
+                            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] mix-blend-overlay animate-pulse-glow" />
                             <span className="relative z-10 animate-float drop-shadow-2xl">{selectedTip.image}</span>
                             <button
                                 onClick={() => setSelectedTip(null)}
-                                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:rotate-90 transition-all active:scale-90"
+                                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:rotate-90 transition-all active:scale-90 z-20"
                             >
                                 <Zap size={18} fill="currentColor" />
                             </button>
                         </div>
-                        <div className="p-10 space-y-6 overflow-y-auto max-h-[60vh] custom-scrollbar">
-                            <div className="flex items-center gap-3">
+                        <div className="p-10 space-y-6 overflow-y-auto max-h-[60vh] custom-scrollbar bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm">
+                            <div className="flex items-center gap-3 animate-slide-up-fade" style={{ animationDelay: '200ms' }}>
                                 <div className="h-0.5 w-6 bg-emerald-500 rounded-full" />
                                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 dark:text-emerald-400">{selectedTip.category}</span>
                             </div>
-                            <h3 className="text-3xl font-black text-foreground leading-[1.1] tracking-tight">{selectedTip.title}</h3>
-                            <div className="h-px w-full bg-gradient-to-r from-emerald-500/50 to-transparent" />
-                            <div className="text-sm text-muted-foreground/90 leading-relaxed font-medium whitespace-pre-wrap selection:bg-emerald-500 selection:text-white">
+                            <h3 className="text-3xl font-black text-foreground leading-[1.1] tracking-tight animate-slide-up-fade" style={{ animationDelay: '300ms' }}>{selectedTip.title}</h3>
+                            <div className="h-px w-full bg-gradient-to-r from-emerald-500/50 to-transparent animate-slide-up-fade" style={{ animationDelay: '400ms' }} />
+                            <div className="text-sm text-muted-foreground/90 leading-relaxed font-medium whitespace-pre-wrap selection:bg-emerald-500 selection:text-white animate-slide-up-fade" style={{ animationDelay: '500ms' }}>
                                 {selectedTip.fullContent}
                             </div>
-                            <div className="pt-6">
+                            <div className="pt-6 animate-slide-up-fade" style={{ animationDelay: '600ms' }}>
                                 <button
                                     onClick={() => setSelectedTip(null)}
                                     className="w-full py-5 bg-zinc-900 dark:bg-emerald-500 text-white font-black rounded-3xl shadow-2xl shadow-emerald-500/30 active:scale-95 transition-all uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 group"
