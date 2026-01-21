@@ -1,1 +1,357 @@
-[]
+[
+    {
+        "id": "dent_ouaga_central",
+        "name": "Cabinet Dentaire Central",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3686,
+            "lng": -1.5247,
+            "address": "Avenue Kwame N'Krumah",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 31 25 00",
+        "email": "contact@dentaire-central.bf",
+        "status": "available",
+        "specialties": [
+            "Orthodontie",
+            "Implants",
+            "Soins généraux"
+        ],
+        "services": [
+            "Consultation",
+            "Détartrage",
+            "Extraction",
+            "Implants",
+            "Blanchiment"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_uab",
+            "ins_coris"
+        ],
+        "rating": 4.8,
+        "reviewCount": 145,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_princesse_sarah",
+        "name": "Cabinet Dentaire Princesse Sarah",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3721,
+            "lng": -1.5189,
+            "address": "Dapoya",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 37 88 00",
+        "status": "available",
+        "specialties": [
+            "Orthodontie",
+            "Pédodontie",
+            "Chirurgie"
+        ],
+        "services": [
+            "Consultation",
+            "Détartrage",
+            "Extraction",
+            "Orthodontie",
+            "Soins enfants"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_uab",
+            "ins_allianz"
+        ],
+        "rating": 4.7,
+        "reviewCount": 98,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_yalgado",
+        "name": "Service Dentaire CHU Yalgado",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3822,
+            "lng": -1.5066,
+            "address": "CHU Yalgado Ouédraogo",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 30 66 43",
+        "status": "available",
+        "specialties": [
+            "Soins généraux",
+            "Chirurgie",
+            "Urgences"
+        ],
+        "services": [
+            "Consultation",
+            "Extraction",
+            "Urgences dentaires",
+            "Chirurgie maxillo-faciale"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_uab",
+            "ins_coris",
+            "ins_sunu"
+        ],
+        "rating": 4.5,
+        "reviewCount": 234,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_schiphra",
+        "name": "Cabinet Dentaire Schiphra",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3598,
+            "lng": -1.5123,
+            "address": "Avenue de la Liberté",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 45 20",
+        "status": "available",
+        "specialties": [
+            "Esthétique dentaire",
+            "Blanchiment",
+            "Facettes"
+        ],
+        "services": [
+            "Consultation",
+            "Blanchiment",
+            "Facettes",
+            "Couronnes",
+            "Bridges"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_allianz",
+            "ins_coris"
+        ],
+        "rating": 4.9,
+        "reviewCount": 67,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_espoir",
+        "name": "Cabinet Dentaire Espoir",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3456,
+            "lng": -1.5334,
+            "address": "Zone du Bois",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 38 22 11",
+        "status": "available",
+        "specialties": [
+            "Soins généraux",
+            "Prothèses"
+        ],
+        "services": [
+            "Consultation",
+            "Détartrage",
+            "Extraction",
+            "Prothèses dentaires"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_raynal"
+        ],
+        "rating": 4.6,
+        "reviewCount": 112,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_1200_logements",
+        "name": "Cabinet Dentaire 1200 Logements",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3668,
+            "lng": -1.4938,
+            "address": "Avenue Babanguida",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 36 77 88",
+        "status": "available",
+        "specialties": [
+            "Orthodontie",
+            "Implants"
+        ],
+        "services": [
+            "Consultation",
+            "Orthodontie",
+            "Implants",
+            "Appareils dentaires"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_uab",
+            "ins_coris",
+            "ins_allianz"
+        ],
+        "rating": 4.7,
+        "reviewCount": 89,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_bobo_centrale",
+        "name": "Cabinet Dentaire de Bobo",
+        "type": "dentist",
+        "location": {
+            "lat": 11.1775,
+            "lng": -4.2945,
+            "address": "Centre-ville",
+            "city": "Bobo-Dioulasso"
+        },
+        "phone": "+226 20 97 11 22",
+        "status": "available",
+        "specialties": [
+            "Soins généraux",
+            "Pédodontie"
+        ],
+        "services": [
+            "Consultation",
+            "Détartrage",
+            "Extraction",
+            "Soins enfants"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_sunu"
+        ],
+        "rating": 4.6,
+        "reviewCount": 76,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_sourire_blanc",
+        "name": "Cabinet Sourire Blanc",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3789,
+            "lng": -1.5312,
+            "address": "Gounghin",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 40 55 66",
+        "status": "available",
+        "specialties": [
+            "Esthétique",
+            "Blanchiment",
+            "Soins généraux"
+        ],
+        "services": [
+            "Consultation",
+            "Blanchiment",
+            "Détartrage",
+            "Facettes"
+        ],
+        "acceptsInsurance": false,
+        "rating": 4.8,
+        "reviewCount": 54,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_ouaga2000",
+        "name": "Centre Dentaire Ouaga 2000",
+        "type": "dentist",
+        "location": {
+            "lat": 12.3271,
+            "lng": -1.5002,
+            "address": "Ouaga 2000",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 37 99 00",
+        "email": "contact@dentaire-ouaga2000.bf",
+        "status": "available",
+        "specialties": [
+            "Orthodontie",
+            "Implants",
+            "Chirurgie"
+        ],
+        "services": [
+            "Consultation",
+            "Orthodontie",
+            "Implants",
+            "Chirurgie maxillo-faciale",
+            "Urgences"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_allianz",
+            "ins_coris",
+            "ins_uab"
+        ],
+        "rating": 4.9,
+        "reviewCount": 123,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    },
+    {
+        "id": "dent_tampouy",
+        "name": "Cabinet Dentaire Tampouy",
+        "type": "dentist",
+        "location": {
+            "lat": 12.4034,
+            "lng": -1.5774,
+            "address": "Tampouy",
+            "city": "Ouagadougou"
+        },
+        "phone": "+226 25 41 33 44",
+        "status": "available",
+        "specialties": [
+            "Soins généraux",
+            "Extraction"
+        ],
+        "services": [
+            "Consultation",
+            "Détartrage",
+            "Extraction",
+            "Plombages"
+        ],
+        "acceptsInsurance": true,
+        "acceptedInsurances": [
+            "ins_sonar",
+            "ins_sunu",
+            "ins_raynal"
+        ],
+        "rating": 4.5,
+        "reviewCount": 67,
+        "isVerified": true,
+        "source": "Manual Import",
+        "gps_validated": true,
+        "gps_source": "manual"
+    }
+]

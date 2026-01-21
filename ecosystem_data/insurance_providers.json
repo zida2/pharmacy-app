@@ -3,65 +3,269 @@
     "id": "ins_sonar",
     "name": "SONAR Assurances",
     "type": "insurance",
-    "coverageRate": 80,
     "location": {
       "lat": 12.368,
       "lng": -1.527,
-      "address": "Av. Kwame N'Krumah",
+      "address": "Avenue Kwame N'Krumah",
       "city": "Ouagadougou"
     },
-    "phone": "25 33 33 33"
+    "phone": "+226 25 33 33 33",
+    "email": "contact@sonar.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Maternité",
+      "Dentaire",
+      "Hospitalisation"
+    ],
+    "coverageRate": 80,
+    "plans": [
+      {
+        "name": "Plan Classique",
+        "description": "Couverture santé de base",
+        "monthlyPremium": 15000,
+        "coverage": [
+          "Consultation",
+          "Médicaments",
+          "Hospitalisation"
+        ]
+      },
+      {
+        "name": "Plan Premium",
+        "description": "Couverture complète avec maternité",
+        "monthlyPremium": 25000,
+        "coverage": [
+          "Consultation",
+          "Médicaments",
+          "Hospitalisation",
+          "Maternité",
+          "Dentaire"
+        ]
+      }
+    ],
+    "partnersCount": 150,
+    "claimsPhone": "+226 25 33 33 35",
+    "emergencyPhone": "+226 70 00 00 01",
+    "website": "www.sonar.bf",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
   },
   {
     "id": "ins_uab",
     "name": "UAB Assurances",
     "type": "insurance",
-    "coverageRate": 80,
     "location": {
       "lat": 12.366,
       "lng": -1.521,
-      "address": "Av. de la Nation",
+      "address": "Avenue de la Nation",
       "city": "Ouagadougou"
     },
-    "phone": "25 30 30 30"
+    "phone": "+226 25 30 30 30",
+    "email": "info@uab.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Maternité",
+      "Optique",
+      "Dentaire"
+    ],
+    "coverageRate": 80,
+    "plans": [
+      {
+        "name": "UAB Santé Individuel",
+        "description": "Pour les particuliers",
+        "monthlyPremium": 12000,
+        "coverage": [
+          "Consultation",
+          "Médicaments",
+          "Analyses"
+        ]
+      },
+      {
+        "name": "UAB Santé Famille",
+        "description": "Couverture familiale (4 personnes)",
+        "monthlyPremium": 35000,
+        "coverage": [
+          "Consultation",
+          "Médicaments",
+          "Hospitalisation",
+          "Maternité"
+        ]
+      }
+    ],
+    "partnersCount": 200,
+    "claimsPhone": "+226 25 30 30 35",
+    "emergencyPhone": "+226 70 00 00 02",
+    "website": "www.uab.bf",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
   },
   {
     "id": "ins_sunu",
     "name": "SUNU Assurances",
     "type": "insurance",
-    "coverageRate": 70,
     "location": {
       "lat": 12.365,
       "lng": -1.522,
       "address": "Rue du Commerce",
       "city": "Ouagadougou"
     },
-    "phone": "25 31 31 31"
+    "phone": "+226 25 31 31 31",
+    "email": "sunu@sunu.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Accidents",
+      "Hospitalisation"
+    ],
+    "coverageRate": 70,
+    "plans": [
+      {
+        "name": "SUNU Santé+",
+        "description": "Couverture standard",
+        "monthlyPremium": 10000,
+        "coverage": [
+          "Consultation",
+          "Médicaments"
+        ]
+      }
+    ],
+    "partnersCount": 100,
+    "claimsPhone": "+226 25 31 31 35",
+    "emergencyPhone": "+226 70 00 00 03",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
   },
   {
     "id": "ins_coris",
     "name": "CORIS Assurances",
     "type": "insurance",
-    "coverageRate": 80,
     "location": {
       "lat": 12.358,
       "lng": -1.51,
       "address": "Zone ZACA",
       "city": "Ouagadougou"
     },
-    "phone": "25 49 49 49"
+    "phone": "+226 25 49 49 49",
+    "email": "contact@coris.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Maternité",
+      "Dentaire",
+      "Optique"
+    ],
+    "coverageRate": 80,
+    "plans": [
+      {
+        "name": "CORIS Santé Essentiel",
+        "description": "Couverture de base économique",
+        "monthlyPremium": 8000,
+        "coverage": [
+          "Consultation",
+          "Pharmacie"
+        ]
+      },
+      {
+        "name": "CORIS Santé Premium",
+        "description": "Couverture complète",
+        "monthlyPremium": 30000,
+        "coverage": [
+          "Consultation",
+          "Pharmacie",
+          "Hospitalisation",
+          "Maternité",
+          "Dentaire"
+        ]
+      }
+    ],
+    "partnersCount": 180,
+    "claimsPhone": "+226 25 49 49 50",
+    "emergencyPhone": "+226 70 00 00 04",
+    "website": "www.coris.bf",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
   },
   {
     "id": "ins_raynal",
     "name": "RAYNAL Assurances",
     "type": "insurance",
-    "coverageRate": 75,
     "location": {
       "lat": 12.37,
       "lng": -1.53,
       "address": "Koulouba",
       "city": "Ouagadougou"
     },
-    "phone": "25 30 00 00"
+    "phone": "+226 25 30 00 00",
+    "email": "raynal@raynal.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Maternité"
+    ],
+    "coverageRate": 75,
+    "plans": [
+      {
+        "name": "RAYNAL Santé Pro",
+        "description": "Pour professionnels",
+        "monthlyPremium": 18000,
+        "coverage": [
+          "Consultation",
+          "Médicaments",
+          "Hospitalisation"
+        ]
+      }
+    ],
+    "partnersCount": 120,
+    "claimsPhone": "+226 25 30 00 05",
+    "emergencyPhone": "+226 70 00 00 05",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
+  },
+  {
+    "id": "ins_allianz",
+    "name": "Allianz Burkina Faso",
+    "type": "insurance",
+    "location": {
+      "lat": 12.371,
+      "lng": -1.525,
+      "address": "Avenue de la Liberté",
+      "city": "Ouagadougou"
+    },
+    "phone": "+226 25 32 32 32",
+    "email": "info@allianz.bf",
+    "status": "available",
+    "coverageTypes": [
+      "Santé",
+      "Vie",
+      "Accidents",
+      "Maternité"
+    ],
+    "coverageRate": 85,
+    "plans": [
+      {
+        "name": "Allianz Santé Excellence",
+        "description": "Couverture internationale",
+        "monthlyPremium": 45000,
+        "coverage": [
+          "Consultation",
+          "Pharmacie",
+          "Hospitalisation",
+          "Évacuation sanitaire"
+        ]
+      }
+    ],
+    "partnersCount": 250,
+    "claimsPhone": "+226 25 32 32 35",
+    "emergencyPhone": "+226 70 00 00 06",
+    "website": "www.allianz.bf",
+    "isVerified": true,
+    "source": "Manual Import",
+    "gps_validated": true
   }
 ]
