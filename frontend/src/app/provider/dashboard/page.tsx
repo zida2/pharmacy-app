@@ -6,17 +6,7 @@ import { auth } from "@/services/firebase";
 import { HealthProvider, Appointment } from "@/services/types";
 import { MapPin, Save, Clock, Check, X, User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-// Fix Leaflet icons
-const icon = L.icon({
-    iconUrl: "/marker-icon.png",
-    shadowUrl: "/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
-});
+import ValidationMap from "@/components/admin/ValidationMap";
 
 export default function ProviderDashboard() {
     const [provider, setProvider] = useState<HealthProvider | null>(null);
@@ -32,17 +22,27 @@ export default function ProviderDashboard() {
     }, []);
 
     const loadDashboard = async () => {
-        // MOCK: Pour la démo, on prend la première pharmacie trouvée si pas de user linké
-        // TODO: Lier auth.currentUser.uid à ownerId
         try {
-            const pharms = await firebaseService.getPharmacies();
-            if (pharms.length > 0) {
-                const myProvider = pharms[0]; // Self-assigned for demo
+            let myProvider: HealthProvider | null = null;
+            const user = auth.currentUser;
+
+            if (user) {
+                myProvider = await firebaseService.getMyProvider(user.uid);
+            }
+
+            // Fallback Mock for Demo if no provider linked
+            if (!myProvider) {
+                const pharms = await firebaseService.getPharmacies();
+                if (pharms.length > 0) {
+                    myProvider = pharms[0];
+                }
+            }
+
+            if (myProvider) {
                 setProvider(myProvider);
                 setNewLocation(myProvider.location);
 
-                // Load fake appointments for demo
-                // const apps = await firebaseService.getProviderAppointments(myProvider.id);
+                // Load appointments (Mock for now as backend logic for real appointments is complex)
                 setAppointments([
                     {
                         id: "1", userId: "u1", userName: "Jean Ouédraogo", userPhone: "70000000",
@@ -110,16 +110,16 @@ export default function ProviderDashboard() {
                         )}
                     </div>
 
-                    <div className="h-64 bg-zinc-100 rounded-xl overflow-hidden relative mb-4">
-                        {/* Leaflet Map Placeholder - In Next.js we need dynamic import for Leaflet */}
-                        {/* For this demo, we use a static placeholder if SSR issues, but let's try direct div */}
-                        <div className="w-full h-full flex items-center justify-center bg-zinc-200 text-zinc-400">
-                            {editingGps ? (
-                                <p>Carte Interactive (Mode Édition)</p>
-                            ) : (
-                                <p>Carte (Lecture Seule)</p>
-                            )}
-                        </div>
+                    <div className="h-64 rounded-xl overflow-hidden relative mb-4 border border-border">
+                        <ValidationMap
+                            initialLat={provider.location.lat}
+                            initialLng={provider.location.lng}
+                            onLocationSelect={(lat, lng) => setNewLocation({ lat, lng })}
+                            className="w-full h-full"
+                        />
+                        {!editingGps && (
+                            <div className="absolute inset-0 bg-white/10 z-10 cursor-not-allowed" title="Cliquez sur 'Corriger' pour modifier" />
+                        )}
                     </div>
 
                     {editingGps ? (
@@ -127,12 +127,12 @@ export default function ProviderDashboard() {
                             <button onClick={handleSaveGps} className="btn btn-primary flex-1 py-2 rounded-xl flex items-center justify-center gap-2">
                                 <Save size={16} /> Enregistrer
                             </button>
-                            <button onClick={() => setEditingGps(false)} className="btn btn-secondary flex-1 py-2 rounded-xl">
+                            <button onClick={() => setEditingGps(false)} className="btn btn-secondary flex-1 py-2 rounded-xl bg-gray-200 dark:bg-gray-700">
                                 Annuler
                             </button>
                         </div>
                     ) : (
-                        <button onClick={() => setEditingGps(true)} className="btn btn-secondary w-full py-2 rounded-xl">
+                        <button onClick={() => setEditingGps(true)} className="btn btn-secondary w-full py-2 rounded-xl bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 transition-colors">
                             Corriger ma position
                         </button>
                     )}

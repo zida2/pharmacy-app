@@ -55,8 +55,9 @@ export default function BottomNav() {
     };
 
     // Hide on some pages if needed (e.g. login, scanner)
-    const hideOn = ["/login", "/scanner", "/teleconsultation/chat"];
-    if (hideOn.includes(pathname)) return null;
+    // Hide on some pages if needed (e.g. login, scanner, admin)
+    const hideOn = ["/login", "/scanner", "/teleconsultation/chat", "/admin", "/provider/dashboard"];
+    if (hideOn.some(path => pathname.startsWith(path))) return null;
 
     return (
         <nav className="fixed bottom-0 left-0 right-0 z-50 p-4 pt-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none">

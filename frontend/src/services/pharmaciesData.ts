@@ -7,7 +7,7 @@ import { Pharmacy } from "./types";
  */
 export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
     {
-        "id": "pharm-marjean",
+        "type": "pharmacy", "id": "pharm-marjean",
         "name": "Pharmacie Marjean",
         "location": {
             "lat": 12.3338,
@@ -22,7 +22,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Manual Import"
     },
     {
-        "id": "pharm-avenir",
+        "type": "pharmacy", "id": "pharm-avenir",
         "name": "Pharmacie Avenir",
         "location": {
             "lat": 12.3751998,
@@ -41,7 +41,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-wend-kuuni",
+        "type": "pharmacy", "id": "pharm-wend-kuuni",
         "name": "Pharmacie Wend Kuuni",
         "location": {
             "lat": 12.3755238,
@@ -60,7 +60,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-camille",
+        "type": "pharmacy", "id": "pharm-camille",
         "name": "Pharmacie Camille",
         "location": {
             "lat": 12.3758268,
@@ -79,7 +79,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-circulaire-sede",
+        "type": "pharmacy", "id": "pharm-circulaire-sede",
         "name": "Pharmacie Circulaire Sède",
         "location": {
             "lat": 12.3325736,
@@ -98,7 +98,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-faso",
+        "type": "pharmacy", "id": "pharm-faso",
         "name": "Pharmacie Faso",
         "location": {
             "lat": 12.3178393,
@@ -116,7 +116,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-kouma",
+        "type": "pharmacy", "id": "pharm-kouma",
         "name": "Pharmacie Kouma",
         "location": {
             "lat": 12.3130946,
@@ -134,7 +134,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-boulmiougou",
+        "type": "pharmacy", "id": "pharm-boulmiougou",
         "name": "Pharmacie Boulmiougou",
         "location": {
             "lat": 12.3328999,
@@ -152,7 +152,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-unite",
+        "type": "pharmacy", "id": "pharm-unite",
         "name": "Pharmacie Unité",
         "location": {
             "lat": 12.3521275,
@@ -170,7 +170,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-hippodrome",
+        "type": "pharmacy", "id": "pharm-hippodrome",
         "name": "Pharmacie de l'Hippodrome",
         "location": {
             "lat": 12.375924,
@@ -188,7 +188,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-espoir",
+        "type": "pharmacy", "id": "pharm-espoir",
         "name": "Pharmacie Espoir",
         "location": {
             "lat": 12.3726963,
@@ -206,7 +206,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-vidal-bafa",
+        "type": "pharmacy", "id": "pharm-vidal-bafa",
         "name": "Pharmacie Vidal Bafa",
         "location": {
             "lat": 12.3765947,
@@ -224,7 +224,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-dapoya",
+        "type": "pharmacy", "id": "pharm-dapoya",
         "name": "Pharmacie Dapoya",
         "location": {
             "lat": 12.3799582,
@@ -242,7 +242,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-augustine",
+        "type": "pharmacy", "id": "pharm-augustine",
         "name": "Pharmacie Augustine",
         "location": {
             "lat": 12.327115,
@@ -260,7 +260,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-boulmiougou",
+        "type": "pharmacy", "id": "pharm-boulmiougou",
         "name": "Pharmacie Boulmiougou",
         "location": {
             "lat": 12.3392273,
@@ -278,7 +278,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-1200-logements",
+        "type": "pharmacy", "id": "pharm-1200-logements",
         "name": "Pharmacie 1200 Logements",
         "location": {
             "lat": 12.3668409,
@@ -296,7 +296,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-baowendsom",
+        "type": "pharmacy", "id": "pharm-baowendsom",
         "name": "Pharmacie Baowendsom",
         "location": {
             "lat": 12.403473,
@@ -314,7 +314,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-delwinde",
+        "type": "pharmacy", "id": "pharm-delwinde",
         "name": "Pharmacie Delwindé",
         "location": {
             "lat": 12.4011373,
@@ -332,7 +332,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-kadiogo",
+        "type": "pharmacy", "id": "pharm-kadiogo",
         "name": "Pharmacie Kadiogo",
         "location": {
             "lat": 12.3603046,
@@ -350,7 +350,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-cathedrale",
+        "type": "pharmacy", "id": "pharm-cathedrale",
         "name": "Pharmacie de la Cathédrale",
         "location": {
             "lat": 12.3632079,
@@ -368,7 +368,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-jourdain",
+        "type": "pharmacy", "id": "pharm-jourdain",
         "name": "Pharmacie Jourdain",
         "location": {
             "lat": 12.3730987,
@@ -386,7 +386,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-avenir",
+        "type": "pharmacy", "id": "pharm-avenir",
         "name": "Pharmacie Avenir",
         "location": {
             "lat": 12.3749954,
@@ -404,7 +404,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-camille",
+        "type": "pharmacy", "id": "pharm-camille",
         "name": "Pharmacie Camille",
         "location": {
             "lat": 12.3757004,
@@ -422,7 +422,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-kossodo",
+        "type": "pharmacy", "id": "pharm-kossodo",
         "name": "Pharmacie Kossodo",
         "location": {
             "lat": 12.4171874,
@@ -440,7 +440,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-el-wanoogo",
+        "type": "pharmacy", "id": "pharm-el-wanoogo",
         "name": "Pharmacie El-Wanoogo",
         "location": {
             "lat": 12.3984754,
@@ -458,7 +458,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-augustine",
+        "type": "pharmacy", "id": "pharm-augustine",
         "name": "Pharmacie Augustine",
         "location": {
             "lat": 12.3257765,
@@ -476,7 +476,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-hôpital",
+        "type": "pharmacy", "id": "pharm-hôpital",
         "name": "Pharmacie de l'Hôpital",
         "location": {
             "lat": 12.3822028,
@@ -494,7 +494,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-barkwende",
+        "type": "pharmacy", "id": "pharm-barkwende",
         "name": "Pharmacie Barkwendé",
         "location": {
             "lat": 12.3737293,
@@ -512,7 +512,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-camille",
+        "type": "pharmacy", "id": "pharm-camille",
         "name": "Pharmacie Camille",
         "location": {
             "lat": 12.3758214,
@@ -530,7 +530,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-hôpital",
+        "type": "pharmacy", "id": "pharm-hôpital",
         "name": "Pharmacie de l'Hôpital",
         "location": {
             "lat": 0,
@@ -548,7 +548,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "pharm-koulouba",
+        "type": "pharmacy", "id": "pharm-koulouba",
         "name": "Pharmacie Koulouba",
         "location": {
             "lat": 0,
@@ -566,7 +566,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Fused (ONPBF + OSM)"
     },
     {
-        "id": "disc_pharmaciedunia",
+        "type": "pharmacy", "id": "disc_pharmaciedunia",
         "name": "Pharmacie Dunia",
         "location": {
             "lat": 12.3593046,
@@ -580,7 +580,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacietalba",
+        "type": "pharmacy", "id": "disc_pharmacietalba",
         "name": "Pharmacie Talba",
         "location": {
             "lat": 12.3762421,
@@ -594,7 +594,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieteranga",
+        "type": "pharmacy", "id": "disc_pharmacieteranga",
         "name": "Pharmacie Teranga",
         "location": {
             "lat": 12.3817592,
@@ -608,7 +608,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelafraternit",
+        "type": "pharmacy", "id": "disc_pharmaciedelafraternit",
         "name": "Pharmacie de la Fraternité",
         "location": {
             "lat": 12.3908138,
@@ -622,7 +622,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacietaoko",
+        "type": "pharmacy", "id": "disc_pharmacietaoko",
         "name": "Pharmacie Taoko",
         "location": {
             "lat": 12.3877702,
@@ -636,7 +636,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciebenaia",
+        "type": "pharmacy", "id": "disc_pharmaciebenaia",
         "name": "Pharmacie Benaia",
         "location": {
             "lat": 12.3503395,
@@ -650,7 +650,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieouedreago",
+        "type": "pharmacy", "id": "disc_pharmacieouedreago",
         "name": "Pharmacie Ouedreago",
         "location": {
             "lat": 12.3354559,
@@ -664,7 +664,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciekabordominique",
+        "type": "pharmacy", "id": "disc_pharmaciekabordominique",
         "name": "Pharmacie Kaboré Dominique",
         "location": {
             "lat": 12.3299218,
@@ -678,7 +678,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelamiti",
+        "type": "pharmacy", "id": "disc_pharmaciedelamiti",
         "name": "Pharmacie de l´amitié",
         "location": {
             "lat": 12.3346448,
@@ -692,7 +692,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciesaintjulien",
+        "type": "pharmacy", "id": "disc_pharmaciesaintjulien",
         "name": "Pharmacie Saint Julien",
         "location": {
             "lat": 12.3344771,
@@ -706,7 +706,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciemaignon",
+        "type": "pharmacy", "id": "disc_pharmaciemaignon",
         "name": "Pharmacie maignon",
         "location": {
             "lat": 12.3505338,
@@ -720,7 +720,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_expharmaciedugoulmou",
+        "type": "pharmacy", "id": "disc_expharmaciedugoulmou",
         "name": "EX Pharmacie du Goulmou",
         "location": {
             "lat": 12.3420654,
@@ -734,7 +734,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_expharmaciedepissy",
+        "type": "pharmacy", "id": "disc_expharmaciedepissy",
         "name": "Ex Pharmacie de Pissy",
         "location": {
             "lat": 12.335166,
@@ -748,7 +748,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciewendlalafi",
+        "type": "pharmacy", "id": "disc_pharmaciewendlalafi",
         "name": "Pharmacie wend la lafi",
         "location": {
             "lat": 12.3422993,
@@ -762,7 +762,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieduprogrs",
+        "type": "pharmacy", "id": "disc_pharmacieduprogrs",
         "name": "Pharmacie du progrès",
         "location": {
             "lat": 12.3437164,
@@ -776,7 +776,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedurivage",
+        "type": "pharmacy", "id": "disc_pharmaciedurivage",
         "name": "Pharmacie du rivage",
         "location": {
             "lat": 12.3539218,
@@ -790,7 +790,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciemar",
+        "type": "pharmacy", "id": "disc_pharmaciemar",
         "name": "Pharmacie Maré",
         "location": {
             "lat": 12.3631848,
@@ -804,7 +804,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelajeunesse",
+        "type": "pharmacy", "id": "disc_pharmaciedelajeunesse",
         "name": "Pharmacie de la jeunesse",
         "location": {
             "lat": 12.3706171,
@@ -818,7 +818,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciewendlamita",
+        "type": "pharmacy", "id": "disc_pharmaciewendlamita",
         "name": "Pharmacie Wend Lamita",
         "location": {
             "lat": 12.3810463,
@@ -832,7 +832,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelaprovidance",
+        "type": "pharmacy", "id": "disc_pharmaciedelaprovidance",
         "name": "Pharmacie de la providance",
         "location": {
             "lat": 12.37304,
@@ -846,7 +846,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciebaraka",
+        "type": "pharmacy", "id": "disc_pharmaciebaraka",
         "name": "Pharmacie Baraka",
         "location": {
             "lat": 12.3786779,
@@ -860,7 +860,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciewenddenda",
+        "type": "pharmacy", "id": "disc_pharmaciewenddenda",
         "name": "Pharmacie wend denda",
         "location": {
             "lat": 12.3768378,
@@ -874,7 +874,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelalibert",
+        "type": "pharmacy", "id": "disc_pharmaciedelalibert",
         "name": "Pharmacie de la liberté",
         "location": {
             "lat": 12.3776946,
@@ -888,7 +888,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelasavane",
+        "type": "pharmacy", "id": "disc_pharmaciedelasavane",
         "name": "Pharmacie de la Savane",
         "location": {
             "lat": 12.3769736,
@@ -902,7 +902,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedesignonghin",
+        "type": "pharmacy", "id": "disc_pharmaciedesignonghin",
         "name": "Pharmacie de Signonghin",
         "location": {
             "lat": 12.3867265,
@@ -916,7 +916,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_",
+        "type": "pharmacy", "id": "disc_",
         "name": "002",
         "location": {
             "lat": 12.3774398,
@@ -930,7 +930,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciesaintfranoisdassises",
+        "type": "pharmacy", "id": "disc_pharmaciesaintfranoisdassises",
         "name": "Pharmacie Saint François d'Assises",
         "location": {
             "lat": 12.3820165,
@@ -944,7 +944,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_saintlazare",
+        "type": "pharmacy", "id": "disc_saintlazare",
         "name": "Saint Lazare",
         "location": {
             "lat": 12.3685791,
@@ -958,7 +958,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieyennenga",
+        "type": "pharmacy", "id": "disc_pharmacieyennenga",
         "name": "Pharmacie Yennenga",
         "location": {
             "lat": 12.35118,
@@ -972,7 +972,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedepissy",
+        "type": "pharmacy", "id": "disc_pharmaciedepissy",
         "name": "pharmacie de pissy",
         "location": {
             "lat": 12.3367241,
@@ -986,7 +986,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedusahel",
+        "type": "pharmacy", "id": "disc_pharmaciedusahel",
         "name": "Pharmacie du Sahel",
         "location": {
             "lat": 12.3662116,
@@ -1000,7 +1000,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_phamaciedelindependance",
+        "type": "pharmacy", "id": "disc_phamaciedelindependance",
         "name": "PHAMACIE DE L'INDEPENDANCE",
         "location": {
             "lat": 12.3702719,
@@ -1014,7 +1014,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciesaintjean",
+        "type": "pharmacy", "id": "disc_pharmaciesaintjean",
         "name": "Pharmacie Saint Jean",
         "location": {
             "lat": 12.342753,
@@ -1028,7 +1028,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieducarrefour",
+        "type": "pharmacy", "id": "disc_pharmacieducarrefour",
         "name": "Pharmacie du Carrefour",
         "location": {
             "lat": 12.3677055,
@@ -1042,7 +1042,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedelunivers",
+        "type": "pharmacy", "id": "disc_pharmaciedelunivers",
         "name": "Pharmacie de l'Univers",
         "location": {
             "lat": 12.3828526,
@@ -1056,7 +1056,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_dispensaireridwane",
+        "type": "pharmacy", "id": "disc_dispensaireridwane",
         "name": "Dispensaire Ridwane",
         "location": {
             "lat": 12.3426727,
@@ -1070,7 +1070,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_katra",
+        "type": "pharmacy", "id": "disc_katra",
         "name": "KATRA",
         "location": {
             "lat": 12.3469782,
@@ -1084,7 +1084,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciewati",
+        "type": "pharmacy", "id": "disc_pharmaciewati",
         "name": "Pharmacie WATI",
         "location": {
             "lat": 12.3443667,
@@ -1098,7 +1098,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_centremedicalurbaindusecteur",
+        "type": "pharmacy", "id": "disc_centremedicalurbaindusecteur",
         "name": "Centre medical urbain du secteur 16",
         "location": {
             "lat": 12.385767,
@@ -1112,7 +1112,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharamaciearrahama",
+        "type": "pharmacy", "id": "disc_pharamaciearrahama",
         "name": "Pharamacie Ar-Rahama",
         "location": {
             "lat": 12.3895185,
@@ -1126,7 +1126,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciegaliam",
+        "type": "pharmacy", "id": "disc_pharmaciegaliam",
         "name": "Pharmacie Galiam",
         "location": {
             "lat": 12.3996961,
@@ -1140,7 +1140,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedusacrcoeur",
+        "type": "pharmacy", "id": "disc_pharmaciedusacrcoeur",
         "name": "Pharmacie du Sacré-Coeur",
         "location": {
             "lat": 12.3512132,
@@ -1154,7 +1154,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciesotisse",
+        "type": "pharmacy", "id": "disc_pharmaciesotisse",
         "name": "Pharmacie Sotisse",
         "location": {
             "lat": 12.3971219,
@@ -1168,7 +1168,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciesaintetrinit",
+        "type": "pharmacy", "id": "disc_pharmaciesaintetrinit",
         "name": "Pharmacie Sainte Trinité",
         "location": {
             "lat": 12.3685354,
@@ -1182,7 +1182,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_phamacieflayiri",
+        "type": "pharmacy", "id": "disc_phamacieflayiri",
         "name": "phamacie flayiri",
         "location": {
             "lat": 12.3383643,
@@ -1196,7 +1196,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_saintantoinedepadou",
+        "type": "pharmacy", "id": "disc_saintantoinedepadou",
         "name": "Saint Antoine de Padou",
         "location": {
             "lat": 12.3610814,
@@ -1210,7 +1210,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedesecoles",
+        "type": "pharmacy", "id": "disc_pharmaciedesecoles",
         "name": "Pharmacie des Ecoles",
         "location": {
             "lat": 12.3818477,
@@ -1224,7 +1224,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_garageetdptdevhicules",
+        "type": "pharmacy", "id": "disc_garageetdptdevhicules",
         "name": "Garage et dépôt de véhicules",
         "location": {
             "lat": 12.33298,
@@ -1238,7 +1238,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedumuse",
+        "type": "pharmacy", "id": "disc_pharmaciedumuse",
         "name": "pharmacie du musée",
         "location": {
             "lat": 12.3795464,
@@ -1252,7 +1252,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_natilg",
+        "type": "pharmacy", "id": "disc_natilg",
         "name": "Natilgé",
         "location": {
             "lat": 12.3624307,
@@ -1266,7 +1266,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_taoko",
+        "type": "pharmacy", "id": "disc_taoko",
         "name": "Taoko",
         "location": {
             "lat": 12.3872713,
@@ -1280,7 +1280,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_naabraga",
+        "type": "pharmacy", "id": "disc_naabraga",
         "name": "Naab Raga",
         "location": {
             "lat": 12.3524179,
@@ -1294,7 +1294,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacienongui",
+        "type": "pharmacy", "id": "disc_pharmacienongui",
         "name": "Pharmacie Nongui",
         "location": {
             "lat": 12.3845751,
@@ -1308,7 +1308,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_depotpharmaceutiqueurbain",
+        "type": "pharmacy", "id": "disc_depotpharmaceutiqueurbain",
         "name": "Depot pharmaceutique urbain",
         "location": {
             "lat": 12.3718701,
@@ -1322,7 +1322,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieamoro",
+        "type": "pharmacy", "id": "disc_pharmacieamoro",
         "name": "Pharmacie AMORO",
         "location": {
             "lat": 12.3610665,
@@ -1336,7 +1336,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacierayibtiga",
+        "type": "pharmacy", "id": "disc_pharmacierayibtiga",
         "name": "Pharmacie RAYIB-TIGA",
         "location": {
             "lat": 12.4073949,
@@ -1350,7 +1350,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciedjimbia",
+        "type": "pharmacy", "id": "disc_pharmaciedjimbia",
         "name": "Pharmacie  DJIMBIA",
         "location": {
             "lat": 12.401461,
@@ -1364,7 +1364,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_phytofladrdakuyo",
+        "type": "pharmacy", "id": "disc_phytofladrdakuyo",
         "name": "Phytofla Dr. DAKUYO",
         "location": {
             "lat": 12.329985,
@@ -1378,7 +1378,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacienoomwende",
+        "type": "pharmacy", "id": "disc_pharmacienoomwende",
         "name": "Pharmacie NOOM-WENDE",
         "location": {
             "lat": 12.319006,
@@ -1392,7 +1392,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_natilge",
+        "type": "pharmacy", "id": "disc_natilge",
         "name": "NATILGE",
         "location": {
             "lat": 12.3586322,
@@ -1406,7 +1406,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_fasovet",
+        "type": "pharmacy", "id": "disc_fasovet",
         "name": "Fasovet+",
         "location": {
             "lat": 12.368644,
@@ -1420,7 +1420,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieafiya",
+        "type": "pharmacy", "id": "disc_pharmacieafiya",
         "name": "Pharmacie AFIYA",
         "location": {
             "lat": 12.3553431,
@@ -1434,7 +1434,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_merdipharm",
+        "type": "pharmacy", "id": "disc_merdipharm",
         "name": "Merdipharm",
         "location": {
             "lat": 12.4169968,
@@ -1448,7 +1448,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacieninrwa",
+        "type": "pharmacy", "id": "disc_pharmacieninrwa",
         "name": "Pharmacie Ninrwa",
         "location": {
             "lat": 12.4052066,
@@ -1462,7 +1462,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_phciecoura",
+        "type": "pharmacy", "id": "disc_phciecoura",
         "name": "Phcie Coura",
         "location": {
             "lat": 12.3274061,
@@ -1476,7 +1476,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmaciegeorgette",
+        "type": "pharmacy", "id": "disc_pharmaciegeorgette",
         "name": "Pharmacie Georgette",
         "location": {
             "lat": 12.4102792,
@@ -1490,7 +1490,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_adodoa",
+        "type": "pharmacy", "id": "disc_adodoa",
         "name": "Adodoa",
         "location": {
             "lat": 12.3337005,
@@ -1504,7 +1504,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacielerocher",
+        "type": "pharmacy", "id": "disc_pharmacielerocher",
         "name": "Pharmacie le Rocher",
         "location": {
             "lat": 12.3162047,
@@ -1518,7 +1518,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_pharmacielaconcorde",
+        "type": "pharmacy", "id": "disc_pharmacielaconcorde",
         "name": "Pharmacie la concorde",
         "location": {
             "lat": 12.3657673,
@@ -1532,7 +1532,7 @@ export const PHARMACIES_BURKINA_FASO: Pharmacy[] = [
         "source": "Discovery (Maps/OSM)"
     },
     {
-        "id": "disc_magnificat",
+        "type": "pharmacy", "id": "disc_magnificat",
         "name": "Magnificat",
         "location": {
             "lat": 0,

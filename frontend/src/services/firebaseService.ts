@@ -808,6 +808,26 @@ export const firebaseService = {
         }
     },
 
+    // 🔑 PROVIDER AUTH
+    async getMyProvider(userId: string): Promise<HealthProvider | null> {
+        const collections = ["pharmacies", "clinics", "dentists", "insurance_providers"];
+
+        for (const col of collections) {
+            try {
+                const q = query(collection(db, col), where("ownerId", "==", userId), limit(1));
+                const snap = await getDocs(q);
+                if (!snap.empty) {
+                    const d = snap.docs[0];
+                    return { id: d.id, ...d.data() } as HealthProvider;
+                }
+            } catch (e) {
+                console.error(`Error querying ${col} for ownerId:`, e);
+            }
+        }
+        return null;
+    },
+
+
     // 📅 APPOINTMENTS
     async createAppointment(data: Partial<Appointment>): Promise<string> {
         const user = auth.currentUser;
