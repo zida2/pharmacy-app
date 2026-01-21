@@ -18,7 +18,10 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "./firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage, Treatment, Insurance } from "./types";
+import {
+    Pharmacy, Product, Order, PharmacyInventory, Consultation, ChatMessage, Treatment, Insurance,
+    Clinic, Dentist, InsuranceProvider, Appointment, Report, HealthProvider
+} from "./types";
 import { calculateDistance, getUserLocation } from "@/lib/geolocation";
 
 // Helper to prevent Firebase from hanging forever on bad connections
@@ -761,5 +764,100 @@ export const firebaseService = {
         } catch (error) {
             throw error;
         }
+    },
+
+    // 🏥 CLINICS & HOSPITALS
+    async getClinics(): Promise<Clinic[]> {
+        try {
+            const snap = await getDocs(collection(db, "clinics"));
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Clinic));
+        } catch (e) {
+            console.error("Error fetching clinics:", e);
+            return [];
+        }
+    },
+
+    async getClinicById(id: string): Promise<Clinic | null> {
+        try {
+            const d = await getDoc(doc(db, "clinics", id));
+            return d.exists() ? ({ id: d.id, ...d.data() } as Clinic) : null;
+        } catch (e) {
+            return null;
+        }
+    },
+
+    // 🦷 DENTISTS
+    async getDentists(): Promise<Dentist[]> {
+        try {
+            const snap = await getDocs(collection(db, "dentists"));
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Dentist));
+        } catch (e) {
+            console.error("Error fetching dentists:", e);
+            return [];
+        }
+    },
+
+    // 🛡️ INSURANCE PROVIDERS
+    async getInsuranceProviders(): Promise<InsuranceProvider[]> {
+        try {
+            const snap = await getDocs(collection(db, "insurance_providers"));
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as InsuranceProvider));
+        } catch (e) {
+            console.error("Error fetching insurance providers:", e);
+            return [];
+        }
+    },
+
+    // 📅 APPOINTMENTS
+    async createAppointment(data: Partial<Appointment>): Promise<string> {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const appointment: any = {
+            ...data,
+            userId: user.uid,
+            status: "pending",
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp()
+        };
+
+        const docRef = await addDoc(collection(db, "appointments"), appointment);
+        return docRef.id;
+    },
+
+    async getUserAppointments(): Promise<Appointment[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+        try {
+            const q = query(
+                collection(db, "appointments"),
+                where("userId", "==", user.uid),
+                orderBy("appointmentDate", "desc")
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Appointment));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    async updateAppointmentStatus(id: string, status: string) {
+        await updateDoc(doc(db, "appointments", id), {
+            status,
+            updatedAt: serverTimestamp()
+        });
+    },
+
+    // 📢 REPORTS & FEEDBACK
+    async createReport(data: Partial<Report>) {
+        const user = auth.currentUser;
+        const report: any = {
+            ...data,
+            userId: user?.uid || "anonymous",
+            status: "pending",
+            createdAt: serverTimestamp()
+        };
+        return await addDoc(collection(db, "reports"), report);
     }
 };

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "ins_sonar",
+    "name": "SONAR Assurances",
+    "type": "insurance",
+    "coverageRate": 80,
+    "location": {
+      "lat": 12.368,
+      "lng": -1.527,
+      "address": "Av. Kwame N'Krumah",
+      "city": "Ouagadougou"
+    },
+    "phone": "25 33 33 33"
+  },
+  {
+    "id": "ins_uab",
+    "name": "UAB Assurances",
+    "type": "insurance",
+    "coverageRate": 80,
+    "location": {
+      "lat": 12.366,
+      "lng": -1.521,
+      "address": "Av. de la Nation",
+      "city": "Ouagadougou"
+    },
+    "phone": "25 30 30 30"
+  },
+  {
+    "id": "ins_sunu",
+    "name": "SUNU Assurances",
+    "type": "insurance",
+    "coverageRate": 70,
+    "location": {
+      "lat": 12.365,
+      "lng": -1.522,
+      "address": "Rue du Commerce",
+      "city": "Ouagadougou"
+    },
+    "phone": "25 31 31 31"
+  },
+  {
+    "id": "ins_coris",
+    "name": "CORIS Assurances",
+    "type": "insurance",
+    "coverageRate": 80,
+    "location": {
+      "lat": 12.358,
+      "lng": -1.51,
+      "address": "Zone ZACA",
+      "city": "Ouagadougou"
+    },
+    "phone": "25 49 49 49"
+  },
+  {
+    "id": "ins_raynal",
+    "name": "RAYNAL Assurances",
+    "type": "insurance",
+    "coverageRate": 75,
+    "location": {
+      "lat": 12.37,
+      "lng": -1.53,
+      "address": "Koulouba",
+      "city": "Ouagadougou"
+    },
+    "phone": "25 30 00 00"
+  }
+]

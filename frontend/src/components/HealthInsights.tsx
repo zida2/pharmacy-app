@@ -159,7 +159,7 @@ export default function HealthInsights() {
             <div className="relative -mx-6 bg-primary/10 py-2 overflow-hidden border-y border-primary/10">
                 <div className="flex items-center gap-4 animate-marquee whitespace-nowrap px-6">
                     <div className="flex items-center gap-2 text-primary font-black text-[9px] uppercase tracking-tighter shrink-0">
-                        <Zap size={10} className="fill-current" />
+                        <Zap size={10} strokeWidth={2.5} className="fill-current drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                         FLASH SANTÉ :
                     </div>
                     <span className="text-[10px] font-bold text-foreground inline-flex gap-8">
@@ -181,14 +181,14 @@ export default function HealthInsights() {
             {/* Advice Header */}
             <div className="flex justify-between items-end px-1 pt-2">
                 <div className="flex items-center gap-2">
-                    <Sparkles className="text-primary" size={18} />
+                    <Sparkles className="text-primary drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" size={18} strokeWidth={2.5} />
                     <h2 className="text-lg font-bold text-foreground tracking-tight">Focus Santé</h2>
                 </div>
                 <button
                     onClick={() => setShowAll(true)}
                     className="text-[10px] font-black uppercase text-primary tracking-widest hover:underline flex items-center gap-1 active:scale-95 transition-transform"
                 >
-                    Tout voir <ArrowRight size={12} />
+                    Tout voir <ArrowRight size={12} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                 </button>
             </div>
 
@@ -226,7 +226,7 @@ export default function HealthInsights() {
             {/* Magazine Feed - Automatic Animated Slider */}
             <div className="space-y-4">
                 <div className="flex items-center gap-2 px-1">
-                    <TrendingUp className="text-primary" size={18} />
+                    <TrendingUp className="text-primary drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" size={18} strokeWidth={2.5} />
                     <h2 className="text-sm font-black text-foreground tracking-tighter uppercase italic">Magazine & Évolution</h2>
                 </div>
 
@@ -259,7 +259,7 @@ export default function HealthInsights() {
                                 <div className="flex justify-between items-end">
                                     <span className="text-2xl">{tip.image}</span>
                                     <div className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center shadow-sm">
-                                        <ArrowRight size={14} className="text-primary" />
+                                        <ArrowRight size={14} strokeWidth={2.5} className="text-primary drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +289,7 @@ export default function HealthInsights() {
                                 onClick={() => setShowAll(false)}
                                 className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:scale-110 active:scale-95 transition-all shadow-sm"
                             >
-                                <Zap size={20} fill="currentColor" />
+                                <Zap size={20} strokeWidth={2.5} fill="currentColor" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                             </button>
                         </div>
 
@@ -361,7 +361,7 @@ export default function HealthInsights() {
                                     </div>
                                     <div className="mt-4 flex justify-end">
                                         <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-foreground group-hover:bg-primary group-hover:text-white transition-all group-hover:translate-x-1 group-hover:animate-ripple">
-                                            <ArrowRight size={14} />
+                                            <ArrowRight size={14} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +374,7 @@ export default function HealthInsights() {
                                 onClick={() => setShowAll(false)}
                                 className="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black rounded-[1.5rem] shadow-xl shadow-emerald-600/20 active:scale-95 transition-all uppercase tracking-[0.2em] text-[11px] flex items-center justify-center gap-3 hover:translate-y-[-2px] hover:shadow-emerald-600/40"
                             >
-                                <BookOpen size={18} /> Revenir au Jardin
+                                <BookOpen size={18} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" /> Revenir au Jardin
                             </button>
                         </div>
                     </div>
@@ -397,7 +397,7 @@ export default function HealthInsights() {
                                 onClick={() => setSelectedTip(null)}
                                 className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:rotate-90 transition-all active:scale-90 z-20 hover:animate-heartbeat"
                             >
-                                <Zap size={18} fill="currentColor" />
+                                <Zap size={18} strokeWidth={2.5} fill="currentColor" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                             </button>
                         </div>
                         <div className="p-10 space-y-6 overflow-y-auto max-h-[60vh] custom-scrollbar bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm">
@@ -415,7 +415,7 @@ export default function HealthInsights() {
                                     onClick={() => setSelectedTip(null)}
                                     className="w-full py-5 bg-zinc-900 dark:bg-emerald-500 text-white font-black rounded-3xl shadow-2xl shadow-emerald-500/30 active:scale-95 transition-all uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 group"
                                 >
-                                    Fermer le guide <Sparkles size={14} className="group-hover:rotate-12 transition-transform" />
+                                    Fermer le guide <Sparkles size={14} strokeWidth={2.5} className="group-hover:rotate-12 transition-transform drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                                 </button>
                             </div>
                         </div>

@@ -267,12 +267,12 @@ function MapContent() {
                             onClick={() => router.back()}
                             className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-card rounded-xl shadow-xl border border-border/50 text-foreground active:scale-90 transition-transform"
                         >
-                            <ArrowLeft size={20} />
+                            <ArrowLeft size={20} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                         </button>
 
                         <div className="flex-1 relative group">
                             <div className="absolute inset-y-0 left-3.5 flex items-center text-primary">
-                                <Search size={18} />
+                                <Search size={18} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" />
                             </div>
                             <input
                                 type="text"
@@ -287,7 +287,7 @@ function MapContent() {
                             onClick={handleScan}
                             className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary rounded-xl shadow-xl shadow-primary/20 text-white active:scale-90 transition-transform"
                         >
-                            <Camera size={20} />
+                            <Camera size={20} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                         </button>
                     </div>
 
@@ -298,28 +298,28 @@ function MapContent() {
                                 onClick={() => setUserFilter('guard')}
                                 className={cn(
                                     "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
-                                    userFilter === 'guard' ? "bg-purple-600 text-white border-purple-500 shadow-purple-500/30" : "bg-card text-muted-foreground border-border/50"
+                                    userFilter === 'guard' ? "bg-purple-600 text-white border-purple-500 shadow-purple-500/30" : "bg-card text-foreground border-border/50"
                                 )}
                             >
-                                <ShieldAlert size={12} /> Garde
+                                <ShieldAlert size={12} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]" /> Garde
                             </button>
                             <button
                                 onClick={() => setSortBy('distance')}
                                 className={cn(
                                     "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
-                                    sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card text-muted-foreground border-border/50"
+                                    sortBy === 'distance' ? "bg-primary text-white border-primary" : "bg-card text-foreground border-border/50"
                                 )}
                             >
-                                <Locate size={12} /> Proche
+                                <Locate size={12} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]" /> Proche
                             </button>
                             <button
                                 onClick={() => setSortBy('price')}
                                 className={cn(
                                     "flex items-center gap-2 px-3 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all shadow-md border",
-                                    sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card text-muted-foreground border-border/50"
+                                    sortBy === 'price' ? "bg-emerald-600 text-white border-emerald-500" : "bg-card text-foreground border-border/50"
                                 )}
                             >
-                                <Zap size={12} /> Prix
+                                <Zap size={12} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]" /> Prix
                             </button>
                         </div>
 
@@ -385,7 +385,7 @@ function MapContent() {
                     onClick={() => setShowAssistance(true)}
                     className="w-10 h-10 flex items-center justify-center bg-red-500 text-white rounded-xl shadow-xl animate-pulse shadow-red-500/20 active:scale-95 transition-all"
                 >
-                    <AlertTriangle size={24} />
+                    <AlertTriangle size={24} strokeWidth={2.5} className="drop-shadow-[0_2px_3px_rgba(0,0,0,0.4)]" />
                 </button>
                 <button
                     onClick={() => requestLocation()}
@@ -394,13 +394,13 @@ function MapContent() {
                         isLocating ? "bg-primary text-white" : "bg-card text-primary border-border/50"
                     )}
                 >
-                    <Target size={22} />
+                    <Target size={22} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                 </button>
                 <button
                     onClick={() => setMapView(p => ({ ...p, pitch: p.pitch === 60 ? 0 : 60 }))}
                     className="w-10 h-10 flex items-center justify-center bg-card text-foreground rounded-xl shadow-xl border border-border/50 active:scale-95 transition-all"
                 >
-                    <Layers size={21} />
+                    <Layers size={21} strokeWidth={2.5} className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                 </button>
             </div>
 
@@ -421,12 +421,12 @@ function MapContent() {
                                         </span>
                                         <h3 className="text-xl font-black italic text-foreground tracking-tight">{selectedPharmacy.name}</h3>
                                     </div>
-                                    <p className="text-xs text-zinc-600 flex items-center gap-1">
-                                        <MapPin size={12} className="text-primary" /> {selectedPharmacy.location?.address || 'Localisation disponible'}
+                                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                                        <MapPin size={12} strokeWidth={2.5} className="text-primary drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" /> {selectedPharmacy.location?.address || 'Localisation disponible'}
                                     </p>
                                 </div>
-                                <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-zinc-100 rounded-full text-zinc-600">
-                                    <X size={20} />
+                                <button onClick={() => setSelectedPharmacy(null)} className="p-2 bg-secondary rounded-full text-foreground hover:bg-accent transition-colors">
+                                    <X size={20} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                                 </button>
                             </div>
 
@@ -457,7 +457,7 @@ function MapContent() {
                                     }}
                                     className="flex-[2] h-14 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3 uppercase tracking-widest text-xs active:scale-95 transition-transform"
                                 >
-                                    <NavigationIcon size={20} fill="currentColor" /> Itinéraire
+                                    <NavigationIcon size={20} strokeWidth={2.5} fill="currentColor" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" /> Itinéraire
                                 </button>
                                 <button
                                     onClick={() => router.push(`/pharmacy?id=${selectedPharmacy.id}`)}
@@ -503,7 +503,7 @@ function MapContent() {
                                         <h4 className="font-black text-sm text-foreground truncate mb-1 italic">{p.name}</h4>
                                         <div className="flex items-center justify-between text-[9px] text-muted-foreground font-black">
                                             <span className="flex items-center gap-1 italic uppercase tracking-tighter">
-                                                <Clock size={10} /> {getEstimatedTime(p.distance || 0)}
+                                                <Clock size={10} strokeWidth={2.5} className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" /> {getEstimatedTime(p.distance || 0)}
                                             </span>
                                             {p.foundProductPrice && (
                                                 <span className="text-emerald-500">{p.foundProductPrice} FCFA</span>
@@ -537,8 +537,8 @@ function MapContent() {
                 <div className="fixed inset-0 z-[100] bg-background animate-in slide-in-from-bottom duration-500 flex flex-col">
                     <div className="p-8 border-b border-white/5 flex items-center justify-between bg-card/50 backdrop-blur-xl">
                         <div className="flex items-center gap-4">
-                            <button onClick={() => setShowFullList(false)} className="w-12 h-12 flex items-center justify-center bg-secondary rounded-2xl">
-                                <X size={24} />
+                            <button onClick={() => setShowFullList(false)} className="w-12 h-12 flex items-center justify-center bg-secondary rounded-2xl hover:bg-accent transition-colors">
+                                <X size={24} strokeWidth={2.5} className="text-foreground drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                             </button>
                             <div>
                                 <h2 className="text-2xl font-black italic tracking-tighter">Liste des Pharmacies</h2>
@@ -572,7 +572,7 @@ function MapContent() {
                                         </div>
                                     </div>
                                 </div>
-                                <ChevronRight size={20} className="text-muted-foreground/30 group-hover:text-primary" />
+                                <ChevronRight size={20} strokeWidth={2.5} className="text-muted-foreground/50 group-hover:text-primary drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]" />
                             </div>
                         ))}
                     </div>

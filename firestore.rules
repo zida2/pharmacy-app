@@ -54,6 +54,32 @@ service cloud.firestore {
       allow read, update: if request.auth != null; // For now, all logged in can manage (dev mode)
     }
     
+    // 🏥 Clinics & Dentists & Insurance Providers (Public Write for Setup Phase)
+    match /clinics/{id} {
+      allow read: if true;
+      allow write: if true; 
+    }
+    match /dentists/{id} {
+      allow read: if true;
+      allow write: if true; 
+    }
+    match /insurance_providers/{id} {
+      allow read: if true;
+      allow write: if true; 
+    }
+
+    // 📅 Appointments
+    match /appointments/{appointmentId} {
+      allow create: if request.auth != null;
+      allow read, update: if request.auth != null && (resource.data.userId == request.auth.uid || resource.data.providerId == request.auth.uid);
+    }
+
+    // 📢 Reports
+    match /reports/{reportId} {
+      allow create: if true; // Allow anonymous reports
+      allow read, update: if request.auth != null; // Admin only usually
+    }
+
     // Default: Deny everything else
     match /{document=**} {
       allow read, write: if false; 

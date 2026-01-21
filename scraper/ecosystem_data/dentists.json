@@ -1,0 +1,137 @@
+[
+  {
+    "id": "osm_dentist_2739057475",
+    "type": "dentist",
+    "name": "centre buco dentaire",
+    "location": {
+      "lat": 12.2509585,
+      "lng": -2.3920044,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_3704487186",
+    "type": "dentist",
+    "name": "Horizon Dentaire",
+    "location": {
+      "lat": 12.3319262,
+      "lng": -1.5224652,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_5643694823",
+    "type": "dentist",
+    "name": "Residence Yoin",
+    "location": {
+      "lat": 14.025851,
+      "lng": -0.0332363,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11007227905",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 12.8248846,
+      "lng": -2.0096438,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11252720355",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 11.1968979,
+      "lng": -4.253813,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11252720356",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 11.1969576,
+      "lng": -4.2537542,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11252720357",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 11.196925,
+      "lng": -4.2537198,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11252720358",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 11.1968653,
+      "lng": -4.2537781,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_dentist_11252720363",
+    "type": "dentist",
+    "name": "Sans nom",
+    "location": {
+      "lat": 11.1969002,
+      "lng": -4.2537455,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  }
+]

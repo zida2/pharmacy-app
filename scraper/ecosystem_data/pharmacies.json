@@ -1,0 +1,5612 @@
+[
+  {
+    "id": "pharm_archanges_ouagadougou",
+    "type": "pharmacy",
+    "name": "Archanges",
+    "location": {
+      "lat": 12.3316752,
+      "lng": -1.5846717,
+      "address": "Pissy, Face à la station OTAM. Croisement rue 17.619 et rue Boassa, côté Ecole Adventiste Élysée.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22679200183",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_avenir_ouagadougou",
+    "type": "pharmacy",
+    "name": "Avenir",
+    "location": {
+      "lat": 12.3752224,
+      "lng": -1.4939591,
+      "address": "1296 av. BABANGUIDA face à la station Total",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625651071",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bang_poore_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bang-Pooré",
+    "location": {
+      "lat": 12.4227162,
+      "lng": -1.5400065,
+      "address": "Sect. 17 Tanghin devant Arb-Yaar derrière les rails à 100m du Collège Privé Protestant II",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625479686",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_baowendsom_ouagadougou",
+    "type": "pharmacy",
+    "name": "Baowendsom",
+    "location": {
+      "lat": 12.4034896,
+      "lng": -1.5774674,
+      "address": "Tampouy sur le nouveau goudron du collège Notre Dame de l'Espérance non loin de \"La Roche\"",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625414499",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_barkwende_ouagadougou",
+    "type": "pharmacy",
+    "name": "Barkwende",
+    "location": {
+      "lat": 12.3737293,
+      "lng": -1.6084504,
+      "address": "Arrdt 8, Sect 35, face à la cité de Rimkièta",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408590",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_beatitudes_ouagadougou",
+    "type": "pharmacy",
+    "name": "Beatitudes",
+    "location": {
+      "lat": 12.307367,
+      "lng": -1.528376,
+      "address": "Blvd. France-Afrique Ouaga 2000 en face de la cite Azimo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625374711",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_benaia_ouagadougou",
+    "type": "pharmacy",
+    "name": "Benaia",
+    "location": {
+      "lat": 12.3503395,
+      "lng": -1.4796989,
+      "address": "Katre-yaare ex secteur 29",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625372830",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bonheur_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bonheur",
+    "location": {
+      "lat": 12.3139852,
+      "lng": -1.5551909,
+      "address": "Bonheur Ville à 100 mètres de l’Eglise du 75ème anniversaire",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663738181",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_camille_ouagadougou",
+    "type": "pharmacy",
+    "name": "Camille",
+    "location": {
+      "lat": 12.3758268,
+      "lng": -1.4779569,
+      "address": "Av. Charles De Gaule - Hôtel des \u001fnances de Dassasgho",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22661801477",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_centre_ouagadougou",
+    "type": "pharmacy",
+    "name": "Centre",
+    "location": {
+      "lat": 12.3701112,
+      "lng": -1.5243046,
+      "address": "460, Av. de la nation collée à Telecel siège",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625311660",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_crystal_ouagadougou",
+    "type": "pharmacy",
+    "name": "Crystal",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Face à la nouvelle Mairie de l’Arrdt 9 ; vers Centre Medical DON ORIONE, sect 38",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22660460808",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_des_apotres_ouagadougou",
+    "type": "pharmacy",
+    "name": "Des Apotres",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Arrdt 12, Sect 52 non loin de l'Église catholique Notre Dame des Apôtres",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625380382",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_desa_ouagadougou",
+    "type": "pharmacy",
+    "name": "Desa",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tanghin, non loin de Hôtel Ricardo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625475050",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_diaby_ouagadougou",
+    "type": "pharmacy",
+    "name": "Diaby",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Face au Festival des Glaces à Koulouba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625335000",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_dominique_kabore_ouagadougou",
+    "type": "pharmacy",
+    "name": "Dominique Kaboré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "200 mètres du rond-point de la Pa\u001ee d’oie, sur le blvd des Martyrs (ou blvd France - Afrique)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625384884",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_el_wanogo_ouagadougou",
+    "type": "pharmacy",
+    "name": "El Wanogo",
+    "location": {
+      "lat": 12.3984754,
+      "lng": -1.4637411,
+      "address": "A côté du Marché de Wayalghin, non loin de la Clinique de l’EST",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625407022",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_elite_ouagadougou",
+    "type": "pharmacy",
+    "name": "Elite",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Yennega route de Yagma",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625419177",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_guuduma_ouagadougou",
+    "type": "pharmacy",
+    "name": "GUUDUMA",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670284860",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hosanna_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hosanna",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Fada en face du Lycée Naba Yemdé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625412648",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jober_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jober",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Pissy Secteur 6 (ex-sec. 17), en face du Château d’eau ONEA dit « Silmiraogo château ».",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625455175",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_katra_ouagadougou",
+    "type": "pharmacy",
+    "name": "Katra",
+    "location": {
+      "lat": 12.3469782,
+      "lng": -1.5030581,
+      "address": "Située à Kalgondé après la gare RAHIMO",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625372013",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_keneya_ouagadougou",
+    "type": "pharmacy",
+    "name": "Keneya",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Oumarou KANAZOE porte 734 côté ouest mur Lycée Municipal BAMBATA",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625468247",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kossodo_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kossodo",
+    "location": {
+      "lat": 12.4171874,
+      "lng": -1.473243,
+      "address": "En face de l’aba\u001eoir de Kossodo, après la BOA",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625356304",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lanibougna_ouagadougou",
+    "type": "pharmacy",
+    "name": "Lanibougna",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tanghin, quartier Nonghin, non loin de la Station Radar",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625480797",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lanzane_ouagadougou",
+    "type": "pharmacy",
+    "name": "Lanzané",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En face de l’Auto-Ecole Magni\u001fcat à la Zone Une (1)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625471065",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lendimi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Léndimi",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Sise à Balkuy non loin de Viva Hôtel sur la voie rouge",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663815918",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_les_champions_ouagadougou",
+    "type": "pharmacy",
+    "name": "Les champions",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A environ 100 mètres du marché de 14 Yaar",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22651001525",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_liberte_ouagadougou",
+    "type": "pharmacy",
+    "name": "Liberté",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "60 m de la station SHELL de la cité an III, en direction du marché Sankar-yaare",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625410131",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lina_ouagadougou",
+    "type": "pharmacy",
+    "name": "Lina",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Kwamé N’krumah non loin de la Banque Atlantique et du restaurant la Vitaa",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22673483565",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_magnificat_ouagadougou",
+    "type": "pharmacy",
+    "name": "Magnificat",
+    "location": {
+      "lat": 12.3288899,
+      "lng": -1.4764359,
+      "address": "Sect.50 Karpala, 1km après rue Sankara Inoussa, 300m du dernier six-mètre à gauche",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625412990",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_mare_ouagadougou",
+    "type": "pharmacy",
+    "name": "Maré",
+    "location": {
+      "lat": 12.3631848,
+      "lng": -1.5498232,
+      "address": "Gounghin, non loin du Stade du 4 août",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670615808",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_minitche_ouagadougou",
+    "type": "pharmacy",
+    "name": "Minitché",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Belleville non loin du rond-point de la transition.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22672257676",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_monderou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Monderou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Nonsin-face station OTAM rue Karamogo non loin du CSPS de Nonsin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625340528",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nanle_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nanlè",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Non loin de l’OCADES DIOCÉSAINE collé au maquis resto WAMIKMA à Cissin.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625477080",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_neerwaya_ouagadougou",
+    "type": "pharmacy",
+    "name": "Neerwaya",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tanghin, secteur 17, à 700m de Arb-Yaare",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663937373",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nouvelle_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nouvelle",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "200m côté est de Ciné BURKINA",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625346134",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_pelega_ouagadougou",
+    "type": "pharmacy",
+    "name": "Pelega",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Arrdt n°3, Av du Yatenga à 100m du rond-point de la Jeunesse",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625350501",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_rayib_tiga_ouagadougou",
+    "type": "pharmacy",
+    "name": "Rayib-Tiga",
+    "location": {
+      "lat": 12.4073949,
+      "lng": -1.5077501,
+      "address": "Av. Jean-Baptiste OUEDRAOGO 800m coté Nord de la Clinique Notre-Dame-de-la-Paix SOMGAMDE",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22665321153",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_rivage_ouagadougou",
+    "type": "pharmacy",
+    "name": "Rivage",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. du Kadiogo, 200m à l’Est de l’échangeur de l’Ouest, en face de l’agence ECOBANK de Gounghin.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625341939",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_bernard_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint Bernard",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Face à la trame d’accueil Ouaga 2000",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625451482",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_francois_dassise_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint François D'Assise",
+    "location": {
+      "lat": 12.3820165,
+      "lng": -1.4890606,
+      "address": "Zone du bois non loin de l'agence ONATEL.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625368585",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_jean_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint Jean",
+    "location": {
+      "lat": 12.342753,
+      "lng": -1.4937944,
+      "address": "Rue 30.240 Blvd. Tansoaba\u001d; bâtiment de ISDA, 500m de l’Hôpital de Bogodgo ex-CMA 30",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625370033",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_siloe_ouagadougou",
+    "type": "pharmacy",
+    "name": "Siloé",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Samandin ex Sect.07 Av. Bassawarga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625402746",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_song_taaba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Song Taaba",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "100m de la SONABEL Bendogo, Cité de l’avenir",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625366462",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tale_ouagadougou",
+    "type": "pharmacy",
+    "name": "Tale",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Bobo, entre les stations Total et Shell et le lycée Bethesda",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671620808",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tenedia_ouagadougou",
+    "type": "pharmacy",
+    "name": "Tenedia",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Kamboinsin en face des 2IE",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663930019",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tengandogo_ouagadougou",
+    "type": "pharmacy",
+    "name": "Tengandogo",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "100m après le tournant du CHU Tengandogo à droite avant la station TOTAL",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22601183382",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_trypano_ouagadougou",
+    "type": "pharmacy",
+    "name": "Trypano",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Derrière le Centre de Transfusion Sanguine (CNTS) Ouaga non loin de la Trypano",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625332941",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_la_laafi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend La Laafi",
+    "location": {
+      "lat": 12.3422993,
+      "lng": -1.5729105,
+      "address": "Quartier Pissy, Route de Bobo, en face de la Station Shell de Pissy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408066",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_lamita_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend lamita",
+    "location": {
+      "lat": 12.3810463,
+      "lng": -1.5503923,
+      "address": "Sect. n°8 avenue du Yatenga Face école Kologh-Naba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22678836341",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yathrib_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yathrib",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "200m du marché de Saaba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625402388",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_adadoua_ouagadougou",
+    "type": "pharmacy",
+    "name": "Adadoua",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Entre le CMA de Pissy et le Centre Médical Source de Vie (A 200 m du C.M. Source de Vie)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663883939",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_aeroport_ouagadougou",
+    "type": "pharmacy",
+    "name": "Aéroport",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Face à l’ASECNA à 500m de l’Aeroport International de Ouagadougou",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625314222",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_agora_rood_wooko_ouagadougou",
+    "type": "pharmacy",
+    "name": "Agora-Rood Wooko",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Marché Rood Wooko, face à DIACFA Librairie",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22657844749",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_amaro_ouagadougou",
+    "type": "pharmacy",
+    "name": "Amaro",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. du Kadiogo Gounghin Petit Paris entre le service passeport et le pont Kadiogo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625343328",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_amina_ouagadougou",
+    "type": "pharmacy",
+    "name": "Amina",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625367665",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ar_rahma_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ar-rahma",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Yatenga à Tampouy, face à la Caisse Populaire",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625350986",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_augustine_ouagadougou",
+    "type": "pharmacy",
+    "name": "Augustine",
+    "location": {
+      "lat": 12.327115,
+      "lng": -1.5000203,
+      "address": "Sise à Ouaga 2000 à environ 300m de l’échangeur en partance vers le monument des martyres",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625376100",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bao_neere_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bao Neeré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Marché de Rimkieta en face de la station S.K.I.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625458888",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_boulmiougou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Boulmiougou",
+    "location": {
+      "lat": 12.3328999,
+      "lng": -1.5829698,
+      "address": "Arrdt n°6, Sect 27, 166 rue de Boassa, Pissy à 200m du Complexe Scolaire Sainte-Famille",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625431268",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_cathedrale_ouagadougou",
+    "type": "pharmacy",
+    "name": "Cathédrale",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "38, Av de la cathédrale, coté Ouest de la cathédrale, face à la station TOTAL",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625312807",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_cite_an_3_ouagadougou",
+    "type": "pharmacy",
+    "name": "Cité An 3",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Larlé, en face de la maternité Pogbi (du Centre Médical Urbain )",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625331966",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_danouma_ouagadougou",
+    "type": "pharmacy",
+    "name": "Danouma",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Bonheur Ville à 300 mètres du rond-point de la Transition",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625395554",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_dapoya_ouagadougou",
+    "type": "pharmacy",
+    "name": "Dapoya",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Dapoya, face immeuble acimex, Sankar-yaare",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625313201",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_delwinde_ouagadougou",
+    "type": "pharmacy",
+    "name": "Delwindé",
+    "location": {
+      "lat": 12.4011373,
+      "lng": -1.4721023,
+      "address": "Sect. 42 de l'Arrdt. 10, à 700m de l'échangeur de l’EST (Kossodo) RN3",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625367280",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_denisa_ouagadougou",
+    "type": "pharmacy",
+    "name": "Denisa",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Secteur 14 komsilga non loin du CHU de Tengandogo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671827660",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_faso_ouagadougou",
+    "type": "pharmacy",
+    "name": "Faso",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Blvd France - Afrique à 300m de l’agence BOA France Afrique, Pa\u001fe-d’oie",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625381929",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_flayiri_ouagadougou",
+    "type": "pharmacy",
+    "name": "Flayiri",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Station Petrofa ZAD",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625407344",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hamdalaye_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hamdalaye",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Hamdalaye près du marché du 10 Yaar",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625343694",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hanniel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hanniel",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Arrdt 10, sect. 43 non loin du rond point sur le goudron qui va du marché de Saaba à Balkuy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625366020",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hope_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hope",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de fada, Nioko 1, Saaba en allant vers la Consolatrice",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671142222",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_horizon_ouagadougou",
+    "type": "pharmacy",
+    "name": "Horizon",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Cité Azimmo Ouaga 2000, 50mètres de l’hotel AKENON",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22673170606",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jabneel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jabnéel",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route Côté Sud SONABEL Bendogo à 700M",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625366601",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jireh_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jireh",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Non loin de l’ecole primaire Naaba YANDFO",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625652139",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_joriel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Joriel",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Cité de Bassinko sortie Nord du Grand rond-point de la cité de Bassinko",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625489898",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jourdain_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jourdain",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Blvd Tansoba, 100m de l’hôpital pédiatrique",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625360686",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_karpala_ouagadougou",
+    "type": "pharmacy",
+    "name": "Karpala",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route CFAO-KARPALA (Hopital ex-Sect 30)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625371414",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ko_viiga_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ko-Viiga",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Sis à Rimkieta, secteur 35 à gauche non loin de la paroisse saint Augustin de Bissighin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625663333",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_koulouba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Koulouba",
+    "location": {
+      "lat": 12.366555,
+      "lng": -1.509623,
+      "address": "Koulouba à 200m côté Ouest du marché de Boins-Yaaré",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625311918",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_koumajer_ouagadougou",
+    "type": "pharmacy",
+    "name": "Koumajer",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Non loin du Palais de Justice de Karpala",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625402020",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_les_lauriers_ouagadougou",
+    "type": "pharmacy",
+    "name": "Les Lauriers",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Karpala sur la voie des Pylônes non loin de la Cave Simporé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625483755",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_marlass_ouagadougou",
+    "type": "pharmacy",
+    "name": "Marlass",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tanghin sect. 17, après Arbr Yaar en face de la boulangerie Fatim",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22678550052",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_martin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Martin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. de la Dignité, non loin de la radio SAVANE FM",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625508459",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_meira_ouagadougou",
+    "type": "pharmacy",
+    "name": "Meira",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Nioko 2 non loin du marché, route de Ziniaré, à 500m de la Station Total",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625651246",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_meteba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Meteba",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Ex Sect. 23 quartier Tanghin 365 rue JEAN-PAUL II",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625335333",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_mitspah_ouagadougou",
+    "type": "pharmacy",
+    "name": "Mitspah",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Située au secteur 42 à Bendogo sur la rue Kondo Noom",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625458585",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nayyira_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nayyira",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Katre Yaar après la gare de taxis",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663784444",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_neima_ouagadougou",
+    "type": "pharmacy",
+    "name": "Neima",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Toukin Yaar, quartier Somgandé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625655682",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nemadis_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nemadis",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue Bogodogo à 500m du Rond point SANDOF en direction de SOGEL B (vers le SIAO)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625480966",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_primsante_ouagadougou",
+    "type": "pharmacy",
+    "name": "Prim'santé",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22677557812",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_progres_ouagadougou",
+    "type": "pharmacy",
+    "name": "Progrès",
+    "location": {
+      "lat": 12.3437164,
+      "lng": -1.5686962,
+      "address": "Pissy, route de Bobo, face à UBIPHARM",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625430162",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_rakismanegre_ouagadougou",
+    "type": "pharmacy",
+    "name": "Rakismanegré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Non loin du Chateau d’eau de Tampouy, sur la voie de la nouvelle mairie de l’arrdt 9",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22662505818",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_joseph_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint Joseph",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "RN2 - Route de Ouahigouya derrière la CNSS de Kilwin, dans le prolongement nord de la Sation SOGELB",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625465508",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sainte_veronique_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sainte Véronique",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En face du marché de Zagtouli sur la route CIMAT",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22663260404",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_samandin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Samandin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. du MOGHO NAABA non loin de l’église Jean XXIII",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22603385757",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sangoule_lamizana_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sangoulé Lamizana",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Yennega à côté de Marina Market centre Ville",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625411300",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_schifeyi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Schifeyi",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Non loin du blvd de la Jeunesse vers le foyer du Sapeur Pompier du camp Sangoulé Lamizana",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625402742",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sig_noghin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sig-Noghin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Naaba Ziiwendé 150m du rond point de Rimkieta",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625350977",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sigri_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sigri",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "2828 Av. du Conseil de l’Entente Gounghin, non loin de la station Total et Marina Market",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625412148",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_somketa_ouagadougou",
+    "type": "pharmacy",
+    "name": "Somketa",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Kamboinsin, 100m avant la BAC de Kamboisin RN 22",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625658273",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sud_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sud",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Centre Commercial Ouaga 2000 à côté de l’Hotel Libya",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625384282",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_talba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Talba",
+    "location": {
+      "lat": 12.3762421,
+      "lng": -1.4909633,
+      "address": "Av. Charles De Gaulle, face au Scolasticat, Zogona",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625362225",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tanko_ouagadougou",
+    "type": "pharmacy",
+    "name": "Tanko",
+    "location": {
+      "lat": 13.086559,
+      "lng": -1.086778,
+      "address": "Face au CMA Paul VI sur la route de Kamboinsé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625659340",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ti_bangre_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ti-Bangré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Bobo (National nº1) à l’entrée du pont de Boulmiougou , Pissy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625454595",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_univers_ouagadougou",
+    "type": "pharmacy",
+    "name": "Univers",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Voie principale Saaba, à 500m de la Prefecture",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625419965",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_viim_ouagadougou",
+    "type": "pharmacy",
+    "name": "Viim",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "100 mètres du Centre Médical de Nagrin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22601928888",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_vincent_de_paul_ouagadougou",
+    "type": "pharmacy",
+    "name": "Vincent de Paul",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Située en face de l’alimentation SOMDARA, à env. 150 m du lycée Bangre Yiguia à la Zone 1",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22602047777",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wati_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wati",
+    "location": {
+      "lat": 12.3443667,
+      "lng": -1.5405179,
+      "address": "Cissin à 200m de l’école de Santé St Edwige",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625385292",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yobi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yobi",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A 200m de la Gendarmerie de Paspanga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625311630",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_zidou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Zidou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Balkuy, en face de l’immeuble Yelhi",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22661078860",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_aimevo_ouagadougou",
+    "type": "pharmacy",
+    "name": "Aïmèvo",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En Face de la Mairie de Karpala (Arrdt. 11) env. 20m après le Chateau de l’ONEA",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625393699",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_arzouma_ouagadougou",
+    "type": "pharmacy",
+    "name": "Arzouma",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Pissy, à 100m de la clinique du Plateau, non loin de la salle de ciné de Pissy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625480153",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ave_maria_ouagadougou",
+    "type": "pharmacy",
+    "name": "Avé Maria",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Karpala non loin de la Station Oryx et eau OCÉAN",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625479888",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_balkuy_ouagadougou",
+    "type": "pharmacy",
+    "name": "Balkuy",
+    "location": {
+      "lat": 12.4644944,
+      "lng": -3.4609729,
+      "address": "Route de Pô, non loin de la Station Total",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625375136",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_baraka_ouagadougou",
+    "type": "pharmacy",
+    "name": "Baraka",
+    "location": {
+      "lat": 12.3786779,
+      "lng": -1.5396613,
+      "address": "Côté Est de la Cours du Ouidi Naaba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625330272",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_belle_ville_ouagadougou",
+    "type": "pharmacy",
+    "name": "Belle ville",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Komsilga / BRAFASO / 75e Anniversaire AD",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408414",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_blessing_ouagadougou",
+    "type": "pharmacy",
+    "name": "Blessing",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Après le rond point de la Transition à 200m du maquis Ka La Gabon",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22601759975",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_carrefour_ouagadougou",
+    "type": "pharmacy",
+    "name": "Carrefour",
+    "location": {
+      "lat": 12.3677055,
+      "lng": -1.5309441,
+      "address": "En face du rond point du 2 octobre et du lycée Marien Gouabi",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625332310",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_charis_ouagadougou",
+    "type": "pharmacy",
+    "name": "Charis",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Cité relais de Zagtouli, route de bobo après le complexe scolaire Saint Justin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625439091",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_christvi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Christvi",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Après le Marché de Bétail en direction de l’échangeur du Nord, avant le feu tricolor, quartier Tanghin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625485959",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_concorde_ouagadougou",
+    "type": "pharmacy",
+    "name": "Concorde",
+    "location": {
+      "lat": 12.3657673,
+      "lng": -1.5183549,
+      "address": "Av. Kwame N'krumah non loin de Zabre Daaga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625312949",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_coura_ouagadougou",
+    "type": "pharmacy",
+    "name": "Coura",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "200m côté ouest du rond-point des Droits Humains",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625388390",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_djabal_ouagadougou",
+    "type": "pharmacy",
+    "name": "Djabal",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Kamsonghin secteur 6, Av Ouezzin Coulibaly (entre la zone Zaca et le château du Mogho Naba)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625300576",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_djimbia_ouagadougou",
+    "type": "pharmacy",
+    "name": "Djimbia",
+    "location": {
+      "lat": 12.401461,
+      "lng": -1.5142148,
+      "address": "400m après le rond-point du Rotary, Tanghin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22678836274",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_dunia_ouagadougou",
+    "type": "pharmacy",
+    "name": "Dunia",
+    "location": {
+      "lat": 12.3593046,
+      "lng": -1.4951501,
+      "address": "Avenue des Arts/ face au rond-point des Artistes ex sect. 14, 1200 logts",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625362051",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ecoles_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ecoles",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue des écoles à Paspanga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625315232",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_fabere_ouagadougou",
+    "type": "pharmacy",
+    "name": "Faberé",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Arrdt 9, voie de Avé Maria en allant au château d'eau à 200m du complexe scolaire la Sagesse",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625410575",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_galiam_ouagadougou",
+    "type": "pharmacy",
+    "name": "Galiam",
+    "location": {
+      "lat": 12.3996961,
+      "lng": -1.566242,
+      "address": "Tampouy, route de la mairie de Sig-Nonghin, non loin du rond point de la Cité AZIMO",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625653165",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_georgette_ouagadougou",
+    "type": "pharmacy",
+    "name": "Georgette",
+    "location": {
+      "lat": 12.4102792,
+      "lng": -1.6323174,
+      "address": "Bassinko, route de Ouahigouya, à côté de la boulangerie Baraka",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625500528",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hamamickely_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hamamickely",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Somgandé à 300m du CSPS du Sect. 19 (ex sect 25) Arrdt 4",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22673783299",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_independance_ouagadougou",
+    "type": "pharmacy",
+    "name": "Independance",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "416, av. du président Lamizana face à Hotel AZALAï",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625376871",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jeunesse_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jeunesse",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Blvd de la Jeunesse, Hamdalaye à 200m de l’hippodrome",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625343504",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kamboinsin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kamboinsin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Face du Centre Éme\u001feur de KAMBOINSIN",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22662574949",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kamin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kamin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Sect. 06 Gounghin, côté est du marché de Gounghin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625343028",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kilwin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kilwin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Ouahigouya, côté station Shell, face à Toecin Yaar, Tampouy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625508462",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_la_famille_ouagadougou",
+    "type": "pharmacy",
+    "name": "La famille",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Pissy, Sect. 12 Arrdt 3, à 500 m de Chic Hotel.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625430685",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_la_sainte_trinite_ouagadougou",
+    "type": "pharmacy",
+    "name": "La Sainte Trinité",
+    "location": {
+      "lat": 12.3685354,
+      "lng": -1.4883668,
+      "address": "Wemtenga à côté de la Caisse Populaire Song-Taaba de Dagnoen",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625412646",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_naab_raga_ouagadougou",
+    "type": "pharmacy",
+    "name": "Naab Raga",
+    "location": {
+      "lat": 12.3524179,
+      "lng": -1.531649,
+      "address": "Samandin, Avenue Oumarou KANAZOE à 100m du marché de Naab Raga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670143977",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_naaba_koom_ouagadougou",
+    "type": "pharmacy",
+    "name": "Naaba-Koom",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "200m de la Clinique Notre-Dame-de-la-Paix",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625483334",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nagrin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nagrin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Saponé avant l‘hôpital Blaise Compaoré",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625469048",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ninrwa_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ninrwa",
+    "location": {
+      "lat": 12.4052066,
+      "lng": -1.456637,
+      "address": "Route Benogo - Kossodo (Av Colonel A. Michel OUEDRAOGO) Bogodogo à 400m du marché",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625418038",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nonsin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nonsin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Nonsin, route de Rimkieta à 50m du Rond-Point des Rails",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625417776",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_noom_wende_ouagadougou",
+    "type": "pharmacy",
+    "name": "Noom-Wendé",
+    "location": {
+      "lat": 12.319006,
+      "lng": -1.5379561,
+      "address": "Rue Liwaga, après le lycée UNIVERSALIS en allant à Pissy.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22601251717",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_pierre_tapsoba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Pierre Tapsoba",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Saaba à 100m de la station OTAM",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22652117438",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_pissy_ouagadougou",
+    "type": "pharmacy",
+    "name": "Pissy",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Côté Est CMA de Pissy",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625431335",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_renaissance_ouagadougou",
+    "type": "pharmacy",
+    "name": "Renaissance",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A 150 m du rond-point de la Pate d'Oie route de Pag La Yiri juste après la CNSS",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22668911010",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saaba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saaba",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En face du Lycée Notre Dame des Victoires",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408699",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sacre_cur_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sacre Cœur",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Simon Compaoré, à 500m du lycée Mixte de Gounghin, en partant vers Watam Kaiser",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625346060",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_lazare_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint Lazare",
+    "location": {
+      "lat": 12.3685791,
+      "lng": -1.4997016,
+      "address": "1200 logts, à côté du Pont (du Canal) de Boins Yaare",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625368648",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_michel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Saint Michel",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rimkiéta non loin de la phcie Barkwendé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625454808",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sante_vitalite_ouagadougou",
+    "type": "pharmacy",
+    "name": "Santé-vitalité",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue WARABA, 500m après la cité de l’ ASECNA en qui\u001fant le boulevard France-Afrique",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625409413",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_savane_ouagadougou",
+    "type": "pharmacy",
+    "name": "Savane",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A 500m de l’école des Douanes coté Nord",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670850161",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_seneve_ouagadougou",
+    "type": "pharmacy",
+    "name": "Seneve",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Wayalghin à 50m de la cour de l’ex premier ministre PARAMANGA ERNEST YONLI",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22660121273",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_taoko_ouagadougou",
+    "type": "pharmacy",
+    "name": "Taoko",
+    "location": {
+      "lat": 12.3877702,
+      "lng": -1.4784469,
+      "address": "Blvd Tansoba, à 500m de l’échangeur de l’Est",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625366927",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_teranga_ouagadougou",
+    "type": "pharmacy",
+    "name": "Téranga",
+    "location": {
+      "lat": 12.3817592,
+      "lng": -1.4934187,
+      "address": "13 avenue Babanguida, Zogona",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625360970",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tiyele_ouagadougou",
+    "type": "pharmacy",
+    "name": "Tiyele",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue 28. 284, secteur 43 non loin du lycée Ste Colle\u001fe",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22664364636",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wayalghin_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wayalghin",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En Face du mur du camp CRS, vers ANTBA (en venant de la MACO tourner à gauche après l’ENAREF)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625395208",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_denda_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend Denda",
+    "location": {
+      "lat": 12.3768378,
+      "lng": -1.5439292,
+      "address": "Sect. 9, quartier Ouidi, Avenue Yatenga, entre la station Total de Larlé et ECOBANK Ouidi",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671509492",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yempabou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yempabou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "RN3, à 500m du marché de Nioko 2, même alignement que la Boulangerie Koom",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625394061",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yennenga_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yennenga",
+    "location": {
+      "lat": 12.35118,
+      "lng": -1.4880845,
+      "address": "Blvd Tansoba face à la mairie de BOGODOGO",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625370337",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_zone_i_ouagadougou",
+    "type": "pharmacy",
+    "name": "Zone I",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "À 200m du marché de la Zone 1",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625481513",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_zoungrana_ouagadougou",
+    "type": "pharmacy",
+    "name": "Zoungrana",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Sect. 17 Tanghin rue 23/125 à côté de la boulangerie Wend konta.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625409875",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_1200_logements_ouagadougou",
+    "type": "pharmacy",
+    "name": "1200 Logements",
+    "location": {
+      "lat": 12.3668409,
+      "lng": -1.4938745,
+      "address": "Av. Babanguida face au CM St Camille",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625360252",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_adama_ouagadougou",
+    "type": "pharmacy",
+    "name": "Adama",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En face du Marché de Pissy non loin de la Caisse Populaire",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22662337777",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_afiya_ouagadougou",
+    "type": "pharmacy",
+    "name": "Afiya",
+    "location": {
+      "lat": 12.3553431,
+      "lng": -1.4688761,
+      "address": "Zone 1 à 300m du Lycée Badenya, face au non loti",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22666117365",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_amitie_miyougou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Amitié Miyougou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Boulevard de la circulaire, sect. 25 Cissin, à 200m du marché de Paagla yiri",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625385236",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_angele_ouagadougou",
+    "type": "pharmacy",
+    "name": "Angele",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tampouy côté sud du Centre Médical Paul VI, face au monument des Martyrs.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625350717",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bassinko_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bassinko",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Bassinko à 50 m du CSPS de Bassinko Village",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625417150",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bedjou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bedjou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Sanyiri, non loin du CSPS Major, derrière le GIGN.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625475825",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bethania_ouagadougou",
+    "type": "pharmacy",
+    "name": "Bethania",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av.Oumarou KANAZOE coté Est CBC",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625313141",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_choukroullah_ouagadougou",
+    "type": "pharmacy",
+    "name": "Choukroullah",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "300m du Centre Médical de Nagrin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625409376",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_circulaire_sede_ouagadougou",
+    "type": "pharmacy",
+    "name": "Circulaire Sède",
+    "location": {
+      "lat": 12.3325736,
+      "lng": -1.5166729,
+      "address": "ex Sect. 15 face à la Station TOTAL Ouaga-inter",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625476127",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_de_lalliance_ouagadougou",
+    "type": "pharmacy",
+    "name": "De l'Alliance",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rimkieta à 50 mètres du Lycée Général Kadiogo III",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22666063539",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_de_lhippodrome_ouagadougou",
+    "type": "pharmacy",
+    "name": "De l'Hippodrome",
+    "location": {
+      "lat": 12.375924,
+      "lng": -1.5573961,
+      "address": "116 boulevard Tensoba Bugum, côté est de l’hippodrome de Nonsin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625340232",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_diawara_ouagadougou",
+    "type": "pharmacy",
+    "name": "Diawara",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue du grand marché- centre ville coté LONAB",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625306168",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_el_shaddai_ouagadougou",
+    "type": "pharmacy",
+    "name": "El Shaddai",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Benogo à 100 mètres du Pont Ana na yélé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625410002",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_espoir_ouagadougou",
+    "type": "pharmacy",
+    "name": "Espoir",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Larle face à la maison des jeunes",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625315412",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_fraternite_ouagadougou",
+    "type": "pharmacy",
+    "name": "Fraternité",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "100m de ENAREF, côté ECOBANK",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625364800",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_gare_ouagadougou",
+    "type": "pharmacy",
+    "name": "Gare",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "103 rue des Douanes côté nord UBA Siège",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625316206",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_gemme_ouagadougou",
+    "type": "pharmacy",
+    "name": "Gemme",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Cité AZIMMO Tampouy en face du Lycée Privé Pang Ya Wendé",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22662705050",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hambila_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hambila",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "RN4 - Route de fada dans la cité de la nouvelle génération de Abdoul Service International à Borgho",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22602535757",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hamid_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hamid",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route Nationale nº1 (RN1) en face de la SONAPOST de Zagtouly",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22679613172",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hanahim_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hanahim",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Zone de Saaba non loin du Rond point de l’ONEA route de Fada",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625395438",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hopital_ouagadougou",
+    "type": "pharmacy",
+    "name": "Hôpital",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A côté de l’Hopital Yalgado Ouedraogo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625306641",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_iris_ouagadougou",
+    "type": "pharmacy",
+    "name": "Iris",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "A 500m du rond point de la transition 1ère sortie sur la route du Commissariat Arrdt 7",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625469925",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jean_paul_ii_ouagadougou",
+    "type": "pharmacy",
+    "name": "Jean Paul II",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Tanghin face à Arb - Yaar sect. 17",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625418154",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kadiogo_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kadiogo",
+    "location": {
+      "lat": 12.3603046,
+      "lng": -1.5172985,
+      "address": "1207, avenue Kwamé N’krumah, immeuble CNSS\u001f; Face à Coris Bank siège",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625318788",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kamalia_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kamalia",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Quartier Balkuy, non loin de la résidence du Balkuy Naaba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22679074266",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kawsar_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kawsar",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Karpala à 600m de la division \u001escale (impôts)",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22673207787",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kouma_ouagadougou",
+    "type": "pharmacy",
+    "name": "Kouma",
+    "location": {
+      "lat": 12.3130946,
+      "lng": -1.5289169,
+      "address": "Boulevard France-Afrique Ouaga 2000, à 100m de Ouaga FM",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625474343",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_la_croix_ouagadougou",
+    "type": "pharmacy",
+    "name": "La Croix",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Gounghin, En face du LNBTP, à côté de ESCO-IGES",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625341264",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_la_roche_ouagadougou",
+    "type": "pharmacy",
+    "name": "La Roche",
+    "location": {
+      "lat": 12.3162047,
+      "lng": -1.5151577,
+      "address": "TAMPOUY, (arrt 3, sect. 15) en face du groupe scolaire NAA-TOUGOULE, Ex Nakeb-Zanga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625395132",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lalle_ouagadougou",
+    "type": "pharmacy",
+    "name": "Lallé",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Pierre Claver BADEMBIE NEZIEN, 50m du feu tricolore, Kouritenga",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22679070622",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_le_rocher_ouagadougou",
+    "type": "pharmacy",
+    "name": "Le Rocher",
+    "location": {
+      "lat": 12.3162047,
+      "lng": -1.5151577,
+      "address": "Rue séparant Ouaga 2000 et Pa\u001de d’oie à 1km de la Mosquée KANAZOE",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408387",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_les_graces_ouagadougou",
+    "type": "pharmacy",
+    "name": "Les Grâces",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. de la concorde nationale, secteur 17 Tanghin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22660808077",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_louis_pasteur_ouagadougou",
+    "type": "pharmacy",
+    "name": "Louis Pasteur",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Dapoya à 400m de l’Église catholique",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625335867",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_maignon_ouagadougou",
+    "type": "pharmacy",
+    "name": "Maignon",
+    "location": {
+      "lat": 12.3505338,
+      "lng": -1.5264106,
+      "address": "Av. Bassawarga Kamsonghin face au CM de Samandin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22678836136",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_misericorde_ouagadougou",
+    "type": "pharmacy",
+    "name": "Miséricorde",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Dassasgho, coté nord de l’Eglise de Karambiri à 300 mètres",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625652264",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_musee_ouagadougou",
+    "type": "pharmacy",
+    "name": "Musée",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Blvd Tansoba côté est du Mur du Musée National",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625366841",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_natilge_ouagadougou",
+    "type": "pharmacy",
+    "name": "Natilgé",
+    "location": {
+      "lat": 12.3624307,
+      "lng": -1.481346,
+      "address": "Blvd Tansoaba Waonre, en face du feu tricolore de l’IDS",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625372800",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nioko_i_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nioko I",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Naaba Yemdé non loin de la Clinique Secours Dentaire Internationale",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22661977048",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nongui_ouagadougou",
+    "type": "pharmacy",
+    "name": "Nongui",
+    "location": {
+      "lat": 12.3845751,
+      "lng": -1.5749971,
+      "address": "Tampouy vers l’école Toecin",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625408488",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ouedraogo_remi_ouagadougou",
+    "type": "pharmacy",
+    "name": "Ouédraogo Remi",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. des Tansoba KIEMA, sous l'immeuble résidence Alice face à la SONABEL Zad",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625371652",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_pingdba_ouagadougou",
+    "type": "pharmacy",
+    "name": "Pingdba",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Dérrière la pédiatrie Charles De Gaulle, Route de 14 Yaar non loin de la Nouvelle Mairie de l’Arrdt 10",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22678379381",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_principale_ouagadougou",
+    "type": "pharmacy",
+    "name": "Principale",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. Pascal ZAGRE Ouaga 2000, côté feux tricolores Présidence du Faso, non loin de TV BF1",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625375415",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_providence_ouagadougou",
+    "type": "pharmacy",
+    "name": "Providence",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Larlé, à 200m de la gare STAF",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625318648",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_rima_ouagadougou",
+    "type": "pharmacy",
+    "name": "Rima",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Kamboinsin, sur La route de Pazani",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22650610707",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_rimkieta_ouagadougou",
+    "type": "pharmacy",
+    "name": "Rimkiéta",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "RIMKIETA, face à la maison des jeunes et de la culture, non loin du grand rond-point vers l'école de police",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671509436",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sahel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sahel",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Av. du Président Sangoulé LAMIZANA. Koulouba sur alignement du siège de ORANGE",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625318195",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sainte_odile_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sainte Odile",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Côté Est de la Cave Simpore à Karpala en allant vers Rayongo.",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22651697777",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sira_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sira",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Bobo, 100m de la Mairie de Boulmiougou",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625431778",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_somgande_ouagadougou",
+    "type": "pharmacy",
+    "name": "Somgandé",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Cité Socogib Somgandé à 200m de la boulangerie Wend Konta",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670143925",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sondogo_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sondogo",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Rue BOASSA devant le CSPS de Sondogo",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22671818084",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sotisse_ouagadougou",
+    "type": "pharmacy",
+    "name": "Sotisse",
+    "location": {
+      "lat": 12.3971219,
+      "lng": -1.4685073,
+      "address": "Quartier Wayalguin à côté de la Clinique de l’Est",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22670143975",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_unite_ouagadougou",
+    "type": "pharmacy",
+    "name": "Unité",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Gounghin, Près de l'échangeur de l'ouest face au Jardin le Challenge",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625402757",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_venegre_ouagadougou",
+    "type": "pharmacy",
+    "name": "Vénégré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Arrdt 6 non loin de la Clnique EL Fateh Suka",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625430587",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_vidal_bafa_ouagadougou",
+    "type": "pharmacy",
+    "name": "Vidal Bafa",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Avenue Oumarou Kanazoé, Sect 7, près de l’école de l’Onatel",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625315288",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_viel_ouagadougou",
+    "type": "pharmacy",
+    "name": "Vièl",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Kamboincé , Porte des soeurs après CMA PAUL VI",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22652342852",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_kuuni_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend Kuuni",
+    "location": {
+      "lat": 12.3755238,
+      "lng": -1.4875664,
+      "address": "Blvd Charles De Gaulle non loin de la mosquée de l’AEEMB",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22605239017",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_yam_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend Yam",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route de Ouahigouya, à la \u001en des 2 voies, à 500m du marché de bétail",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22673218479",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wend_zinkre_ouagadougou",
+    "type": "pharmacy",
+    "name": "Wend Zinkré",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "En face de la nouvelle Mairie de Saaba",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625465424",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yan_marou_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yan-marou",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Marcoussis à 200m du grand Rond-point",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22625465006",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yentema_ouagadougou",
+    "type": "pharmacy",
+    "name": "Yentema",
+    "location": {
+      "lat": 12.3656,
+      "lng": -1.5339,
+      "address": "Route CHU Tingandogo à côté de la Cave du Sud",
+      "city": "Ouagadougou"
+    },
+    "phone": "+22656560000",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_aoudi_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Aoudi",
+    "location": {
+      "lat": 11.1632288,
+      "lng": -4.2924322,
+      "address": "Bolmakoté, face Sapeurs Pompiers",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620981898",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_belleville_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Belleville",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Route de l’INSSA, à côté du petit marché Belle-ville",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620982200",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bethel_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Bethel",
+    "location": {
+      "lat": 11.184057,
+      "lng": -4.3212033,
+      "address": "Sect. 21 (Colsama) à 100m du temple Bethel",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620973759",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_colombe_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Colombe",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect 11, Colma, route Dédougou à 200m de Wend-Konta",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22602757240",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_diyama_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Diyama",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Section 25 côté Sud OCADES",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22670172823",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_esperance_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Esperance",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Bindougousso à 200m de Maderssa Salam",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620974717",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_fanyansa_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Fanyansa",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Av. Nelson Mandela à 100m du centre des jeunes de Ouezzin-ville",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971480",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_harmonie_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Harmonie",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Lafiabougou, route de Orodara",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970717",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jolean_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Jolean",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 22, entre le plateau Yêguéré et CMA 22",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620982120",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kiri_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Kiri",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Face CSPS de KIRI, sect 23",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22652732020",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_levant_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Levant",
+    "location": {
+      "lat": 11.1727733,
+      "lng": -4.3030017,
+      "address": "Sikasso Sira route camp miltaire Ouezzin Coulibaly",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970333",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_orlea_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Orlea",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 19, zone industrielle port sec, route de Banfora",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22625392533",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_remedis_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Remedis",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 05 entre Maison de la culture et place de la femme",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970952",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_moderne_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Moderne",
+    "location": {
+      "lat": 11.1772549,
+      "lng": -4.2981744,
+      "address": "Sect. 05 entre Maison de la culture et place de la femme",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970250",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sala_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sala",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Colma, route de Bo o 2010 à 200 m des rails",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971889",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sibiri_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sibiri",
+    "location": {
+      "lat": 11.1691325,
+      "lng": -4.2509468,
+      "address": "Sect. 25, route de Ouaga, collé à la Pyramide",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620977902",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_wobi_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Wobi",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Av. de la République face Ex gare de SOGEBAF",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620973697",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_aeroport_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Aeroport",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Face à la Brakina",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620975014",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bolibana_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Bolibana",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Non loin WEND-Konta cité relais sect23",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620965096",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_boulevard_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Boulevard",
+    "location": {
+      "lat": 11.1836448,
+      "lng": -4.2851032,
+      "address": "Face à TSR",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620973000",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_christ_roi_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Christ-Roi",
+    "location": {
+      "lat": 11.1767541,
+      "lng": -4.2484981,
+      "address": "Sect 24, à 300m du CSPS de Kua",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620955853",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_djam_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Djam",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect 29 à côté de l’INSSA",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22657-04-78-85",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_dinie_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Dinie",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Kodéni, route de Banfora à 100 m de la station Oryx",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22656898912",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_djena_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Djena",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Av. Nelson Mandela, Ouezzin Ville",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620983798",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_havvah_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Havvah",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "A côté de Burkina secours sect24",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620957598",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_houet_nouvelle_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Houet Nouvelle",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 1 à côté de la Direction de la SOFITEX",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620955308",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kone_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Kone",
+    "location": {
+      "lat": 11.1380721,
+      "lng": -4.2827028,
+      "address": "A côté du Tribunal du Commerce sect18",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620957695",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lafia_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Lafia",
+    "location": {
+      "lat": 11.2148538,
+      "lng": -4.3098723,
+      "address": "Yeguere coura route Bobo 2010",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620955437",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lucien_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Lucien",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 1 à côté du commissariat central",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620975152",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_mah_ta_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Mah-Ta",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 21, face à la base aériènne, route de Nasso",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620982825",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nazindi_gouba_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Nazindi-Gouba",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Colma, route de Dédougou, face au CAS",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620975757",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_nazounki_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Nazounki",
+    "location": {
+      "lat": 11.1899282,
+      "lng": -4.3257634,
+      "address": "Sect. 22 à 200m du Stade LAMIZANA",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620973100",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sarfalao_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sarfalao",
+    "location": {
+      "lat": 11.1594281,
+      "lng": -4.2807897,
+      "address": "A 200m de la Mairie, Arrdt N°5 (ex DAFRA)",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970135",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sifoma_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sifoma",
+    "location": {
+      "lat": 11.1825278,
+      "lng": -4.3075451,
+      "address": "Accart Ville face à la SONABEL",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971965",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sya_ex_dafra_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sya (Ex Dafra)",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Rue Vicens, face au rond point des 03 luttes",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620977993",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_zoe_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Zoe",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 20, route de Orodara, Paroisse St Jean Paul II / Lafiabougou",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22663100775",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_amirbouba_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Amirbouba",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 10, côté Est du CMA de Dô, vers l’Ex gare de Dandé",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22625393464",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_becy_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Becy",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sarfalao, à 200m de SOS Village enfant",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620955841",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_boyam_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Boyam",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Bindougousso, à 500m du CMA de Dafra",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620956429",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_entente_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Entente",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Koko, à 300m de la maternité Guimbi OUATTARA",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971916",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hayatt_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Hayatt",
+    "location": {
+      "lat": 11.1783974,
+      "lng": -4.3348672,
+      "address": "Belle-Ville, route de Nasso",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970000",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hereso_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Hereso",
+    "location": {
+      "lat": 11.1713986,
+      "lng": -4.267618,
+      "address": "Sarfalao, face à la place de la femme",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970995",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lame_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Lame",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "A côté de la station Ola Bobo 2010 route de Bama",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620957675",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_medine_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Medine",
+    "location": {
+      "lat": 11.1791624,
+      "lng": -4.298749,
+      "address": "Sect. 01, Av. de la République, à 100m de la DIACFA",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970910",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_oulagnan_traore_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Oulagnan Traore",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Marche de fruits sect10",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22657939356",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_soudia_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Soudia",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Av. de l’Unité, voie menant à l’hippodrome",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971449",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_souligne_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Souligne",
+    "location": {
+      "lat": 11.1738429,
+      "lng": -4.2998873,
+      "address": "Sect. 01, imm SANGA Issa, siège ORANGE",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620970816",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_antoine_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Saint-Antoine",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sakabi, route de Dédougou",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620951301",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_saint_raphael_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Saint-Raphael",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Lafiabougou, route de Banfora",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620986391",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_samhita_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Samhita",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 24, après l’école prima re KUA D. sur la grande voie",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22625393481",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sanitas_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sanitas",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Marchés du sect. 25",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620972242",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_tene_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Tene",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 14, Bindougousso, à 300m de la station Shell",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620660005",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_vitalis_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Vitalis",
+    "location": {
+      "lat": 11.1912681,
+      "lng": -4.3143332,
+      "address": "Sect. 22, route du plateau de Yéguèré",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22670523957",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_yamba_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Yamba",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Souroukoukin, 300m de l’ex Ecole Jamot, route Bobo 2010",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620977778",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_abby_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Abby",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Belle-ville à 100m de la Station Shell",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620976364",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_adama_traore_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Adama Traore",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Route de Leguema, face cite SONATUR sect32",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22676444306",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_amine_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Amine",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 22 à 300m côté Ouest CMA de 22",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971997",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_aube_nouvelle_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Aube Nouvelle",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect 17, Face Marché de Sarfalao",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620977878",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_audrey_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Audrey",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 24, face à la station Oil Lybia, route Ouaga",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620954469",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_bien_etre_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Bien-Etre",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Route du marché de fruits, à côté Agence Orange sect21",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620972079",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_colma_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Colma",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Derrière la mairie de Colma, en face du petit marché.",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620951702",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_dogona_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Dogona",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "A côté du lycée Marie Adelaide de CISSE",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620956448",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_ekossinnes_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Ekossinnes",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Bobo 2010",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22660763838",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_grace_divine_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Grace Divine",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sarfalao, face au chateau d’eau",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620974825",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hadim_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Hadim",
+    "location": {
+      "lat": 11.1779075,
+      "lng": -4.272701,
+      "address": "Boulevard face à la cité an II, non loin de la SONABEL",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620984200",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_hopital_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Hopital",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Face au camp militaire Ouezzin Coulibaly",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620983747",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_jigiya_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Jigiya",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Accart ville à 50 m du marché",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971204",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_kanta_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Kanta",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 21, sur les voies du Conseil Regional/Station Shell",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620661051",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lafiabougou_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Lafiabougou",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "A côté de l’école Sapeur pompiers",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620956427",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_lakari_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Lakari",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Rue Vicens, Koko à côté du pont Bessin",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22653681818",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_sakaby_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Sakaby",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 10, face à total, à 400m du CSPS de Sakaby",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22660753636",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_samba_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Samba",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "À côté du CSPS St Bernard Bindougousso sect 14",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22604372424",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_siyara_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Siyara",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Sect. 01 face au Grand marché",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971373",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "pharm_solidarite_bobo_dioulasso",
+    "type": "pharmacy",
+    "name": "Solidarite",
+    "location": {
+      "lat": 11.1833,
+      "lng": -4.2833,
+      "address": "Médina Coura, route Trypano",
+      "city": "Bobo Dioulasso"
+    },
+    "phone": "+22620971726",
+    "status": "open",
+    "gps_validated": true,
+    "source": "ONPBF_Scraper"
+  },
+  {
+    "id": "osm_pharmacy_327179654",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Fraternité",
+    "location": {
+      "lat": 12.3908138,
+      "lng": -1.4764622,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338312139",
+    "type": "pharmacy",
+    "name": "Pharmacie Ouedreago",
+    "location": {
+      "lat": 12.3354559,
+      "lng": -1.4985111,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338319928",
+    "type": "pharmacy",
+    "name": "Pharmacie Kaboré Dominique",
+    "location": {
+      "lat": 12.3299218,
+      "lng": -1.5262859,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338320947",
+    "type": "pharmacy",
+    "name": "Pharmacie du Faso",
+    "location": {
+      "lat": 12.3178393,
+      "lng": -1.5217902,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338661299",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´amitié",
+    "location": {
+      "lat": 12.3346448,
+      "lng": -1.5351653,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338661308",
+    "type": "pharmacy",
+    "name": "Pharmacie Saint Julien",
+    "location": {
+      "lat": 12.3344771,
+      "lng": -1.5262218,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "25 38 06 10",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338674483",
+    "type": "pharmacy",
+    "name": "EX Pharmacie du Goulmou",
+    "location": {
+      "lat": 12.3420654,
+      "lng": -1.5527006,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338682439",
+    "type": "pharmacy",
+    "name": "Ex Pharmacie de Pissy",
+    "location": {
+      "lat": 12.335166,
+      "lng": -1.5631997,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_340024874",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Unité",
+    "location": {
+      "lat": 12.3521275,
+      "lng": -1.5561694,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_340026144",
+    "type": "pharmacy",
+    "name": "Pharmacie du rivage",
+    "location": {
+      "lat": 12.3539218,
+      "lng": -1.5525645,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344095009",
+    "type": "pharmacy",
+    "name": "Pharmacie de la jeunesse",
+    "location": {
+      "lat": 12.3706171,
+      "lng": -1.5580827,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344103262",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´espoir",
+    "location": {
+      "lat": 12.3726963,
+      "lng": -1.5456802,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344105174",
+    "type": "pharmacy",
+    "name": "Pharmacie de la providance",
+    "location": {
+      "lat": 12.37304,
+      "lng": -1.5382644,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344115825",
+    "type": "pharmacy",
+    "name": "Pharmacie Vidal",
+    "location": {
+      "lat": 12.3765947,
+      "lng": -1.5369941,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344219778",
+    "type": "pharmacy",
+    "name": "Pharmacie de la liberté",
+    "location": {
+      "lat": 12.3776946,
+      "lng": -1.531408,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344229564",
+    "type": "pharmacy",
+    "name": "Pharmacie de dapoya",
+    "location": {
+      "lat": 12.3799582,
+      "lng": -1.5230395,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344230286",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Savane",
+    "location": {
+      "lat": 12.3769736,
+      "lng": -1.5208938,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_345553670",
+    "type": "pharmacy",
+    "name": "Pharmacie de Signonghin",
+    "location": {
+      "lat": 12.3867265,
+      "lng": -1.5624233,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_629102047",
+    "type": "pharmacy",
+    "name": "Sans nom",
+    "location": {
+      "lat": 12.3901186,
+      "lng": -1.4820831,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_964903658",
+    "type": "pharmacy",
+    "name": "Pharmacie du dispensaire",
+    "location": {
+      "lat": 12.580706,
+      "lng": -3.3026866,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1118501179",
+    "type": "pharmacy",
+    "name": "002",
+    "location": {
+      "lat": 12.3774398,
+      "lng": -1.5112048,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1410209315",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Colline",
+    "location": {
+      "lat": 10.3256802,
+      "lng": -3.1785498,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2132994392",
+    "type": "pharmacy",
+    "name": "Kuilig Nooré",
+    "location": {
+      "lat": 12.2510082,
+      "lng": -2.374349,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2400336560",
+    "type": "pharmacy",
+    "name": "pharmacie de pissy",
+    "location": {
+      "lat": 12.3367241,
+      "lng": -1.5639541,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2400588466",
+    "type": "pharmacy",
+    "name": "Pharmacie du Goulmou",
+    "location": {
+      "lat": 12.3392273,
+      "lng": -1.549132,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2406030347",
+    "type": "pharmacy",
+    "name": "Pharmacie du Sahel",
+    "location": {
+      "lat": 12.3662116,
+      "lng": -1.5149834,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2406030770",
+    "type": "pharmacy",
+    "name": "PHAMACIE DE L'INDEPENDANCE",
+    "location": {
+      "lat": 12.3702719,
+      "lng": -1.5158385,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2433685394",
+    "type": "pharmacy",
+    "name": "Pharmacie Habib",
+    "location": {
+      "lat": 12.2528851,
+      "lng": -2.3503835,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2575689187",
+    "type": "pharmacy",
+    "name": "Infirmerie Scolaire",
+    "location": {
+      "lat": 12.6912272,
+      "lng": -2.2001871,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2895862119",
+    "type": "pharmacy",
+    "name": "CAMEG",
+    "location": {
+      "lat": 11.1640572,
+      "lng": -4.3145182,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3259870230",
+    "type": "pharmacy",
+    "name": "Pharmacie du Rond Point",
+    "location": {
+      "lat": 13.0862504,
+      "lng": -1.0849815,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3260043467",
+    "type": "pharmacy",
+    "name": "Pharmacie Adonai",
+    "location": {
+      "lat": 13.0815144,
+      "lng": -1.086018,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3260043468",
+    "type": "pharmacy",
+    "name": "Pharmacie Sanma",
+    "location": {
+      "lat": 13.0876801,
+      "lng": -1.1031198,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3316862599",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Univers",
+    "location": {
+      "lat": 12.3828526,
+      "lng": -1.4254886,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3349823487",
+    "type": "pharmacy",
+    "name": "Dispensaire Ridwane",
+    "location": {
+      "lat": 12.3426727,
+      "lng": -1.5456867,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3398460915",
+    "type": "pharmacy",
+    "name": "Centre medical urbain du secteur 16",
+    "location": {
+      "lat": 12.385767,
+      "lng": -1.5733674,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3407139106",
+    "type": "pharmacy",
+    "name": "Pharamacie Ar-Rahama",
+    "location": {
+      "lat": 12.3895185,
+      "lng": -1.5741417,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3508285444",
+    "type": "pharmacy",
+    "name": "Pharmacie du Sacré-Coeur",
+    "location": {
+      "lat": 12.3512132,
+      "lng": -1.5462563,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3583900866",
+    "type": "pharmacy",
+    "name": "Pharmacie DAFRA",
+    "location": {
+      "lat": 11.1740542,
+      "lng": -4.2786314,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3627395101",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Aeroport",
+    "location": {
+      "lat": 11.1663043,
+      "lng": -4.3120946,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3631691987",
+    "type": "pharmacy",
+    "name": "Lafiasso",
+    "location": {
+      "lat": 13.0690664,
+      "lng": -3.0685462,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3650215073",
+    "type": "pharmacy",
+    "name": "Pharmacie du Kouritenga",
+    "location": {
+      "lat": 12.1826997,
+      "lng": -0.3574875,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3652703456",
+    "type": "pharmacy",
+    "name": "phamacie flayiri",
+    "location": {
+      "lat": 12.3383643,
+      "lng": -1.5088647,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3757000871",
+    "type": "pharmacy",
+    "name": "Pharmacie De La Cathédrale",
+    "location": {
+      "lat": 12.3632079,
+      "lng": -1.5281878,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3800077363",
+    "type": "pharmacy",
+    "name": "Phamacie de Sourou",
+    "location": {
+      "lat": 13.0679679,
+      "lng": -3.0682051,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3974592653",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Comoe",
+    "location": {
+      "lat": 10.6376919,
+      "lng": -4.7561262,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3984037255",
+    "type": "pharmacy",
+    "name": "Saint Antoine de Padou",
+    "location": {
+      "lat": 12.3610814,
+      "lng": -1.5341603,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4078074523",
+    "type": "pharmacy",
+    "name": "Pharmacie des Ecoles",
+    "location": {
+      "lat": 12.3818477,
+      "lng": -1.5162101,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4120707194",
+    "type": "pharmacy",
+    "name": "Garage et dépôt de véhicules",
+    "location": {
+      "lat": 12.33298,
+      "lng": -1.5006379,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4123261876",
+    "type": "pharmacy",
+    "name": "pharmacie du musée",
+    "location": {
+      "lat": 12.3795464,
+      "lng": -1.4691108,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4123523273",
+    "type": "pharmacy",
+    "name": "Pharmacie du Jourdin",
+    "location": {
+      "lat": 12.3730987,
+      "lng": -1.4741128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296795",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Hôpital",
+    "location": {
+      "lat": 11.169117,
+      "lng": -4.3030351,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4452915137",
+    "type": "pharmacy",
+    "name": "Depot pharmaceutique urbain",
+    "location": {
+      "lat": 12.3718701,
+      "lng": -1.5248155,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4737572417",
+    "type": "pharmacy",
+    "name": "Pharmacie AMORO",
+    "location": {
+      "lat": 12.3610665,
+      "lng": -1.5398783,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4982194018",
+    "type": "pharmacy",
+    "name": "Dépôt pharmaceutique",
+    "location": {
+      "lat": 12.4874168,
+      "lng": -1.2660228,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5245821214",
+    "type": "pharmacy",
+    "name": "Théresa",
+    "location": {
+      "lat": 12.0668269,
+      "lng": 0.3507867,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5292099322",
+    "type": "pharmacy",
+    "name": "Yandabili",
+    "location": {
+      "lat": 12.0620093,
+      "lng": 0.3611663,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5416625531",
+    "type": "pharmacy",
+    "name": "Pharmacie des Arènes",
+    "location": {
+      "lat": 11.4857152,
+      "lng": -3.523925,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5656850794",
+    "type": "pharmacy",
+    "name": "Pharmacie de Soum",
+    "location": {
+      "lat": 14.100198,
+      "lng": -1.6291872,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5969980385",
+    "type": "pharmacy",
+    "name": "Pharmacie I-Anma",
+    "location": {
+      "lat": 12.0615196,
+      "lng": 0.3628633,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6036682411",
+    "type": "pharmacy",
+    "name": "Dépôt CAMEG",
+    "location": {
+      "lat": 12.4761468,
+      "lng": -3.4457253,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6044658177",
+    "type": "pharmacy",
+    "name": "Phytofla Dr. DAKUYO",
+    "location": {
+      "lat": 12.329985,
+      "lng": -1.4896433,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6336006086",
+    "type": "pharmacy",
+    "name": "NATILGE",
+    "location": {
+      "lat": 12.3586322,
+      "lng": -1.4833299,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6384025385",
+    "type": "pharmacy",
+    "name": "Pharmacie Charclam",
+    "location": {
+      "lat": 10.6402561,
+      "lng": -4.7459128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6566582892",
+    "type": "pharmacy",
+    "name": "Fasovet+",
+    "location": {
+      "lat": 12.368644,
+      "lng": -1.4934044,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6661360986",
+    "type": "pharmacy",
+    "name": "Pharmacie Amine Garde",
+    "location": {
+      "lat": 11.198702,
+      "lng": -4.3230692,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6689616085",
+    "type": "pharmacy",
+    "name": "Loba",
+    "location": {
+      "lat": 12.4626429,
+      "lng": -3.4607533,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6975968265",
+    "type": "pharmacy",
+    "name": "Pharmacie de Cinkansé",
+    "location": {
+      "lat": 11.1190053,
+      "lng": -0.001212,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_7061825258",
+    "type": "pharmacy",
+    "name": "Pharmacie Sissili",
+    "location": {
+      "lat": 11.1050958,
+      "lng": -2.0983994,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_7653315587",
+    "type": "pharmacy",
+    "name": "Merdipharm",
+    "location": {
+      "lat": 12.4169968,
+      "lng": -1.5017305,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8279019217",
+    "type": "pharmacy",
+    "name": "Phcie Coura",
+    "location": {
+      "lat": 12.3274061,
+      "lng": -1.5207275,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8644137219",
+    "type": "pharmacy",
+    "name": "Pharmacie Bénéwendé à Manga",
+    "location": {
+      "lat": 11.6616417,
+      "lng": -1.073194,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9262898856",
+    "type": "pharmacy",
+    "name": "Pharmacie TATANA",
+    "location": {
+      "lat": 10.6423485,
+      "lng": -4.7380786,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9262955092",
+    "type": "pharmacy",
+    "name": "Divin Amour",
+    "location": {
+      "lat": 10.6440682,
+      "lng": -4.7729682,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9279195024",
+    "type": "pharmacy",
+    "name": "Adodoa",
+    "location": {
+      "lat": 12.3337005,
+      "lng": -1.5620612,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9955181467",
+    "type": "pharmacy",
+    "name": "Pharmacie Zoodo",
+    "location": {
+      "lat": 13.5694002,
+      "lng": -2.4244296,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_10732778184",
+    "type": "pharmacy",
+    "name": "Pharmacie de Kokologo",
+    "location": {
+      "lat": 12.193056,
+      "lng": -1.8758128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  }
+]

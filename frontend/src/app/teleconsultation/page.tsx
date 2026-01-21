@@ -14,13 +14,15 @@ import {
     AlertCircle,
     Info,
     Search,
-    Filter
+    Filter,
+    Sparkles
 } from "lucide-react";
 import { firebaseService } from "@/services/firebaseService";
 import { Consultation } from "@/services/types";
 import { auth } from "@/services/firebase";
 import { cn } from "@/lib/utils";
 import AuthPrompt from "@/components/AuthPrompt";
+import HealthInsights from "@/components/HealthInsights";
 
 const SPECIALTIES = [
     { id: "general", label: "Général", icon: Stethoscope, color: "bg-blue-500" },
@@ -34,7 +36,7 @@ export default function TeleconsultationPage() {
     const [consultations, setConsultations] = useState<Consultation[]>([]);
     const [loading, setLoading] = useState(true);
     const [isStarting, setIsStarting] = useState(false);
-    const [activeTab, setActiveTab] = useState<"new" | "history">("new");
+    const [activeTab, setActiveTab] = useState<"new" | "history" | "conseils">("new");
     const [showAuthPrompt, setShowAuthPrompt] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -109,29 +111,39 @@ export default function TeleconsultationPage() {
                     </p>
                 </div>
 
-                {/* Tab Switcher */}
-                <div className="absolute bottom-6 left-6 right-6 flex bg-background/20 backdrop-blur-xl p-1 rounded-2xl border border-white/10 z-20">
+                {/* Tab Switcher - 3 Tabs */}
+                <div className="absolute bottom-6 left-4 right-4 grid grid-cols-3 bg-background/20 backdrop-blur-xl p-1 rounded-2xl border border-white/10 z-20 gap-1">
                     <button
                         onClick={() => setActiveTab("new")}
                         className={cn(
-                            "flex-1 py-3 px-4 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2",
+                            "py-2.5 px-3 rounded-xl font-bold text-[10px] transition-all flex items-center justify-center gap-1.5",
                             activeTab === "new" ? "bg-white text-slate-900 shadow-lg" : "text-white/60 hover:text-white"
                         )}
                     >
-                        <Plus size={16} />
+                        <Plus size={14} strokeWidth={2.5} />
                         NOUVEAU
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("conseils")}
+                        className={cn(
+                            "py-2.5 px-3 rounded-xl font-bold text-[10px] transition-all flex items-center justify-center gap-1.5",
+                            activeTab === "conseils" ? "bg-white text-slate-900 shadow-lg" : "text-white/60 hover:text-white"
+                        )}
+                    >
+                        <Sparkles size={14} strokeWidth={2.5} />
+                        CONSEILS
                     </button>
                     <button
                         onClick={() => setActiveTab("history")}
                         className={cn(
-                            "flex-1 py-3 px-4 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 relative",
+                            "py-2.5 px-3 rounded-xl font-bold text-[10px] transition-all flex items-center justify-center gap-1.5 relative",
                             activeTab === "history" ? "bg-white text-slate-900 shadow-lg" : "text-white/60 hover:text-white"
                         )}
                     >
-                        <History size={16} />
+                        <History size={14} strokeWidth={2.5} />
                         HISTORIQUE
                         {consultations.some(c => c.unreadCount && c.unreadCount > 0) && (
-                            <span className="absolute top-2 right-4 w-2 h-2 bg-red-500 rounded-full animate-ping" />
+                            <span className="absolute top-1.5 right-2 w-1.5 h-1.5 bg-red-500 rounded-full animate-ping" />
                         )}
                     </button>
                 </div>
@@ -207,6 +219,10 @@ export default function TeleconsultationPage() {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                ) : activeTab === "conseils" ? (
+                    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-8">
+                        <HealthInsights />
                     </div>
                 ) : (
                     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">

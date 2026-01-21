@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Home, ShoppingCart, MapPin, User, Search, Stethoscope } from "lucide-react";
+import { Home, ShoppingCart, MapPin, User, Search, Stethoscope, Activity } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { auth } from "@/services/firebase";
@@ -21,9 +21,9 @@ export default function BottomNav() {
         },
         {
             label: "Santé",
-            icon: Stethoscope,
-            path: "/teleconsultation",
-            active: pathname.startsWith("/teleconsultation"),
+            icon: Activity,
+            path: "/providers",
+            active: pathname === "/providers",
         },
         {
             label: "Panier",
@@ -80,14 +80,15 @@ export default function BottomNav() {
                             )}
                             <item.icon
                                 size={22}
+                                strokeWidth={2.5}
                                 className={cn(
-                                    "transition-all duration-300",
-                                    item.active ? "text-white scale-110" : "text-muted-foreground group-hover:text-foreground group-hover:scale-110"
+                                    "transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]",
+                                    item.active ? "text-white scale-110" : "text-foreground group-hover:text-foreground group-hover:scale-110"
                                 )}
                             />
                             <span className={cn(
-                                "text-[9px] font-black uppercase tracking-tighter transition-opacity duration-300",
-                                item.active ? "opacity-100" : "opacity-60"
+                                "text-[9px] font-black uppercase tracking-tighter transition-opacity duration-300 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]",
+                                item.active ? "opacity-100 text-white" : "opacity-90 text-foreground"
                             )}>
                                 {item.label}
                             </span>

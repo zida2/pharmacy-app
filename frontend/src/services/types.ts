@@ -8,7 +8,7 @@ export interface User {
     paymentMethods: PaymentMethod[];
     createdAt: any;
     updatedAt: any;
-    role?: "user" | "admin" | "pharmacy";
+    role?: "user" | "admin" | "pharmacy" | "clinic" | "dentist" | "insurance";
 }
 
 export interface Address {
@@ -26,34 +26,58 @@ export interface PaymentMethod {
     isDefault: boolean;
 }
 
-// 🏥 Pharmacy Types
-export interface Pharmacy {
+// 🏥 Health Provider Base Types
+export type ProviderType = "pharmacy" | "clinic" | "hospital" | "dentist" | "insurance";
+
+export interface HealthProvider {
     id: string;
+    type: ProviderType;
     name: string;
     ownerId?: string;
     location: {
         lat: number;
         lng: number;
-        address?: string;
-        commune?: string;
+        address: string;
         city?: string;
+        quartier?: string;
     };
-    phone?: string;
+    phone: string;
     email?: string;
-    status: "open" | "closed" | "guard";
-    openingHours?: OpeningHour[];
+    status: "open" | "closed" | "guard" | "available" | "unavailable";
+
+    // GPS Validation
+    gps_validated?: boolean;
+    gps_accuracy?: number; // meters
+    gps_source?: "manual" | "nominatim" | "osm" | "google";
+    gps_last_updated?: any;
+
+    // Contact & Social
+    whatsapp?: string;
+    website?: string;
+
+    // Status & Badges
+    isVerified?: boolean;
+    badges?: ("verified" | "recent_update" | "partner" | "guard")[];
+
+    // Rating
     rating?: number;
     reviewCount?: number;
-    isVerified?: boolean;
+
+    createdAt?: any;
+    updatedAt?: any;
+}
+
+// 🏥 Pharmacy Types (Extends HealthProvider implicitly via structure compatibility)
+export interface Pharmacy extends HealthProvider {
+    type: "pharmacy";
+    openingHours?: OpeningHour[];
     isGuardToday?: boolean;
-    guardGroup?: string; // Group A, B, C, D for automated rotation
+    guardGroup?: string;
     deliveryAvailable?: boolean;
     deliveryFee?: number;
     deliveryRadius?: number;
-    distance?: number; // Calculated on client
-    source?: string; // Data source identifier (Fused, Discovery, etc)
-    createdAt?: any;
-    updatedAt?: any;
+    distance?: number;
+    source?: string;
 }
 
 export interface OpeningHour {
@@ -63,20 +87,118 @@ export interface OpeningHour {
     isClosed: boolean;
 }
 
+// 🏥 Clinic & Hospital Types
+export interface Clinic extends HealthProvider {
+    type: "clinic" | "hospital";
+    specialties: string[]; // ["Médecine générale", "Pédiatrie", "Gynécologie", ...]
+    services: string[]; // ["Consultation", "Urgences", "Laboratoire", "Imagerie"]
+    hasEmergency: boolean;
+    hasAmbulance: boolean;
+    hasBeds: boolean;
+    bedCount?: number;
+    openingHours?: OpeningHour[];
+    acceptsInsurance: boolean;
+    acceptedInsurances?: string[];
+}
+
+// 🦷 Dentist Types
+export interface Dentist extends HealthProvider {
+    type: "dentist";
+    specialties: string[]; // ["Orthodontie", "Implants", "Blanchiment"]
+    services: string[];
+    openingHours?: OpeningHour[];
+    acceptsInsurance: boolean;
+    acceptedInsurances?: string[];
+}
+
+// 🛡️ Insurance Provider Types
+export interface InsuranceProvider extends HealthProvider {
+    type: "insurance";
+    coverageTypes: string[]; // ["Santé", "Maternité", "Dentaire"]
+    coverageRate: number; // avg percentage
+    plans: {
+        name: string;
+        description: string;
+        monthlyPremium: number;
+        coverage: string[];
+    }[];
+    partnersCount: number;
+    claimsPhone: string;
+    emergencyPhone: string;
+}
+
+// 📅 Appointment Types
+export interface Appointment {
+    id: string;
+    userId: string;
+    userName: string;
+    userPhone: string;
+
+    providerId: string;
+    providerType: ProviderType;
+    providerName: string;
+
+    appointmentDate: string; // ISO Date string
+    appointmentTime: string; // "09:00"
+    consultationType: string;
+    specialty?: string;
+
+    status: "pending" | "confirmed" | "cancelled" | "completed" | "no_show";
+    notes?: string;
+
+    createdAt: any;
+    updatedAt: any;
+}
+
+// 📢 Report / Feedback Types
+export interface Report {
+    id: string;
+    userId: string;
+    providerId: string;
+    providerType: ProviderType;
+    providerName?: string;
+
+    type: "closed" | "wrong_hours" | "wrong_location" | "phone_error" | "other";
+    description: string;
+    location?: {
+        lat: number;
+        lng: number;
+    };
+
+    status: "pending" | "reviewed" | "resolved" | "rejected";
+    adminNotes?: string;
+
+    createdAt: any;
+    resolvedAt?: any;
+}
+
+// 🚨 Emergency Request Types
+export interface EmergencyRequest {
+    id: string;
+    userId: string;
+    location: {
+        lat: number;
+        lng: number;
+    };
+    requestType: "pharmacy" | "clinic" | "ambulance" | "dentist";
+    status: "active" | "resolved" | "cancelled";
+    createdAt: any;
+}
+
 // 💊 Product Types
 export interface Product {
     id: string;
     name: string;
     description?: string;
-    activeIngredient?: string; // Molecule name for generic search like Alliance
+    activeIngredient?: string;
     category?: "medicament" | "parapharmacie" | "materiel";
     images?: string[];
     requiresPrescription?: boolean;
-    price?: number; // From inventory
-    pharmacyId?: string; // From inventory
-    inStock?: boolean; // From inventory
-    stock?: number; // From inventory
-    inventoryId?: string; // Reference to pharmacy_inventory doc
+    price?: number;
+    pharmacyId?: string;
+    inStock?: boolean;
+    stock?: number;
+    inventoryId?: string;
     createdAt?: any;
 }
 
@@ -187,16 +309,16 @@ export interface Treatment {
     id: string;
     userId: string;
     medicineName: string;
-    dosage: string; // e.g. "1 comprimé"
-    frequency: string; // e.g. "3 fois par jour"
-    times: string[]; // e.g. ["08:00", "14:00", "20:00"]
+    dosage: string;
+    frequency: string;
+    times: string[];
     startDate: string;
-    duration?: string; // e.g. "7 jours"
+    duration?: string;
     isActive: boolean;
     createdAt: any;
 }
 
-// 🛡️ Insurance Types
+// 🛡️ Insurance Types (User's personal insurance)
 export interface Insurance {
     id: string;
     userId: string;

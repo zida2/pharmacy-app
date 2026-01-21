@@ -497,3 +497,97 @@ exports.getPharmaciesStats = functions.https.onRequest(async (req, res) => {
         });
     }
 });
+
+/**
+ * 🔔 Trigger: Notification de nouveau Rendez-vous
+ */
+exports.onAppointmentCreated = functions.firestore
+    .document('appointments/{appointmentId}')
+    .onCreate(async (snap, context) => {
+        const appointment = snap.data();
+        const appointmentId = context.params.appointmentId;
+
+        console.log(`📅 Nouveau rendez-vous ${appointmentId} pour ${appointment.providerName}`);
+
+        try {
+            await db.collection('notifications').add({
+                userId: appointment.providerId,
+                title: "Nouveau Rendez-vous",
+                body: `${appointment.userName} souhaite vous voir le ${appointment.appointmentDate} à ${appointment.appointmentTime}`,
+                type: "appointment_request",
+                targetId: appointmentId,
+                read: false,
+                createdAt: admin.firestore.FieldValue.serverTimestamp()
+            });
+
+            await db.collection('notifications').add({
+                userId: appointment.userId,
+                title: "Demande Envoyée",
+                body: `Votre demande pour ${appointment.providerName} a bien été reçue.`,
+                type: "appointment_status",
+                targetId: appointmentId,
+                read: false,
+                createdAt: admin.firestore.FieldValue.serverTimestamp()
+            });
+
+        } catch (error) {
+            console.error("Erreur notification RDV:", error);
+        }
+    });
+
+/**
+ * 📢 Trigger: Gestion automatique des signalements
+ */
+exports.onReportCreated = functions.firestore
+    .document('reports/{reportId}')
+    .onCreate(async (snap, context) => {
+        const report = snap.data();
+
+        console.log(`🚨 Signalement sur ${report.providerName}: ${report.type}`);
+
+        try {
+            if (report.type === 'closed') {
+                const recentReports = await db.collection('reports')
+                    .where('providerId', '==', report.providerId)
+                    .where('type', '==', 'closed')
+                    .where('createdAt', '>', new Date(Date.now() - 24 * 60 * 60 * 1000))
+                    .get();
+
+                if (recentReports.size >= 3) {
+                    const collName = report.providerType === 'pharmacy' ? 'pharmacies' : report.providerType + 's';
+                    await db.collection(collName).doc(report.providerId).update({
+                        status: 'unavailable',
+                        badges: admin.firestore.FieldValue.arrayUnion('verification_needed')
+                    });
+                    console.log(`⚠️ Prestataire ${report.providerName} marqué à vérifier (3+ signalements)`);
+                }
+            }
+        } catch (error) {
+            console.error("Erreur gestion signalement:", error);
+        }
+    });
+
+/**
+ * 🧹 Scheduled: Nettoyage des vieux rendez-vous (Mensuel)
+ */
+exports.cleanupOldAppointments = functions.pubsub
+    .schedule('0 0 1 * *')
+    .onRun(async (context) => {
+        const oldDate = new Date();
+        oldDate.setMonth(oldDate.getMonth() - 6);
+
+        const snapshot = await db.collection('appointments')
+            .where('createdAt', '<', oldDate)
+            .get();
+
+        if (snapshot.size === 0) return null;
+
+        const batch = db.batch();
+        snapshot.docs.forEach((doc) => {
+            batch.delete(doc.ref);
+        });
+
+        await batch.commit();
+        return null;
+    });
+

@@ -1,0 +1,2177 @@
+[
+  {
+    "id": "osm_pharmacy_322806278",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´avenir",
+    "location": {
+      "lat": 12.3751998,
+      "lng": -1.4938723,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_322806508",
+    "type": "pharmacy",
+    "name": "Pharmacie Dunia",
+    "location": {
+      "lat": 12.3593046,
+      "lng": -1.4951501,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_322806719",
+    "type": "pharmacy",
+    "name": "Pharmacie Talba",
+    "location": {
+      "lat": 12.3762421,
+      "lng": -1.4909633,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_322811260",
+    "type": "pharmacy",
+    "name": "Pharmacie Teranga",
+    "location": {
+      "lat": 12.3817592,
+      "lng": -1.4934187,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_322814116",
+    "type": "pharmacy",
+    "name": "Pharmacie wend Kuuni",
+    "location": {
+      "lat": 12.3755238,
+      "lng": -1.4875664,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_327133569",
+    "type": "pharmacy",
+    "name": "Pharmacie Camille",
+    "location": {
+      "lat": 12.3758268,
+      "lng": -1.4779569,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_327179654",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Fraternité",
+    "location": {
+      "lat": 12.3908138,
+      "lng": -1.4764622,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_327190129",
+    "type": "pharmacy",
+    "name": "Pharmacie Taoko",
+    "location": {
+      "lat": 12.3877702,
+      "lng": -1.4784469,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_335686034",
+    "type": "pharmacy",
+    "name": "Pharmacie Benaia",
+    "location": {
+      "lat": 12.3503395,
+      "lng": -1.4796989,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338312139",
+    "type": "pharmacy",
+    "name": "Pharmacie Ouedreago",
+    "location": {
+      "lat": 12.3354559,
+      "lng": -1.4985111,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338318536",
+    "type": "pharmacy",
+    "name": "Pharmacie circulaire sede",
+    "location": {
+      "lat": 12.3325736,
+      "lng": -1.5166729,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338319928",
+    "type": "pharmacy",
+    "name": "Pharmacie Kaboré Dominique",
+    "location": {
+      "lat": 12.3299218,
+      "lng": -1.5262859,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338320947",
+    "type": "pharmacy",
+    "name": "Pharmacie du Faso",
+    "location": {
+      "lat": 12.3178393,
+      "lng": -1.5217902,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338652297",
+    "type": "pharmacy",
+    "name": "Pharmacie Kouma",
+    "location": {
+      "lat": 12.3130946,
+      "lng": -1.5289169,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338661299",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´amitié",
+    "location": {
+      "lat": 12.3346448,
+      "lng": -1.5351653,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338661308",
+    "type": "pharmacy",
+    "name": "Pharmacie Saint Julien",
+    "location": {
+      "lat": 12.3344771,
+      "lng": -1.5262218,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "25 38 06 10",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338666869",
+    "type": "pharmacy",
+    "name": "Pharmacie maignon",
+    "location": {
+      "lat": 12.3505338,
+      "lng": -1.5264106,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338674483",
+    "type": "pharmacy",
+    "name": "EX Pharmacie du Goulmou",
+    "location": {
+      "lat": 12.3420654,
+      "lng": -1.5527006,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338682439",
+    "type": "pharmacy",
+    "name": "Ex Pharmacie de Pissy",
+    "location": {
+      "lat": 12.335166,
+      "lng": -1.5631997,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338934935",
+    "type": "pharmacy",
+    "name": "Pharmacie wend la lafi",
+    "location": {
+      "lat": 12.3422993,
+      "lng": -1.5729105,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338935002",
+    "type": "pharmacy",
+    "name": "Pharmacie du progrès",
+    "location": {
+      "lat": 12.3437164,
+      "lng": -1.5686962,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_338940152",
+    "type": "pharmacy",
+    "name": "Pharmacie du Boulmiougou",
+    "location": {
+      "lat": 12.3328999,
+      "lng": -1.5829698,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_340024874",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Unité",
+    "location": {
+      "lat": 12.3521275,
+      "lng": -1.5561694,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_340026144",
+    "type": "pharmacy",
+    "name": "Pharmacie du rivage",
+    "location": {
+      "lat": 12.3539218,
+      "lng": -1.5525645,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_342064106",
+    "type": "pharmacy",
+    "name": "Pharmacie Maré",
+    "location": {
+      "lat": 12.3631848,
+      "lng": -1.5498232,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344094584",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´hippodrome",
+    "location": {
+      "lat": 12.375924,
+      "lng": -1.5573961,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344095009",
+    "type": "pharmacy",
+    "name": "Pharmacie de la jeunesse",
+    "location": {
+      "lat": 12.3706171,
+      "lng": -1.5580827,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344101347",
+    "type": "pharmacy",
+    "name": "Pharmacie Wend Lamita",
+    "location": {
+      "lat": 12.3810463,
+      "lng": -1.5503923,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344103262",
+    "type": "pharmacy",
+    "name": "Pharmacie de l´espoir",
+    "location": {
+      "lat": 12.3726963,
+      "lng": -1.5456802,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344105174",
+    "type": "pharmacy",
+    "name": "Pharmacie de la providance",
+    "location": {
+      "lat": 12.37304,
+      "lng": -1.5382644,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344114790",
+    "type": "pharmacy",
+    "name": "Pharmacie Baraka",
+    "location": {
+      "lat": 12.3786779,
+      "lng": -1.5396613,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344115018",
+    "type": "pharmacy",
+    "name": "Pharmacie wend denda",
+    "location": {
+      "lat": 12.3768378,
+      "lng": -1.5439292,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344115825",
+    "type": "pharmacy",
+    "name": "Pharmacie Vidal",
+    "location": {
+      "lat": 12.3765947,
+      "lng": -1.5369941,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344219778",
+    "type": "pharmacy",
+    "name": "Pharmacie de la liberté",
+    "location": {
+      "lat": 12.3776946,
+      "lng": -1.531408,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344229564",
+    "type": "pharmacy",
+    "name": "Pharmacie de dapoya",
+    "location": {
+      "lat": 12.3799582,
+      "lng": -1.5230395,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_344230286",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Savane",
+    "location": {
+      "lat": 12.3769736,
+      "lng": -1.5208938,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_345553670",
+    "type": "pharmacy",
+    "name": "Pharmacie de Signonghin",
+    "location": {
+      "lat": 12.3867265,
+      "lng": -1.5624233,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_629102047",
+    "type": "pharmacy",
+    "name": "Sans nom",
+    "location": {
+      "lat": 12.3901186,
+      "lng": -1.4820831,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_964903658",
+    "type": "pharmacy",
+    "name": "Pharmacie du dispensaire",
+    "location": {
+      "lat": 12.580706,
+      "lng": -3.3026866,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1118501179",
+    "type": "pharmacy",
+    "name": "002",
+    "location": {
+      "lat": 12.3774398,
+      "lng": -1.5112048,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1410209315",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Colline",
+    "location": {
+      "lat": 10.3256802,
+      "lng": -3.1785498,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1645291391",
+    "type": "pharmacy",
+    "name": "Pharmacie Saint François d'Assises",
+    "location": {
+      "lat": 12.3820165,
+      "lng": -1.4890606,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1655591855",
+    "type": "pharmacy",
+    "name": "Saint Lazare",
+    "location": {
+      "lat": 12.3685791,
+      "lng": -1.4997016,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_1670157386",
+    "type": "pharmacy",
+    "name": "Pharmacie Augustine",
+    "location": {
+      "lat": 12.327115,
+      "lng": -1.5000203,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2132994392",
+    "type": "pharmacy",
+    "name": "Kuilig Nooré",
+    "location": {
+      "lat": 12.2510082,
+      "lng": -2.374349,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2264369076",
+    "type": "pharmacy",
+    "name": "Pharmacie Yennenga",
+    "location": {
+      "lat": 12.35118,
+      "lng": -1.4880845,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2400336560",
+    "type": "pharmacy",
+    "name": "pharmacie de pissy",
+    "location": {
+      "lat": 12.3367241,
+      "lng": -1.5639541,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2400588466",
+    "type": "pharmacy",
+    "name": "Pharmacie du Goulmou",
+    "location": {
+      "lat": 12.3392273,
+      "lng": -1.549132,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2406030347",
+    "type": "pharmacy",
+    "name": "Pharmacie du Sahel",
+    "location": {
+      "lat": 12.3662116,
+      "lng": -1.5149834,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2406030770",
+    "type": "pharmacy",
+    "name": "PHAMACIE DE L'INDEPENDANCE",
+    "location": {
+      "lat": 12.3702719,
+      "lng": -1.5158385,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2433685394",
+    "type": "pharmacy",
+    "name": "Pharmacie Habib",
+    "location": {
+      "lat": 12.2528851,
+      "lng": -2.3503835,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2575689187",
+    "type": "pharmacy",
+    "name": "Infirmerie Scolaire",
+    "location": {
+      "lat": 12.6912272,
+      "lng": -2.2001871,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2895862119",
+    "type": "pharmacy",
+    "name": "CAMEG",
+    "location": {
+      "lat": 11.1640572,
+      "lng": -4.3145182,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2899991882",
+    "type": "pharmacy",
+    "name": "Pharmacie Bethel",
+    "location": {
+      "lat": 11.184057,
+      "lng": -4.3212033,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_2901311996",
+    "type": "pharmacy",
+    "name": "Pharmacie 1200 Logements",
+    "location": {
+      "lat": 12.3668409,
+      "lng": -1.4938745,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3233268992",
+    "type": "pharmacy",
+    "name": "Pharmacie Saint Jean",
+    "location": {
+      "lat": 12.342753,
+      "lng": -1.4937944,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3259870230",
+    "type": "pharmacy",
+    "name": "Pharmacie du Rond Point",
+    "location": {
+      "lat": 13.0862504,
+      "lng": -1.0849815,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3260043467",
+    "type": "pharmacy",
+    "name": "Pharmacie Adonai",
+    "location": {
+      "lat": 13.0815144,
+      "lng": -1.086018,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3260043468",
+    "type": "pharmacy",
+    "name": "Pharmacie Sanma",
+    "location": {
+      "lat": 13.0876801,
+      "lng": -1.1031198,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3280484085",
+    "type": "pharmacy",
+    "name": "Pharmacie du Carrefour",
+    "location": {
+      "lat": 12.3677055,
+      "lng": -1.5309441,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3316862599",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Univers",
+    "location": {
+      "lat": 12.3828526,
+      "lng": -1.4254886,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3349823487",
+    "type": "pharmacy",
+    "name": "Dispensaire Ridwane",
+    "location": {
+      "lat": 12.3426727,
+      "lng": -1.5456867,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3350016890",
+    "type": "pharmacy",
+    "name": "KATRA",
+    "location": {
+      "lat": 12.3469782,
+      "lng": -1.5030581,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3350342300",
+    "type": "pharmacy",
+    "name": "Pharmacie WATI",
+    "location": {
+      "lat": 12.3443667,
+      "lng": -1.5405179,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "+22625385292",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3398301107",
+    "type": "pharmacy",
+    "name": "Wend Som",
+    "location": {
+      "lat": 12.403473,
+      "lng": -1.5774737,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3398460915",
+    "type": "pharmacy",
+    "name": "Centre medical urbain du secteur 16",
+    "location": {
+      "lat": 12.385767,
+      "lng": -1.5733674,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3407139106",
+    "type": "pharmacy",
+    "name": "Pharamacie Ar-Rahama",
+    "location": {
+      "lat": 12.3895185,
+      "lng": -1.5741417,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3409027279",
+    "type": "pharmacy",
+    "name": "Pharmacie Galiam",
+    "location": {
+      "lat": 12.3996961,
+      "lng": -1.566242,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "25480567",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3461377959",
+    "type": "pharmacy",
+    "name": "Pharmacie NAZOUNKI",
+    "location": {
+      "lat": 11.1899282,
+      "lng": -4.3257634,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3461423872",
+    "type": "pharmacy",
+    "name": "Pharmacie HAYAT",
+    "location": {
+      "lat": 11.1783974,
+      "lng": -4.3348672,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3467678305",
+    "type": "pharmacy",
+    "name": "Pharmacie LAFIA",
+    "location": {
+      "lat": 11.2148538,
+      "lng": -4.3098723,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3497326848",
+    "type": "pharmacy",
+    "name": "Pharmacie SIFOMA",
+    "location": {
+      "lat": 11.1825278,
+      "lng": -4.3075451,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3508285444",
+    "type": "pharmacy",
+    "name": "Pharmacie du Sacré-Coeur",
+    "location": {
+      "lat": 12.3512132,
+      "lng": -1.5462563,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3583900866",
+    "type": "pharmacy",
+    "name": "Pharmacie DAFRA",
+    "location": {
+      "lat": 11.1740542,
+      "lng": -4.2786314,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3627395101",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Aeroport",
+    "location": {
+      "lat": 11.1663043,
+      "lng": -4.3120946,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3631635262",
+    "type": "pharmacy",
+    "name": "Pharmacie Sarfalao",
+    "location": {
+      "lat": 11.1594281,
+      "lng": -4.2807897,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3631687887",
+    "type": "pharmacy",
+    "name": "Pharmacie Delwindé",
+    "location": {
+      "lat": 12.4011373,
+      "lng": -1.4721023,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3631691987",
+    "type": "pharmacy",
+    "name": "Lafiasso",
+    "location": {
+      "lat": 13.0690664,
+      "lng": -3.0685462,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3632530443",
+    "type": "pharmacy",
+    "name": "Pharmacie Sotisse",
+    "location": {
+      "lat": 12.3971219,
+      "lng": -1.4685073,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3637404827",
+    "type": "pharmacy",
+    "name": "Pharmacie Sainte Trinité",
+    "location": {
+      "lat": 12.3685354,
+      "lng": -1.4883668,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3650215073",
+    "type": "pharmacy",
+    "name": "Pharmacie du Kouritenga",
+    "location": {
+      "lat": 12.1826997,
+      "lng": -0.3574875,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3652703456",
+    "type": "pharmacy",
+    "name": "phamacie flayiri",
+    "location": {
+      "lat": 12.3383643,
+      "lng": -1.5088647,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3665739199",
+    "type": "pharmacy",
+    "name": "Pharmacie du Kadiogo",
+    "location": {
+      "lat": 12.3603046,
+      "lng": -1.5172985,
+      "address": "Avenue Kwamé N'Krumah",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3743437352",
+    "type": "pharmacy",
+    "name": "Pharmacie Medine",
+    "location": {
+      "lat": 11.1791624,
+      "lng": -4.298749,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3757000871",
+    "type": "pharmacy",
+    "name": "Pharmacie De La Cathédrale",
+    "location": {
+      "lat": 12.3632079,
+      "lng": -1.5281878,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3800077363",
+    "type": "pharmacy",
+    "name": "Phamacie de Sourou",
+    "location": {
+      "lat": 13.0679679,
+      "lng": -3.0682051,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3974592653",
+    "type": "pharmacy",
+    "name": "Pharmacie de la Comoe",
+    "location": {
+      "lat": 10.6376919,
+      "lng": -4.7561262,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_3984037255",
+    "type": "pharmacy",
+    "name": "Saint Antoine de Padou",
+    "location": {
+      "lat": 12.3610814,
+      "lng": -1.5341603,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4078074523",
+    "type": "pharmacy",
+    "name": "Pharmacie des Ecoles",
+    "location": {
+      "lat": 12.3818477,
+      "lng": -1.5162101,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4120707194",
+    "type": "pharmacy",
+    "name": "Garage et dépôt de véhicules",
+    "location": {
+      "lat": 12.33298,
+      "lng": -1.5006379,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4123261876",
+    "type": "pharmacy",
+    "name": "pharmacie du musée",
+    "location": {
+      "lat": 12.3795464,
+      "lng": -1.4691108,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4123465214",
+    "type": "pharmacy",
+    "name": "Natilgé",
+    "location": {
+      "lat": 12.3624307,
+      "lng": -1.481346,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4123523273",
+    "type": "pharmacy",
+    "name": "Pharmacie du Jourdin",
+    "location": {
+      "lat": 12.3730987,
+      "lng": -1.4741128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4150064192",
+    "type": "pharmacy",
+    "name": "Naab Raga",
+    "location": {
+      "lat": 12.3524179,
+      "lng": -1.531649,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296792",
+    "type": "pharmacy",
+    "name": "Pharmacie Heresso",
+    "location": {
+      "lat": 11.1713986,
+      "lng": -4.267618,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296793",
+    "type": "pharmacy",
+    "name": "Pharmacie Moderne",
+    "location": {
+      "lat": 11.1772549,
+      "lng": -4.2981744,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296794",
+    "type": "pharmacy",
+    "name": "Pharmacie Aoudi",
+    "location": {
+      "lat": 11.1632288,
+      "lng": -4.2924322,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296795",
+    "type": "pharmacy",
+    "name": "Pharmacie de l'Hôpital",
+    "location": {
+      "lat": 11.169117,
+      "lng": -4.3030351,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296797",
+    "type": "pharmacy",
+    "name": "Pharmacie Hadim",
+    "location": {
+      "lat": 11.1779075,
+      "lng": -4.272701,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296798",
+    "type": "pharmacy",
+    "name": "Pharmacie Sibiri",
+    "location": {
+      "lat": 11.1691325,
+      "lng": -4.2509468,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4236296806",
+    "type": "pharmacy",
+    "name": "Pharmacie Christ Roi",
+    "location": {
+      "lat": 11.1767541,
+      "lng": -4.2484981,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4427335718",
+    "type": "pharmacy",
+    "name": "Pharmacie Nongui",
+    "location": {
+      "lat": 12.3845751,
+      "lng": -1.5749971,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4452915137",
+    "type": "pharmacy",
+    "name": "Depot pharmaceutique urbain",
+    "location": {
+      "lat": 12.3718701,
+      "lng": -1.5248155,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4465304090",
+    "type": "pharmacy",
+    "name": "PHARMACIE LEVANT",
+    "location": {
+      "lat": 11.1727733,
+      "lng": -4.3030017,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4465437794",
+    "type": "pharmacy",
+    "name": "PHARMACIE SOULIGNÉ",
+    "location": {
+      "lat": 11.1738429,
+      "lng": -4.2998873,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4737572417",
+    "type": "pharmacy",
+    "name": "Pharmacie AMORO",
+    "location": {
+      "lat": 12.3610665,
+      "lng": -1.5398783,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4792065921",
+    "type": "pharmacy",
+    "name": "Pharmacie RAYIB-TIGA",
+    "location": {
+      "lat": 12.4073949,
+      "lng": -1.5077501,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4804846422",
+    "type": "pharmacy",
+    "name": "Pharmacie Tanko",
+    "location": {
+      "lat": 13.086559,
+      "lng": -1.086778,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_4982194018",
+    "type": "pharmacy",
+    "name": "Dépôt pharmaceutique",
+    "location": {
+      "lat": 12.4874168,
+      "lng": -1.2660228,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5245821214",
+    "type": "pharmacy",
+    "name": "Théresa",
+    "location": {
+      "lat": 12.0668269,
+      "lng": 0.3507867,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5292099322",
+    "type": "pharmacy",
+    "name": "Yandabili",
+    "location": {
+      "lat": 12.0620093,
+      "lng": 0.3611663,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5293730814",
+    "type": "pharmacy",
+    "name": "Pharmacie Vitalis",
+    "location": {
+      "lat": 11.1912681,
+      "lng": -4.3143332,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5416625531",
+    "type": "pharmacy",
+    "name": "Pharmacie des Arènes",
+    "location": {
+      "lat": 11.4857152,
+      "lng": -3.523925,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5656850794",
+    "type": "pharmacy",
+    "name": "Pharmacie de Soum",
+    "location": {
+      "lat": 14.100198,
+      "lng": -1.6291872,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5897520889",
+    "type": "pharmacy",
+    "name": "Pharmacie Kossodo",
+    "location": {
+      "lat": 12.4171874,
+      "lng": -1.473243,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5900490885",
+    "type": "pharmacy",
+    "name": "Pharmacie El-Wanogo",
+    "location": {
+      "lat": 12.3984754,
+      "lng": -1.4637411,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_5969980385",
+    "type": "pharmacy",
+    "name": "Pharmacie I-Anma",
+    "location": {
+      "lat": 12.0615196,
+      "lng": 0.3628633,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6025093023",
+    "type": "pharmacy",
+    "name": "Pharmacie  DJIMBIA",
+    "location": {
+      "lat": 12.401461,
+      "lng": -1.5142148,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6036682411",
+    "type": "pharmacy",
+    "name": "Dépôt CAMEG",
+    "location": {
+      "lat": 12.4761468,
+      "lng": -3.4457253,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6037847072",
+    "type": "pharmacy",
+    "name": "Pharmacie du Boulevard",
+    "location": {
+      "lat": 11.1836448,
+      "lng": -4.2851032,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6044658177",
+    "type": "pharmacy",
+    "name": "Phytofla Dr. DAKUYO",
+    "location": {
+      "lat": 12.329985,
+      "lng": -1.4896433,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6067382685",
+    "type": "pharmacy",
+    "name": "Pharmacie NOOM-WENDE",
+    "location": {
+      "lat": 12.319006,
+      "lng": -1.5379561,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6336006086",
+    "type": "pharmacy",
+    "name": "NATILGE",
+    "location": {
+      "lat": 12.3586322,
+      "lng": -1.4833299,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6384025385",
+    "type": "pharmacy",
+    "name": "Pharmacie Charclam",
+    "location": {
+      "lat": 10.6402561,
+      "lng": -4.7459128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6566582892",
+    "type": "pharmacy",
+    "name": "Fasovet+",
+    "location": {
+      "lat": 12.368644,
+      "lng": -1.4934044,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6661360986",
+    "type": "pharmacy",
+    "name": "Pharmacie Amine Garde",
+    "location": {
+      "lat": 11.198702,
+      "lng": -4.3230692,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6689616085",
+    "type": "pharmacy",
+    "name": "Loba",
+    "location": {
+      "lat": 12.4626429,
+      "lng": -3.4607533,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6799642987",
+    "type": "pharmacy",
+    "name": "Pharmacie AFIYA",
+    "location": {
+      "lat": 12.3553431,
+      "lng": -1.4688761,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_6975968265",
+    "type": "pharmacy",
+    "name": "Pharmacie de Cinkansé",
+    "location": {
+      "lat": 11.1190053,
+      "lng": -0.001212,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_7061825258",
+    "type": "pharmacy",
+    "name": "Pharmacie Sissili",
+    "location": {
+      "lat": 11.1050958,
+      "lng": -2.0983994,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_7653315587",
+    "type": "pharmacy",
+    "name": "Merdipharm",
+    "location": {
+      "lat": 12.4169968,
+      "lng": -1.5017305,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_7743600586",
+    "type": "pharmacy",
+    "name": "Pharmacie Ninrwa",
+    "location": {
+      "lat": 12.4052066,
+      "lng": -1.456637,
+      "address": "Rue kond Noom",
+      "city": "Ouagadougou"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8279019217",
+    "type": "pharmacy",
+    "name": "Phcie Coura",
+    "location": {
+      "lat": 12.3274061,
+      "lng": -1.5207275,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8529600017",
+    "type": "pharmacy",
+    "name": "Pharmacie Bankuy",
+    "location": {
+      "lat": 12.4644944,
+      "lng": -3.4609729,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8569303618",
+    "type": "pharmacy",
+    "name": "BARKWENDE",
+    "location": {
+      "lat": 12.3737293,
+      "lng": -1.6084504,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8644137219",
+    "type": "pharmacy",
+    "name": "Pharmacie Bénéwendé à Manga",
+    "location": {
+      "lat": 11.6616417,
+      "lng": -1.073194,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_8881155117",
+    "type": "pharmacy",
+    "name": "Pharmacie Georgette",
+    "location": {
+      "lat": 12.4102792,
+      "lng": -1.6323174,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9262898856",
+    "type": "pharmacy",
+    "name": "Pharmacie TATANA",
+    "location": {
+      "lat": 10.6423485,
+      "lng": -4.7380786,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9262955092",
+    "type": "pharmacy",
+    "name": "Divin Amour",
+    "location": {
+      "lat": 10.6440682,
+      "lng": -4.7729682,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9279195024",
+    "type": "pharmacy",
+    "name": "Adodoa",
+    "location": {
+      "lat": 12.3337005,
+      "lng": -1.5620612,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9569513397",
+    "type": "pharmacy",
+    "name": "Pharmacie le Rocher",
+    "location": {
+      "lat": 12.3162047,
+      "lng": -1.5151577,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9718630620",
+    "type": "pharmacy",
+    "name": "Pharmacie la concorde",
+    "location": {
+      "lat": 12.3657673,
+      "lng": -1.5183549,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_9955181467",
+    "type": "pharmacy",
+    "name": "Pharmacie Zoodo",
+    "location": {
+      "lat": 13.5694002,
+      "lng": -2.4244296,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_10732778184",
+    "type": "pharmacy",
+    "name": "Pharmacie de Kokologo",
+    "location": {
+      "lat": 12.193056,
+      "lng": -1.8758128,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  },
+  {
+    "id": "osm_pharmacy_13230254219",
+    "type": "pharmacy",
+    "name": "Pharmacie Kone",
+    "location": {
+      "lat": 11.1380721,
+      "lng": -4.2827028,
+      "address": "",
+      "city": "Burkina Faso"
+    },
+    "phone": "NC",
+    "source": "OpenStreetMap",
+    "gps_validated": false,
+    "gps_source": "osm"
+  }
+]
