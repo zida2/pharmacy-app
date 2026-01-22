@@ -8,143 +8,10 @@ import BottomNav from "@/components/BottomNav";
 import SearchBar from "@/components/SearchBar";
 import { getUserLocation, calculateDistance, Coordinates } from "@/lib/geolocation";
 import {
-    MapPin, Filter, Activity, Stethoscope, ShoppingBag, ShieldCheck, Siren,
-    Sparkles, Thermometer, CloudRain, Wind, ArrowRight, Zap, TrendingUp, BookOpen
+    MapPin, Filter, Activity, Stethoscope, ShoppingBag, ShieldCheck, Siren
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
-// Start of Integrated HealthInsights Logic
-// We integrate it directly to control styles better within the page context
-function IntegratedHealthInsights() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [selectedTip, setSelectedTip] = useState<any>(null);
-    const [showAll, setShowAll] = useState(false);
 
-    // Magazine Data hardcoded for reliability
-    const magazineTips = [
-        {
-            category: "Évolution",
-            title: "Le nouveau vaccin anti-paludique R21",
-            desc: "Le Burkina Faso lance le déploiement national du vaccin R21/Matrix-M en 2025.",
-            fullContent: "Le Burkina Faso marque une étape historique...",
-            image: "🦟",
-            color: "from-emerald-600 to-emerald-800 text-white",
-            border: "border-emerald-500/30"
-        },
-        {
-            category: "Alerte",
-            title: "Dengue : Vigilance renforcée",
-            desc: "L'épidémie persiste au Burkina. Apprenez à reconnaître les signes.",
-            fullContent: "La dengue reste un défi majeur...",
-            image: "🚨",
-            color: "from-orange-600 to-orange-800 text-white",
-            border: "border-orange-500/30"
-        },
-        {
-            category: "Nutrition",
-            title: "Le Moringa : L'Arbre Miracle",
-            desc: "Riche en fer et vitamines, le Moringa est une arme contre la malnutrition.",
-            fullContent: "Surnommé 'l'arbre miracle'...",
-            image: "🌿",
-            color: "from-green-600 to-green-800 text-white",
-            border: "border-green-500/30"
-        }
-    ];
-
-    // Auto rotate
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % magazineTips.length);
-        }, 5000);
-        return () => clearInterval(timer);
-    }, []);
-
-    // Season Logic
-    const month = new Date().getMonth();
-    let advice = {
-        title: "Énergie & Santé",
-        desc: "Une alimentation équilibrée renforce votre système immunitaire.",
-        icon: Activity,
-        bg: "bg-blue-600 text-white",
-        textColor: "text-white"
-    };
-
-    if (month <= 1 || month === 11) { // Harmattan
-        advice = {
-            title: "Alerte Harmattan",
-            desc: "Le vent sec est présent. Protégez vos voies respiratoires.",
-            icon: Wind,
-            bg: "bg-blue-600 text-white",
-            textColor: "text-white"
-        };
-    } else if (month >= 5 && month <= 9) { // Rain
-        advice = {
-            title: "Saison Pluvieuse",
-            desc: "Humidité élevée. Attention aux moustiques.",
-            icon: CloudRain,
-            bg: "bg-emerald-600 text-white",
-            textColor: "text-white"
-        };
-    }
-
-    return (
-        <div className="mb-8 space-y-4">
-            {/* Seasonal Card - High Contrast */}
-            <div className={cn("p-5 rounded-3xl shadow-lg relative overflow-hidden", advice.bg)}>
-                <div className="absolute right-[-20px] top-[-20px] opacity-10">
-                    <advice.icon size={100} />
-                </div>
-                <div className="relative z-10 flex gap-4 items-center">
-                    <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0 backdrop-blur-sm">
-                        <advice.icon size={24} className="text-white" />
-                    </div>
-                    <div>
-                        <h3 className="font-black text-white text-lg leading-tight mb-1">{advice.title}</h3>
-                        <p className="text-white/90 text-sm font-medium leading-snug">{advice.desc}</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Magazine Slider - High Contrast Cards */}
-            <div>
-                <div className="flex justify-between items-center px-1 mb-2">
-                    <h2 className="text-sm font-black text-foreground uppercase tracking-wider flex items-center gap-2">
-                        <TrendingUp size={16} /> Magazine
-                    </h2>
-                </div>
-
-                <div className="relative overflow-hidden">
-                    <div
-                        className="flex transition-transform duration-500"
-                        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                    >
-                        {magazineTips.map((tip, i) => (
-                            <div key={i} className="min-w-full px-1">
-                                <div className={cn("p-5 rounded-3xl bg-gradient-to-br shadow-md h-32 flex flex-col justify-between cursor-pointer", tip.color)}>
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <span className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1 block">{tip.category}</span>
-                                            <h3 className="font-bold text-lg leading-tight">{tip.title}</h3>
-                                        </div>
-                                        <span className="text-2xl">{tip.image}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs font-bold opacity-80">
-                                        Lire l'article <ArrowRight size={12} />
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="flex justify-center gap-1.5 mt-3">
-                        {magazineTips.map((_, i) => (
-                            <div key={i} className={cn("h-1.5 rounded-full transition-all", activeIndex === i ? "w-6 bg-primary" : "w-1.5 bg-zinc-300 dark:bg-zinc-700")} />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 // Modals
 import AppointmentModal from "@/components/AppointmentModal";
@@ -255,8 +122,7 @@ export default function ProvidersPage() {
                     </div>
                 </div>
 
-                {/* Focus Santé Integration */}
-                <IntegratedHealthInsights />
+
 
                 {/* SOS Button */}
                 <button
