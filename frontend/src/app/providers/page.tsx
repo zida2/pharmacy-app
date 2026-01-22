@@ -45,15 +45,13 @@ export default function ProvidersPage() {
     const loadData = async () => {
         setLoading(true);
         try {
-            const [pharmacies, clinics, dentists, insurances] = await Promise.all([
-                firebaseService.getPharmacies(),
+            const [clinics, dentists, insurances] = await Promise.all([
                 firebaseService.getClinics(),
                 firebaseService.getDentists(),
                 firebaseService.getInsuranceProviders()
             ]);
 
             const all = [
-                ...pharmacies.map(p => ({ ...p, type: 'pharmacy' as const })),
                 ...clinics.map(c => ({ ...c, type: 'clinic' as const })),
                 ...dentists.map(d => ({ ...d, type: 'dentist' as const })),
                 ...insurances.map(i => ({ ...i, type: 'insurance' as const }))
@@ -161,11 +159,7 @@ export default function ProvidersPage() {
                             onClick={() => setActiveFilter('all')}
                             label="Tous" icon={<Filter size={14} />}
                         />
-                        <FilterButton
-                            active={activeFilter === 'pharmacy'}
-                            onClick={() => setActiveFilter('pharmacy')}
-                            label="Pharmacies" icon={<ShoppingBag size={14} />}
-                        />
+
                         <FilterButton
                             active={activeFilter === 'clinic'}
                             onClick={() => setActiveFilter('clinic')}
