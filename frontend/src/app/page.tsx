@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "@/components/SearchBar";
 import PharmacyCard from "@/components/PharmacyCard";
-import HealthInsights from "@/components/HealthInsights";
+
 import { firebaseService } from "@/services/firebaseService";
 import { Pharmacy, Product } from "@/services/types";
 import { MapPin, User, Home, Search, SlidersHorizontal, Camera, AlertTriangle, Moon, Sun, ShoppingCart, Database, Crown, Gift, Sparkles, ChevronRight, ShieldAlert, Clock, Stethoscope, Plus, Loader2 } from "lucide-react";
@@ -429,8 +429,7 @@ export default function HomePage() {
       <div className="flex-1 overflow-y-auto bg-background scrollbar-hide">
         <div className="max-w-2xl mx-auto px-5 pt-4 pb-32 space-y-8">
 
-          {/* Dynamic Health Insights (Focus Santé & Magazine) */}
-          <HealthInsights />
+
 
           {/* Health Dashboard Section */}
           <div className="space-y-4">

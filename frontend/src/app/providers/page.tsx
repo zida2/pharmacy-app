@@ -16,6 +16,7 @@ import {
 // Modals
 import AppointmentModal from "@/components/AppointmentModal";
 import ReportModal from "@/components/ReportModal";
+import HealthInsights from "@/components/HealthInsights";
 
 export default function ProvidersPage() {
     const [providers, setProviders] = useState<HealthProvider[]>([]);
@@ -120,6 +121,10 @@ export default function ProvidersPage() {
                         <h1 className="text-2xl font-black mb-1">Dossier Santé</h1>
                         <p className="text-zinc-500 text-sm">Écosystème médical complet BF</p>
                     </div>
+                </div>
+
+                <div className="mb-8">
+                    <HealthInsights />
                 </div>
 
 
