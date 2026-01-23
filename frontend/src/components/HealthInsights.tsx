@@ -26,28 +26,31 @@ export default function HealthInsights() {
     const [dirSearch, setDirSearch] = useState("");
     const ITEMS_PER_PAGE = 5;
 
-    // Load data when modal opens
+    // Load data on mount to ensure readiness
     useEffect(() => {
-        if (showModal && clinics.length === 0 && !isLoadingDirectories) {
-            const loadData = async () => {
-                setIsLoadingDirectories(true);
-                try {
-                    // Parallel fetch
-                    const [cData, dData] = await Promise.all([
-                        firebaseService.getClinics(),
-                        firebaseService.getDentists()
-                    ]);
-                    setClinics(cData);
-                    setDentists(dData);
-                } catch (e) {
-                    console.error("Failed to load health directories", e);
-                } finally {
-                    setIsLoadingDirectories(false);
-                }
-            };
-            loadData();
-        }
-    }, [showModal]);
+        // Prevent double loading
+        if (clinics.length > 0 || isLoadingDirectories) return;
+
+        const loadData = async () => {
+            console.log("🔄 Chargement des annuaires médicaux...");
+            setIsLoadingDirectories(true);
+            try {
+                // Parallel fetch
+                const [cData, dData] = await Promise.all([
+                    firebaseService.getClinics(50), // Limit 50 hardcoded in service for safety
+                    firebaseService.getDentists(50)
+                ]);
+                console.log(`✅ ${cData.length} cliniques et ${dData.length} dentistes chargés.`);
+                setClinics(cData);
+                setDentists(dData);
+            } catch (e) {
+                console.error("Failed to load health directories", e);
+            } finally {
+                setIsLoadingDirectories(false);
+            }
+        };
+        loadData();
+    }, []); // Empty dependency array = load once on mount
 
     // Filtering & Pagination Logic
     const getFilteredData = () => {
@@ -439,16 +442,23 @@ export default function HealthInsights() {
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <h4 className="text-sm font-bold text-slate-900 dark:text-emerald-50 truncate leading-tight">{item.name}</h4>
+
+                                                        {/* Location Display Logic */}
                                                         <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-emerald-200/60 mt-1">
                                                             <MapPin size={12} className="shrink-0" />
-                                                            <span className="truncate">{item.location?.address || item.location?.city || "Ouagadougou"}</span>
+                                                            <span className="truncate">
+                                                                {item.location?.address && item.location.address.length > 2
+                                                                    ? item.location.address
+                                                                    : (item.location?.city && item.location.city !== "Burkina Faso"
+                                                                        ? item.location.city
+                                                                        : `Zone GPS: ${item.location?.lat?.toFixed(3)}, ${item.location?.lng?.toFixed(3)}`)
+                                                                }
+                                                            </span>
                                                         </div>
+
                                                         <div className="flex gap-2 mt-1.5">
                                                             <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-emerald-100/50 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
                                                                 {directoryTab === 'clinics' ? 'Clinique' : 'Dentiste'}
-                                                            </span>
-                                                            <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                                                                24h/24
                                                             </span>
                                                         </div>
                                                     </div>
@@ -456,18 +466,14 @@ export default function HealthInsights() {
 
                                                 {/* Actions */}
                                                 <div className="flex gap-2 mt-1">
-                                                    {item.phone && item.phone !== "NC" ? (
+                                                    {item.phone && item.phone !== "NC" && item.phone.length > 3 ? (
                                                         <a
                                                             href={`tel:${item.phone}`}
                                                             className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-sm shadow-emerald-200 dark:shadow-none"
                                                         >
                                                             <Phone size={14} /> Appeler
                                                         </a>
-                                                    ) : (
-                                                        <button disabled className="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold cursor-not-allowed">
-                                                            Non disponible
-                                                        </button>
-                                                    )}
+                                                    ) : null}
 
                                                     <a
                                                         href={`https://www.google.com/maps/search/?api=1&query=${item.location?.lat},${item.location?.lng}`}
@@ -475,7 +481,7 @@ export default function HealthInsights() {
                                                         rel="noopener noreferrer"
                                                         className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-white border border-emerald-200 hover:bg-emerald-50 active:scale-95 text-emerald-700 text-xs font-bold transition-all dark:bg-emerald-950 dark:border-emerald-800 dark:text-emerald-300"
                                                     >
-                                                        <MapPin size={14} /> Itinéraire
+                                                        <MapPin size={14} /> Voir sur la carte
                                                     </a>
                                                 </div>
                                             </div>
