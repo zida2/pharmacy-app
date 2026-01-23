@@ -280,10 +280,12 @@ export default function HealthInsights() {
                     >
                         {magazineTips.map((tip, i) => (
                             <div key={i} className="min-w-full">
-                                <div className={cn(
-                                    "p-5 h-32 flex justify-between items-center cursor-pointer bg-gradient-to-br",
-                                    tip.color
-                                )}>
+                                <div
+                                    onClick={() => setShowModal(true)}
+                                    className={cn(
+                                        "p-5 h-32 flex justify-between items-center cursor-pointer bg-gradient-to-br transition-all hover:scale-[1.01] active:scale-[0.99]",
+                                        tip.color
+                                    )}>
                                     <div className="flex flex-col justify-center h-full max-w-[75%]">
                                         <span className="text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">
                                             {tip.category}
@@ -291,7 +293,7 @@ export default function HealthInsights() {
                                         <h3 className="font-bold text-lg leading-tight mb-2">
                                             {tip.title}
                                         </h3>
-                                        <div className="flex items-center gap-1 text-[10px] font-bold bg-white/20 w-fit px-2 py-1 rounded-full backdrop-blur-sm">
+                                        <div className="flex items-center gap-1 text-[10px] font-bold bg-white/20 w-fit px-2 py-1 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
                                             Lire maintenant <ArrowRight size={10} />
                                         </div>
                                     </div>
