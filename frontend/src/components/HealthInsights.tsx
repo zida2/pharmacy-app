@@ -3,17 +3,74 @@
 import React, { useState, useEffect } from "react";
 import {
     Activity, Wind, CloudRain, Sun, Thermometer,
-    TrendingUp, ArrowRight, X, Heart, Leaf, Apple, Coffee, Droplets, Zap
+    TrendingUp, ArrowRight, X, Heart, Leaf, Apple, Coffee, Droplets, Zap,
+    Building2, Stethoscope, MapPin, Phone, Search, ChevronRight, ChevronLeft, Loader2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { firebaseService } from "@/services/firebaseService";
+import { Clinic, Dentist } from "@/services/types";
 
 export default function HealthInsights() {
     const [activeMagazineIndex, setActiveMagazineIndex] = useState(0);
     const [activeTipIndex, setActiveTipIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
-    // --- Data Sources ---
+    // --- Directory Data States ---
+    const [clinics, setClinics] = useState<Clinic[]>([]);
+    const [dentists, setDentists] = useState<Dentist[]>([]);
+    const [isLoadingDirectories, setIsLoadingDirectories] = useState(false);
 
+    // Directory UI States
+    const [directoryTab, setDirectoryTab] = useState<'clinics' | 'dentists'>('clinics');
+    const [dirPage, setDirPage] = useState(1);
+    const [dirSearch, setDirSearch] = useState("");
+    const ITEMS_PER_PAGE = 5;
+
+    // Load data when modal opens
+    useEffect(() => {
+        if (showModal && clinics.length === 0 && !isLoadingDirectories) {
+            const loadData = async () => {
+                setIsLoadingDirectories(true);
+                try {
+                    // Parallel fetch
+                    const [cData, dData] = await Promise.all([
+                        firebaseService.getClinics(),
+                        firebaseService.getDentists()
+                    ]);
+                    setClinics(cData);
+                    setDentists(dData);
+                } catch (e) {
+                    console.error("Failed to load health directories", e);
+                } finally {
+                    setIsLoadingDirectories(false);
+                }
+            };
+            loadData();
+        }
+    }, [showModal]);
+
+    // Filtering & Pagination Logic
+    const getFilteredData = () => {
+        const source = directoryTab === 'clinics' ? clinics : dentists;
+        if (!dirSearch.trim()) return source;
+        const q = dirSearch.toLowerCase();
+        return source.filter(item =>
+            item.name.toLowerCase().includes(q) ||
+            item.location.city?.toLowerCase().includes(q)
+        );
+    };
+
+    const filteredData = getFilteredData();
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+    const paginatedData = filteredData.slice((dirPage - 1) * ITEMS_PER_PAGE, dirPage * ITEMS_PER_PAGE);
+
+    // Reset page on tab/search change
+    useEffect(() => {
+        setDirPage(1);
+    }, [directoryTab, dirSearch]);
+
+
+    // --- Existing Static Data ---
     // 1. Seasonal / Contextual Tips
     const healthTips = [
         {
@@ -264,8 +321,8 @@ export default function HealthInsights() {
                         onClick={() => setShowModal(false)}
                     />
 
-                    {/* Modal Content - Enhanced Greenery Theme with Nature Animations */}
-                    <div className="w-full max-w-lg h-[85vh] bg-[#f0fdf4] dark:bg-[#022c22] rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 border border-emerald-500/20">
+                    {/* Modal Content - Enhanced Scale */}
+                    <div className="w-full max-w-lg h-[90vh] bg-[#f0fdf4] dark:bg-[#022c22] rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 border border-emerald-500/20">
 
                         {/* Enhanced Animated Greenery Background */}
                         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -273,20 +330,6 @@ export default function HealthInsights() {
                             <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[40%] bg-emerald-400/20 blur-[80px] rounded-full animate-blob mix-blend-multiply dark:mix-blend-screen" />
                             <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-green-500/20 blur-[80px] rounded-full animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
                             <div className="absolute top-[30%] right-[10%] w-[40%] h-[30%] bg-teal-400/10 blur-[60px] rounded-full animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-screen" />
-
-                            {/* Floating Leaf Particles */}
-                            <div className="absolute top-[10%] left-[15%] text-emerald-500/20 animate-float-particle">
-                                <Leaf size={32} className="animate-leaf-sway" />
-                            </div>
-                            <div className="absolute top-[40%] right-[20%] text-green-600/15 animate-float-particle" style={{ animationDelay: '2s' }}>
-                                <Leaf size={24} className="animate-leaf-sway" style={{ animationDelay: '1s' }} />
-                            </div>
-                            <div className="absolute top-[70%] left-[25%] text-emerald-400/10 animate-float-particle" style={{ animationDelay: '4s' }}>
-                                <Leaf size={40} className="animate-leaf-sway" style={{ animationDelay: '2.5s' }} />
-                            </div>
-                            <div className="absolute top-[25%] left-[70%] text-teal-500/15 animate-float-particle" style={{ animationDelay: '1s' }}>
-                                <Leaf size={28} className="animate-leaf-sway" style={{ animationDelay: '0.5s' }} />
-                            </div>
                         </div>
 
                         {/* Header with Enhanced Animations */}
@@ -296,7 +339,7 @@ export default function HealthInsights() {
                                     <Leaf className="text-emerald-500 animate-gentle-rotate" size={24} />
                                     Sanctuaire Santé
                                 </h2>
-                                <p className="text-emerald-700/60 dark:text-emerald-200/60 text-xs font-semibold">Conseils, Régimes & Remèdes Naturels</p>
+                                <p className="text-emerald-700/60 dark:text-emerald-200/60 text-xs font-semibold">Conseils, Annuaires & Remèdes</p>
                             </div>
                             <button
                                 onClick={() => setShowModal(false)}
@@ -306,10 +349,10 @@ export default function HealthInsights() {
                             </button>
                         </div>
 
-                        {/* Scrollable Body with Custom Scrollbar */}
+                        {/* Scrollable Body */}
                         <div className="relative z-10 overflow-y-auto p-6 space-y-8 custom-scrollbar">
 
-                            {/* Section 1: Conseils du Moment - Enhanced with breathing & glow */}
+                            {/* Section 1: Conseils du Moment */}
                             <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.1s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
                                     <Sun size={14} className="animate-pulse-glow" /> Conseils du Moment
@@ -335,7 +378,106 @@ export default function HealthInsights() {
                                 </div>
                             </section>
 
-                            {/* Section 2: Nutrition & Régimes - Enhanced with staggered animations */}
+                            {/* Section 4: ANNUAIRE SANTE (NEW) */}
+                            <section className="space-y-4 animate-cascade-in bg-white/40 dark:bg-black/20 p-4 rounded-3xl border border-emerald-100 dark:border-emerald-800/20 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
+                                <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
+                                    <Building2 size={14} /> Annuaire Établissements
+                                </h3>
+
+                                {/* Tabs */}
+                                <div className="flex p-1 bg-emerald-100/50 dark:bg-emerald-900/30 rounded-xl">
+                                    <button
+                                        onClick={() => setDirectoryTab('clinics')}
+                                        className={cn(
+                                            "flex-1 py-2 text-xs font-bold rounded-lg transition-all",
+                                            directoryTab === 'clinics' ? "bg-white dark:bg-emerald-800 text-emerald-700 dark:text-white shadow-sm" : "text-emerald-600/70 hover:bg-white/50"
+                                        )}
+                                    >
+                                        CLINIQUES {clinics.length > 0 && `(${clinics.length})`}
+                                    </button>
+                                    <button
+                                        onClick={() => setDirectoryTab('dentists')}
+                                        className={cn(
+                                            "flex-1 py-2 text-xs font-bold rounded-lg transition-all",
+                                            directoryTab === 'dentists' ? "bg-white dark:bg-emerald-800 text-emerald-700 dark:text-white shadow-sm" : "text-emerald-600/70 hover:bg-white/50"
+                                        )}
+                                    >
+                                        DENTISTES {dentists.length > 0 && `(${dentists.length})`}
+                                    </button>
+                                </div>
+
+                                {/* Search */}
+                                <div className="relative">
+                                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-400" />
+                                    <input
+                                        type="text"
+                                        placeholder={`Rechercher un ${directoryTab === 'clinics' ? 'hôpital' : 'dentiste'}...`}
+                                        className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white dark:bg-emerald-950/50 border border-emerald-100 dark:border-emerald-800/30 text-xs focus:ring-2 focus:ring-emerald-500 outline-none"
+                                        value={dirSearch}
+                                        onChange={(e) => setDirSearch(e.target.value)}
+                                    />
+                                </div>
+
+                                {/* List Content */}
+                                <div className="space-y-2 min-h-[200px]">
+                                    {isLoadingDirectories ? (
+                                        <div className="flex flex-col items-center justify-center py-10 gap-2 text-emerald-600/60">
+                                            <Loader2 className="animate-spin" />
+                                            <span className="text-xs">Chargement...</span>
+                                        </div>
+                                    ) : paginatedData.length === 0 ? (
+                                        <div className="text-center py-10 text-emerald-600/50 text-xs italic">
+                                            Aucun résultat trouvé
+                                        </div>
+                                    ) : (
+                                        paginatedData.map((item) => (
+                                            <div key={item.id} className="bg-white dark:bg-emerald-900/20 p-3 rounded-xl border border-emerald-100/50 dark:border-emerald-800/10 flex items-start gap-3 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition-colors">
+                                                <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-800/50 flex items-center justify-center shrink-0 text-emerald-600 dark:text-emerald-300">
+                                                    {directoryTab === 'clinics' ? <Building2 size={16} /> : <Stethoscope size={16} />}
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <h4 className="text-sm font-bold text-slate-900 dark:text-emerald-50 truncate">{item.name}</h4>
+                                                    <div className="flex items-center gap-1 text-[10px] text-slate-500 dark:text-emerald-200/60 mt-0.5">
+                                                        <MapPin size={10} />
+                                                        <span className="truncate">{item.location?.city || "Ouaga"} - {item.location?.address || "Adresse non précisée"}</span>
+                                                    </div>
+                                                    {item.phone && item.phone !== "NC" && (
+                                                        <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 mt-1">
+                                                            <Phone size={10} />
+                                                            <span>{item.phone}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+
+                                {/* Pagination */}
+                                {totalPages > 1 && (
+                                    <div className="flex items-center justify-between pt-2">
+                                        <button
+                                            disabled={dirPage === 1}
+                                            onClick={() => setDirPage(p => Math.max(1, p - 1))}
+                                            className="p-2 rounded-lg hover:bg-emerald-100/50 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                                        >
+                                            <ChevronLeft size={16} className="text-emerald-700" />
+                                        </button>
+                                        <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">
+                                            Page {dirPage} sur {totalPages}
+                                        </span>
+                                        <button
+                                            disabled={dirPage === totalPages}
+                                            onClick={() => setDirPage(p => Math.min(totalPages, p + 1))}
+                                            className="p-2 rounded-lg hover:bg-emerald-100/50 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                                        >
+                                            <ChevronRight size={16} className="text-emerald-700" />
+                                        </button>
+                                    </div>
+                                )}
+                            </section>
+
+                            {/* Section 2: Nutrition & Régimes */}
                             <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.3s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
                                     <Apple size={14} className="animate-heartbeat" /> Nutrition & Régimes
@@ -361,7 +503,7 @@ export default function HealthInsights() {
                                 </div>
                             </section>
 
-                            {/* Section 3: Pharmacie Naturelle - Enhanced with glow borders & animations */}
+                            {/* Section 3: Pharmacie Naturelle */}
                             <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.5s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
                                     <Coffee size={14} className="animate-pulse-glow" /> Pharmacie Naturelle
