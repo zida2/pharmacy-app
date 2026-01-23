@@ -56,6 +56,21 @@ async function importMedicalFacilities() {
 
             for (let i = 0; i < entriesToImport.length; i++) {
                 const entry = entriesToImport[i];
+
+                // --- FILTRAGE STRICT ---
+                const rawName = (entry.name || "").trim();
+                const cleanName = rawName.toLowerCase();
+                const lat = entry.location?.lat || 0;
+                const lng = entry.location?.lng || 0;
+
+                if (!rawName || cleanName === "sans nom" || cleanName === "noname" || cleanName === "unknown" || cleanName.length < 3) {
+                    continue; // Ignorer nom invalide
+                }
+                if (lat === 0 && lng === 0) {
+                    continue; // Ignorer sans coordonnées
+                }
+                // -----------------------
+
                 const docId = entry.id || `${item.collection}_${Math.random().toString(36).substring(7)}`;
 
                 // Standardisation des données
