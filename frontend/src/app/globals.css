@@ -332,6 +332,39 @@
   animation: progress-flow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* Blob Animation - For floating gradients */
+@keyframes blob {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  75% {
+    transform: translate(20px, 10px) scale(1.05);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
 /* ========== ENHANCED HEALTH SANCTUARY ANIMATIONS ========== */
 
 /* Enhanced Leaf Sway - More natural, with rotation and depth */

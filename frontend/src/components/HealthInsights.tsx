@@ -264,48 +264,65 @@ export default function HealthInsights() {
                         onClick={() => setShowModal(false)}
                     />
 
-                    {/* Modal Content - Greenery Theme */}
+                    {/* Modal Content - Enhanced Greenery Theme with Nature Animations */}
                     <div className="w-full max-w-lg h-[85vh] bg-[#f0fdf4] dark:bg-[#022c22] rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 border border-emerald-500/20">
 
-                        {/* Animated Greenery Background */}
+                        {/* Enhanced Animated Greenery Background */}
                         <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                            {/* Floating gradient blobs */}
                             <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[40%] bg-emerald-400/20 blur-[80px] rounded-full animate-blob mix-blend-multiply dark:mix-blend-screen" />
                             <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-green-500/20 blur-[80px] rounded-full animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
                             <div className="absolute top-[30%] right-[10%] w-[40%] h-[30%] bg-teal-400/10 blur-[60px] rounded-full animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-screen" />
-                            {/* Falling Leaves Effect (Simulated with simple dots/icons for now or CSS) */}
-                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] opacity-5" />
+
+                            {/* Floating Leaf Particles */}
+                            <div className="absolute top-[10%] left-[15%] text-emerald-500/20 animate-float-particle">
+                                <Leaf size={32} className="animate-leaf-sway" />
+                            </div>
+                            <div className="absolute top-[40%] right-[20%] text-green-600/15 animate-float-particle" style={{ animationDelay: '2s' }}>
+                                <Leaf size={24} className="animate-leaf-sway" style={{ animationDelay: '1s' }} />
+                            </div>
+                            <div className="absolute top-[70%] left-[25%] text-emerald-400/10 animate-float-particle" style={{ animationDelay: '4s' }}>
+                                <Leaf size={40} className="animate-leaf-sway" style={{ animationDelay: '2.5s' }} />
+                            </div>
+                            <div className="absolute top-[25%] left-[70%] text-teal-500/15 animate-float-particle" style={{ animationDelay: '1s' }}>
+                                <Leaf size={28} className="animate-leaf-sway" style={{ animationDelay: '0.5s' }} />
+                            </div>
                         </div>
 
-                        {/* Header */}
+                        {/* Header with Enhanced Animations */}
                         <div className="relative z-10 p-6 pb-2 flex justify-between items-center shrink-0">
-                            <div>
+                            <div className="animate-slide-up-fade">
                                 <h2 className="text-2xl font-black text-emerald-900 dark:text-emerald-50 tracking-tight flex items-center gap-2">
-                                    <Leaf className="text-emerald-500 animate-bounce-slow" size={24} />
+                                    <Leaf className="text-emerald-500 animate-gentle-rotate" size={24} />
                                     Sanctuaire Santé
                                 </h2>
                                 <p className="text-emerald-700/60 dark:text-emerald-200/60 text-xs font-semibold">Conseils, Régimes & Remèdes Naturels</p>
                             </div>
                             <button
                                 onClick={() => setShowModal(false)}
-                                className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center hover:bg-emerald-200 transition-colors"
+                                className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center hover:bg-emerald-200 transition-all active:scale-90 hover:rotate-90 duration-200"
                             >
                                 <X size={20} />
                             </button>
                         </div>
 
-                        {/* Scrollable Body */}
-                        <div className="relative z-10 overflow-y-auto p-6 space-y-8 scrollbar-hide">
+                        {/* Scrollable Body with Custom Scrollbar */}
+                        <div className="relative z-10 overflow-y-auto p-6 space-y-8 custom-scrollbar">
 
-                            {/* Section 1: Conseils du Moment */}
-                            <section className="space-y-3">
+                            {/* Section 1: Conseils du Moment - Enhanced with breathing & glow */}
+                            <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.1s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
-                                    <Sun size={14} /> Conseils du Moment
+                                    <Sun size={14} className="animate-pulse-glow" /> Conseils du Moment
                                 </h3>
                                 <div className="grid grid-cols-1 gap-3">
                                     {healthTips.map((tip, i) => (
-                                        <div key={i} className={`p-4 rounded-2xl flex items-start gap-4 shadow-sm border border-transparent hover:scale-[1.01] transition-transform ${tip.content.bg} text-white`}>
-                                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                                                <tip.content.icon size={20} />
+                                        <div
+                                            key={i}
+                                            className={`p-4 rounded-2xl flex items-start gap-4 shadow-sm border border-transparent hover:scale-[1.02] transition-all cursor-pointer animate-breathe ${tip.content.bg} text-white`}
+                                            style={{ animationDelay: `${i * 0.2}s` }}
+                                        >
+                                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 animate-pulse-glow">
+                                                <tip.content.icon size={20} className="animate-gentle-rotate" />
                                             </div>
                                             <div>
                                                 <h4 className="font-bold text-base">{tip.content.title}</h4>
@@ -318,16 +335,20 @@ export default function HealthInsights() {
                                 </div>
                             </section>
 
-                            {/* Section 2: Régimes & Nutrition */}
-                            <section className="space-y-3">
+                            {/* Section 2: Nutrition & Régimes - Enhanced with staggered animations */}
+                            <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.3s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
-                                    <Apple size={14} /> Nutrition & Régimes
+                                    <Apple size={14} className="animate-heartbeat" /> Nutrition & Régimes
                                 </h3>
                                 <div className="grid grid-cols-1 gap-3">
                                     {diets.map((diet, i) => (
-                                        <div key={i} className={`p-4 rounded-2xl border flex items-center gap-4 transition-all hover:bg-white dark:hover:bg-white/5 ${diet.bg} border-emerald-100 dark:border-emerald-800/30 dark:bg-transparent`}>
-                                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white shadow-sm ${diet.color}`}>
-                                                <diet.icon size={24} />
+                                        <div
+                                            key={i}
+                                            className={`p-4 rounded-2xl border flex items-center gap-4 transition-all hover:bg-white dark:hover:bg-white/5 cursor-pointer hover:shadow-lg hover:scale-[1.02] animate-breathe ${diet.bg} border-emerald-100 dark:border-emerald-800/30 dark:bg-transparent`}
+                                            style={{ animationDelay: `${1 + i * 0.2}s` }}
+                                        >
+                                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white shadow-sm animate-pulse-glow ${diet.color}`}>
+                                                <diet.icon size={24} className="animate-gentle-rotate" />
                                             </div>
                                             <div>
                                                 <h4 className="font-bold text-slate-900 dark:text-emerald-50 text-sm">{diet.title}</h4>
@@ -340,15 +361,19 @@ export default function HealthInsights() {
                                 </div>
                             </section>
 
-                            {/* Section 3: Aliments Remèdes (Grid) */}
-                            <section className="space-y-3">
+                            {/* Section 3: Pharmacie Naturelle - Enhanced with glow borders & animations */}
+                            <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.5s' }}>
                                 <h3 className="text-sm font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
-                                    <Coffee size={14} /> Pharmacie Naturelle
+                                    <Coffee size={14} className="animate-pulse-glow" /> Pharmacie Naturelle
                                 </h3>
                                 <div className="grid grid-cols-2 gap-3">
                                     {foodRemedies.map((item, i) => (
-                                        <div key={i} className="bg-white dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/20 p-3 rounded-2xl shadow-sm flex flex-col items-center text-center gap-2 hover:shadow-md transition-shadow">
-                                            <span className="text-3xl animate-in zoom-in duration-500 delay-[100ms]">{item.icon}</span>
+                                        <div
+                                            key={i}
+                                            className="bg-white dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/20 p-3 rounded-2xl shadow-sm flex flex-col items-center text-center gap-2 hover:shadow-lg hover:scale-105 transition-all cursor-pointer animate-breathe hover:animate-glow-border"
+                                            style={{ animationDelay: `${1.5 + i * 0.1}s` }}
+                                        >
+                                            <span className="text-3xl animate-in zoom-in duration-500" style={{ animationDelay: `${100 + i * 50}ms` }}>{item.icon}</span>
                                             <div>
                                                 <h4 className="font-bold text-slate-900 dark:text-emerald-50 text-sm">{item.name}</h4>
                                                 <p className="text-[10px] uppercase font-bold text-emerald-600 dark:text-emerald-400 mt-1 bg-emerald-50 dark:bg-emerald-900/50 px-2 py-0.5 rounded-full inline-block">
