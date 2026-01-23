@@ -767,9 +767,10 @@ export const firebaseService = {
     },
 
     // 🏥 CLINICS & HOSPITALS
-    async getClinics(): Promise<Clinic[]> {
+    async getClinics(limitCount: number = 50): Promise<Clinic[]> {
         try {
-            const snap = await getDocs(collection(db, "clinics"));
+            const q = query(collection(db, "clinics"), limit(limitCount));
+            const snap = await getDocs(q);
             return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Clinic));
         } catch (e) {
             console.error("Error fetching clinics:", e);
@@ -787,9 +788,10 @@ export const firebaseService = {
     },
 
     // 🦷 DENTISTS
-    async getDentists(): Promise<Dentist[]> {
+    async getDentists(limitCount: number = 50): Promise<Dentist[]> {
         try {
-            const snap = await getDocs(collection(db, "dentists"));
+            const q = query(collection(db, "dentists"), limit(limitCount));
+            const snap = await getDocs(q);
             return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Dentist));
         } catch (e) {
             console.error("Error fetching dentists:", e);

@@ -431,22 +431,52 @@ export default function HealthInsights() {
                                         </div>
                                     ) : (
                                         paginatedData.map((item) => (
-                                            <div key={item.id} className="bg-white dark:bg-emerald-900/20 p-3 rounded-xl border border-emerald-100/50 dark:border-emerald-800/10 flex items-start gap-3 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition-colors">
-                                                <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-800/50 flex items-center justify-center shrink-0 text-emerald-600 dark:text-emerald-300">
-                                                    {directoryTab === 'clinics' ? <Building2 size={16} /> : <Stethoscope size={16} />}
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <h4 className="text-sm font-bold text-slate-900 dark:text-emerald-50 truncate">{item.name}</h4>
-                                                    <div className="flex items-center gap-1 text-[10px] text-slate-500 dark:text-emerald-200/60 mt-0.5">
-                                                        <MapPin size={10} />
-                                                        <span className="truncate">{item.location?.city || "Ouaga"} - {item.location?.address || "Adresse non précisée"}</span>
+                                            <div key={item.id} className="group bg-white dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100/50 dark:border-emerald-800/10 flex flex-col gap-3 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition-all hover:shadow-md hover:scale-[1.01]">
+                                                {/* Header & Info */}
+                                                <div className="flex items-start gap-4">
+                                                    <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-800/50 flex items-center justify-center shrink-0 text-emerald-600 dark:text-emerald-300 group-hover:scale-110 transition-transform">
+                                                        {directoryTab === 'clinics' ? <Building2 size={20} /> : <Stethoscope size={20} />}
                                                     </div>
-                                                    {item.phone && item.phone !== "NC" && (
-                                                        <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 mt-1">
-                                                            <Phone size={10} />
-                                                            <span>{item.phone}</span>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h4 className="text-sm font-bold text-slate-900 dark:text-emerald-50 truncate leading-tight">{item.name}</h4>
+                                                        <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-emerald-200/60 mt-1">
+                                                            <MapPin size={12} className="shrink-0" />
+                                                            <span className="truncate">{item.location?.address || item.location?.city || "Ouagadougou"}</span>
                                                         </div>
+                                                        <div className="flex gap-2 mt-1.5">
+                                                            <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-emerald-100/50 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
+                                                                {directoryTab === 'clinics' ? 'Clinique' : 'Dentiste'}
+                                                            </span>
+                                                            <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                                                24h/24
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Actions */}
+                                                <div className="flex gap-2 mt-1">
+                                                    {item.phone && item.phone !== "NC" ? (
+                                                        <a
+                                                            href={`tel:${item.phone}`}
+                                                            className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-sm shadow-emerald-200 dark:shadow-none"
+                                                        >
+                                                            <Phone size={14} /> Appeler
+                                                        </a>
+                                                    ) : (
+                                                        <button disabled className="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold cursor-not-allowed">
+                                                            Non disponible
+                                                        </button>
                                                     )}
+
+                                                    <a
+                                                        href={`https://www.google.com/maps/search/?api=1&query=${item.location?.lat},${item.location?.lng}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-white border border-emerald-200 hover:bg-emerald-50 active:scale-95 text-emerald-700 text-xs font-bold transition-all dark:bg-emerald-950 dark:border-emerald-800 dark:text-emerald-300"
+                                                    >
+                                                        <MapPin size={14} /> Itinéraire
+                                                    </a>
                                                 </div>
                                             </div>
                                         ))
