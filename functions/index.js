@@ -591,3 +591,8 @@ exports.cleanupOldAppointments = functions.pubsub
         return null;
     });
 
+// 🌙 Export des fonctions de gestion des VRAIES pharmacies de garde (scraping ANAC)
+const guardFunctions = require('./guard_pharmacies');
+exports.updateRealGuardPharmacies = guardFunctions.updateRealGuardPharmacies;
+exports.manualUpdateRealGuardPharmacies = guardFunctions.manualUpdateRealGuardPharmacies;
+exports.testGuardScraping = guardFunctions.testGuardScraping;
