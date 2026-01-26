@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
     Activity, Wind, CloudRain, Sun, Thermometer,
     TrendingUp, ArrowRight, X, Heart, Leaf, Apple, Coffee, Droplets, Zap,
-    Building2, Stethoscope, MapPin, Phone, Search, ChevronRight, ChevronLeft, Loader2
+    Building2, Stethoscope, MapPin, Phone, Search, ChevronRight, ChevronLeft, Loader2, Utensils
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { firebaseService } from "@/services/firebaseService";
@@ -356,6 +356,25 @@ export default function HealthInsights() {
 
                         {/* Scrollable Body */}
                         <div className="relative z-10 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+
+                            {/* Link to Full Nutrition Guide */}
+                            <section className="animate-cascade-in" style={{ animationDelay: '0.05s' }}>
+                                <button
+                                    onClick={() => window.location.href = '/nutrition'}
+                                    className="w-full p-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl shadow-lg shadow-emerald-500/30 flex items-center justify-between group hover:scale-[1.02] active:scale-[0.98] transition-all"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white backdrop-blur-sm">
+                                            <Utensils size={20} />
+                                        </div>
+                                        <div className="text-left text-white">
+                                            <h3 className="font-black text-sm">Mon Plan Nutritionnel</h3>
+                                            <p className="text-[10px] opacity-90">Guide complet, suivi calorique & recettes</p>
+                                        </div>
+                                    </div>
+                                    <ChevronRight className="text-white group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </section>
 
                             {/* Section 1: Conseils du Moment */}
                             <section className="space-y-3 animate-cascade-in" style={{ animationDelay: '0.1s' }}>
