@@ -172,35 +172,37 @@ export default function NutritionPage() {
         );
     }
 
+    // STEP 1: Condition Selection
     if (step === "select") {
         return (
-            <div className="min-h-screen bg-background pb-24">
+            <div className="min-h-screen bg-background pb-24 animate-in fade-in duration-500">
                 <div className="max-w-2xl mx-auto px-4 pt-8">
-                    <button onClick={() => router.back()} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground">
+                    <button onClick={() => router.back()} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors">
                         <ArrowLeft size={16} /> Retour
                     </button>
 
-                    <div className="mb-8">
+                    <div className="mb-8 animate-in slide-in-from-bottom-4 duration-500 delay-100 fill-mode-backwards">
                         <h1 className="text-3xl font-black mb-2">Guide Alimentaire</h1>
                         <p className="text-muted-foreground">Choisissez votre profil de santé pour un plan personnalisé</p>
                     </div>
 
                     <div className="grid grid-cols-1 gap-4">
-                        {conditions.map((condition) => (
+                        {conditions.map((condition, index) => (
                             <button
                                 key={condition.id}
                                 onClick={() => handleConditionSelect(condition.id as DietCondition)}
-                                className="group p-6 bg-card border border-border rounded-3xl hover:shadow-lg transition-all active:scale-[0.98] text-left"
+                                className="group p-6 bg-card border border-border rounded-3xl hover:shadow-lg transition-all active:scale-[0.98] text-left animate-in slide-in-from-bottom-8 duration-500 fill-mode-backwards"
+                                style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-white", condition.color)}>
+                                    <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-current/20 transition-transform group-hover:scale-110", condition.color)}>
                                         <condition.icon size={28} />
                                     </div>
                                     <div className="flex-1">
                                         <h3 className="text-lg font-black mb-1">{condition.label}</h3>
                                         <p className="text-sm text-muted-foreground">{condition.desc}</p>
                                     </div>
-                                    <ChevronRight className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                    <ChevronRight className="text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
                                 </div>
                             </button>
                         ))}
@@ -211,11 +213,12 @@ export default function NutritionPage() {
         );
     }
 
+    // STEP 2: Profile Form
     if (step === "profile") {
         return (
-            <div className="min-h-screen bg-background pb-24">
+            <div className="min-h-screen bg-background pb-24 animate-in fade-in slide-in-from-right-8 duration-500">
                 <div className="max-w-2xl mx-auto px-4 pt-8">
-                    <button onClick={() => setStep("select")} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground">
+                    <button onClick={() => setStep("select")} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors">
                         <ArrowLeft size={16} /> Retour
                     </button>
 
@@ -225,7 +228,7 @@ export default function NutritionPage() {
                     </div>
 
                     <form onSubmit={handleProfileSubmit} className="space-y-6">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4 animate-in slide-in-from-bottom-4 duration-500 delay-100 fill-mode-backwards">
                             <div>
                                 <label className="block text-sm font-bold mb-2">Poids (kg)</label>
                                 <input
@@ -233,7 +236,7 @@ export default function NutritionPage() {
                                     required
                                     value={formData.weight}
                                     onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-                                    className="input-standard"
+                                    className="input-standard transition-all focus:scale-[1.02]"
                                     placeholder="70"
                                 />
                             </div>
@@ -244,13 +247,13 @@ export default function NutritionPage() {
                                     required
                                     value={formData.height}
                                     onChange={(e) => setFormData({ ...formData, height: e.target.value })}
-                                    className="input-standard"
+                                    className="input-standard transition-all focus:scale-[1.02]"
                                     placeholder="170"
                                 />
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4 animate-in slide-in-from-bottom-4 duration-500 delay-200 fill-mode-backwards">
                             <div>
                                 <label className="block text-sm font-bold mb-2">Âge</label>
                                 <input
@@ -258,7 +261,7 @@ export default function NutritionPage() {
                                     required
                                     value={formData.age}
                                     onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                                    className="input-standard"
+                                    className="input-standard transition-all focus:scale-[1.02]"
                                     placeholder="30"
                                 />
                             </div>
@@ -267,7 +270,7 @@ export default function NutritionPage() {
                                 <select
                                     value={formData.gender}
                                     onChange={(e) => setFormData({ ...formData, gender: e.target.value as "homme" | "femme" })}
-                                    className="input-standard"
+                                    className="input-standard transition-all focus:scale-[1.02]"
                                 >
                                     <option value="homme">Homme</option>
                                     <option value="femme">Femme</option>
@@ -275,17 +278,20 @@ export default function NutritionPage() {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="animate-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-backwards">
                             <label className="block text-sm font-bold mb-2">Objectif (optionnel)</label>
                             <textarea
                                 value={formData.goal}
                                 onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-                                className="input-standard min-h-[80px]"
+                                className="input-standard min-h-[80px] transition-all focus:scale-[1.02]"
                                 placeholder="Ex: Perdre 5kg en 2 mois"
                             />
                         </div>
 
-                        <button type="submit" className="btn btn-primary w-full py-4 text-base">
+                        <button
+                            type="submit"
+                            className="btn btn-primary w-full py-4 text-base shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all active:scale-[0.98] animate-in slide-in-from-bottom-4 duration-500 delay-400 fill-mode-backwards"
+                        >
                             Générer Mon Plan <ChevronRight size={20} />
                         </button>
                     </form>
@@ -296,21 +302,21 @@ export default function NutritionPage() {
     }
 
     return (
-        <div className="min-h-screen bg-background pb-24">
+        <div className="min-h-screen bg-background pb-24 animate-in fade-in duration-700">
             <div className="max-w-2xl mx-auto px-4 pt-8">
-                <div className="mb-6">
+                <div className="mb-6 animate-in slide-in-from-top-4 duration-500">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-3xl font-black">Mon Plan Nutrition</h1>
                         <button
                             onClick={() => setShowReminderModal(true)}
-                            className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-all"
+                            className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-all hover:rotate-12 active:scale-90"
                         >
                             <Bell size={20} />
                         </button>
                     </div>
 
                     {selectedCondition && (
-                        <div className="flex items-center gap-3 p-4 bg-primary/10 rounded-2xl">
+                        <div className="flex items-center gap-3 p-4 bg-primary/10 rounded-2xl animate-in zoom-in-95 duration-500 delay-100 fill-mode-backwards">
                             {(() => {
                                 const cond = conditions.find(c => c.id === selectedCondition);
                                 return cond ? (
@@ -335,16 +341,17 @@ export default function NutritionPage() {
                     )}
                 </div>
 
-                <div className="mb-6 p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl border border-primary/20">
+                <div className="mb-6 p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl border border-primary/20 animate-in slide-in-from-bottom-4 duration-500 delay-200 fill-mode-backwards">
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <p className="text-sm font-bold text-muted-foreground mb-1">Calories Aujourd'hui</p>
                             <div className="flex items-baseline gap-2">
-                                <span className="text-4xl font-black text-primary">{dailyCalories.consumed}</span>
+                                <span className="text-4xl font-black text-primary animate-in zoom-in duration-700 delay-300">{dailyCalories.consumed}</span>
                                 <span className="text-lg text-muted-foreground">/ {dailyCalories.target}</span>
                             </div>
                         </div>
-                        <div className="w-20 h-20 rounded-full border-8 border-primary/20 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full border-8 border-primary/20 flex items-center justify-center relative">
+                            <div className="absolute inset-0 rounded-full border-8 border-primary border-t-transparent animate-spin-slow opacity-20"></div>
                             <div className="text-center">
                                 <p className="text-2xl font-black text-primary">
                                     {Math.round((dailyCalories.consumed / dailyCalories.target) * 100)}%
@@ -355,20 +362,20 @@ export default function NutritionPage() {
 
                     <div className="h-3 bg-secondary rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-500"
+                            className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-1000 ease-out"
                             style={{ width: `${Math.min((dailyCalories.consumed / dailyCalories.target) * 100, 100)}%` }}
                         />
                     </div>
                 </div>
 
                 {todayMeals && (
-                    <div className="mb-8">
+                    <div className="mb-8 animate-in slide-in-from-bottom-8 duration-500 delay-300 fill-mode-backwards">
                         <div className="flex items-center gap-2 mb-4">
                             <Calendar size={20} className="text-primary" />
                             <h2 className="text-xl font-black">Aujourd'hui - {todayMeals.dayName}</h2>
                         </div>
 
-                        <div className="p-4 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-3xl mb-4">
+                        <div className="p-4 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-3xl mb-4 shadow-lg shadow-emerald-500/20">
                             <p className="text-sm font-bold opacity-80 mb-1">Thème du jour</p>
                             <p className="text-2xl font-black">{todayMeals.theme}</p>
                         </div>
@@ -379,18 +386,21 @@ export default function NutritionPage() {
                                 const isEaten = log?.eaten || false;
 
                                 return (
-                                    <div key={idx} className={cn(
-                                        "bg-card border rounded-3xl p-5 transition-all",
-                                        isEaten ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/10" : "border-border hover:shadow-lg"
-                                    )}>
+                                    <div key={idx}
+                                        className={cn(
+                                            "bg-card border rounded-3xl p-5 transition-all duration-300 animate-in slide-in-from-bottom-4 fill-mode-backwards",
+                                            isEaten ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/10 scale-[0.98] opacity-80" : "border-border hover:shadow-lg hover:scale-[1.01]"
+                                        )}
+                                        style={{ animationDelay: `${400 + (idx * 100)}ms` }}
+                                    >
                                         <div className="flex items-start gap-4">
                                             <button
                                                 onClick={() => toggleMealEaten(meal)}
                                                 className={cn(
-                                                    "w-12 h-12 rounded-2xl flex items-center justify-center transition-all shrink-0",
+                                                    "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 shrink-0",
                                                     isEaten
-                                                        ? "bg-emerald-500 text-white"
-                                                        : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                                                        ? "bg-emerald-500 text-white rotate-12 scale-110"
+                                                        : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary hover:scale-110"
                                                 )}
                                             >
                                                 {isEaten ? <CheckCircle2 size={24} /> : <Circle size={24} />}
@@ -402,14 +412,14 @@ export default function NutritionPage() {
                                                     <span className="text-xs font-bold text-muted-foreground uppercase">
                                                         {meal.time.replace("-", " ")}
                                                     </span>
-                                                    <span className="ml-auto text-xs font-bold text-primary">{meal.calories} kcal</span>
+                                                    <span className="ml-auto text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md">{meal.calories} kcal</span>
                                                 </div>
 
-                                                <h3 className="text-lg font-black mb-2">{meal.name}</h3>
+                                                <h3 className={cn("text-lg font-black mb-2 transition-all", isEaten && "line-through decoration-2 decoration-emerald-500/50 text-muted-foreground")}>{meal.name}</h3>
                                                 <p className="text-sm text-muted-foreground mb-3">{meal.description}</p>
 
                                                 {meal.tips && (
-                                                    <div className="flex items-start gap-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl mb-3">
+                                                    <div className="flex items-start gap-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl mb-3 border border-amber-100 dark:border-amber-800/30">
                                                         <Info size={14} className="text-amber-600 mt-0.5 shrink-0" />
                                                         <p className="text-xs text-amber-800 dark:text-amber-200">{meal.tips}</p>
                                                     </div>
@@ -417,9 +427,9 @@ export default function NutritionPage() {
 
                                                 <button
                                                     onClick={() => openRecipe(meal)}
-                                                    className="flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+                                                    className="flex items-center gap-2 text-sm font-bold text-primary hover:underline group"
                                                 >
-                                                    <BookOpen size={16} />
+                                                    <BookOpen size={16} className="group-hover:scale-110 transition-transform" />
                                                     Voir la recette complète
                                                 </button>
                                             </div>
@@ -432,14 +442,14 @@ export default function NutritionPage() {
                 )}
 
                 {selectedCondition && nutritionTips[selectedCondition] && (
-                    <div className="mb-8">
+                    <div className="mb-8 animate-in slide-in-from-bottom-8 duration-500 delay-500 fill-mode-backwards">
                         <h2 className="text-xl font-black mb-4 flex items-center gap-2">
                             <Sparkles size={20} className="text-primary" />
                             Conseils Nutrition
                         </h2>
                         <div className="space-y-2">
                             {nutritionTips[selectedCondition].map((tip, idx) => (
-                                <div key={idx} className="flex items-start gap-3 p-4 bg-card border border-border rounded-2xl">
+                                <div key={idx} className="flex items-start gap-3 p-4 bg-card border border-border rounded-2xl hover:bg-accent/50 transition-colors">
                                     <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
                                         {idx + 1}
                                     </div>
@@ -450,7 +460,7 @@ export default function NutritionPage() {
                     </div>
                 )}
 
-                <div className="mb-8">
+                <div className="mb-8 animate-in slide-in-from-bottom-8 duration-500 delay-700 fill-mode-backwards">
                     <h2 className="text-xl font-black mb-4 flex items-center gap-2">
                         <Utensils size={20} className="text-primary" />
                         Plan de la Semaine
@@ -465,8 +475,8 @@ export default function NutritionPage() {
                                     className={cn(
                                         "p-4 rounded-2xl border transition-all",
                                         isToday
-                                            ? "bg-primary/10 border-primary"
-                                            : "bg-card border-border hover:shadow-md"
+                                            ? "bg-primary/10 border-primary scale-[1.02] ring-2 ring-primary/20"
+                                            : "bg-card border-border hover:shadow-md hover:scale-[1.01]"
                                     )}
                                 >
                                     <div className="flex items-center justify-between">
@@ -477,7 +487,7 @@ export default function NutritionPage() {
                                         <div className="text-right">
                                             <p className="text-xs font-bold text-muted-foreground">{day.meals.length} repas</p>
                                             {isToday && (
-                                                <span className="text-xs font-black text-primary">Aujourd'hui</span>
+                                                <span className="text-xs font-black text-primary bg-primary/10 px-2 py-0.5 rounded-md mt-1 inline-block">Aujourd'hui</span>
                                             )}
                                         </div>
                                     </div>
