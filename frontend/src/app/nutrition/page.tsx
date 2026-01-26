@@ -188,9 +188,28 @@ export default function NutritionPage() {
     };
 
     const toggleMealEaten = async (meal: any) => {
+        // OPTIMISTIC UPDATE: Visually toggle immediately
+        const isCurrentlyEaten = mealLogs.some(l => l.mealId === meal.id && l.eaten);
+        const optimisticStatus = !isCurrentlyEaten;
+
+        // Force update UI locally first
+        setMealLogs(prevLogs => {
+            const existing = prevLogs.find(l => l.mealId === meal.id);
+            if (existing) {
+                return prevLogs.map(l => l.mealId === meal.id ? { ...l, eaten: optimisticStatus } : l);
+            }
+            // If phantom log needed for UI
+            return [...prevLogs, { id: 'temp-' + meal.id, mealId: meal.id, eaten: optimisticStatus, date: new Date().toISOString() }];
+        });
+
+        // Vibrate on mobile for feedback
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+
         let log = mealLogs.find(l => l.mealId === meal.id);
 
-        // If log doesn't exist, create it immediately
+        // If log doesn't exist, create it in background
         if (!log) {
             try {
                 const today = new Date().toISOString().split('T')[0];
@@ -200,29 +219,40 @@ export default function NutritionPage() {
                     date: today,
                     time: new Date().toTimeString().slice(0, 5),
                     calories: meal.calories,
-                    eaten: false
+                    eaten: optimisticStatus
                 });
-                // Manually construct log object to continue without reload
-                log = {
-                    id: newLogId,
-                    mealId: meal.id,
-                    mealName: meal.name,
-                    date: today,
-                    eaten: false
-                };
+
+                // Update the temp log with real ID
+                setMealLogs(prev => prev.map(l => l.mealId === meal.id ? { ...l, id: newLogId } : l));
+                log = { id: newLogId, mealId: meal.id, mealName: meal.name, date: today, eaten: optimisticStatus };
             } catch (error) {
-                console.error("Failed to create initial log", error);
+                console.error("Failed to create log", error);
+                // Revert optimistic update on error
+                setMealLogs(prevLogs => prevLogs.map(l => l.mealId === meal.id ? { ...l, eaten: !optimisticStatus } : l));
                 return;
             }
-        }
-
-        if (!log.eaten) {
-            setSelectedMeal(meal);
-            setSelectedLogId(log.id);
-            setShowRatingModal(true);
         } else {
-            await firebaseService.updateMealLog(log.id, { eaten: false, rating: null, notes: null });
-            await loadTodayLogs();
+            // Normal update
+            try {
+                if (optimisticStatus) {
+                    await firebaseService.updateMealLog(log.id, { eaten: true });
+
+                    // Trigger rating modal slightly after to not block "checking" flow
+                    if (!log.rating) {
+                        setTimeout(() => {
+                            setSelectedMeal(meal);
+                            setSelectedLogId(log!.id);
+                            setShowRatingModal(true);
+                        }, 500);
+                    }
+                } else {
+                    await firebaseService.updateMealLog(log.id, { eaten: false });
+                }
+                loadTodayLogs(); // Sync completely
+            } catch (e) {
+                // Revert
+                setMealLogs(prevLogs => prevLogs.map(l => l.mealId === meal.id ? { ...l, eaten: !optimisticStatus } : l));
+            }
         }
     };
 
@@ -379,12 +409,12 @@ export default function NutritionPage() {
     }
 
     return (
-        <div className="min-h-screen bg-background pb-24 animate-in fade-in duration-700 relative overflow-hidden">
+        <div className="min-h-screen pb-24 animate-in fade-in duration-700 relative overflow-hidden">
             {/* Animated Background */}
             <div className="fixed inset-0 z-0 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-emerald-400/10 blur-[120px] rounded-full animate-blob" />
-                <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-teal-400/10 blur-[120px] rounded-full animate-blob animation-delay-2000" />
-                <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] bg-green-400/10 blur-[120px] rounded-full animate-blob animation-delay-4000" />
+                <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-emerald-400/20 blur-[100px] rounded-full animate-blob mix-blend-multiply dark:mix-blend-screen opacity-70" />
+                <div className="absolute top-[20%] right-[-10%] w-[70%] h-[70%] bg-teal-400/20 blur-[100px] rounded-full animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen opacity-70" />
+                <div className="absolute bottom-[-10%] left-[20%] w-[70%] h-[70%] bg-green-400/20 blur-[100px] rounded-full animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-screen opacity-70" />
             </div>
 
             <div className="max-w-2xl mx-auto px-4 pt-8 relative z-10">
