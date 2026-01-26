@@ -1,0 +1,516 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { auth } from "@/services/firebase";
+import { firebaseService } from "@/services/firebaseService";
+import { DietCondition } from "@/services/nutritionTypes";
+import { generateWeeklyPlan } from "@/services/nutritionData";
+import { nutritionTips } from "@/services/recipeData";
+import {
+    Apple, ChevronRight, Calendar, TrendingUp, Heart,
+    Activity, Droplets, Flame, User, ArrowLeft,
+    Utensils, Clock, Info, Bell, BookOpen, CheckCircle2,
+    Circle, Sparkles, TrendingDown
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import BottomNav from "@/components/BottomNav";
+import RecipeModal from "@/components/nutrition/RecipeModal";
+import ReminderModal from "@/components/nutrition/ReminderModal";
+import MealRatingModal from "@/components/nutrition/MealRatingModal";
+
+export default function NutritionPage() {
+    const router = useRouter();
+    const [user, setUser] = useState<any>(null);
+    const [userProfile, setUserProfile] = useState<any>(null);
+    const [selectedCondition, setSelectedCondition] = useState<DietCondition | null>(null);
+    const [currentPlan, setCurrentPlan] = useState<any[]>([]);
+    const [todayMeals, setTodayMeals] = useState<any>(null);
+    const [step, setStep] = useState<"select" | "profile" | "plan">("select");
+    const [loading, setLoading] = useState(true);
+
+    // New states for tracking
+    const [mealLogs, setMealLogs] = useState<any[]>([]);
+    const [dailyCalories, setDailyCalories] = useState({ consumed: 0, target: 2000 });
+    const [showRecipeModal, setShowRecipeModal] = useState(false);
+    const [showReminderModal, setShowReminderModal] = useState(false);
+    const [showRatingModal, setShowRatingModal] = useState(false);
+    const [selectedMeal, setSelectedMeal] = useState<any>(null);
+    const [selectedLogId, setSelectedLogId] = useState<string>("");
+
+    // Form state for profile
+    const [formData, setFormData] = useState({
+        weight: "",
+        height: "",
+        age: "",
+        gender: "homme" as "homme" | "femme",
+        allergies: [] as string[],
+        goal: ""
+    });
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+            if (currentUser) {
+                setUser(currentUser);
+                const profile = await firebaseService.getUserProfile(currentUser.uid);
+
+                if (profile?.nutritionProfile) {
+                    setUserProfile(profile.nutritionProfile);
+                    setSelectedCondition(profile.nutritionProfile.condition);
+                    await loadPlan(profile.nutritionProfile.condition);
+                    await loadTodayLogs();
+                    setStep("plan");
+                }
+            } else {
+                router.push("/login");
+            }
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const loadPlan = async (condition: DietCondition) => {
+        const plan = generateWeeklyPlan(condition, new Date());
+        setCurrentPlan(plan);
+
+        const today = new Date().toISOString().split('T')[0];
+        const todayPlan = plan.find(p => p.date === today);
+        setTodayMeals(todayPlan);
+
+        if (todayPlan) {
+            const existingLogs = await firebaseService.getMealLogs(today);
+
+            if (existingLogs.length === 0) {
+                for (const meal of todayPlan.meals) {
+                    await firebaseService.logMeal({
+                        mealId: meal.id,
+                        mealName: meal.name,
+                        date: today,
+                        time: new Date().toTimeString().slice(0, 5),
+                        calories: meal.calories,
+                        eaten: false
+                    });
+                }
+            }
+        }
+    };
+
+    const loadTodayLogs = async () => {
+        const today = new Date().toISOString().split('T')[0];
+        const logs = await firebaseService.getMealLogs(today);
+        setMealLogs(logs);
+
+        const calories = await firebaseService.getDailyCalories(today);
+        setDailyCalories({
+            consumed: calories.consumed,
+            target: 2000
+        });
+    };
+
+    const handleConditionSelect = (condition: DietCondition) => {
+        setSelectedCondition(condition);
+        setStep("profile");
+    };
+
+    const handleProfileSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!user || !selectedCondition) return;
+
+        const nutritionProfile = {
+            condition: selectedCondition,
+            weight: parseFloat(formData.weight),
+            height: parseFloat(formData.height),
+            age: parseInt(formData.age),
+            gender: formData.gender,
+            allergies: formData.allergies,
+            goal: formData.goal,
+            startDate: new Date().toISOString()
+        };
+
+        await firebaseService.saveUserProfile(user.uid, { nutritionProfile });
+        setUserProfile(nutritionProfile);
+        await loadPlan(selectedCondition);
+        await loadTodayLogs();
+        setStep("plan");
+    };
+
+    const toggleMealEaten = async (meal: any) => {
+        const log = mealLogs.find(l => l.mealId === meal.id);
+        if (!log) return;
+
+        if (!log.eaten) {
+            setSelectedMeal(meal);
+            setSelectedLogId(log.id);
+            setShowRatingModal(true);
+        } else {
+            await firebaseService.updateMealLog(log.id, { eaten: false, rating: null, notes: null });
+            await loadTodayLogs();
+        }
+    };
+
+    const openRecipe = (meal: any) => {
+        setSelectedMeal(meal);
+        setShowRecipeModal(true);
+    };
+
+    const conditions = [
+        { id: "diabete", label: "Diabète", icon: Activity, color: "bg-blue-500", desc: "Contrôle de la glycémie" },
+        { id: "hypertension", label: "Hypertension", icon: Heart, color: "bg-red-500", desc: "Régulation de la tension" },
+        { id: "ulcere", label: "Ulcère / Gastrite", icon: Droplets, color: "bg-amber-500", desc: "Protection gastrique" },
+        { id: "perte-poids", label: "Perte de Poids", icon: TrendingDown, color: "bg-green-500", desc: "Déficit calorique sain" },
+        { id: "prise-masse", label: "Prise de Masse", icon: Flame, color: "bg-orange-500", desc: "Surplus calorique" },
+        { id: "enceinte", label: "Grossesse", icon: User, color: "bg-pink-500", desc: "Nutrition maman & bébé" },
+        { id: "normal", label: "Équilibre Général", icon: Apple, color: "bg-emerald-500", desc: "Alimentation saine" }
+    ] as const;
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
+    if (step === "select") {
+        return (
+            <div className="min-h-screen bg-background pb-24">
+                <div className="max-w-2xl mx-auto px-4 pt-8">
+                    <button onClick={() => router.back()} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground">
+                        <ArrowLeft size={16} /> Retour
+                    </button>
+
+                    <div className="mb-8">
+                        <h1 className="text-3xl font-black mb-2">Guide Alimentaire</h1>
+                        <p className="text-muted-foreground">Choisissez votre profil de santé pour un plan personnalisé</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4">
+                        {conditions.map((condition) => (
+                            <button
+                                key={condition.id}
+                                onClick={() => handleConditionSelect(condition.id as DietCondition)}
+                                className="group p-6 bg-card border border-border rounded-3xl hover:shadow-lg transition-all active:scale-[0.98] text-left"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-white", condition.color)}>
+                                        <condition.icon size={28} />
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-lg font-black mb-1">{condition.label}</h3>
+                                        <p className="text-sm text-muted-foreground">{condition.desc}</p>
+                                    </div>
+                                    <ChevronRight className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <BottomNav />
+            </div>
+        );
+    }
+
+    if (step === "profile") {
+        return (
+            <div className="min-h-screen bg-background pb-24">
+                <div className="max-w-2xl mx-auto px-4 pt-8">
+                    <button onClick={() => setStep("select")} className="mb-6 flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground">
+                        <ArrowLeft size={16} /> Retour
+                    </button>
+
+                    <div className="mb-8">
+                        <h1 className="text-3xl font-black mb-2">Votre Profil</h1>
+                        <p className="text-muted-foreground">Quelques informations pour personnaliser votre plan</p>
+                    </div>
+
+                    <form onSubmit={handleProfileSubmit} className="space-y-6">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-bold mb-2">Poids (kg)</label>
+                                <input
+                                    type="number"
+                                    required
+                                    value={formData.weight}
+                                    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                                    className="input-standard"
+                                    placeholder="70"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-2">Taille (cm)</label>
+                                <input
+                                    type="number"
+                                    required
+                                    value={formData.height}
+                                    onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+                                    className="input-standard"
+                                    placeholder="170"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-bold mb-2">Âge</label>
+                                <input
+                                    type="number"
+                                    required
+                                    value={formData.age}
+                                    onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                                    className="input-standard"
+                                    placeholder="30"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold mb-2">Sexe</label>
+                                <select
+                                    value={formData.gender}
+                                    onChange={(e) => setFormData({ ...formData, gender: e.target.value as "homme" | "femme" })}
+                                    className="input-standard"
+                                >
+                                    <option value="homme">Homme</option>
+                                    <option value="femme">Femme</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-bold mb-2">Objectif (optionnel)</label>
+                            <textarea
+                                value={formData.goal}
+                                onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                                className="input-standard min-h-[80px]"
+                                placeholder="Ex: Perdre 5kg en 2 mois"
+                            />
+                        </div>
+
+                        <button type="submit" className="btn btn-primary w-full py-4 text-base">
+                            Générer Mon Plan <ChevronRight size={20} />
+                        </button>
+                    </form>
+                </div>
+                <BottomNav />
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-background pb-24">
+            <div className="max-w-2xl mx-auto px-4 pt-8">
+                <div className="mb-6">
+                    <div className="flex items-center justify-between mb-4">
+                        <h1 className="text-3xl font-black">Mon Plan Nutrition</h1>
+                        <button
+                            onClick={() => setShowReminderModal(true)}
+                            className="p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-all"
+                        >
+                            <Bell size={20} />
+                        </button>
+                    </div>
+
+                    {selectedCondition && (
+                        <div className="flex items-center gap-3 p-4 bg-primary/10 rounded-2xl">
+                            {(() => {
+                                const cond = conditions.find(c => c.id === selectedCondition);
+                                return cond ? (
+                                    <>
+                                        <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-white", cond.color)}>
+                                            <cond.icon size={20} />
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-sm font-black">{cond.label}</p>
+                                            <p className="text-xs text-muted-foreground">{cond.desc}</p>
+                                        </div>
+                                        <button
+                                            onClick={() => setStep("select")}
+                                            className="text-xs font-bold text-primary hover:underline"
+                                        >
+                                            Changer
+                                        </button>
+                                    </>
+                                ) : null;
+                            })()}
+                        </div>
+                    )}
+                </div>
+
+                <div className="mb-6 p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl border border-primary/20">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <p className="text-sm font-bold text-muted-foreground mb-1">Calories Aujourd'hui</p>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-primary">{dailyCalories.consumed}</span>
+                                <span className="text-lg text-muted-foreground">/ {dailyCalories.target}</span>
+                            </div>
+                        </div>
+                        <div className="w-20 h-20 rounded-full border-8 border-primary/20 flex items-center justify-center">
+                            <div className="text-center">
+                                <p className="text-2xl font-black text-primary">
+                                    {Math.round((dailyCalories.consumed / dailyCalories.target) * 100)}%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="h-3 bg-secondary rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-500"
+                            style={{ width: `${Math.min((dailyCalories.consumed / dailyCalories.target) * 100, 100)}%` }}
+                        />
+                    </div>
+                </div>
+
+                {todayMeals && (
+                    <div className="mb-8">
+                        <div className="flex items-center gap-2 mb-4">
+                            <Calendar size={20} className="text-primary" />
+                            <h2 className="text-xl font-black">Aujourd'hui - {todayMeals.dayName}</h2>
+                        </div>
+
+                        <div className="p-4 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-3xl mb-4">
+                            <p className="text-sm font-bold opacity-80 mb-1">Thème du jour</p>
+                            <p className="text-2xl font-black">{todayMeals.theme}</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            {todayMeals.meals.map((meal: any, idx: number) => {
+                                const log = mealLogs.find(l => l.mealId === meal.id);
+                                const isEaten = log?.eaten || false;
+
+                                return (
+                                    <div key={idx} className={cn(
+                                        "bg-card border rounded-3xl p-5 transition-all",
+                                        isEaten ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/10" : "border-border hover:shadow-lg"
+                                    )}>
+                                        <div className="flex items-start gap-4">
+                                            <button
+                                                onClick={() => toggleMealEaten(meal)}
+                                                className={cn(
+                                                    "w-12 h-12 rounded-2xl flex items-center justify-center transition-all shrink-0",
+                                                    isEaten
+                                                        ? "bg-emerald-500 text-white"
+                                                        : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                                                )}
+                                            >
+                                                {isEaten ? <CheckCircle2 size={24} /> : <Circle size={24} />}
+                                            </button>
+
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <Clock size={14} className="text-muted-foreground" />
+                                                    <span className="text-xs font-bold text-muted-foreground uppercase">
+                                                        {meal.time.replace("-", " ")}
+                                                    </span>
+                                                    <span className="ml-auto text-xs font-bold text-primary">{meal.calories} kcal</span>
+                                                </div>
+
+                                                <h3 className="text-lg font-black mb-2">{meal.name}</h3>
+                                                <p className="text-sm text-muted-foreground mb-3">{meal.description}</p>
+
+                                                {meal.tips && (
+                                                    <div className="flex items-start gap-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl mb-3">
+                                                        <Info size={14} className="text-amber-600 mt-0.5 shrink-0" />
+                                                        <p className="text-xs text-amber-800 dark:text-amber-200">{meal.tips}</p>
+                                                    </div>
+                                                )}
+
+                                                <button
+                                                    onClick={() => openRecipe(meal)}
+                                                    className="flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+                                                >
+                                                    <BookOpen size={16} />
+                                                    Voir la recette complète
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+                {selectedCondition && nutritionTips[selectedCondition] && (
+                    <div className="mb-8">
+                        <h2 className="text-xl font-black mb-4 flex items-center gap-2">
+                            <Sparkles size={20} className="text-primary" />
+                            Conseils Nutrition
+                        </h2>
+                        <div className="space-y-2">
+                            {nutritionTips[selectedCondition].map((tip, idx) => (
+                                <div key={idx} className="flex items-start gap-3 p-4 bg-card border border-border rounded-2xl">
+                                    <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
+                                        {idx + 1}
+                                    </div>
+                                    <p className="text-sm leading-relaxed">{tip}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                <div className="mb-8">
+                    <h2 className="text-xl font-black mb-4 flex items-center gap-2">
+                        <Utensils size={20} className="text-primary" />
+                        Plan de la Semaine
+                    </h2>
+
+                    <div className="grid grid-cols-1 gap-3">
+                        {currentPlan.map((day, idx) => {
+                            const isToday = day.date === new Date().toISOString().split('T')[0];
+                            return (
+                                <div
+                                    key={idx}
+                                    className={cn(
+                                        "p-4 rounded-2xl border transition-all",
+                                        isToday
+                                            ? "bg-primary/10 border-primary"
+                                            : "bg-card border-border hover:shadow-md"
+                                    )}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="text-sm font-black">{day.dayName}</p>
+                                            <p className="text-xs text-muted-foreground">{day.theme}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-xs font-bold text-muted-foreground">{day.meals.length} repas</p>
+                                            {isToday && (
+                                                <span className="text-xs font-black text-primary">Aujourd'hui</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+
+            <RecipeModal
+                isOpen={showRecipeModal}
+                onClose={() => setShowRecipeModal(false)}
+                meal={selectedMeal}
+            />
+
+            <ReminderModal
+                isOpen={showReminderModal}
+                onClose={() => setShowReminderModal(false)}
+                onSave={() => { }}
+            />
+
+            <MealRatingModal
+                isOpen={showRatingModal}
+                onClose={async () => {
+                    setShowRatingModal(false);
+                    await loadTodayLogs();
+                }}
+                meal={selectedMeal}
+                logId={selectedLogId}
+            />
+
+            <BottomNav />
+        </div>
+    );
+}

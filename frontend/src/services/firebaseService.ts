@@ -771,14 +771,23 @@ export const firebaseService = {
         try {
             const q = query(collection(db, "clinics"), limit(limitCount));
             const snap = await getDocs(q);
-            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Clinic));
+            if (!snap.empty) {
+                return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Clinic));
+            }
+            throw new Error("No clinics in DB");
         } catch (e) {
-            console.error("Error fetching clinics:", e);
-            return [];
+            console.warn("Using OSM Fallback for Clinics...");
+            return await this.fetchClinicsFromOSM();
         }
     },
 
     async getClinicById(id: string): Promise<Clinic | null> {
+        if (id.startsWith('osm-')) {
+            // We can't easily fetch a single OSM node details without coordinates or re-querying, 
+            // but for now let's return null or handle it if we cached it.
+            // Simplified: return null or implement specific OSM fetch if needed.
+            return null;
+        }
         try {
             const d = await getDoc(doc(db, "clinics", id));
             return d.exists() ? ({ id: d.id, ...d.data() } as Clinic) : null;
@@ -787,14 +796,100 @@ export const firebaseService = {
         }
     },
 
+    async fetchClinicsFromOSM(): Promise<Clinic[]> {
+        // Query for clinics and hospitals
+        const query = `
+            [out:json][timeout:25];
+            (
+              node["amenity"~"clinic|hospital"](12.2, -1.6, 12.5, -1.4); // Ouagadougou focused for speed
+            );
+            out body;
+        `;
+        const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (!data.elements) return [];
+
+            return data.elements.map((el: any) => ({
+                id: `osm-clinic-${el.id}`,
+                type: el.tags.amenity === 'hospital' ? 'hospital' : 'clinic',
+                name: el.tags.name || (el.tags.amenity === 'hospital' ? "Hôpital Inconnu" : "Clinique Inconnue"),
+                location: {
+                    lat: el.lat,
+                    lng: el.lon,
+                    address: el.tags["addr:street"] || el.tags["addr:city"] || "Ouagadougou",
+                    city: el.tags["addr:city"] || "Ouagadougou"
+                },
+                phone: el.tags.phone || el.tags["contact:phone"] || "NC",
+                email: el.tags.email || "",
+                status: "open",
+                specialties: ["Médecine Générale"],
+                services: ["Consultation", "Urgences"],
+                hasEmergency: el.tags.emergency === 'yes',
+                hasAmbulance: false,
+                hasBeds: el.tags.amenity === 'hospital',
+                acceptsInsurance: false,
+                isVerified: false,
+                source: "OpenStreetMap"
+            } as Clinic));
+        } catch (error) {
+            console.error("OSM Clinic fetch failed", error);
+            return [];
+        }
+    },
+
     // 🦷 DENTISTS
     async getDentists(limitCount: number = 50): Promise<Dentist[]> {
         try {
             const q = query(collection(db, "dentists"), limit(limitCount));
             const snap = await getDocs(q);
-            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Dentist));
+            if (!snap.empty) {
+                return snap.docs.map((d: any) => ({ id: d.id, ...d.data() } as Dentist));
+            }
+            throw new Error("No dentists in DB");
         } catch (e) {
-            console.error("Error fetching dentists:", e);
+            console.warn("Using OSM Fallback for Dentists...");
+            return await this.fetchDentistsFromOSM();
+        }
+    },
+
+    async fetchDentistsFromOSM(): Promise<Dentist[]> {
+        const query = `
+            [out:json][timeout:25];
+            (
+              node["amenity"="dentist"](12.2, -1.6, 12.5, -1.4);
+            );
+            out body;
+        `;
+        const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (!data.elements) return [];
+
+            return data.elements.map((el: any) => ({
+                id: `osm-dentist-${el.id}`,
+                type: 'dentist',
+                name: el.tags.name || "Cabinet Dentaire",
+                location: {
+                    lat: el.lat,
+                    lng: el.lon,
+                    address: el.tags["addr:street"] || el.tags["addr:city"] || "Ouagadougou",
+                    city: el.tags["addr:city"] || "Ouagadougou"
+                },
+                phone: el.tags.phone || el.tags["contact:phone"] || "NC",
+                status: "open",
+                specialties: ["Soins Dentaires"],
+                services: ["Consultation", "Soins"],
+                acceptsInsurance: false,
+                isVerified: false,
+                source: "OpenStreetMap"
+            } as Dentist));
+        } catch (error) {
+            console.error("OSM Dentist fetch failed", error);
             return [];
         }
     },
@@ -881,5 +976,95 @@ export const firebaseService = {
             createdAt: serverTimestamp()
         };
         return await addDoc(collection(db, "reports"), report);
+    },
+
+    // 🍎 NUTRITION TRACKING
+    async logMeal(mealData: any) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const log = {
+            ...mealData,
+            userId: user.uid,
+            createdAt: serverTimestamp()
+        };
+        return await addDoc(collection(db, "meal_logs"), log);
+    },
+
+    async getMealLogs(date: string): Promise<any[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+
+        try {
+            const q = query(
+                collection(db, "meal_logs"),
+                where("userId", "==", user.uid),
+                where("date", "==", date)
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() }));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    async updateMealLog(logId: string, data: any) {
+        await updateDoc(doc(db, "meal_logs", logId), {
+            ...data,
+            updatedAt: serverTimestamp()
+        });
+    },
+
+    async getDailyCalories(date: string): Promise<any> {
+        const logs = await this.getMealLogs(date);
+        const consumed = logs.reduce((sum, log) => sum + (log.eaten ? log.calories : 0), 0);
+
+        return {
+            date,
+            consumed,
+            meals: logs
+        };
+    },
+
+    // 🔔 MEAL REMINDERS
+    async createMealReminder(reminderData: any) {
+        const user = auth.currentUser;
+        if (!user) throw new Error("Auth required");
+
+        const reminder = {
+            ...reminderData,
+            userId: user.uid,
+            createdAt: serverTimestamp()
+        };
+        return await addDoc(collection(db, "meal_reminders"), reminder);
+    },
+
+    async getMealReminders(): Promise<any[]> {
+        const user = auth.currentUser;
+        if (!user) return [];
+
+        try {
+            const q = query(
+                collection(db, "meal_reminders"),
+                where("userId", "==", user.uid)
+            );
+            const snap = await getDocs(q);
+            return snap.docs.map((d: any) => ({ id: d.id, ...d.data() }));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    },
+
+    async updateMealReminder(reminderId: string, data: any) {
+        await updateDoc(doc(db, "meal_reminders", reminderId), {
+            ...data,
+            updatedAt: serverTimestamp()
+        });
+    },
+
+    async deleteMealReminder(reminderId: string) {
+        await deleteDoc(doc(db, "meal_reminders", reminderId));
     }
 };

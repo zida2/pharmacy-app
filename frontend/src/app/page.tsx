@@ -226,7 +226,12 @@ export default function HomePage() {
         },
         (error) => {
           console.warn("Geolocation retry error:", error);
-          setLocationStatus(error.code === 1 ? 'denied' : 'default');
+          if (error.code === 1) {
+            alert("Veuillez activer la géolocalisation pour continuer.");
+            setLocationStatus('denied');
+          } else {
+            setLocationStatus('default');
+          }
           setUserLocation(DEFAULT_CENTER);
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 } // Force fresh location
@@ -339,7 +344,10 @@ export default function HomePage() {
               <h1 className="text-2xl font-black tracking-tighter text-foreground leading-none animate-in fade-in slide-in-from-left-4 duration-700">
                 Salut, <span className="text-primary italic">{userName}</span>
               </h1>
-              <div className="flex items-center gap-2 pt-1">
+              <button
+                onClick={retryGeolocation}
+                className="flex items-center gap-2 pt-1 hover:opacity-80 active:scale-95 transition-all outline-none"
+              >
                 {locationStatus === 'loading' && <span className="text-[10px] text-muted-foreground animate-pulse font-bold uppercase tracking-widest">Localisation...</span>}
                 {locationStatus === 'success' && (
                   <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
@@ -347,8 +355,19 @@ export default function HomePage() {
                     <span className="text-[10px] uppercase tracking-wider">Ouagadougou, BF</span>
                   </div>
                 )}
-                {locationStatus === 'default' && <div className="flex items-center text-amber-500 gap-1"><AlertTriangle size={10} /><span className="text-[10px] font-bold uppercase">Position Approx.</span></div>}
-              </div>
+                {locationStatus === 'default' && (
+                  <div className="flex items-center text-amber-500 gap-1">
+                    <AlertTriangle size={10} />
+                    <span className="text-[10px] font-bold uppercase">Position Approx. (Tap)</span>
+                  </div>
+                )}
+                {locationStatus === 'denied' && (
+                  <div className="flex items-center text-red-500 gap-1">
+                    <AlertTriangle size={10} />
+                    <span className="text-[10px] font-bold uppercase">Localisation refusée</span>
+                  </div>
+                )}
+              </button>
             </div>
             <div className="flex items-center gap-2">
               <button
