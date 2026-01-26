@@ -49,7 +49,7 @@ export default function NutritionPage() {
     });
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+        const unsubscribe = auth.onAuthStateChanged(async (currentUser: any) => {
             if (currentUser) {
                 setUser(currentUser);
                 const profile = await firebaseService.getUserProfile(currentUser.uid);
