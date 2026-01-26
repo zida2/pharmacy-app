@@ -49,25 +49,49 @@ export default function NutritionPage() {
     });
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (currentUser: any) => {
-            if (currentUser) {
-                setUser(currentUser);
-                const profile = await firebaseService.getUserProfile(currentUser.uid);
+        let mounted = true;
 
-                if (profile?.nutritionProfile) {
-                    setUserProfile(profile.nutritionProfile);
-                    setSelectedCondition(profile.nutritionProfile.condition);
-                    await loadPlan(profile.nutritionProfile.condition);
-                    await loadTodayLogs();
-                    setStep("plan");
-                }
-            } else {
-                router.push("/login");
+        // Fail-safe timeout to prevent infinite loading
+        const timeoutId = setTimeout(() => {
+            if (mounted && loading) {
+                console.warn("Force ending loading state after timeout");
+                setLoading(false);
             }
-            setLoading(false);
+        }, 8000);
+
+        const unsubscribe = auth.onAuthStateChanged(async (currentUser: any) => {
+            try {
+                if (currentUser) {
+                    setUser(currentUser);
+                    const profile = await firebaseService.getUserProfile(currentUser.uid).catch(() => null);
+
+                    if (profile?.nutritionProfile) {
+                        setUserProfile(profile.nutritionProfile);
+                        setSelectedCondition(profile.nutritionProfile.condition);
+                        try {
+                            await loadPlan(profile.nutritionProfile.condition);
+                            await loadTodayLogs();
+                        } catch (err) {
+                            console.error("Error loading plan details", err);
+                        }
+                        setStep("plan");
+                    }
+                } else {
+                    router.push("/login");
+                }
+            } catch (error) {
+                console.error("Error in auth/profile load:", error);
+            } finally {
+                if (mounted) setLoading(false);
+                clearTimeout(timeoutId);
+            }
         });
 
-        return () => unsubscribe();
+        return () => {
+            mounted = false;
+            unsubscribe();
+            clearTimeout(timeoutId);
+        };
     }, []);
 
     const loadPlan = async (condition: DietCondition) => {
