@@ -51,21 +51,49 @@ export default function NutritionPage() {
     useEffect(() => {
         let mounted = true;
 
-        // Fail-safe timeout to prevent infinite loading
+        // 🚀 FAST LOAD: Check Local Cache immediately
+        const cached = localStorage.getItem("nutrition_profile");
+        if (cached) {
+            try {
+                const p = JSON.parse(cached);
+                if (p && p.condition) {
+                    console.log("⚡ Loaded from cache");
+                    setUserProfile(p);
+                    setSelectedCondition(p.condition);
+
+                    // Generate plan immediately from cache
+                    const plan = generateWeeklyPlan(p.condition, new Date());
+                    setCurrentPlan(plan);
+                    const today = new Date().toISOString().split('T')[0];
+                    setTodayMeals(plan.find(p => p.date === today));
+
+                    setStep("plan");
+                    setLoading(false); // Immediate display
+                }
+            } catch (e) {
+                console.error("Cache parse error", e);
+            }
+        }
+
+        // Fail-safe timeout
         const timeoutId = setTimeout(() => {
             if (mounted && loading) {
-                console.warn("Force ending loading state after timeout");
                 setLoading(false);
             }
-        }, 8000);
+        }, 5000);
 
         const unsubscribe = auth.onAuthStateChanged(async (currentUser: any) => {
             try {
                 if (currentUser) {
                     setUser(currentUser);
+                    // Fetch fresh data in background
                     const profile = await firebaseService.getUserProfile(currentUser.uid).catch(() => null);
 
                     if (profile?.nutritionProfile) {
+                        // Update cache
+                        localStorage.setItem("nutrition_profile", JSON.stringify(profile.nutritionProfile));
+
+                        // Update state if different (or just ensure consistency)
                         setUserProfile(profile.nutritionProfile);
                         setSelectedCondition(profile.nutritionProfile.condition);
                         try {
