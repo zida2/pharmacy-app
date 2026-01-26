@@ -188,8 +188,33 @@ export default function NutritionPage() {
     };
 
     const toggleMealEaten = async (meal: any) => {
-        const log = mealLogs.find(l => l.mealId === meal.id);
-        if (!log) return;
+        let log = mealLogs.find(l => l.mealId === meal.id);
+
+        // If log doesn't exist, create it immediately
+        if (!log) {
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const newLogId = await firebaseService.logMeal({
+                    mealId: meal.id,
+                    mealName: meal.name,
+                    date: today,
+                    time: new Date().toTimeString().slice(0, 5),
+                    calories: meal.calories,
+                    eaten: false
+                });
+                // Manually construct log object to continue without reload
+                log = {
+                    id: newLogId,
+                    mealId: meal.id,
+                    mealName: meal.name,
+                    date: today,
+                    eaten: false
+                };
+            } catch (error) {
+                console.error("Failed to create initial log", error);
+                return;
+            }
+        }
 
         if (!log.eaten) {
             setSelectedMeal(meal);
@@ -354,8 +379,15 @@ export default function NutritionPage() {
     }
 
     return (
-        <div className="min-h-screen bg-background pb-24 animate-in fade-in duration-700">
-            <div className="max-w-2xl mx-auto px-4 pt-8">
+        <div className="min-h-screen bg-background pb-24 animate-in fade-in duration-700 relative overflow-hidden">
+            {/* Animated Background */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-emerald-400/10 blur-[120px] rounded-full animate-blob" />
+                <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-teal-400/10 blur-[120px] rounded-full animate-blob animation-delay-2000" />
+                <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] bg-green-400/10 blur-[120px] rounded-full animate-blob animation-delay-4000" />
+            </div>
+
+            <div className="max-w-2xl mx-auto px-4 pt-8 relative z-10">
                 <div className="mb-6 animate-in slide-in-from-top-4 duration-500">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-3xl font-black">Mon Plan Nutrition</h1>
