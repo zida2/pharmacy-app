@@ -230,6 +230,22 @@ export const firebaseService = {
             const q = term?.toLowerCase().trim() || "";
             const isEmergencySearch = q.includes("garde") || q.includes("urgence") || q.includes("urgent");
 
+            // SPECIAL CASE: Guard/Emergency Search - Verify all pharmacies for status
+            if (isEmergencySearch) {
+                const pharmacies = await this.getPharmacies();
+                const guardPharmacies = pharmacies.filter(p => p.status === 'guard');
+
+                if (guardPharmacies.length > 0) {
+                    return guardPharmacies.map(p => {
+                        const lat = p.location?.lat || 0;
+                        const lng = p.location?.lng || 0;
+                        const straight = calculateDistance(userLocation, { latitude: lat, longitude: lng });
+                        return { pharmacy: { ...p, distance: straight * 1.4 } };
+                    }).sort((a, b) => (a.pharmacy.distance || 0) - (b.pharmacy.distance || 0));
+                }
+                // If no guard pharmacies found, fall through to fallback (or empty)
+            }
+
             // If no term, just return nearby
             if (!q) {
                 const pharmacies = await this.getPharmacies();
